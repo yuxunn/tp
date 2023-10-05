@@ -25,6 +25,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
+``` mermaid
+sequenceDiagram
+    Alice->>+John: Hello John, how are you?
+    Alice->>+John: John, can you hear me?
+    John-->>-Alice: Hi Alice, I can hear you!
+    John-->>-Alice: I feel great!
+```
+
 ### Architecture
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
@@ -275,11 +283,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: to keep track of their leads as well as clients' details such as their insurance policies, expiry, coverage, personal and contact details, to better assist their leads and clients.
 
 
 ### User stories
-
+<!--
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
@@ -290,8 +298,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+-->
+## Leads
 
-*{More to be added}*
+| Priority | As a | I want to …​                      | So that I can…​                          |
+|----------|--------------------------------|----------------------------------|------------------------------------------|
+| `* * *`  |  student financial advisor                                | view all my potential leads      | recall all my leads                      |
+| `* * *`  |  student financial advisor                                | add a potential lead             | follow up with them                      |
+| `* * *`  |  student financial advisor                                | edit the details of my leads     | correct mistakes I have made when adding a lead |
+| `* * *`  |  student financial advisor                                | mark leads as done               | keep track of who I have visited         |
+| `* * *`  |  student financial advisor                                | unmark leads that are marked done | amend a mistake of marking leads that were mistakenly marked |
+| `* * *`  |  student financial advisor                                | add a meeting time with my lead  | keep track of when I need to visit my leads |
+| `* * *`  |  student financial advisor                                | sort meeting times by most recent | focus on potential leads that are more urgent |
+| `* * *`  |  student financial advisor                                | convert leads into clients       | keep track of who are my leads and clients |
+
+## Clients
+
+| Priority | As a student financial advisor, | I want to …​                      | So that I can…​                          |
+|----------|--------------------------------|----------------------------------|------------------------------------------|
+| `* * *`  |  student financial advisor                                | add clients who have purchased a plan from me | keep track of my clients        |
+| `* * *`  |  student financial advisor                               | update client information        | accurately reflect the information of my clients if I had mistakenly added the wrong information prior |
+| `* * *`  |  student financial advisor                               | remove clients who did not continue their services with me | not clutter up my address book |
+| `* * *`  |  student financial advisor                               | find available meeting timings   | more easily schedule meetings             |
+| `* * *`  |  student financial advisor                               | check whose policies are expiring soon | plan a meeting with them            |
+| `* * *`  |  student financial advisor                               | edit a policy of my client       | accurately reflect their policies on the app if my client has changed his or her policy |
+| `* * *`  |   student financial advisor                              | remove a policy of my client     | accurately reflect their policies on the app if my client has unsubscribed from his or her policy |
+| `* * *`  |  student financial advisor                               | create and manage client profiles | keep track of their financial information, goals, and progress |
+| `* * *`  |  student financial advisor                               | schedule and manage appointments with my clients | ensure regular communication and updates |
+| `* * *`  |  student financial advisor                               | set and track financial goals for my clients | help them work toward their objectives |
+| `* * *`  |  student financial advisor                               | create and manage investment portfolios for my clients | make adjustments as needed |
+| `* * *`  |  student financial advisor                               | generate and share reports with my clients | keep them informed about their financial progress |
+| `* * *`  |  student financial advisor                               | securely message and communicate with my clients within the app | address their questions and concerns |
+| `* * *`  |  student financial advisor                               | have access to analytics and tools that help me analyze my clients' financial data | provide them with the best advice |
+| `* * *`  |  student financial advisor                               | generate tax reports and provide tax planning advice | help my clients minimize their tax liabilities |
+| `* * *`  |  student financial advisor                               | keep track of my clients’ birthdays | make the necessary arrangements like sending well wishes to them |
+| `* * *`  |  student financial advisor                               | send celebration message to all of my clients | not have to utilize another platform to do so |
+| `* * *`  |  student financial advisor                               | search up a list of clients who purchased a specific policy | monitor the policies based on their specific type |
+| `* * *`  |  student financial advisor                               | inform my clients about new updates | help them stay updated |
+| `* * *`  |  student financial advisor                               | sort my clients based on the commissions they have made me | know which clients to prioritize |
+
+## General Information
+
+| Priority | As a student financial advisor, | I want to …​                      | So that I can…​                          |
+|----------|--------------------------------|----------------------------------|------------------------------------------|
+| `* * *`  |   student financial advisor                              | upload and store important documents securely | easily access them when needed    |
+| `* * *`  |   student financial advisor                              | modify my authentication details regularly | ensure my account is safe and secure |
+| `* * *`  |   student financial advisor                              | write notes on the platform      | keep track of any additional notes related to my work |
+| `* * *`  |   student financial advisor                              | keep track of my commissions     | to keep track of my financial performance        |
+| `* * *`  |   student financial advisor                              | keep track of upcoming events    | be on track with the different upcoming appointments |
 
 ### Use cases
 
