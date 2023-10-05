@@ -1,4 +1,4 @@
-# D.A.V.E (D’financial AdVisor Expert)
+# D.A.V.E. (D’financial AdVisor Expert)
 [![Java CI](https://github.com/AY2324S1-CS2103T-F08-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S1-CS2103T-F08-2/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2324S1-CS2103T-F08-2/tp/graph/badge.svg?token=GCZ85WN999)](https://codecov.io/gh/AY2324S1-CS2103T-F08-2/tp)
 
