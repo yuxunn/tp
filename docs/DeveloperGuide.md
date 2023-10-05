@@ -25,9 +25,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
+
 ### Architecture
 
-<puml src="diagrams/ArchitectureDiagram.puml" width="280" />
+<img src="diagrams/ArchitectureDiagram.png" width="280" />
+
+
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -52,7 +55,9 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
+
+
+<img src="diagrams/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -61,7 +66,8 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<puml src="diagrams/ComponentManagers.puml" width="300" />
+<img src="diagrams/ComponentManagers.png" width="300" />
+
 
 The sections below give more details of each component.
 
@@ -69,7 +75,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
+<img src="diagrams/UiClassDiagram.png" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -88,11 +94,11 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
+<img src="diagrams/LogicClassDiagram.png" width="550"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
+<img src="diagrams/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
 <box type="info" seamless>
 
@@ -108,7 +114,7 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<puml src="diagrams/ParserClasses.puml" width="600"/>
+<img src="diagrams/ParserClasses.png" width="600"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
@@ -117,7 +123,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<img src="diagrams/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
@@ -131,7 +137,7 @@ The `Model` component,
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+<img src="diagrams/BetterModelClassDiagram.png" width="450" />
 
 </box>
 
@@ -140,7 +146,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<img src="diagrams/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -173,15 +179,15 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
+<img src="diagrams/UndoRedoState0.png" alt="UndoRedoState0" />
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
+<img src="diagrams/UndoRedoState1.png" alt="UndoRedoState1" />
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+<img src="diagrams/UndoRedoState2.png" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
@@ -191,7 +197,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
+<img src="diagrams/UndoRedoState3.png" alt="UndoRedoState3" />
 
 
 <box type="info" seamless>
@@ -203,7 +209,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-<puml src="diagrams/UndoSequenceDiagram.puml" alt="UndoSequenceDiagram" />
+<img src="diagrams/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" />
 
 <box type="info" seamless>
 
@@ -221,15 +227,15 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
+<img src="diagrams/UndoRedoState4.png" alt="UndoRedoState4" />
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
+<img src="diagrams/UndoRedoState5.png" alt="UndoRedoState5" />
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
+<img src="diagrams/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -269,17 +275,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is a student financial advisor
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs a solution that offers robust client relationship management
+* needs event and policy tracking
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: to keep track of their leads as well as clients' details such as their insurance policies, expiry, coverage, personal and contact details, to better assist their leads and clients.
 
 
 ### User stories
-
+<!--
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
@@ -290,8 +299,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+-->
+## Leads
 
-*{More to be added}*
+| Priority | As a | I want to …​                      | So that I can…​                          |
+|----------|--------------------------------|----------------------------------|------------------------------------------|
+| `* * *`  |  student financial advisor                                | view all my potential leads      | recall all my leads                      |
+| `* * *`  |  student financial advisor                                | add a potential lead             | follow up with them                      |
+| `* * *`  |  student financial advisor                                | edit the details of my leads     | correct mistakes I have made when adding a lead |
+| `* *`  |  student financial advisor                                | mark leads as done               | keep track of who I have visited         |
+| `* *`  |  student financial advisor                                | unmark leads that are marked done | amend a mistake of marking leads that were mistakenly marked |
+| `* * *`  |  student financial advisor                                | add a meeting time with my lead  | keep track of when I need to visit my leads |
+| `* * *`  |  student financial advisor                                | sort meeting times by most recent | focus on potential leads that are more urgent |
+| `* * *`  |  student financial advisor                                | convert leads into clients       | keep track of who are my leads and clients |
+
+## Clients
+
+| Priority | As a student... | I want to …​                      | So that I can…​                          |
+|----------|--------------------------------|----------------------------------|------------------------------------------|
+| `* * *`  |  student financial advisor                                | add clients who have purchased a plan from me | keep track of my clients        |
+| `* * *`  |  student financial advisor                               | update client information        | accurately reflect the information of my clients if I had mistakenly added the wrong information prior |
+| `* * *`  |  student financial advisor                               | remove clients who did not continue their services with me | not clutter up my address book |
+| `* * *`  |  student financial advisor                               | find available meeting timings   | more easily schedule meetings             |
+| `* * *`  |  student financial advisor                               | check whose policies are expiring soon | plan a meeting with them            |
+| `* * *`  |  student financial advisor                               | edit a policy of my client       | accurately reflect their policies on the app if my client has changed his or her policy |
+| `* * *`  |   student financial advisor                              | remove a policy of my client     | accurately reflect their policies on the app if my client has unsubscribed from his or her policy |
+| `* * *`  |  student financial advisor                               | create and manage client profiles | keep track of their financial information, goals, and progress |
+| `* * *`  |  student financial advisor                               | schedule and manage appointments with my clients | ensure regular communication and updates |
+| `*`  |  student financial advisor                               | set and track financial goals for my clients | help them work toward their objectives |
+| `*`  |  student financial advisor                               | create and manage investment portfolios for my clients | make adjustments as needed |
+| `*`  |  student financial advisor                               | generate and share reports with my clients | keep them informed about their financial progress |
+| `*`  |  student financial advisor                               | securely message and communicate with my clients within the app | address their questions and concerns |
+| `* *`  |  student financial advisor                               | have access to analytics and tools that help me analyze my clients' financial data | provide them with the best advice |
+| `* *`  |  student financial advisor                               | generate tax reports and provide tax planning advice | help my clients minimize their tax liabilities |
+| `* * *`  |  student financial advisor                               | keep track of my clients’ birthdays | make the necessary arrangements like sending well wishes to them |
+| `* * *`  |  student financial advisor                               | send celebration message to all of my clients | not have to utilize another platform to do so |
+| `* *`  |  student financial advisor                               | search up a list of clients who purchased a specific policy | monitor the policies based on their specific type |
+| `*`  |  student financial advisor                               | inform my clients about new updates | help them stay updated |
+| `* * *`  |  student financial advisor                               | sort my clients based on the commissions they have made me | know which clients to prioritize |
+
+## General Information
+
+| Priority | As a student financial advisor, | I want to …​                      | So that I can…​                          |
+|----------|--------------------------------|----------------------------------|------------------------------------------|
+| `*`  |   student financial advisor                              | upload and store important documents securely | easily access them when needed    |
+| `*`  |   student financial advisor                              | modify my authentication details regularly | ensure my account is safe and secure |
+| `*`  |   student financial advisor                              | write notes on the platform      | keep track of any additional notes related to my work |
+| `* * *`  |   student financial advisor                              | keep track of my commissions     | to keep track of my financial performance        |
+| `* * *`  |   student financial advisor                              | keep track of upcoming events    | be on track with the different upcoming appointments |
 
 ### Use cases
 
@@ -320,6 +375,116 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit event information**
+
+**MSS**
+
+1. User requests to list persons
+2. D.A.V.E. shows a list of persons
+3. User requests to see a specific person
+4. D.A.V.E. shows information of the person
+5. User requests to edit the person's event information
+6. D.A.V.E. updates the person's information
+7. D.A.V.E. displays person's information
+
+Use case ends
+
+**Extensions**
+
+* 2a. The person's information is empty
+  
+  Add person event information
+
+* 3a. The given index is invalid
+  
+    * 3a1 D.A.V.E. shows an error message
+      
+      Use case resumes at step 2
+
+** Use case: Add a New Person **
+
+**MSS**
+
+1. User requests to add a new person
+2. AddressBook prompts the user to input the person's information
+3. User enters the person's details
+4. AddressBook saves the new person's information
+
+Use case ends
+
+**Extensions**
+
+    2a. The person exists in the list
+
+    Use case ends
+
+**Use case: Schedule a Meeting**
+
+**MSS**
+
+1. User requests to list persons
+2. AddressBook displays a list of persons
+3. User selects a specific person
+4. AddressBook shows the person's details
+5. User requests to schedule a meeting with the selected person
+6. AddressBook prompts the user to enter meeting details (date, time, location, etc.)
+7. User provides meeting details
+8. AddressBook schedules the meeting and updates the person's information
+
+Use case ends
+
+**Extensions**
+
+    2a. The list of persons is empty.
+
+    Use case ends.
+
+    3a. The user enters invalid meeting details.
+
+        5a1. AddressBook shows an error message.
+
+        Use case resumes at step 6.
+
+**Use case: View Upcoming Appointments**
+
+**MSS**
+
+1. User requests to view their upcoming appointments.
+2. AddressBook displays a list of scheduled appointments, including date, time, and person involved.
+
+Use case ends.
+
+**Extensions**
+
+    2a. There are no upcoming appointments.
+
+    Use case ends.
+
+**Use case: Search for a Person**
+
+**MSS**
+
+1. User requests to search for a specific person.
+2. AddressBook prompts the user to enter search criteria (e.g., name, email, phone number).
+3. User provides search criteria.
+4. AddressBook performs a search and displays a list of matching persons.
+5. User selects a person from the search results.
+6. AddressBook shows the selected person's details.
+
+Use case ends.
+
+**Extensions**
+
+
+    2a. No persons match the search criteria.
+
+        2a1. AddressBook displays a message indicating no matches found.
+
+        Use case ends.
+
+    Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -327,14 +492,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4. The system should be able to scale gracefully to accommodate a growing number of users, clients, and data without significant performance degradation.
+5. It should support easy integration with additional modules or features as the user base expands.
+8. The user interface should be intuitive and user-friendly, ensuring that users can quickly learn and navigate the application.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Graceful scaling**: Ability for the system to handle increased user loads without significant performance loss
+* **Integration**: Combining different software components together to easily incorporate additional modules or features as needed
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
