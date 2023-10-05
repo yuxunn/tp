@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="355px" preserveAspectRatio="none" style="width:601px;height:355px;" version="1.1" viewBox="0 0 601 355" width="601px" zoomAndPan="magnify"><defs/><g><rect fill="#1D8900" height="212.5313" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="108" y="113.4297"/><rect fill="#3333C4" height="169.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="260" y="142.5625"/><rect fill="#9D0012" height="14" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="391" y="171.6953"/><rect fill="#A38300" height="83.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="496" y="214.8281"/><rect fill="#FFE374" height="25" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="501" y="251.9609"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="27" x2="27" y1="82.2969" y2="343.9609"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="113" x2="113" y1="82.2969" y2="343.9609"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="265" x2="265" y1="82.2969" y2="343.9609"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="396" x2="396" y1="82.2969" y2="343.9609"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="500.5" x2="500.5" y1="82.2969" y2="343.9609"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="8" y="78.9951">User</text><ellipse cx="27" cy="13" fill="#000000" rx="8" ry="8" style="stroke: #000000; stroke-width: 2.0;"/><path d="M27,21 L27,48 M14,29 L40,29 M27,48 L14,63 M27,48 L40,63 " fill="none" style="stroke: #000000; stroke-width: 2.0;"/><rect fill="#1D8900" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="64" x="81" y="51"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="18" x="104" y="70.9951">:UI</text><rect fill="#3333C4" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="64" x="233" y="51"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="244.5" y="70.9951">:Logic</text><rect fill="#9D0012" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="64" x="364" y="51"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="47" x="372.5" y="70.9951">:Model</text><rect fill="#A38300" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="73" x="464.5" y="51"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="59" x="471.5" y="70.9951">:Storage</text><rect fill="#1D8900" height="212.5313" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="108" y="113.4297"/><rect fill="#3333C4" height="169.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="260" y="142.5625"/><rect fill="#9D0012" height="14" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="391" y="171.6953"/><rect fill="#A38300" height="83.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="496" y="214.8281"/><rect fill="#FFE374" height="25" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="501" y="251.9609"/><polygon fill="#000000" points="96,109.4297,106,113.4297,96,117.4297,100,113.4297" style="stroke: #000000; stroke-width: 1.0;"/><line style="stroke: #000000; stroke-width: 1.0;" x1="27" x2="102" y1="113.4297" y2="113.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="62" x="36.5" y="108.3638">"delete 1"</text><polygon fill="#1D8900" points="248,138.5625,258,142.5625,248,146.5625,252,142.5625" style="stroke: #1D8900; stroke-width: 1.0;"/><line style="stroke: #1D8900; stroke-width: 1.0;" x1="118" x2="254" y1="142.5625" y2="142.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="123" x="127.5" y="137.4966">execute("delete 1")</text><polygon fill="#3333C4" points="379,167.6953,389,171.6953,379,175.6953,383,171.6953" style="stroke: #3333C4; stroke-width: 1.0;"/><line style="stroke: #3333C4; stroke-width: 1.0;" x1="270" x2="385" y1="171.6953" y2="171.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="102" x="279.5" y="166.6294">deletePerson(p)</text><polygon fill="#9D0012" points="281,181.6953,271,185.6953,281,189.6953,277,185.6953" style="stroke: #9D0012; stroke-width: 1.0;"/><line style="stroke: #9D0012; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="275" x2="395" y1="185.6953" y2="185.6953"/><polygon fill="#3333C4" points="484,210.8281,494,214.8281,484,218.8281,488,214.8281" style="stroke: #3333C4; stroke-width: 1.0;"/><line style="stroke: #3333C4; stroke-width: 1.0;" x1="270" x2="490" y1="214.8281" y2="214.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="207" x="279.5" y="209.7622">saveAddressBook(addressBook)</text><line style="stroke: #A38300; stroke-width: 1.0;" x1="506" x2="553" y1="238.9609" y2="238.9609"/><line style="stroke: #A38300; stroke-width: 1.0;" x1="553" x2="553" y1="238.9609" y2="251.9609"/><line style="stroke: #A38300; stroke-width: 1.0;" x1="512" x2="553" y1="251.9609" y2="251.9609"/><polygon fill="#A38300" points="522,247.9609,512,251.9609,522,255.9609,518,251.9609" style="stroke: #A38300; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="71" x="518" y="233.895">Save to file</text><line style="stroke: #A38300; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="511" x2="553" y1="275.9609" y2="275.9609"/><line style="stroke: #A38300; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="553" x2="553" y1="275.9609" y2="288.9609"/><line style="stroke: #A38300; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="506" x2="553" y1="288.9609" y2="288.9609"/><polygon fill="#A38300" points="516,284.9609,506,288.9609,516,292.9609,512,288.9609" style="stroke: #A38300; stroke-width: 1.0;"/><polygon fill="#A38300" points="281,293.9609,271,297.9609,281,301.9609,277,297.9609" style="stroke: #A38300; stroke-width: 1.0;"/><line style="stroke: #A38300; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="275" x2="500" y1="297.9609" y2="297.9609"/><polygon fill="#3333C4" points="129,307.9609,119,311.9609,129,315.9609,125,311.9609" style="stroke: #3333C4; stroke-width: 1.0;"/><line style="stroke: #3333C4; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="123" x2="264" y1="311.9609" y2="311.9609"/><polygon fill="#1D8900" points="38,321.9609,28,325.9609,38,329.9609,34,325.9609" style="stroke: #1D8900; stroke-width: 1.0;"/><line style="stroke: #1D8900; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="32" x2="112" y1="325.9609" y2="325.9609"/><!--MD5=[f771f82454742101f1957691090a08a9]
+@startuml
+
+
+
+
+
+
+
+
+skinparam Package {
+    BackgroundColor #FFFFFF
+    BorderThickness 1
+    FontSize 16
+}
+
+skinparam Class {
+    FontColor #FFFFFF
+    FontSize 15
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam ArrowFontStyle bold
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam ArrowFontStyle plain
+
+Actor User as user #000000
+Participant ":UI" as ui #1D8900
+Participant ":Logic" as logic #3333C4
+Participant ":Model" as model #9D0012
+Participant ":Storage" as storage #A38300
+
+user -[#000000]> ui : "delete 1"
+activate ui #1D8900
+
+ui -[#1D8900]> logic : execute("delete 1")
+activate logic #3333C4
+
+logic -[#3333C4]> model : deletePerson(p)
+activate model #9D0012
+
+model -[#9D0012]-> logic
+deactivate model
+
+logic -[#3333C4]> storage : saveAddressBook(addressBook)
+activate storage #A38300
+
+storage -[#A38300]> storage : Save to file
+activate storage #FFE374
+storage - -[#A38300]> storage
+deactivate storage
+
+storage - -[#A38300]> logic
+deactivate storage
+
+logic - -[#3333C4]> ui
+deactivate logic
+
+ui- -[#1D8900]> user
+deactivate ui
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 18:22:07 SGT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.20.1+1-post-Ubuntu-0ubuntu123.04
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

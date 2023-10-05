@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="544px" preserveAspectRatio="none" style="width:1100px;height:544px;" version="1.1" viewBox="0 0 1100 544" width="1100px" zoomAndPan="magnify"><defs/><g><rect fill="#C8C8FA" height="522.8438" style="stroke: #A80036; stroke-width: 1.0;" width="916.5" x="78.5" y="4"/><text fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="512.75" y="17.9233">Logic</text><rect fill="#F97181" height="522.8438" style="stroke: #A80036; stroke-width: 1.0;" width="92" x="997" y="4"/><text fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="48" x="1016.5" y="17.9233">Model</text><rect fill="#FFFFFF" height="426.9531" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="145" y="87.8906"/><rect fill="#FFFFFF" height="227.125" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="349" y="117.0234"/><rect fill="#FFFFFF" height="31.2969" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="547" y="141.0234"/><rect fill="#FFFFFF" height="99.5625" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="547" y="201.4531"/><rect fill="#FFFFFF" height="46.4297" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="739.5" y="225.4531"/><rect fill="#FFFFFF" height="127.5625" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="739.5" y="373.2813"/><rect fill="#FFFFFF" height="31.2969" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="909" y="440.4141"/><rect fill="#FFFFFF" height="14" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1038" y="402.4141"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="149.5" x2="149.5" y1="56.7578" y2="532.8438"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="354" x2="354" y1="56.7578" y2="532.8438"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="552" x2="552" y1="155.6719" y2="532.8438"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="744" x2="744" y1="240.1016" y2="532.8438"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="914" x2="914" y1="455.0625" y2="532.8438"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1043" x2="1043" y1="56.7578" y2="532.8438"/><rect fill="#3333C4" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="115" x="92.5" y="25.4609"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="99.5" y="45.4561">:LogicManager</text><rect fill="#3333C4" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="156" x="276" y="25.4609"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="142" x="283" y="45.4561">:AddressBookParser</text><rect fill="#9D0012" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="64" x="1011" y="25.4609"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="47" x="1019.5" y="45.4561">:Model</text><rect fill="#FFFFFF" height="426.9531" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="145" y="87.8906"/><rect fill="#FFFFFF" height="227.125" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="349" y="117.0234"/><rect fill="#FFFFFF" height="31.2969" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="547" y="141.0234"/><rect fill="#FFFFFF" height="99.5625" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="547" y="201.4531"/><rect fill="#FFFFFF" height="46.4297" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="739.5" y="225.4531"/><rect fill="#FFFFFF" height="127.5625" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="739.5" y="373.2813"/><rect fill="#FFFFFF" height="31.2969" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="909" y="440.4141"/><rect fill="#FFFFFF" height="14" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1038" y="402.4141"/><polygon fill="#A80036" points="133,83.8906,143,87.8906,133,91.8906,137,87.8906" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="3" x2="139" y1="87.8906" y2="87.8906"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="123" x="12.5" y="82.8247">execute("delete 1")</text><polygon fill="#A80036" points="337,113.0234,347,117.0234,337,121.0234,341,117.0234" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="155" x2="343" y1="117.0234" y2="117.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="175" x="164.5" y="111.9575">parseCommand("delete 1")</text><polygon fill="#A80036" points="450,127.0234,460,131.0234,450,135.0234,454,131.0234" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="359" x2="456" y1="131.0234" y2="131.0234"/><rect fill="#3333C4" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="180" x="462" y="125.0234"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="166" x="469" y="145.0186">:DeleteCommandParser</text><polygon fill="#A80036" points="370,168.3203,360,172.3203,370,176.3203,366,172.3203" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="364" x2="551" y1="172.3203" y2="172.3203"/><polygon fill="#A80036" points="535,197.4531,545,201.4531,535,205.4531,539,201.4531" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="359" x2="541" y1="201.4531" y2="201.4531"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="64" x="421" y="196.3872">parse("1")</text><polygon fill="#A80036" points="660,211.4531,670,215.4531,660,219.4531,664,215.4531" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="557" x2="666" y1="215.4531" y2="215.4531"/><rect fill="#3333C4" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="145" x="672" y="209.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="131" x="679" y="229.4482">d:DeleteCommand</text><polygon fill="#A80036" points="568,267.8828,558,271.8828,568,275.8828,564,271.8828" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="562" x2="743.5" y1="271.8828" y2="271.8828"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="646.75" y="266.8169">d</text><polygon fill="#A80036" points="370,297.0156,360,301.0156,370,305.0156,366,301.0156" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="364" x2="551" y1="301.0156" y2="301.0156"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="451.5" y="295.9497">d</text><line style="stroke: #A80036; stroke-width: 2.0;" x1="543" x2="561" y1="306.0156" y2="324.0156"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="543" x2="561" y1="324.0156" y2="306.0156"/><polygon fill="#A80036" points="166,340.1484,156,344.1484,166,348.1484,162,344.1484" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="160" x2="353" y1="344.1484" y2="344.1484"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="250.5" y="339.0825">d</text><polygon fill="#A80036" points="727.5,369.2813,737.5,373.2813,727.5,377.2813,731.5,373.2813" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="155" x2="733.5" y1="373.2813" y2="373.2813"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="416.75" y="368.2153">execute()</text><polygon fill="#A80036" points="1026,398.4141,1036,402.4141,1026,406.4141,1030,402.4141" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="749.5" x2="1032" y1="402.4141" y2="402.4141"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="102" x="842.75" y="397.3481">deletePerson(1)</text><polygon fill="#A80036" points="760.5,412.4141,750.5,416.4141,760.5,420.4141,756.5,416.4141" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="754.5" x2="1042" y1="416.4141" y2="416.4141"/><polygon fill="#A80036" points="835,426.4141,845,430.4141,835,434.4141,839,430.4141" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="749.5" x2="841" y1="430.4141" y2="430.4141"/><rect fill="#3333C4" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="134" x="847" y="424.4141"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="854" y="444.4092">:CommandResult</text><polygon fill="#A80036" points="760.5,467.7109,750.5,471.7109,760.5,475.7109,756.5,471.7109" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="754.5" x2="913" y1="471.7109" y2="471.7109"/><polygon fill="#A80036" points="166,496.8438,156,500.8438,166,504.8438,162,500.8438" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="160" x2="743.5" y1="500.8438" y2="500.8438"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="431.75" y="495.7778">result</text><polygon fill="#A80036" points="14,510.8438,4,514.8438,14,518.8438,10,514.8438" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="8" x2="149" y1="514.8438" y2="514.8438"/><!--MD5=[f28798079b77e617ee76f3d368994741]
+@startuml
+
+
+
+
+
+
+
+
+skinparam Package {
+    BackgroundColor #FFFFFF
+    BorderThickness 1
+    FontSize 16
+}
+
+skinparam Class {
+    FontColor #FFFFFF
+    FontSize 15
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam ArrowFontStyle bold
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam ArrowFontStyle plain
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager #3333C4
+participant ":AddressBookParser" as AddressBookParser #3333C4
+participant ":DeleteCommandParser" as DeleteCommandParser #3333C4
+participant "d:DeleteCommand" as DeleteCommand #3333C4
+participant ":CommandResult" as CommandResult #3333C4
+end box
+
+box Model #F97181
+participant ":Model" as Model #9D0012
+end box
+
+[-> LogicManager : execute("delete 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("delete 1")
+activate AddressBookParser
+
+create DeleteCommandParser
+AddressBookParser -> DeleteCommandParser
+activate DeleteCommandParser
+
+DeleteCommandParser - -> AddressBookParser
+deactivate DeleteCommandParser
+
+AddressBookParser -> DeleteCommandParser : parse("1")
+activate DeleteCommandParser
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand - -> DeleteCommandParser : d
+deactivate DeleteCommand
+
+DeleteCommandParser - -> AddressBookParser : d
+deactivate DeleteCommandParser
+DeleteCommandParser -[hidden]-> AddressBookParser
+destroy DeleteCommandParser
+
+AddressBookParser - -> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> Model : deletePerson(1)
+activate Model
+
+Model - -> DeleteCommand
+deactivate Model
+
+create CommandResult
+DeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult - -> DeleteCommand
+deactivate CommandResult
+
+DeleteCommand - -> LogicManager : result
+deactivate DeleteCommand
+
+[<- -LogicManager
+deactivate LogicManager
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 18:22:07 SGT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.20.1+1-post-Ubuntu-0ubuntu123.04
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

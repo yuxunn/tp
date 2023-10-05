@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="591px" preserveAspectRatio="none" style="width:630px;height:591px;" version="1.1" viewBox="0 0 630 591" width="630px" zoomAndPan="magnify"><defs/><g><!--MD5=[a729edbb97e841ac7a29218e305ff428]
+cluster LogicPackage--><rect fill="#FFFFFF" height="497.5" style="stroke: #000000; stroke-width: 1.0;" width="348" x="22" y="82.5"/><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="46" x="173" y="99.3516">Logic</text><!--MD5=[15636c1ca4a123c16a2a1a8e90aca7a9]
+cluster Model--><rect fill="#FFFFFF" height="96" style="stroke: #000000; stroke-width: 1.0;" width="167" x="426" y="379.5"/><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="483" y="396.3516">Model</text><!--MD5=[c55b3b0e591a57f21b6daadc7a5e584c]
+class AddressBookParser--><rect fill="#3333C4" height="27.4609" id="AddressBookParser" style="stroke: #FFFFFF; stroke-width: 1.0;" width="148" x="38" y="194.5"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="142" x="41" y="213.4233">AddressBookParser</text><!--MD5=[20b3262af791fb1c285bffe8069ced12]
+class XYZCommand--><rect fill="#3333C4" height="27.4609" id="XYZCommand" style="stroke: #FFFFFF; stroke-width: 1.0;" width="111" x="226.5" y="537"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="105" x="229.5" y="555.9233">XYZCommand</text><!--MD5=[8b8ed4d3c39d809e656c591f744ce388]
+class CommandResult--><rect fill="#3333C4" height="27.4609" id="CommandResult" style="stroke: #FFFFFF; stroke-width: 1.0;" width="127" x="226.5" y="266.5"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="121" x="229.5" y="285.4233">CommandResult</text><!--MD5=[521817ab83e81da341a3f4b5e91bae41]
+class Command--><rect fill="#3333C4" height="44.9219" id="Command" style="stroke: #FFFFFF; stroke-width: 1.0;" width="87" x="238.5" y="415.5"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="81" x="241.5" y="434.4233">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="76" x="244" y="451.8843">Command</text><!--MD5=[42fa18dda7351a0ae87d9497de925436]
+class Logic--><rect fill="#3333C4" height="44.9219" id="Logic" style="stroke: #FFFFFF; stroke-width: 1.0;" width="122" x="232" y="119.5"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="116" x="235" y="138.4233">&lt;&lt;interface&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="37" x="274.5" y="155.8843">Logic</text><!--MD5=[ac54ce389d4d948eef4a4344659a3e1d]
+class LogicManager--><rect fill="#3333C4" height="27.4609" id="LogicManager" style="stroke: #FFFFFF; stroke-width: 1.0;" width="107" x="89.5" y="128.5"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="101" x="92.5" y="147.4233">LogicManager</text><!--MD5=[eef5f0b07d2fd263bed9c722d8c1c089]
+class HiddenModel--><rect fill="#FFFFFF" height="27.4609" id="HiddenModel" style="stroke: #FFFFFF; stroke-width: 1.0;" width="99" x="469.5" y="424.5"/><rect fill="#FFFFFF" height="27.4609" style="stroke: #FFFFFF; stroke-width: 1.0;" width="99" x="469.5" y="424.5"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="93" x="472.5" y="443.4233">HiddenModel</text><rect fill="#FFFFFF" height="57.25" style="stroke: #000000; stroke-width: 1.0;" width="90" x="389" y="251.5"/><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="70" x="399" y="268.3516">Storage</text><!--MD5=[f8dc820cca8808bdb695301f77a92b66]
+class HiddenOutside--><rect fill="#FFFFFF" height="27.4609" id="HiddenOutside" style="stroke: #FFFFFF; stroke-width: 1.0;" width="112" x="237" y="8.5"/><rect fill="#FFFFFF" height="27.4609" style="stroke: #FFFFFF; stroke-width: 1.0;" width="112" x="237" y="8.5"/><text fill="#FFFFFF" font-family="Arial" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="106" x="240" y="27.4233">HiddenOutside</text><path d="M386,530.5 L386,546.5 L337.86,550.5 L386,554.5 L386,570.7656 A0,0 0 0 0 386,570.7656 L618,570.7656 A0,0 0 0 0 618,570.7656 L618,540.5 L608,530.5 L386,530.5 A0,0 0 0 0 386,530.5 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M608,530.5 L608,540.5 L618,540.5 L608,530.5 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="207" x="392" y="547.5669">XYZCommand = AddCommand,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="392" y="562.6997">FindCommand, etc</text><!--MD5=[f287eff34db650aad88860d6e0e6d9fb]
+link HiddenOutside to Logic--><path d="M293,35.63 C293,54.28 293,89.63 293,114.22 " fill="none" id="HiddenOutside-&gt;Logic" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="#101086" points="293,119.29,297,110.29,293,114.29,289,110.29,293,119.29" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[4143125d6d2dcbbb1f88caeeb45de3b4]
+link LogicManager to Logic--><path d="M196.61,142 C201.54,142 206.46,142 211.39,142 " fill="none" id="LogicManager-&gt;Logic" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="211.63,135,231.63,142,211.63,149,211.63,135" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[9257ec5b3c4c03061ea407052248a3ce]
+link LogicManager to AddressBookParser--><path d="M136.88,155.64 C132.16,165.37 125.6,178.93 120.39,189.67 " fill="none" id="LogicManager-&gt;AddressBookParser" style="stroke: #101086; stroke-width: 1.1;"/><polygon fill="#101086" points="118.11,194.38,125.6238,188.0127,120.2829,189.8769,118.4188,184.536,118.11,194.38" style="stroke: #101086; stroke-width: 1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="109.7238" y="183.3323">1</text><!--MD5=[d500aa7151d93806e936bd667bbc980e]
+link AddressBookParser to XYZCommand--><path d="M102.56,221.54 C84.36,247.35 48,307.98 69,355.5 C107.19,441.93 205,506.44 253.65,534.32 " fill="none" id="AddressBookParser-&gt;XYZCommand" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="#101086" points="258.2,536.9,252.3563,528.9721,253.8544,534.427,248.3995,535.9251,258.2,536.9" style="stroke: #101086; stroke-width: 1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="55" x="70" y="351.5669">creates</text><polygon fill="#000000" points="93,360.6328,96,366.6328,99,360.6328,93,360.6328" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[520da0335c5a8803876f267d9ec2ad91]
+reverse link Command to XYZCommand--><path d="M282,480.75 C282,500.76 282,523.28 282,536.93 " fill="none" id="Command&lt;-XYZCommand" style="stroke: #101086; stroke-width: 1.1;"/><polygon fill="none" points="275,480.57,282,460.57,289,480.57,275,480.57" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[a9e1a5717f5f63af61c3019fdb5e4d29]
+reverse link Command to LogicManager--><path d="M234.91,412.81 C198.2,391.06 149.91,355.32 128,308.5 C117.26,285.55 114.75,273.09 128,251.5 C143.38,226.42 171.62,246.58 187,221.5 C200.97,198.73 176.64,171.35 158.95,155.68 " fill="none" id="Command&lt;-LogicManager" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="#101086" points="239.32,415.4,233.5582,407.4124,235.0001,412.8824,229.5301,414.3243,239.32,415.4" style="stroke: #101086; stroke-width: 1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="66" x="129" y="284.5669">executes</text><polygon fill="#000000" points="157.5,293.6328,160.5,299.6328,163.5,293.6328,157.5,293.6328" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[583ed1d0c45772f950f62e8f2bec1df7]
+link LogicManager to Model--><path d="M184.22,155.55 C277.43,183.93 496.4,250.69 497,251.5 C512.06,271.87 505.29,284.56 497,308.5 C488.3,333.62 476.98,335.05 460,355.5 C456.98,359.14 455.21,359.32 453,363.5 C451.0925,367.1125 449.3683,370.9278 447.8109,374.8438 C447.4216,375.8229 447.0427,376.8082 446.674,377.7982 C446.4896,378.2932 446.3078,378.7893 446.1285,379.2865 " fill="none" id="LogicManager-&gt;Model" style="stroke: #101086; stroke-width: 1.1;"/><polygon fill="#101086" points="446.1285,379.2865,452.9448,372.1775,447.8249,374.5831,445.4193,369.4632,446.1285,379.2865" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[90462986d69614cbc6d4bc0cb46f8efd]
+link LogicManager to Storage--><path d="M169.85,155.55 C218.54,178.3 322.04,226.68 384.05,255.66 " fill="none" id="LogicManager-&gt;Storage" style="stroke: #101086; stroke-width: 1.1;"/><polygon fill="#101086" points="388.81,257.88,382.3472,250.4482,384.2794,255.7648,378.9628,257.6971,388.81,257.88" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[ae0e345d33b432dd1a74f1b00fbf82aa]
+link Storage to Model--><!--MD5=[894af96810da56d5af6f5fd9ee84a0d6]
+reverse link Storage to Command--><!--MD5=[bfa7276062558292ff251f85fbc261be]
+link Command to Model--><path d="M325.64,438 C343.63,438 361.62,438 379.61,438 C388.605,438 397.6,438 406.595,438 C411.0925,438 415.59,438 420.0875,438 C421.2119,438 422.3363,438 423.4606,438 C424.0228,438 424.585,438 425.1472,438 C425.4283,438 425.7094,438 425.9905,438 " fill="none" id="Command-&gt;Model" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="#101086" points="425.9905,438,416.9905,434,420.9905,438,416.9905,442,425.9905,438" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[e956d43f58f30a24ce78a60af954e307]
+link Logic to CommandResult--><path d="M292.52,164.55 C291.94,191.15 290.95,235.91 290.4,260.85 " fill="none" id="Logic-&gt;CommandResult" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="#101086" points="290.28,266.15,294.4846,257.2438,290.3943,261.1513,286.4867,257.0609,290.28,266.15" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[326ab9d23d3e7b599e2005f3db29a5f7]
+link LogicManager to CommandResult--><path d="M157.42,155.57 C169.23,165.91 186.32,181.02 201,194.5 C226.39,217.81 255.23,245.4 273.02,262.56 " fill="none" id="LogicManager-&gt;CommandResult" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="#101086" points="276.86,266.26,273.1579,257.1334,273.2608,262.7893,267.6049,262.8922,276.86,266.26" style="stroke: #101086; stroke-width: 1.1;"/><!--MD5=[a534c61ae9dd17e311f1526c83ae047b]
+reverse link CommandResult to Command--><path d="M284.19,298.5 C280.76,309.78 276.75,324.83 275,338.5 C271.62,364.86 274.9,395.41 278.01,415.41 " fill="none" id="CommandResult&lt;-Command" style="stroke: #101086; stroke-width: 1.1; stroke-dasharray: 7.0,7.0;"/><polygon fill="#101086" points="285.72,293.61,279.2252,301.0139,284.2335,298.3839,286.8635,303.3923,285.72,293.61" style="stroke: #101086; stroke-width: 1.1;"/><polygon fill="#000000" points="306,349.5,309,343.5,312,349.5,306,349.5" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="69" x="276" y="364.5669">produces</text><!--MD5=[7948016237e1905de91aedfddbad5084]
+@startuml
+
+
+
+
+
+
+
+
+skinparam Package {
+    BackgroundColor #FFFFFF
+    BorderThickness 1
+    FontSize 16
+}
+
+skinparam Class {
+    FontColor #FFFFFF
+    FontSize 15
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam ArrowFontStyle bold
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #101086
+skinparam classBackgroundColor #3333C4
+
+package Logic as LogicPackage {
+
+Class AddressBookParser
+Class XYZCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+}
+
+package Model {
+Class HiddenModel #FFFFFF
+}
+
+package Storage {
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .right.|> Logic
+LogicManager -right->"1" AddressBookParser
+AddressBookParser ..> XYZCommand : creates >
+
+XYZCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+LogicManager - -> Model
+LogicManager - -> Storage
+Storage - -[hidden] Model
+Command .[hidden]up.> Storage
+Command .right.> Model
+note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+
+Logic ..> CommandResult
+LogicManager .down.> CommandResult
+Command .up.> CommandResult : produces >
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 18:22:07 SGT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.20.1+1-post-Ubuntu-0ubuntu123.04
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
