@@ -1,203 +1,121 @@
----
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
----
+# Welcome to D.A.V.E. (**D**’financial **A**d**V**isor **E**xpert)
 
-# AB-3 User Guide
+*Manage your leads and clients information effortlessly through D.A.V.E. to gain an edge in your FA journey!*
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+D.A.V.E. is a leads and clients management tool for student financial advisors specifically in NUS, but can be used for all student financial advisors.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+Here’s a quick overview of D.A.V.E.’s features
 
---------------------------------------------------------------------------------------------------------------------
+- Store and edit information of your leads and clients
+- Convert successful leads into clients
+- Manage clients’ policies
+- Delete policies and leads
+- Reminders such as upcoming meetings with leads/clients
 
-## Quick start
+# Table of Contents
 
-1. Ensure you have Java `11` or above installed in your Computer.
+- [Glossary](#Glossary)
+- [Tutorial for new users](#D.A.V.E.-Tutorial-for-new-users)
+- [Features](#Features)
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+# Glossary
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+## Definitions
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+Here are some descriptions of the words we use throughout the User Guide:
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+| Term | Definition |
+| --- | --- |
+| Command | An input from the user that tells D.A.V.E. to perform an action (e.g. add a client). |
+| GUI | Graphical User Interface (GUI) refers to the visual display of D.A.V.E that users can see. |
+| CLI | Command Line Interface (CLI) represents a text-based user interface to interact with the application. |
 
-   * `list` : Lists all contacts.
+# D.A.V.E. Tutorial for new users
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+1. Ensure you have Java `11` or above installed in your computer.
+2. Download the latest `DAVE.jar` from here.
+3. Copy the file to the folder you want to use as the *home folder* for D.A.V.E.
+4. Double-click `DAVE.jar` to start the app.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+# Features
 
-   * `clear` : Deletes all contacts.
+![Ui1](images/Ui1.png)
 
-   * `exit` : Exits the app.
+## Lead features
 
-1. Refer to the [Features](#features) below for details of each command.
+### Add lead [Coming soon]
 
---------------------------------------------------------------------------------------------------------------------
+- What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
+- Command format: `add --name <name> --age <age> --year <year of study> --major <major>`.
+- Example usage: `add --name Dave --age 22 --year 2 --major Psychology`.
+- Acceptable values for each parameter:
+    - `name`: can contain any character, up to 100 characters long.
+    - `age`: any integer between `1` and `100` inclusive.
+    - `year`: any integer between `1` and `5` inclusive.
+    - `major`: can contain any character, up to 50 characters long.
+- Precise expected outputs when the command succeeds:
 
-## Features
+`Lead added. <lead details>`
 
-<box type="info" seamless>
+- Precise expected outputs when the command fails:
 
-**Notes about the command format:**<br>
+`Lead failed to add. Please enter a valid command`
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### View all leads [Coming soon]
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- What it does: View all leads you have stored, including their basic information and index in the list of leads, e.g. id, name, age, gender, occupation, etc.
+- Command: `view_all --leads`.
+- Precise expected outputs when the command succeeds:
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+`Here are all your leads: <list of leads>`
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+- Precise expected outputs when the command fails:
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+`Failed to view all leads. Please enter a valid command`
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
+### Delete lead [Coming soon]
 
-### Viewing help : `help`
+- What it does: Deletes a lead from your list of leads.
+- Command format: `delete --id <id>`.
+- Example usage: `delete --id 1`.
+- Acceptable values for `id` parameter:
+    - Must be an integer from `1` to the last index of the leads list
+- Precise expected outputs when the command succeeds:
 
-Shows a message explaning how to access the help page.
+`Lead deleted: <lead details>`
 
-![help message](images/helpMessage.png)
+- Precise expected outputs when the command fails:
 
-Format: `help`
+`Lead failed to delete. Please enter a valid lead id`
 
+### Add meeting time for lead [Coming soon]
 
-### Adding a person: `add`
+- What it does: Adds a meeting time for a lead
+- Command format: `addmeeting --lead <lead_id> --dt <datetime>`
+- Example usage: `addmeeting --lead 1 --dt 23/9/2023 5:30PM`
+- Acceptable values for each parameter:
+    - `lead`: Any integer from `1` to the last index of the leads list
+    - `dt`: A valid DateTime String with the format dd/M/yyyy hh:mma.
+- Precise expected outputs when the command succeeds:
 
-Adds a person to the address book.
+`Meeting time added to <lead> : <meeting datetime>`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+- Precise expected outputs when the command fails:
 
-<box type="tip" seamless>
+`Meeting time failed to add. Please enter a valid lead id or meeting time`
 
-**Tip:** A person can have any number of tags (including 0)
-</box>
+### Delete meeting time for lead [Coming soon]
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- What it does: Delete a meeting time for meetings that has been cancelled or postponed.
+- Command format: `deletemeeting --lead <lead_id> --id <meeting_time_id>`
+- Example usage: `deletemeeting --lead 1 --id 1`
+- Acceptable values for each parameter:
+    - `lead`: Any integer from `1` to the last index of the leads list
+    - `id`: Any integer from `1` to the last index of the list
+- Precise expected outputs when the command succeeds:
 
-### Listing all persons : `list`
+`Meeting time deleted from <lead> : <meeting datetime>`
 
-Shows a list of all persons in the address book.
+- Precise expected outputs when the command fails:
 
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.
-</box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+`Meeting time failed to be deleted. Please enter a valid lead id or meeting time`
