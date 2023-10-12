@@ -13,9 +13,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-import static seedu.address.model.person.Client.TAG_CLIENT;
-import static seedu.address.model.person.Lead.TAG_LEAD;
-
 /**
  * A utility class to help with building Person objects.
  */
@@ -65,7 +62,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

@@ -1,11 +1,14 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.addItemToSet;
 
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.addItemToSet;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Client in the address book.
+ */
 public class Client extends Person {
     public static final String TAG_CLIENT = "Client";
 

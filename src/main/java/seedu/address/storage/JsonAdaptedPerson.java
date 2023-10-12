@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import static seedu.address.model.person.Client.TAG_CLIENT;
+import static seedu.address.model.person.Lead.TAG_LEAD;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,9 +21,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.model.person.Client.TAG_CLIENT;
-import static seedu.address.model.person.Lead.TAG_LEAD;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -42,8 +42,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
