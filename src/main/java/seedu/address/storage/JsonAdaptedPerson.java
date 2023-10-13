@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import static seedu.address.model.person.Client.TAG_CLIENT;
+import static seedu.address.model.person.Lead.TAG_LEAD;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -23,6 +28,8 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_PERSON_TYPE_MESSAGE_FORMAT =
+            "Person's tag field must contain either '%s' or '%s'!";
 
     private final String name;
     private final String phone;
@@ -35,8 +42,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -103,7 +110,14 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (modelTags.contains(new Tag(TAG_CLIENT))) {
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        } else if (modelTags.contains(new Tag(TAG_LEAD))) {
+            return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        } else {
+            throw new IllegalValueException(String.format(MISSING_PERSON_TYPE_MESSAGE_FORMAT, TAG_CLIENT, TAG_LEAD));
+        }
     }
 
 }
