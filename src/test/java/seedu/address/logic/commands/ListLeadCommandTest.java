@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
+
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ListLeadCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.ListLeadCommand.LEAD_TAG;
+import static seedu.address.logic.commands.ListLeadCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.function.Predicate;
