@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalLeads.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -55,6 +57,16 @@ public class AddressBookTest {
     }
 
     @Test
+    public void resetData_withDuplicateLeads_throwsDuplicatePersonException() {
+        // Two persons with the same identity fields
+        Person editedGeorge = new PersonBuilder(GEORGE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .buildClient();
+        List<Person> newPersons = Arrays.asList(GEORGE, editedGeorge);
+        AddressBookStub newData = new AddressBookStub(newPersons);
+
+        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+    }
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
@@ -64,10 +76,19 @@ public class AddressBookTest {
         assertFalse(addressBook.hasPerson(ALICE));
     }
 
+    public void hasLead_personNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPerson(GEORGE));
+    }
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasLead_LeadInAddressBook_returnsTrue() {
+        addressBook.addPerson(GEORGE);
+        assertTrue(addressBook.hasPerson(GEORGE));
     }
 
     @Test
@@ -76,6 +97,15 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .buildClient();
         assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+
+    @Test
+    public void hasLead_LeadWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPerson(GEORGE);
+        Person editedGeorge = new PersonBuilder(GEORGE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .buildLead();
+        assertTrue(addressBook.hasPerson(editedGeorge));
     }
 
     @Test
