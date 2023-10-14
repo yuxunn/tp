@@ -45,7 +45,7 @@ public class DeleteLeadCommand extends Command {
             model.deletePerson(personToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_LEAD_SUCCESS, Messages.format(personToDelete)));
         }
-            throw new CommandException(Messages.MESSAGE_INVALID_LEAD_DISPLAYED);
+        throw new CommandException(Messages.MESSAGE_INVALID_LEAD_DISPLAYED);
     }
 
     @Override
