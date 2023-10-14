@@ -392,13 +392,13 @@ Use case ends
 **Extensions**
 
 * 2a. The person's information is empty
-  
+ 
   Add person event information
 
 * 3a. The given index is invalid
-  
+ 
     * 3a1 D.A.V.E. shows an error message
-      
+ 
       Use case resumes at step 2
 
 ** Use case: Add a New Person **

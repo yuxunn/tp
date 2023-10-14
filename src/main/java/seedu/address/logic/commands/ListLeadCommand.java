@@ -21,7 +21,7 @@ public class ListLeadCommand extends Command {
     public static final String COMMAND_WORD = "listlead";
 
     public static final String MESSAGE_SUCCESS = "Listed all leads";
-    
+ 
     public static final String CLIENT_TAG = "[[Lead]]";
 
     private static final Logger logger = LogsCenter.getLogger(ListClientCommand.class);
@@ -29,8 +29,8 @@ public class ListLeadCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Person> predicate = person -> { 
-        
+        Predicate<Person> predicate = person -> {
+ 
         boolean result = person.getTags().toString().equals(CLIENT_TAG);
         return result;
     };
