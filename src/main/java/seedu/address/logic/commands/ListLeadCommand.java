@@ -17,15 +17,15 @@ public class ListLeadCommand extends Command {
 
     public static final String COMMAND_WORD = "listlead";
     public static final String MESSAGE_SUCCESS = "Listed all leads";
-    public static final String CLIENT_TAG = "[[Lead]]";
+    public static final String LEAD_TAG = "[[Lead]]";
 
-    private static final Logger logger = LogsCenter.getLogger(ListClientCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(ListLeadCommand.class);
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Predicate<Person> predicate = person -> {
-            boolean result = person.getTags().toString().equals(CLIENT_TAG);
+            boolean result = person.getTags().toString().equals(LEAD_TAG);
             return result;
         };
         model.updateFilteredPersonList(predicate);
