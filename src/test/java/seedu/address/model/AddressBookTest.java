@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -86,7 +85,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasLead_LeadInAddressBook_returnsTrue() {
+    public void hasLead_leadInAddressBook_returnsTrue() {
         addressBook.addPerson(GEORGE);
         assertTrue(addressBook.hasPerson(GEORGE));
     }
@@ -101,7 +100,7 @@ public class AddressBookTest {
 
 
     @Test
-    public void hasLead_LeadWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasLead_leadWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(GEORGE);
         Person editedGeorge = new PersonBuilder(GEORGE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .buildLead();
