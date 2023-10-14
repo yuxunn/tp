@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
-import java.util.logging.Logger;
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
 
 
 /**
