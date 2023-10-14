@@ -1,16 +1,15 @@
 package seedu.address.logic.commands;
 
 import java.util.logging.Logger;
-import seedu.address.commons.core.LogsCenter;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 import java.util.function.Predicate;
+
+import seedu.address.commons.core.LogsCenter;
 
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.person.Person;
+
+import static java.util.Objects.requireNonNull;
 
 
 /**
@@ -28,9 +27,9 @@ public class ListClientCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Predicate<Person> predicate = person -> {
-        boolean result = person.getTags().toString().equals(CLIENT_TAG);
-        return result;
-    };
+            boolean result = person.getTags().toString().equals(CLIENT_TAG);
+            return result;
+        };
         model.updateFilteredPersonList(predicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }
