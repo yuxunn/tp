@@ -9,9 +9,9 @@ D.A.V.E. is a leads and clients management tool for student financial advisors s
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
     * to be added soon
-* **New Feature**: 
+* **New Feature**:
     * to be added soon
 
 * **Code contributed**: [RepoSense link]()

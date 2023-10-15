@@ -3,7 +3,7 @@
 
 <h3>Project: D.A.V.E.</h3>
 
-D.A.V.E. - 
+D.A.V.E. -
 
 Given below are my contributions to the project.
 
