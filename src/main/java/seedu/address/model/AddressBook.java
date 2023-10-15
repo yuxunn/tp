@@ -89,16 +89,26 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addPerson(Person person) {
+        persons.add(person);
     }
 
-    public void addClient(Client p) {
-        clients.add(p);
+    /**
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
+     */
+    public void addClient(Client client) {
+        clients.add(client);
+        persons.add(client);
     }
 
-    public void addLead(Lead p) {
-        leads.add(p);
+    /**
+     * Adds a lead to the address book.
+     * The lead must not already exist in the address book.
+     */
+    public void addLead(Lead lead) {
+        leads.add(lead);
+        persons.add(lead);
     }
 
     /**
@@ -122,19 +132,29 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code personKey} from this {@code AddressBook}.
+     * {@code personKey} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removePerson(Person personKey) {
+        persons.remove(personKey);
     }
 
+    /**
+     * Removes {@code clientKey} from this {@code AddressBook}.
+     * {@code clientKey} must exist in the address book.
+     */
     public void removeClient(Client clientKey) {
         clients.remove(clientKey);
+        persons.remove(clientKey);
     }
 
+    /**
+     * Removes {@code leadKey} from this {@code AddressBook}.
+     * {@code leadKey} must exist in the address book.
+     */
     public void removeLead(Lead leadKey) {
         leads.remove(leadKey);
+        persons.remove(leadKey);
     }
 
     //// util methods

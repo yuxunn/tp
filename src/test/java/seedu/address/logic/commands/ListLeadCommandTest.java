@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ListLeadCommand.LEAD_TAG;
 import static seedu.address.logic.commands.ListLeadCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -30,7 +29,7 @@ public class ListLeadCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         // Filter the model as required by ListClientCommand
-        Predicate<Person> predicate = person -> person.getTags().toString().equals(LEAD_TAG);
+        Predicate<Person> predicate = ListLeadCommand.LEAD_TAG_PREDICATE;
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(new ListLeadCommand(), model, MESSAGE_SUCCESS, expectedModel);
