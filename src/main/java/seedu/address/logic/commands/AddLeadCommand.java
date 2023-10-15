@@ -1,14 +1,21 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Lead;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Adds a lead to the address book.
+ */
 public class AddLeadCommand extends Command {
 
     public static final String COMMAND_WORD = "addlead";
@@ -33,6 +40,9 @@ public class AddLeadCommand extends Command {
 
     private final Lead toAdd;
 
+    /**
+     * Creates an AddLeadCommand to add the specified {@code Lead}
+     */
     public AddLeadCommand(Lead lead) {
         requireNonNull(lead);
         this.toAdd = lead;

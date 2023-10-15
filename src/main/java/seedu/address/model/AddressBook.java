@@ -6,7 +6,12 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueClientList;
+import seedu.address.model.person.UniqueLeadList;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level
@@ -77,7 +82,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-//        return persons.contains(person);
         return clients.contains(person) || leads.contains(person);
     }
 
@@ -104,19 +108,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
     public void setClient(Client target, Client editedPerson) {
         requireNonNull(editedPerson);
-
         clients.setClient(target, editedPerson);
     }
 
-    public void setLeads(Lead target, Lead editedPerson) {
+    public void setLead(Lead target, Lead editedPerson) {
         requireNonNull(editedPerson);
-
         leads.setLead(target, editedPerson);
     }
 
@@ -175,8 +176,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return clients.equals(otherAddressBook.clients) && leads.equals(otherAddressBook.leads);
     }
 
-//    @Override
-//    public int hashCode() {
-//        return persons.hashCode();
-//    }
+    @Override
+    public int hashCode() {
+        return clients.hashCode() + leads.hashCode();
+    }
 }
