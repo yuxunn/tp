@@ -15,6 +15,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,20 +25,19 @@ public class DeleteLeadCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    //    @Test
-    // cannot be tested till add lead implemented
-    //    public void execute_validIndexUnfilteredList_success() {
-    //        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //        DeleteLeadCommand deleteCommand = new DeleteLeadCommand(INDEX_FIRST_PERSON);
-    //
-    //        String expectedMessage = String.format(DeleteLeadCommand.MESSAGE_DELETE_LEAD_SUCCESS,
-    //                Messages.format(personToDelete));
-    //
-    //        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    //        expectedModel.deletePerson(personToDelete);
-    //
-    //        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteLeadCommand deleteCommand = new DeleteLeadCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteLeadCommand.MESSAGE_DELETE_LEAD_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_LEAD_DISPLAYED);
+    }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
