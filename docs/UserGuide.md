@@ -61,13 +61,25 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 `Lead failed to add. Please enter a valid command`
 
-### View all leads [Coming soon]
+### View all clients
 
-- What it does: View all leads you have stored, including their basic information and index in the list of leads, e.g. id, name, age, gender, occupation, etc.
-- Command: `view_all --leads`.
+- What it does: View all clients you have stored, including their basic information and index in the list of leads, e.g. id, name, age, gender, occupation, etc.
+- Command: `listclient`.
 - Precise expected outputs when the command succeeds:
 
-`Here are all your leads: <list of leads>`
+`List of all clients`
+
+- Precise expected outputs when the command fails:
+
+`Failed to view all clients. Please enter a valid command`
+
+### View all leads
+
+- What it does: View all leads you have stored, including their basic information and index in the list of leads, e.g. id, name, age, gender, occupation, etc.
+- Command: `listlead`.
+- Precise expected outputs when the command succeeds:
+
+`List of all leads`
 
 - Precise expected outputs when the command fails:
 

@@ -4,7 +4,7 @@
 
 > Manage your leads and clients information effortlessly through D.A.V.E. to gain an edge in your FA journey!
 
-## About 
+## About
 D.A.V.E. is a leads and clients management tool for student financial advisors specifically in NUS, but can be used for all student financial advisors.
 
 ## UI Mock-up
@@ -18,6 +18,3 @@ D.A.V.E. is a leads and clients management tool for student financial advisors s
 
 ## Acknowledgements 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-
-## Contributors
-- Licong

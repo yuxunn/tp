@@ -3,7 +3,7 @@
   title: "Tiffany's Project Portfolio Page"
 ---
 
-### Project: D.A.V.E. 
+### Project: D.A.V.E.
 
 
 Given below are my contributions to the project.
