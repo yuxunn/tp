@@ -1,8 +1,6 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -73,7 +71,7 @@ public class AddressBookTest {
     }
 
 
-  /*
+    /*
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
@@ -109,7 +107,7 @@ public class AddressBookTest {
     }
     */
 
-/*
+    /*
     todo: fix this test later
     @Test
     public void hasLead_leadWithSameIdentityFieldsInAddressBook_returnsTrue() {
@@ -118,7 +116,7 @@ public class AddressBookTest {
                 .buildLead();
         assertTrue(addressBook.hasPerson(editedGeorge));
     }
-    */
+*/
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
