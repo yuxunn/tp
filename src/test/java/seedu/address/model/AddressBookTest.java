@@ -72,17 +72,18 @@ public class AddressBookTest {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
 
+
+  /*
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
-
-  /*
+    @Test
+    // This test is not used as no longer adding person to addressbook
     public void hasLead_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(GEORGE));
     }
-    @Test
-    // This test is not used as no longer adding person to addressbook
+    // This test is not used as no longer adding person to addressbook, delete later if needed
     //    @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
@@ -97,8 +98,8 @@ public class AddressBookTest {
         assertTrue(addressBook.hasPerson(GEORGE));
     }
     */
-
-    // This test is not used as no longer adding person to addressbook
+    /*
+    // This test is not used as no longer adding person to addressbook, todo: delete later if needed
     //    @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
@@ -106,6 +107,7 @@ public class AddressBookTest {
                 .buildClient();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
+    */
 
 /*
     todo: fix this test later
