@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,13 @@ public class DeleteClientCommandTest {
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+    @Test
+    public void execute_invalidIndexUnfilteredList_throwException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        DeleteClientCommand deleteLeadCommand = new DeleteClientCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteLeadCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -77,6 +85,13 @@ public class DeleteClientCommandTest {
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_deleteNotClient_throwsCommandException() {
+        Person personToDelete = GEORGE;
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(Index.fromOneBased(7));
+        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED);
     }
 
     @Test
