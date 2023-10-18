@@ -78,7 +78,7 @@ public class AddCommandTest {
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
-    //test the difference between client and lead, todo: change naming
+    //test the difference between client and lead
     @Test
     public void equalsForClientandLeads() {
         Person aliceClient = new PersonBuilder().withName("Alice").buildClient();

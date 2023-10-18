@@ -70,7 +70,6 @@ public class TypicalLeads {
     }
 
     public static List<Person> getTypicalLeads() {
-        //todo: change here
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
