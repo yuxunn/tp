@@ -82,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return clients.contains(person) || leads.contains(person);
+        return persons.contains(person);
     }
 
     /**
