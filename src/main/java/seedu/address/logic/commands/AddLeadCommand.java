@@ -36,7 +36,7 @@ public class AddLeadCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lead added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This lead already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_LEAD = "This lead already exists in the address book";
 
     private final Lead toAdd;
 
@@ -53,7 +53,7 @@ public class AddLeadCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+            throw new CommandException(MESSAGE_DUPLICATE_LEAD);
         }
 
         model.addLead(toAdd);

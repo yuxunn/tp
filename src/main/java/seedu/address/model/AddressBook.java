@@ -9,8 +9,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniqueClientList;
-import seedu.address.model.person.UniqueLeadList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -20,8 +18,6 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueClientList clients;
-    private final UniqueLeadList leads;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,8 +28,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        clients = new UniqueClientList();
-        leads = new UniqueLeadList();
     }
 
     public AddressBook() {}
@@ -56,14 +50,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setClients(List<Client> clients) {
-        this.clients.setClients(clients);
-    }
-
-    public void setLeads(List<Lead> leads) {
-        this.leads.setLeads(leads);
-    }
-
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -71,8 +57,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setClients(newData.getClientList());
-        setLeads(newData.getLeadList());
     }
 
     //// person-level operations
@@ -82,7 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return clients.contains(person) || leads.contains(person);
+        return persons.contains(person);
     }
 
     /**
@@ -98,7 +82,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The client must not already exist in the address book.
      */
     public void addClient(Client client) {
-        clients.add(client);
         persons.add(client);
     }
 
@@ -107,7 +90,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The lead must not already exist in the address book.
      */
     public void addLead(Lead lead) {
-        leads.add(lead);
         persons.add(lead);
     }
 
@@ -121,40 +103,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
-    public void setClient(Client target, Client editedPerson) {
-        requireNonNull(editedPerson);
-        clients.setClient(target, editedPerson);
-    }
-
-    public void setLead(Lead target, Lead editedPerson) {
-        requireNonNull(editedPerson);
-        leads.setLead(target, editedPerson);
-    }
-
     /**
      * Removes {@code personKey} from this {@code AddressBook}.
      * {@code personKey} must exist in the address book.
      */
     public void removePerson(Person personKey) {
         persons.remove(personKey);
-    }
-
-    /**
-     * Removes {@code clientKey} from this {@code AddressBook}.
-     * {@code clientKey} must exist in the address book.
-     */
-    public void removeClient(Client clientKey) {
-        clients.remove(clientKey);
-        persons.remove(clientKey);
-    }
-
-    /**
-     * Removes {@code leadKey} from this {@code AddressBook}.
-     * {@code leadKey} must exist in the address book.
-     */
-    public void removeLead(Lead leadKey) {
-        leads.remove(leadKey);
-        persons.remove(leadKey);
     }
 
     //// util methods
@@ -171,15 +125,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    @Override
-    public ObservableList<Client> getClientList() {
-        return clients.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Lead> getLeadList() {
-        return leads.asUnmodifiableObservableList();
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -193,11 +138,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return clients.equals(otherAddressBook.clients) && leads.equals(otherAddressBook.leads);
+        return persons.equals(otherAddressBook.persons);
     }
 
     @Override
     public int hashCode() {
-        return clients.hashCode() + leads.hashCode();
+        return persons.hashCode();
     }
 }
