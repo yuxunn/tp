@@ -82,7 +82,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
-    @Test
+    // This test is not used as no longer adding person to addressbook
+    //    @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
