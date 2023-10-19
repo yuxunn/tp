@@ -10,25 +10,24 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteClientCommand extends Command {
+public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete_client";
+    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the client identified by the index number used in the displayed client list.\n"
+            + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteClientCommand(Index targetIndex) {
+    public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -42,11 +41,8 @@ public class DeleteClientCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        if (personToDelete.getTags().contains(new Tag("Client"))) {
-            model.deletePerson(personToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, Messages.format(personToDelete)));
-        }
-        throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED);
+        model.deletePerson(personToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
     @Override
@@ -56,11 +52,11 @@ public class DeleteClientCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteClientCommand)) {
+        if (!(other instanceof DeleteCommand)) {
             return false;
         }
 
-        DeleteClientCommand otherDeleteCommand = (DeleteClientCommand) other;
+        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
         return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 

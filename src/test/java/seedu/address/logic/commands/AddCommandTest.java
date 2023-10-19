@@ -78,7 +78,35 @@ public class AddCommandTest {
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
+    //test the difference between client and lead
+    @Test
+    public void equalsForClientandLeads() {
+        Person aliceClient = new PersonBuilder().withName("Alice").buildClient();
+        Person aliceLead = new PersonBuilder().withName("Alice").buildLead();
+        AddCommand addClientCommand = new AddCommand(aliceClient);
+        AddCommand addLeadCommand = new AddCommand(aliceLead);
 
+        // same object -> returns true
+        assertTrue(addClientCommand.equals(addClientCommand));
+
+        // same values -> returns true
+        AddCommand addAliceCommandCopy = new AddCommand(aliceClient);
+        assertTrue(addClientCommand.equals(addAliceCommandCopy));
+
+        // same values -> returns true
+        AddCommand addAliceLeadCommandCopy = new AddCommand(aliceLead);
+        assertTrue(addLeadCommand.equals(addAliceLeadCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addClientCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addLeadCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(addClientCommand.equals(addLeadCommand));
+    }
+    //todo: test to string method for client and lead
     @Test
     public void toStringMethod() {
         AddCommand addCommand = new AddCommand(ALICE);
