@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all client in the address book to the user.
  */
 public class ListClientCommand extends Command {
 

@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all lead in the address book to the user.
  */
 public class ListLeadCommand extends Command {
 
