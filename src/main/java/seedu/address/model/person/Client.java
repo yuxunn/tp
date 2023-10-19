@@ -16,7 +16,7 @@ public class Client extends Person {
      * Every field must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, addItemToSet(tags, new Tag(TAG_CLIENT)));
+        super(name, phone, email, address, tags);
     }
 
     @Override
@@ -27,5 +27,10 @@ public class Client extends Person {
     @Override
     public boolean isLead() {
         return false;
+    }
+
+    @Override
+    public String getTypeTag() {
+        return TAG_CLIENT;
     }
 }

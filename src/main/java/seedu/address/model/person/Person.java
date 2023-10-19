@@ -117,4 +117,6 @@ public abstract class Person {
     public abstract boolean isClient();
 
     public abstract boolean isLead();
+
+    public abstract String getTypeTag();
 }
