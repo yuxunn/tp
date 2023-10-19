@@ -13,17 +13,18 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< Updated upstream
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteClientCommand;
-import seedu.address.logic.commands.DeleteLeadCommand;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
+=======
+import seedu.address.logic.commands.*;
+>>>>>>> Stashed changes
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -35,10 +36,17 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().buildClient();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+    public void parseCommand_addClient() throws Exception {
+        Client client = new PersonBuilder().buildClient();
+        AddClientCommand command = (AddClientCommand) parser.parseCommand(PersonUtil.getAddClientCommand(client));
+        assertEquals(new AddClientCommand(client), command);
+    }
+
+    @Test
+    public void parseCommand_addLead() throws Exception {
+        Lead client = new PersonBuilder().buildLead();
+        AddLeadCommand command = (AddLeadCommand) parser.parseCommand(PersonUtil.getAddLeadCommand(client));
+        assertEquals(new AddLeadCommand(client), command);
     }
 
     @Test
@@ -48,18 +56,12 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_deleteClient() throws Exception {
-        DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
-                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteClientCommand(INDEX_FIRST_PERSON), command);
+    public void parseCommand_delete() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
-    @Test
-    public void parseCommand_deleteLead() throws Exception {
-        DeleteLeadCommand command = (DeleteLeadCommand) parser.parseCommand(
-                DeleteLeadCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteLeadCommand(INDEX_FIRST_PERSON), command);
-    }
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().buildClient();
