@@ -7,8 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalLeads.BOB;
 import static seedu.address.testutil.TypicalLeads.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -47,9 +49,9 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateClients_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .buildClient();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -60,8 +62,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateLeads_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedGeorge = new PersonBuilder(GEORGE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildClient();
+        Lead editedGeorge = new PersonBuilder(GEORGE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .buildLead();
         List<Person> newPersons = Arrays.asList(GEORGE, editedGeorge);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -72,30 +74,25 @@ public class AddressBookTest {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
 
-
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
+
     @Test
-    // This test is not used as no longer adding person to addressbook
-    public void hasLead_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(GEORGE));
-    }
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_clientInAddressBook_returnsTrue() {
+        addressBook.addClient(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasLead_leadInAddressBook_returnsTrue() {
-        addressBook.addPerson(GEORGE);
+    public void hasPerson_leadInAddressBook_returnsTrue() {
+        addressBook.addLead(GEORGE);
         assertTrue(addressBook.hasPerson(GEORGE));
     }
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addClient(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .buildClient();
         assertTrue(addressBook.hasPerson(editedAlice));
@@ -103,7 +100,7 @@ public class AddressBookTest {
 
     @Test
     public void hasLead_leadWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(GEORGE);
+        addressBook.addLead(GEORGE);
         Person editedGeorge = new PersonBuilder(GEORGE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .buildLead();
         assertTrue(addressBook.hasPerson(editedGeorge));
@@ -120,13 +117,39 @@ public class AddressBookTest {
         assertEquals(expected, addressBook.toString());
     }
 
+    @Test
+    public void equalsMethodSameObject() {
+        AddressBook addressBook = new AddressBook();
+        assertTrue(addressBook.equals(addressBook));
+    }
+
+    @Test
+    public void equalsMethodSamePersonsList() {
+        AddressBook addressBook1 = new AddressBook();
+        AddressBook addressBook2 = new AddressBook();
+        for (Person person : getTypicalPersons()) {
+            addressBook1.addPerson(person);
+            addressBook2.addPerson(person);
+        }
+        assertTrue(addressBook1.equals(addressBook2));
+    }
+
+    @Test
+    public void equalsMethodDifferentPersonsList() {
+        AddressBook addressBook1 = new AddressBook();
+        AddressBook addressBook2 = new AddressBook();
+        List<Person> persons1 = Arrays.asList(ALICE);
+        List<Person> persons2 = Arrays.asList(BOB);
+        addressBook1.setPersons(persons1);
+        addressBook1.setPersons(persons2);
+        assertFalse(addressBook1.equals(addressBook2));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Client> clients = FXCollections.observableArrayList();
-        private final ObservableList<Lead> leads = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -135,16 +158,6 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
-        }
-
-        @Override
-        public ObservableList<Client> getClientList() {
-            return clients;
-        }
-
-        @Override
-        public ObservableList<Lead> getLeadList() {
-            return leads;
         }
     }
 
