@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import static seedu.address.model.person.Client.TAG_CLIENT;
-import static seedu.address.model.person.Lead.TAG_LEAD;
+import static seedu.address.model.person.Client.TYPE_CLIENT;
+import static seedu.address.model.person.Lead.TYPE_LEAD;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,6 +20,7 @@ import seedu.address.model.person.Lead;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,12 +29,11 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-    public static final String MISSING_PERSON_TYPE_MESSAGE_FORMAT =
-            "Person's tag field must contain either '%s' or '%s'!";
 
     private final String name;
     private final String phone;
     private final String email;
+    private final String type;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -42,11 +42,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("type") String type,
+                             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.type = type;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -61,6 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        type = source.getType().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -111,12 +113,15 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (modelTags.contains(new Tag(TAG_CLIENT))) {
+        if (type == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Type"));
+        }
+        if (type.equals(TYPE_CLIENT)) {
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-        } else if (modelTags.contains(new Tag(TAG_LEAD))) {
+        } else if (type.equals(TYPE_LEAD)) {
             return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelTags);
         } else {
-            throw new IllegalValueException(String.format(MISSING_PERSON_TYPE_MESSAGE_FORMAT, TAG_CLIENT, TAG_LEAD));
+            throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
         }
     }
 

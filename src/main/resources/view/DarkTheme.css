@@ -350,3 +350,11 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#tags .client-label {
+    -fx-background-color: #007011;
+}
+
+#tags .lead-label {
+    -fx-background-color: #de5900;
+}

@@ -134,11 +134,12 @@ public class ClientTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Client.class.getCanonicalName() + "{name=" + TypicalClients.ALICE.getName() + ""
+        String expected = Client.class.getCanonicalName() + "{name=" + TypicalClients.ALICE.getName()
                 + ", phone=" + TypicalClients.ALICE.getPhone()
-                + ", email=" + TypicalClients.ALICE.getEmail() + ", address="
-                + TypicalClients.ALICE.getAddress() + ", "
-                + "tags=" + TypicalClients.ALICE.getTags() + "}";
+                + ", email=" + TypicalClients.ALICE.getEmail()
+                + ", type=" + TypicalClients.ALICE.getType()
+                + ", address=" + TypicalClients.ALICE.getAddress()
+                + ", tags=" + TypicalClients.ALICE.getTags() + "}";
         assertEquals(expected, TypicalClients.ALICE.toString());
     }
     @Test

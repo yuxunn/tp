@@ -20,6 +20,7 @@ public abstract class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Type type;
 
     // Data fields
     private final Address address;
@@ -28,11 +29,12 @@ public abstract class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Type type, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.type = type;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -47,6 +49,10 @@ public abstract class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public Address getAddress() {
@@ -93,6 +99,7 @@ public abstract class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && type.equals(otherPerson.type)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
@@ -100,7 +107,7 @@ public abstract class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, type, address, tags);
     }
 
     @Override
@@ -109,6 +116,7 @@ public abstract class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
+                .add("type", type)
                 .add("address", address)
                 .add("tags", tags)
                 .toString();
