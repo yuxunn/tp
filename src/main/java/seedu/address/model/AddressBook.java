@@ -56,10 +56,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    /**
+     * Replaces the contents of the person list with {@code clients}.
+     * {@code clients} must not contain duplicate clients, use when loading clients from json.
+     */
     public void setClients(List<Client> clients) {
         this.clients.setClients(clients);
     }
 
+    /**
+     * Replaces the contents of the person list with {@code leads}.
+     * {@code leads} must not contain duplicate leads, use when loading leads from json.
+     */
     public void setLeads(List<Lead> leads) {
         this.leads.setLeads(leads);
     }
