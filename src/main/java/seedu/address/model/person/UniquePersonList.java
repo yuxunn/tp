@@ -68,36 +68,6 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.set(index, editedPerson);
     }
 
-    public void setClient(Client target, Client editedClient) {
-        requireAllNonNull(target, editedClient);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new PersonNotFoundException();
-        }
-
-        if (!target.isSamePerson(editedClient) && contains(editedClient)) {
-            throw new DuplicatePersonException();
-        }
-
-        internalList.set(index, editedClient);
-    }
-
-    public void setLead(Lead target, Lead editedLead) {
-        requireAllNonNull(target, editedLead);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new PersonNotFoundException();
-        }
-
-        if (!target.isSamePerson(editedLead) && contains(editedLead)) {
-            throw new DuplicatePersonException();
-        }
-
-        internalList.set(index, editedLead);
-    }
-
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
