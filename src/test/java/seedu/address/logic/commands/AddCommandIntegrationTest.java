@@ -38,8 +38,7 @@ public class AddCommandIntegrationTest {
                 expectedModel);
     }
 
-    // This test is not applicable for addleads/addclients
-    //    @Test
+    @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddCommand(personInList), model,

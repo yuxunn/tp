@@ -91,11 +91,11 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person buildClient() {
+    public Client buildClient() {
         return new Client(name, phone, email, address, tags);
     }
 
-    public Person buildLead() {
+    public Lead buildLead() {
         return new Lead(name, phone, email, address, tags);
     }
 }
