@@ -10,13 +10,13 @@ import seedu.address.model.tag.Tag;
  * Represents a Client in the address book.
  */
 public class Client extends Person {
-    public static final String TAG_CLIENT = "Client";
+    public static final String TYPE_CLIENT = "client";
 
     /**
      * Every field must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, new Type(TYPE_CLIENT), address, tags);
     }
 
     @Override
@@ -27,10 +27,5 @@ public class Client extends Person {
     @Override
     public boolean isLead() {
         return false;
-    }
-
-    @Override
-    public String getTypeTag() {
-        return TAG_CLIENT;
     }
 }

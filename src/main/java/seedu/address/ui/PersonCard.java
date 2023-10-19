@@ -54,7 +54,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
 
-        Label label = new Label(person.getTypeTag());
+        Label label = new Label(person.getType().value);
         if (person.isClient()) {
             label.getStyleClass().add("client-label");
         } else {

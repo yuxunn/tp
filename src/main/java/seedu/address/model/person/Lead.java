@@ -10,13 +10,13 @@ import seedu.address.model.tag.Tag;
  * Represents a Lead in the address book.
  */
 public class Lead extends Person {
-    public static final String TAG_LEAD = "Lead";
+    public static final String TYPE_LEAD = "lead";
 
     /**
      * Every field must be present and not null.
      */
     public Lead(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, new Type(TYPE_LEAD), address, tags);
     }
 
     @Override
@@ -27,10 +27,5 @@ public class Lead extends Person {
     @Override
     public boolean isLead() {
         return true;
-    }
-
-    @Override
-    public String getTypeTag() {
-        return TAG_LEAD;
     }
 }
