@@ -38,7 +38,7 @@ public class TypeTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         Type type = new Type("client");
         assertEquals(type.toString(), "client");
     }
