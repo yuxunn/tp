@@ -119,6 +119,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void viewClient(Client clientToView) {
+        Predicate<Person> clientPredicate = person -> person.equals(clientToView);
+        updateFilteredPersonList(clientPredicate);
+    }
+
+    @Override
+    public void viewLead(Lead clientToView) {
+        Predicate<Person> leadPredicate = person -> person.equals(clientToView);
+        updateFilteredPersonList(leadPredicate);
+    }
+
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -157,6 +170,14 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+    @Override
+    public Person getPersonByIndex(int index) {
+        ObservableList<Person> filteredPersons = getFilteredPersonList();
+        if (index >= 0 && index < filteredPersons.size()) {
+            return filteredPersons.get(index);
+        }
+        return null;
     }
 
 }

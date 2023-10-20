@@ -107,6 +107,11 @@ public class AddLeadCommandTest {
         }
 
         @Override
+        public Person getPersonByIndex(int index) {
+            return null;
+        }
+
+        @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }

@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.model.person.Person;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,6 +44,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane clientListPanelPlaceholder;
+
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -193,4 +198,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

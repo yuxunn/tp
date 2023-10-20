@@ -182,6 +182,10 @@ public class AddClientCommandTest {
             requireNonNull(person);
             this.person = person;
         }
+        @Override
+        public Person getPersonByIndex(int index) {
+            return null;
+        }
 
         @Override
         public boolean hasPerson(Person person) {
@@ -202,6 +206,10 @@ public class AddClientCommandTest {
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
+        @Override
+        public Person getPersonByIndex(int index) {
+            return null;
+        }
         @Override
         public void addClient(Client client) {
             requireNonNull(client);

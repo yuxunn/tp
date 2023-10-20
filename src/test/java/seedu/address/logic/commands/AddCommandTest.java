@@ -124,6 +124,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person getPersonByIndex(int index) {
+            return null;
+        }
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
