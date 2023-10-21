@@ -49,6 +49,19 @@ public class ViewCommand extends Command {
         logger.info("Client to View: " + personToView);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
 
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+
+        ViewCommand that = (ViewCommand) other;
+
+        return targetIndex.equals(that.targetIndex);
+    }
 }
 
