@@ -17,8 +17,7 @@ public class ViewCommandParserTest {
     }
     @Test
     public void parse_validArgs_returnsViewCommand() {
-        ViewCommand expectedViewCommand = new ViewCommand(Index.fromOneBased(2));
-        assertParseSuccess(parser, "2", expectedViewCommand);
+        assertParseSuccess(parser, "2", new ViewCommand(Index.fromOneBased(2)));
     }
 
 }
