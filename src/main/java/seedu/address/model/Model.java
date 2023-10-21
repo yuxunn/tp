@@ -92,21 +92,14 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the person at the specified index in the filtered person list.
-     *
-     * @param index The index of the person to retrieve.
-     * @return The person at the specified index, or null if the index is out of bounds.
-     */
-    Person getPersonByIndex(int index);
-
-    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void viewClient(Client clientToView);
-
-    void viewLead(Lead clientToView);
+    /**
+     * Updates the filter of the filtered person list to just the specified person {@code predicate}.
+     */
+    void view(Person clientToView);
 }

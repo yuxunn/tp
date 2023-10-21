@@ -105,12 +105,6 @@ public class AddLeadCommandTest {
         public GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public Person getPersonByIndex(int index) {
-            return null;
-        }
-
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
@@ -173,6 +167,10 @@ public class AddLeadCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void view(Person personToView) {
             throw new AssertionError("This method should not be called.");
         }
     }
