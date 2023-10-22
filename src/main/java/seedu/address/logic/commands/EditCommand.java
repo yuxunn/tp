@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.security.Key;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -21,13 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Client;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Lead;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +31,6 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -81,14 +75,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        if (personToEdit.isClient()) {
+        //todo: change this
             return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
-        } else {
-            return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
-        }
     }
 
+    //todo: make createeditedclient in future
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -159,7 +150,6 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
-
         /**
          * Returns true if at least one field is edited.
          */
@@ -238,12 +228,39 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
+                    //todo how to specify the toString for leads
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
                     .toString();
+        }
+    }
+
+    public static class EditLeadDescriptor extends EditPersonDescriptor {
+        //put here because need access to editPersonDescriptor, can put in editeadcommand?
+        KeyMilestone keyMilestone;
+        public EditLeadDescriptor(EditLeadDescriptor toCopy) {
+            super(toCopy);
+            setKeyMilestone(toCopy.keyMilestone);
+        }
+
+        public EditLeadDescriptor() {
+
+        }
+
+
+        public Optional<KeyMilestone> getKeyMilestone() {
+            return Optional.ofNullable(keyMilestone);
+        }
+
+        public void setKeyMilestone (KeyMilestone keyMilestone) {
+            this.keyMilestone = keyMilestone;
+        }
+        @Override
+        public String toString() {
+            return super.toString() + new ToStringBuilder(this).add("key milestone", keyMilestone);
         }
     }
 }
