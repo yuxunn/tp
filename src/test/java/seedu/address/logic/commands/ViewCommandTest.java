@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -30,6 +32,21 @@ public class ViewCommandTest {
     }
 
     @Test
+    public void equals() {
+        Index index1 = Index.fromOneBased(1);
+        Index index2 = Index.fromOneBased(2);
+
+        ViewCommand viewCommand1 = new ViewCommand(index1);
+        ViewCommand viewCommand2 = new ViewCommand(index2);
+
+        assertTrue(viewCommand1.equals(viewCommand1));
+
+        assertFalse(viewCommand1.equals(viewCommand2));
+
+        assertFalse(viewCommand1.equals(5));
+    }
+
+    @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
@@ -47,3 +64,4 @@ public class ViewCommandTest {
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 }
+

@@ -51,6 +51,30 @@ public class CommandResultTest {
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, "exit").hashCode());
     }
+    @Test
+    public void stateTest() {
+        CommandResult commandResult = new CommandResult("feedback", true, false, "view");
+        assertEquals("view", commandResult.checkState());
+    }
+
+    @Test
+    public void notEqualsTest() {
+        CommandResult commandResult1 = new CommandResult("feedback", true, true, "view");
+        CommandResult commandResult2 = new CommandResult("differentFeedback", true, true, "help");
+        assertNotEquals(commandResult1, commandResult2);
+    }
+    @Test
+    public void defaultConstructorTest() {
+        CommandResult commandResult = new CommandResult("feedback");
+        assertFalse(commandResult.isShowHelp());
+        assertFalse(commandResult.isExit());
+        assertEquals("null", commandResult.checkState());
+    }
+    @Test
+    public void hashCodeConsistencyTest() {
+        CommandResult commandResult = new CommandResult("feedback", true, false, "state");
+        assertEquals(commandResult.hashCode(), commandResult.hashCode());
+    }
 
     @Test
     public void toStringMethod() {
