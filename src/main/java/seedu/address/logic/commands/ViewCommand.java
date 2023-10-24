@@ -17,6 +17,8 @@ import seedu.address.model.person.Person;
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
+    public static final String state = "view";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the person identified by the index number used.\n"
@@ -39,6 +41,7 @@ public class ViewCommand extends Command {
 
 
         if (targetIndex.getZeroBased() < 0 || targetIndex.getZeroBased() >= model.getFilteredPersonList().size()) {
+            logger.info(targetIndex.getZeroBased() + "+ " + model.getFilteredPersonList().size());
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
@@ -47,7 +50,7 @@ public class ViewCommand extends Command {
 
         logger.info("Target Index: " + targetIndex.getZeroBased());
         logger.info("Client to View: " + personToView);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, "view");
     }
     @Override
     public boolean equals(Object other) {

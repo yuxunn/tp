@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="TOP_LEFT" minHeight="650" GridPane.columnIndex="0" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="15" />
+            </padding>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ImageView fx:id="profileImage" fitHeight="50" fitWidth="50">
+            <image>
+                <Image url="@/images/profile.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="id" styleClass="cell_big_label">
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+        </Label>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+            </HBox>
+            <FlowPane fx:id="tags" />
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label styleClass="cell_small_label">
+                    <text>Phone:</text>
+                </Label>
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </HBox>
+<!--            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />-->
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label styleClass="cell_small_label">
+                    <text>Address:</text>
+                </Label>
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            </HBox>
+<!--            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />-->
+<!--            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />-->
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label styleClass="cell_small_label">
+                    <text>Email:</text>
+                </Label>
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </HBox>
+            <HBox spacing="0" alignment="CENTER_LEFT">
+                <Label styleClass="cell_small_label">
+                    <text>Additional Information:</text>
+                </Label>
+                <Label fx:id="otherInfo" styleClass="cell_small_label" text="to be added." />
+            </HBox>
+<!--            <Label fx:id="otherInfo" styleClass="cell_small_label" text="Additional details to be added here" />-->
+        </VBox>
+    </GridPane>
+    <stylesheets>
+        <URL value="@ViewWindow.css" />
+    </stylesheets>
+</HBox>
+
+
