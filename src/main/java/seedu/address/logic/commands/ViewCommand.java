@@ -17,15 +17,15 @@ import seedu.address.model.person.Person;
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
-    public static final String state = "view";
+
+    public static final String MESSAGE_SUCCESS = "Viewed Person Successfully";
+    private static final String state = "view";
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the person identified by the index number used.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_SUCCESS = "Viewed Person Successfully";
 
     private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
 

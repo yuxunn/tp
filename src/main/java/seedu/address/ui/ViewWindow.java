@@ -9,7 +9,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.ViewCommand;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,6 +25,8 @@ public class ViewWindow extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
+
+    private static final Logger logger = LogsCenter.getLogger(ViewWindow.class);
 
     public final Person person;
 
@@ -46,7 +47,6 @@ public class ViewWindow extends UiPart<Region> {
 
     @FXML
     private Label otherInfo;
-    private static final Logger logger = LogsCenter.getLogger(ViewWindow.class);
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,7 +54,7 @@ public class ViewWindow extends UiPart<Region> {
     public ViewWindow(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ".");
+        //id.setText(displayedIndex + ".");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
