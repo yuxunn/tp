@@ -67,11 +67,17 @@ Here are some descriptions of the words we use throughout the User Guide:
 - Command: `listclient`.
 - Precise expected outputs when the command succeeds:
 
+In output section of the 
 `List of all clients`
 
-- Precise expected outputs when the command fails:
+<h4>Examples of usage:</h4>
 
-`Failed to view all clients. Please enter a valid command`
+<div align="center">
+    <img src="./images/List.png" width="500" />
+    <p>List of leads and clients</p>
+    <img src="./images/Listclient.png" width="500" />
+    <p>After using listclient command</p>
+</div>
 
 ### View all leads
 
@@ -81,9 +87,15 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 `List of all leads`
 
-- Precise expected outputs when the command fails:
+<h4>Example usage:<h4>
 
-`Failed to view all leads. Please enter a valid command`
+<div align="center">
+    <img src="./images/List.png" width = "500"/>
+    <p>List of leads and clients</p>
+    <img src="./images/Listlead.png" width = "500"/>
+    <p>After using listlead command</p>
+</div>
+
 
 ### Delete lead [Coming soon]
 
