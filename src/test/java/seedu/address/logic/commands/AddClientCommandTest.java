@@ -110,7 +110,6 @@ public class AddClientCommandTest {
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
@@ -170,6 +169,11 @@ public class AddClientCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void view(Person personToView) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -182,7 +186,6 @@ public class AddClientCommandTest {
             requireNonNull(person);
             this.person = person;
         }
-
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
@@ -197,17 +200,15 @@ public class AddClientCommandTest {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
         public void addClient(Client client) {
             requireNonNull(client);
             personsAdded.add(client);
         }
-
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
