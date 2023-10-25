@@ -1,11 +1,14 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class MeetingTimeFormatterTest {
     @Test
@@ -14,17 +17,17 @@ public class MeetingTimeFormatterTest {
         assertThrows(NullPointerException.class, () -> MeetingTimeFormatter.parse(null));
 
         // invalid meeting time strings
-        assertThrows(DateTimeParseException.class,() -> MeetingTimeFormatter.parse("")); // empty string
+        assertThrows(DateTimeParseException.class, () -> MeetingTimeFormatter.parse("")); // empty string
         assertThrows(DateTimeParseException.class, () -> MeetingTimeFormatter.parse(" ")); // spaces only
         assertThrows(DateTimeParseException.class, () -> MeetingTimeFormatter.parse("meeting")); // non-numeric
-        assertThrows(DateTimeParseException.class,
-                () -> MeetingTimeFormatter.parse("23/10/2023")); // only date and no time
-        assertThrows(DateTimeParseException.class,
-                () -> MeetingTimeFormatter.parse("2/1/2023")); // date not enough numbers
-        assertThrows(DateTimeParseException.class,
-                () -> MeetingTimeFormatter.parse("23-10-2023 10:53pm")); // datetime with wrong format
-        assertThrows(DateTimeParseException.class,
-                () -> MeetingTimeFormatter.parse("23/10/2023 10.53")); // datetime with wrong format
+        assertThrows(DateTimeParseException.class, () ->
+                MeetingTimeFormatter.parse("23/10/2023")); // only date and no time
+        assertThrows(DateTimeParseException.class, () ->
+                MeetingTimeFormatter.parse("2/1/2023")); // date not enough numbers
+        assertThrows(DateTimeParseException.class, () ->
+                MeetingTimeFormatter.parse("23-10-2023 10:53pm")); // datetime with wrong format
+        assertThrows(DateTimeParseException.class, () ->
+                MeetingTimeFormatter.parse("23/10/2023 10.53")); // datetime with wrong format
 
         // valid meeting time strings
         LocalDateTime meetingTime1 = LocalDateTime.parse("2023-10-23T15:30:00");
