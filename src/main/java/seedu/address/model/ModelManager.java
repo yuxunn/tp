@@ -117,7 +117,11 @@ public class ModelManager implements Model {
         addressBook.addLead(lead);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
-
+    @Override
+    public void view(Person clientToView) {
+        Predicate<Person> leadPredicate = person -> person.equals(clientToView);
+        updateFilteredPersonList(leadPredicate);
+    }
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -158,5 +162,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }
