@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Helper class for handling meeting time formatting and parsing.
+ */
 public class MeetingTimeFormatter {
 
     public static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
@@ -19,6 +22,9 @@ public class MeetingTimeFormatter {
         return value.format(getFormatter());
     }
 
+    /**
+     * Returns true if a given string is a valid meeting time.
+     */
     public static boolean isValid(String test) {
         try {
             parse(test);

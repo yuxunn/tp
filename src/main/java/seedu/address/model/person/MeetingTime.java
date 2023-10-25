@@ -1,17 +1,26 @@
 package seedu.address.model.person;
 
-import java.time.LocalDateTime;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.person.MeetingTimeFormatter.DATE_TIME_FORMAT;
 
+import java.time.LocalDateTime;
+
+/**
+ * Represents a Person's meeting time in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidMeetingTime(String)}
+ */
 public class MeetingTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Meeting time should be in the format of " + DATE_TIME_FORMAT;
 
     public final LocalDateTime value;
 
+    /**
+     * Constructs a {@code MeetingTime}.
+     *
+     * @param meetingTime A valid meeting time.
+     */
     public MeetingTime(String meetingTime) {
         requireNonNull(meetingTime);
         checkArgument(isValidMeetingTime(meetingTime), MESSAGE_CONSTRAINTS);
