@@ -24,18 +24,21 @@ public abstract class Person {
 
     // Data fields
     private final Address address;
+    private final MeetingTime meetingTime;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Type type, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Type type,
+                  Address address, MeetingTime meetingTime, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, meetingTime, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.type = type;
         this.address = address;
+        this.meetingTime = meetingTime;
         this.tags.addAll(tags);
     }
 
@@ -57,6 +60,10 @@ public abstract class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public MeetingTime getMeetingTime() {
+        return meetingTime;
     }
 
     /**
@@ -101,13 +108,14 @@ public abstract class Person {
                 && email.equals(otherPerson.email)
                 && type.equals(otherPerson.type)
                 && address.equals(otherPerson.address)
+                && meetingTime.equals(otherPerson.meetingTime)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, type, address, tags);
+        return Objects.hash(name, phone, email, type, address, meetingTime, tags);
     }
 
     @Override
@@ -119,6 +127,7 @@ public abstract class Person {
                 .add("type", type)
                 .add("address", address)
                 .add("tags", tags)
+                .add("meetingTime", meetingTime)
                 .toString();
     }
 

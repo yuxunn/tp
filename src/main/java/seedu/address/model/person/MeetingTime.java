@@ -3,28 +3,28 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.person.MeetingTimeFormatter.DATE_TIME_FORMAT;
 
 public class MeetingTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Meeting time should be in the format of" + DATE_TIME_FORMAT;
-
-    public static String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4} \\d{4}";
+    public static final String MESSAGE_CONSTRAINTS = "Meeting time should be in the format of " + DATE_TIME_FORMAT;
 
     public final LocalDateTime value;
 
     public MeetingTime(String meetingTime) {
         requireNonNull(meetingTime);
-        this.value = LocalDateTime.parse(meetingTime, MeetingTimeFormatter.getFormatter());
+        checkArgument(isValidMeetingTime(meetingTime), MESSAGE_CONSTRAINTS);
+        this.value = MeetingTimeFormatter.parse(meetingTime);
     }
 
     public static boolean isValidMeetingTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return MeetingTimeFormatter.isValid(test);
     }
 
     @Override
     public String toString() {
-        return value.format(MeetingTimeFormatter.getFormatter());
+        return MeetingTimeFormatter.format(value);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MeetingTime {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Address)) {
+        if (!(other instanceof MeetingTime)) {
             return false;
         }
 
