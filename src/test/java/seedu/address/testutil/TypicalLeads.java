@@ -35,7 +35,7 @@ public class TypicalLeads {
     public static final Lead DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").buildLead();
     public static final Lead ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").buildLead();
+            .withEmail("werner@example.com").withAddress("michegan ave").withKeyMilestone("2022-12-01").buildLead();
     public static final Lead FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").buildLead();
     public static final Lead GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")

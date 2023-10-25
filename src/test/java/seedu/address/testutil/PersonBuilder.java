@@ -24,7 +24,6 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private KeyMilestone keyMilestone;
-
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -33,6 +32,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        keyMilestone = new KeyMilestone(DEFAULT_KEYMILESTONE);
         tags = new HashSet<>();
     }
 
@@ -45,6 +45,15 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+    }
+
+    public PersonBuilder(Lead leadToCopy) {
+        name = leadToCopy.getName();
+        phone = leadToCopy.getPhone();
+        email = leadToCopy.getEmail();
+        address = leadToCopy.getAddress();
+        keyMilestone = leadToCopy.getKeyMilestone();
+        tags = new HashSet<>(leadToCopy.getTags());
     }
 
     /**
@@ -87,11 +96,17 @@ public class PersonBuilder {
         return this;
     }
 
+    //temporary fix: buildLead must call keyMilestone
+    public PersonBuilder withKeyMilestone(String keyMilestone) {
+        this.keyMilestone = new KeyMilestone(keyMilestone);
+        return this;
+    }
+
     public Client buildClient() {
         return new Client(name, phone, email, address, tags);
     }
 
     public Lead buildLead() {
-        return new Lead(name, phone, email, address, tags);
+        return new Lead(name, phone, email, address, keyMilestone, tags);
     }
 }

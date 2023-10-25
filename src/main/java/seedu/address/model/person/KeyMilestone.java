@@ -7,14 +7,14 @@ public class KeyMilestone {
     public static final String MESSAGE_CONSTRAINTS =
             "Key milestone is the date of Lead's milestone moment";
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
-    public final String keyMilestone;
+    public final String value;
     //todo: add comment
     public KeyMilestone(String keyMilestone) {
         requireNonNull(keyMilestone);
         checkArgument(isValidKeyMilestone(keyMilestone), MESSAGE_CONSTRAINTS);
         //todo: use SimpleDateFormat if needed
         // https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
-        this.keyMilestone = keyMilestone;
+        this.value = keyMilestone;
     }
 
     //todo: add comment
@@ -24,7 +24,7 @@ public class KeyMilestone {
 
     @Override
     public String toString() {
-        return keyMilestone;
+        return value;
     }
 
 
@@ -40,12 +40,12 @@ public class KeyMilestone {
         }
 
         KeyMilestone otherName = (KeyMilestone) other;
-        return keyMilestone.equals(otherName.keyMilestone);
+        return value.equals(otherName.value);
     }
 
     @Override
     public int hashCode() {
-        return keyMilestone.hashCode();
+        return value.hashCode();
     }
 
 }
