@@ -67,6 +67,18 @@ addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/A
 Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
 ```
 
+### Add Lead with Key Milestone Information [Coming soon]
+- What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
+- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/DATE [t/TAG]...`.
+- Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/2022-12-01 t/classmate`.
+- Acceptable values for each parameter:
+    - `NAME`: can contain any character.
+    - `PHONE`: any valid 8-digit integer.
+    - `EMAIL`: a string of the format `local-part@domain`
+    - `ADDRESS`: can contain any character.
+    - `DATE`: only contains date in the format of ``YYYY-MM-DD``
+    - `TAG`: can contain any character.
+
 ### Add Client
 - What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
