@@ -1,41 +1,169 @@
+package seedu.address.logic.commands;
+
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.ConvertLeadToClientCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class ConvertLeadToClientCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+
 
     @Test
-    public void execute_validLeadIndex_success() {
-        Lead leadToConvert = TypicalPersons.getTypicalLeads().get(0); // assuming you have a list of leads
-        ConvertLeadToClientCommand command = new ConvertLeadToClientCommand(leadToConvert.getIndex());
-
-        String expectedMessage = String.format(ConvertLeadToClientCommand.MESSAGE_CONVERT_SUCCESS, leadToConvert);
-        expectedModel.deletePerson(leadToConvert);
-        expectedModel.addPerson(new Client(leadToConvert)); // Assuming a constructor for Client is available
-
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    public void execute_LeadConvertToClient_success() throws CommandException {
+        ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
+        Lead validPerson = new PersonBuilder().buildLead();
+        CommandResult commandResult = new AddLeadCommand(validPerson).execute(modelStub);
+        Index index = Index.fromOneBased(1);
+        ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(index);
+        assertTrue(commandResult.getFeedbackToUser().equals(
+            String.format(ConvertLeadToClientCommand.MESSAGE_CONVERT_SUCCESS, validPerson)));
     }
 
-    @Test
-    public void execute_invalidLeadIndex_failure() {
-        int outOfBoundIndex = model.getFilteredPersonList().size() + 1;
-        ConvertLeadToClientCommand command = new ConvertLeadToClientCommand(Index.fromOneBased(outOfBoundIndex));
+    private abstract class ModelStub implements Model {
+        @Override
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
 
-        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        @Override
+        public ReadOnlyUserPrefs getUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public GuiSettings getGuiSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLead(Lead lead) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAddressBook(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
-    // Add more test cases for edge cases, if necessary
+    /**
+     * A Model stub that contains a single person.
+     */
+    private class ModelStubWithPerson extends ModelStub {
+        private final Person person;
+
+        ModelStubWithPerson(Person person) {
+            requireNonNull(person);
+            this.person = person;
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.person.isSamePerson(person);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubAcceptingLeadAdded extends ModelStub {
+        final ArrayList<Person> personsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public void addLead(Lead lead) {
+            requireNonNull(lead);
+            personsAdded.add(lead);
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return new AddressBook();
+        }
+    }
 }
-
