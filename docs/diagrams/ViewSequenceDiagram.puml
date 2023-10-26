@@ -34,7 +34,7 @@ create ViewCommand
 ViewCommandParser -> ViewCommand
 activate ViewCommand
 
-ViewCommand --> ViewCommand : v
+ViewCommand --> ViewCommandParser : v
 deactivate ViewCommand
 
 ViewCommandParser --> AddressBookParser : v
