@@ -35,6 +35,9 @@ public class ConvertClientToLeadCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Constructor for convertClientToLead.
+     */
     public ConvertClientToLeadCommand(Index index) {
         requireNonNull(index);
         this.index = index;
