@@ -153,7 +153,7 @@ details.
 <div align="center">
     <img src="./images/ViewExampleClient.png" width = "500"/>
     <p>After using View Command on a Client</p>
-</div>
+</div>g
 
 ### Delete [Coming soon]
 
