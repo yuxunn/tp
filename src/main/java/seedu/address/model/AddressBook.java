@@ -140,7 +140,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons);
     }
-
     @Override
     public int hashCode() {
         return persons.hashCode();
