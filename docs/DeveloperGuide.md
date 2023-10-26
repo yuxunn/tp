@@ -327,6 +327,22 @@ The following activity diagram shows what happens when a user executes the addMe
 
 <img src="diagrams/AddMeetingTimeActivityDiagram.png" width="500" />
 
+### \[Proposed\] Sort Meeting Time feature
+
+#### Proposed Implementation
+
+The user can view the upcoming meetings scheduled with leads and clients sorted in chronological order.
+
+This is achieved by entering the `sortmeeting` command, which will filter all the clients and leads with a meeting time, and then sort them chronologically.
+
+The following sequence diagram shows how the `sortmeeting` operation works:
+
+_{sequence diagram to be added}_
+
+The following activity diagram shows what happens when a user executes the `sortmeeting` operation:
+
+_{activity diagram to be added}_
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
