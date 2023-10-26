@@ -32,6 +32,7 @@ public class ConvertClientToLeadCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CONVERT_SUCCESS = "Converted Client to Lead: %1$s";
+    public static final String MESSAGE_CONVERT_FAILURE = "The person at the specified index is not a Client.";
 
     private final Index index;
 
@@ -44,7 +45,7 @@ public class ConvertClientToLeadCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-
+        System.out.println(lastShownList);
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -60,8 +61,8 @@ public class ConvertClientToLeadCommand extends Command {
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
         Set<Tag> tags = new HashSet<Tag>();
-        tags.remove(new Tag("Client"));
-        tags.add(new Tag("Lead"));
+        tags.remove(new Tag("client"));
+        tags.add(new Tag("lead"));
         // TODO: Add more fields from client to lead
 
 

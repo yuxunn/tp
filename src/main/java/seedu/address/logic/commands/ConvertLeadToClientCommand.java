@@ -32,6 +32,7 @@ public class ConvertLeadToClientCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CONVERT_SUCCESS = "Converted Lead to Client: %1$s";
+    public static final String MESSAGE_NOT_LEAD = "The person at the specified index is not a Lead.";
 
     private final Index index;
 
@@ -60,8 +61,8 @@ public class ConvertLeadToClientCommand extends Command {
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
         Set<Tag> tags = new HashSet<>();
-        tags.remove(new Tag("Lead"));
-        tags.add(new Tag("Client"));
+        tags.remove(new Tag("lead"));
+        tags.add(new Tag("client"));
         // TODO: Add more fields from lead to client
 
         Client convertedClient = new Client(name, phone, email, address, tags);
