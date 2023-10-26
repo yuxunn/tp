@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # AB-3 Developer Guide
@@ -240,13 +240,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -254,6 +254,71 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Addclient/Addlead feature
+
+#### Implementation
+
+The `Client` and `Lead` model extends from `Person`.
+
+The `addclient` and `addlead` commands are implemented as follows:
+
+The `execute()` command in `AddClientCommand` or `AddLeadCommand` is executed.
+
+The `execute()` command in `AddClientCommand` or `AddLeadCommand` calls the `addClient()` or `addLead()` method in `ModelManager`.
+
+The `addClient()` or `addLead()` method in `ModelManager` calls the `addClient()` or `addLead()` method in `AddressBook`.
+
+The `addClient()` or `addLead()` method in `AddressBook` adds the `Client` or `Lead` object to the `UniquePersonList persons`.
+
+Given below is an example usage scenario and how addclient and addlead behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized.
+
+<div align="center">
+    <img src="images/cleanaddressbook.png" alt="before command" width="500" />
+    <p>Before any commands</p>
+</div>
+
+Step 2 - addclient. The user executes `addclient n/John Doe...` command add a person named John Doe into the AddressBook. The `addclient` command calls `Model#addClient()`, causing the address book to be updated.
+
+<div align="center">
+    <img src="images/addclient.png" alt="after addclient command" width="500" />
+    <p>After addclient command</p>
+</div>
+
+Step 2 - addlead. The user executes `addlead n/John Doe...` command add a person named John Doe into the AddressBook. The `addlead` command calls `Model#addLead()`, causing the address book to be updated.
+
+<div align="center">
+    <img src="images/addlead.png" alt="after addlead command" width="500" />
+    <p>After addlead command</p>
+</div>
+
+The following sequence diagram shows how the addclient operation works (Note that addlead works in the same way but calls `Model#addLead()` instead):
+
+<img src="diagrams/AddClientSequenceDiagram.png" width="500" />
+
+The following activity diagram shows what happens when a user executes a new command:
+
+<img src="diagrams/AddClientActivityDiagram.png" width="500" />
+
+### \[Proposed\] Add Meeting Time feature
+
+#### Proposed Implementation
+
+
+The user can specify a meeting time when executing `addclient` or `addlead` command with the `--meeting-time` flag.
+
+Alternatively, the user can enter the `addmeeting` command to add a meeting time to an existing client or lead.
+
+The `addmeeting` command takes in the `index` of the client or lead, and the meeting time in `dd/MM/yyyy HH:mm` format, e.g. `24/10/2023 12:00`.
+
+The following sequence diagram shows how the addMeeting operation works:
+
+<img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="500" />
+
+The following activity diagram shows what happens when a user executes the addMeeting operation:
+
+<img src="diagrams/AddMeetingTimeActivityDiagram.png" width="500" />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -390,13 +455,13 @@ Use case ends
 **Extensions**
 
 * 2a. The person's information is empty
- 
+
   Add person event information
 * 3a. The given index is invalid
- 
+
     * 3a1 D.A.V.E. shows an error message
       Use case resumes at step 2
-** Use case: Add a New Person **
+      ** Use case: Add a New Person **
 
 **MSS**
 
@@ -490,7 +555,7 @@ Use case ends.
 4. The system should be able to scale gracefully to accommodate a growing number of users, clients, and data without significant performance degradation.
 5. It should support easy integration with additional modules or features as the user base expands.
 8. The user interface should be intuitive and user-friendly, ensuring that users can quickly learn and navigate the application.
-*{More to be added}*
+   *{More to be added}*
 
 ### Glossary
 
@@ -515,15 +580,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -532,16 +597,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -549,6 +614,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
