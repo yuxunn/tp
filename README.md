@@ -16,5 +16,5 @@ D.A.V.E. is a leads and clients management tool for student financial advisors s
 3. Copy the file to the folder you want to use as the *home folder* for D.A.V.E.
 4. Double-click `DAVE.jar` to start the app.
 
-## Acknowledgements 
+## Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

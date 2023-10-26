@@ -62,7 +62,7 @@ Here are some descriptions of the words we use throughout the User Guide:
 - Precise expected outputs when the command fails:
 
 ```
-Invalid command format! 
+Invalid command format!
 addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
 Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
 ```
@@ -99,7 +99,7 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
 - Precise expected outputs when the command fails:
 
 ```
-Invalid command format! 
+Invalid command format!
 addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
 Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
 ```
@@ -110,7 +110,7 @@ Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave
 - Command: `listclient`.
 - Precise expected outputs when the command succeeds:
 
-In output section of the 
+In output section of the
 `List of all clients`
 
 <h4>Examples of usage:</h4>
@@ -139,6 +139,33 @@ In output section of the
     <p>After using listlead command</p>
 </div>
 
+### View Specific Person
+
+- What it does: View a specific person that you have stored, including their basic information and another relevant lead/client
+  details.
+- Command: `view INDEX`.
+- Example usage: `view 1`.
+- Acceptable values for `INDEX` parameter:
+  - Must be an integer from `1` to the last index of the main list.
+- Precise expected output when the command succeeds:
+
+`Viewed Person Successfully`
+
+- Precise expected output when command fails:
+
+`The person index provided is invalid`
+
+<h4>Example usage:<h4>
+
+<div align="center">
+    <img src="./images/ViewExample.png" width="500" />
+    <p>After using View Command on a Lead</p>
+</div>
+
+<div align="center">
+    <img src="./images/ViewExampleClient.png" width = "500"/>
+    <p>After using View Command on a Client</p>
+</div>
 
 ### Delete [Coming soon]
 
@@ -154,7 +181,7 @@ In output section of the
 - Precise expected outputs when the command fails:
 
 ```
-Invalid command format! 
+Invalid command format!
 delete: Deletes the person identified by the index number used in the displayed person list.
 Parameters: INDEX (must be a positive integer)
 ```
