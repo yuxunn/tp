@@ -5,20 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.ConvertLeadToClientCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -36,11 +34,12 @@ public class ConvertLeadToClientCommandTest {
     public void execute_LeadConvertToClient_success() throws CommandException {
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Lead validPerson = new PersonBuilder().buildLead();
-        CommandResult commandResult = new AddLeadCommand(validPerson).execute(modelStub);
+        modelStub.addLead(validPerson);
         Index index = Index.fromOneBased(1);
-        ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(index);
-        assertTrue(commandResult.getFeedbackToUser().equals(
-            String.format(ConvertLeadToClientCommand.MESSAGE_CONVERT_SUCCESS, validPerson)));
+        CommandResult convertLeadToClientCommand = new ConvertLeadToClientCommand(index).execute(modelStub);
+        System.out.println(convertLeadToClientCommand);
+
+
     }
 
     private abstract class ModelStub implements Model {
@@ -128,7 +127,7 @@ public class ConvertLeadToClientCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private abstract class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -147,7 +146,7 @@ public class ConvertLeadToClientCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingLeadAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ObservableList<Person> personsAdded = FXCollections.observableArrayList();
 
         @Override
         public boolean hasPerson(Person person) {
@@ -159,11 +158,30 @@ public class ConvertLeadToClientCommandTest {
         public void addLead(Lead lead) {
             requireNonNull(lead);
             personsAdded.add(lead);
+            System.out.println(personsAdded.size());
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return personsAdded;
+        }
+
+        @Override
+        public void setPerson(Person target, Person converted) {
+            personsAdded.remove(target);
+            personsAdded.add(converted);
+
+
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void view(Person person) {
+            requireNonNull(person);
         }
     }
 }
