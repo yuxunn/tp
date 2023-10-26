@@ -161,6 +161,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View Specific Person feature 
+Step 1: The user launches the application for the first time. The `SampleAddressBook` will be initialised.
+
+Step 2: The user executes `addclient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` to add a new Client.
+
+Step 3: The user executes a `view 1` command to view the 1st person in the address book. The user’s command is parsed by `ViewCommandParser` which extracts the target index. The `ViewCommand` class is instantiated with the extracted index. `ViewCommand` class interacts with `Model#FilteredPersonList` to verify the validity of the index and retrieve the corresponding person’s details. The command execution would be encapsulated as a `CommandResult` object that is then returned back from `Logic`.
+
+**Note:** If the index given is more than the size of the list or when the index given is 0, `ViewCommand` will not call `Model#view(Person personToView)`. Instead, a `MESSAGE_INVALID_PERSON_DISPLAYED_INDEX` exception will be thrown. The Main Window display continue displaying the `PersonListPanel` UI instead of the  `ViewWindow` UI 
+
+The following sequence diagram shows how the View Command works:
+<img src="diagrams/ViewSequenceDiagram.png" alt= "ViewSequenceDiagram"/>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -544,6 +556,19 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Viewing a person
+
+1. Viewing a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `view 0`<br>
+       Expected: Entire list remains displayed. Error details shown in status message. Status bar remains the same.
+   1. Other incorrect view commands to try: `view`, `view x` (where x is larger than the list size, or x is a negative index)<br>
+        Expected: Similar to previous.
+   1. Test case: `view 1`, `view x` (where x is an integer within the size of the list) <br>
+        Expected: The full details of the first person is displayed. Success message: `Viewed Person Successfully`
 
 ### Saving data
 
