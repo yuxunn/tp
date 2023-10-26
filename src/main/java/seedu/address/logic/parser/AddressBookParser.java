@@ -91,7 +91,6 @@ public class AddressBookParser {
 
         case ListLeadCommand.COMMAND_WORD:
             return new ListLeadCommand();
-            
         case ConvertLeadToClientCommand.COMMAND_WORD:
             return new ConvertLeadToClientCommandParser().parse(arguments);
 
@@ -100,7 +99,6 @@ public class AddressBookParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
-            
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

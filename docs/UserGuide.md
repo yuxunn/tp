@@ -92,7 +92,7 @@ addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL
 Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
 ```
 
-### View all clients
+### List all clients
 
 - What it does: View all clients you have stored, including their basic information and index in the list of clients, e.g. id, name, age, gender, occupation, etc.
 - Command: `listclient`.
@@ -110,7 +110,7 @@ In output section of the
     <p>After using listclient command</p>
 </div>
 
-### View all leads
+### List all leads
 
 - What it does: View all leads you have stored, including their basic information and index in the list of leads, e.g. id, name, age, gender, occupation, etc.
 - Command: `listlead`.
@@ -127,6 +127,33 @@ In output section of the
     <p>After using listlead command</p>
 </div>
 
+### View Specific Person 
+
+- What it does: View a specific person that you have stored, including their basic information and another relevant lead/client
+details.
+- Command: `view INDEX`.
+- Example usage: `view 1`.
+- Acceptable values for `INDEX` parameter:
+  - Must be an integer from `1` to the last index of the main list. 
+- Precise expected output when the command succeeds:
+
+`Viewed Person Successfully`
+
+- Precise expected output when command fails: 
+
+`The person index provided is invalid`
+
+<h4>Example usage:<h4>
+
+<div align="center">
+    <img src="./images/ViewExample.png" width="500" />
+    <p>After using View Command on a Lead</p>
+</div>
+
+<div align="center">
+    <img src="./images/ViewExampleClient.png" width = "500"/>
+    <p>After using View Command on a Client</p>
+</div>
 
 ### Delete [Coming soon]
 
