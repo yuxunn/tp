@@ -35,10 +35,9 @@ public class AddLeadCommandParserTest {
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddLeadCommand(expectedLeadMultipleTags));
     }
-    //todo: fix the message error
     @Test
-    public void parse_repeatedNonTagValue_failure() {
-        //todo: need another test for clients
+    public void parseLead_repeatedNonTagValue_failure() {
+        //todo: need another test for clients in future
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + TAG_DESC_FRIEND;
 
@@ -59,7 +58,6 @@ public class AddLeadCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
         // multiple fields repeated
-        //todo: fix this test, it failed
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY + KEYMILESTONE_DESC_BOB
                         + validExpectedPersonString,

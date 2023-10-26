@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.security.Key;
@@ -75,11 +71,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        //todo: change this
-            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
-    //todo: make createeditedclient in future
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -228,7 +222,6 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    //todo how to specify the toString for leads
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
@@ -250,6 +243,10 @@ public class EditCommand extends Command {
 
         }
 
+        @Override
+        public boolean isAnyFieldEdited() {
+            return super.isAnyFieldEdited() && CollectionUtil.isAnyNonNull(keyMilestone);
+        }
 
         public Optional<KeyMilestone> getKeyMilestone() {
             return Optional.ofNullable(keyMilestone);
@@ -258,6 +255,21 @@ public class EditCommand extends Command {
         public void setKeyMilestone (KeyMilestone keyMilestone) {
             this.keyMilestone = keyMilestone;
         }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditLeadDescriptor)) {
+                return false;
+            }
+            EditLeadDescriptor otherEditLeadDescriptor = (EditLeadDescriptor) other;
+            return super.equals(other) && Objects.equals(keyMilestone, otherEditLeadDescriptor.keyMilestone);
+        }
+
         @Override
         public String toString() {
             return super.toString() + new ToStringBuilder(this).add("key milestone", keyMilestone);

@@ -42,7 +42,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_KEYMILESTONE, PREFIX_ADDRESS);
-        //todo: add another field for lead in future
         EditPersonDescriptor editPersonDescriptor;
         if (argMultimap.getValue(PREFIX_KEYMILESTONE).isPresent()) {
             isLead = true;

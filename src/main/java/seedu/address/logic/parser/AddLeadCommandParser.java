@@ -38,7 +38,6 @@ public class AddLeadCommandParser implements Parser<AddLeadCommand> {
         KeyMilestone keyMilestone = ParserUtil.parseKeyMilestone(argMultimap.getValue(PREFIX_KEYMILESTONE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        // TODO: temporary fix, implement add Client and Lead commands
         Lead lead = new Lead(name, phone, email, address, keyMilestone, tagList);
 
         return new AddLeadCommand(lead);

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,6 +37,10 @@ public class PersonCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
+
+    @FXML
+    private Label keyMilestone;
+
     @FXML
     private Label email;
     @FXML
@@ -52,6 +57,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        if (person.isLead()) {
+            Lead lead = (Lead) person;
+            keyMilestone.setText(lead.getKeyMilestone().value);
+        }
 
         Label label = new Label(person.getType().value);
         if (person.isClient()) {

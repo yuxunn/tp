@@ -31,7 +31,7 @@ public class EditLeadCommand extends EditCommand {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_KEYMILESTONE+ "KEYMILESTONE] "
+            + "[" + PREFIX_KEYMILESTONE+ "KEY MILESTONE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "

@@ -45,7 +45,6 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        // TODO: temporary fix, implement add Client and Lead commands
         Client client = new Client(name, phone, email, address, tagList);
 
         return new AddClientCommand(client);

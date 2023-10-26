@@ -8,7 +8,11 @@ public class KeyMilestone {
             "Key milestone is the date of Lead's milestone moment";
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
     public final String value;
-    //todo: add comment
+    /**
+     * Constructs an {@code KeyMilestone}.
+     *
+     * @param keyMilestone A valid date.
+     */
     public KeyMilestone(String keyMilestone) {
         requireNonNull(keyMilestone);
         checkArgument(isValidKeyMilestone(keyMilestone), MESSAGE_CONSTRAINTS);
@@ -17,7 +21,9 @@ public class KeyMilestone {
         this.value = keyMilestone;
     }
 
-    //todo: add comment
+    /**
+     * Returns if a given string is a valid date.
+     */
     public static boolean isValidKeyMilestone(String test) {
         return test.matches(VALIDATION_REGEX);
     }

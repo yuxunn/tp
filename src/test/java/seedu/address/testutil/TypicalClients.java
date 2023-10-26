@@ -72,7 +72,6 @@ public class TypicalClients {
     }
 
     public static List<Client> getTypicalClients() {
-        //todo: change here
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
