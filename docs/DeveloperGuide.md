@@ -479,6 +479,40 @@ Use case ends.
 
     Use case ends.
 
+**Use case: List Clients**
+
+**MSS**
+1. User requests to list clients.
+2. AddressBook filters the list of Persons to a list of clients.
+3. AddressBook displays the list of clients to the user.
+
+Use case ends.
+
+**Extensions**
+
+    3a. The list of clients is empty.
+        3a1. AddressBooks display a message indicating all clients are displayed.
+        3a2. No information is displayed.
+        Use case ends.
+    Use case ends.
+
+**Use case: List Leads**
+
+**MSS**
+1. User requests to list leads.
+2. AddressBook filters the list of Persons to a list of leads.
+3. AddressBook displays the list of leads to the user.
+
+Use case ends.
+
+**Extensions**
+    
+    3a. The list of leads is empty.
+        3a1. AddressBooks display a message indicating all clients are displayed.
+        Use case ends.
+    Use case ends.
+
+**Extensions
 
 *{More to be added}*
 
