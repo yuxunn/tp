@@ -528,17 +528,71 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Add a client
 
-1. Deleting a person while all persons are being shown
+1. Add a client with a necessary fields
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all clients/leads using the `list` command. The information about the lead to be added should not already exist in the list.
+    
+    1. Test case: `addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
+       Expected: A client with the information above will be added.
+
+    1. Test case: `addclient p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
+       Expected: No client will be added. The following error message will be shown. 
+    ```
+    Invalid command format! 
+    addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
+    Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
+    ```
+1. _{ more test cases …​ }_
+
+
+### Add a lead 
+
+1. Add a lead with a necessary fields
+    
+    1. Prerequisites: List all clients/leads using the `list` command. The information about the lead to be added should not already exist in the list.
+
+    1. Test case: `addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
+       Expected: A lead with the information above will be added.
+
+    1. Test case: `addlead p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
+       Expected: No lead will be added. The following error message will be shown. 
+    ```
+    Invalid command format! 
+    addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
+    Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
+    ```
+1. _{ more test cases …​ }_
+
+### Edit a client/lead
+
+1. Deleting a client/lead while all clients/leads are being shown
+
+   1. Prerequisites: List all clients/leads using the `list` command. Multiple clients/leads in the list.
+
+   1. Test case: `edit 1 n/Alan`<br>
+      Expected: The name of first contact is edited to ``Alan``. Details of the edited contact shown in the status message.
+
+   1. Test case: `edit 1`<br>
+      Expected: No client/lead is edited. Error details shown in the status message. 
+
+   1. Test case: `edit 0`<br>
+      Expected: No client/lead is edited. Error details shown in the status message. 
+
+1. _{ more test cases …​ }_
+
+### Deleting a client/lead
+
+1. Deleting a client/lead while all clients/leads are being shown
+
+   1. Prerequisites: List all clients/leads using the `list` command. Multiple clients/leads in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No client/lead is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
