@@ -37,7 +37,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
                         PREFIX_ADDRESS, PREFIX_MEETING_TIME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_MEETING_TIME)
+                PREFIX_EMAIL, PREFIX_MEETING_TIME) //TODO: remove prefix_meeting_time here
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
         }

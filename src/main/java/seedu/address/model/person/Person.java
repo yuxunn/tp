@@ -126,8 +126,8 @@ public abstract class Person {
                 .add("email", email)
                 .add("type", type)
                 .add("address", address)
-                .add("tags", tags)
                 .add("meetingTime", meetingTime)
+                .add("tags", tags)
                 .toString();
     }
 

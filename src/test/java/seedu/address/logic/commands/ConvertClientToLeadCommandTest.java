@@ -1,6 +1,5 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+package seedu.address.logic.commands;
+
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +9,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
+import seedu.address.testutil.TypicalClients;
 import seedu.address.testutil.TypicalPersons;
 
 public class ConvertClientToLeadCommandTest {
@@ -18,7 +18,7 @@ public class ConvertClientToLeadCommandTest {
 
     @Test
     public void execute_validClientIndex_success() {
-        Client clientToConvert = TypicalPersons.getTypicalClients().get(0); // assuming you have a list of clients
+        Client clientToConvert = TypicalClients.getTypicalClients().get(0); // assuming you have a list of clients
         ConvertClientToLeadCommand command = new ConvertClientToLeadCommand(clientToConvert.getIndex());
 
         String expectedMessage = String.format(ConvertClientToLeadCommand.MESSAGE_CONVERT_SUCCESS, clientToConvert);

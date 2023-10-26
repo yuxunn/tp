@@ -11,13 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Client;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Lead;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -59,13 +53,14 @@ public class ConvertClientToLeadCommand extends Command {
         Phone phone = personToConvert.getPhone();
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
+        MeetingTime meetingTime = personToConvert.getMeetingTime();
         Set<Tag> tags = new HashSet<Tag>();
         tags.remove(new Tag("Client"));
         tags.add(new Tag("Lead"));
         // TODO: Add more fields from client to lead
 
 
-        Lead convertedLead = new Lead(name, phone, email, address, tags);
+        Lead convertedLead = new Lead(name, phone, email, address, meetingTime, tags);
 
         model.setPerson(personToConvert, convertedLead);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
