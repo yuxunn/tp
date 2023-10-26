@@ -41,37 +41,86 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ![Ui1](images/Ui1.png)
 
-## Lead features
-
-### Add lead [Coming soon]
+### Add lead
 
 - What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
-- Command format: `add --name <name> --age <age> --year <year of study> --major <major>`.
-- Example usage: `add --name Dave --age 22 --year 2 --major Psychology`.
+- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
+- Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`.
 - Acceptable values for each parameter:
-    - `name`: can contain any character, up to 100 characters long.
-    - `age`: any integer between `1` and `100` inclusive.
-    - `year`: any integer between `1` and `5` inclusive.
-    - `major`: can contain any character, up to 50 characters long.
+    - `NAME`: can contain any character.
+    - `PHONE`: any valid 8-digit integer.
+    - `EMAIL`: a string of the format `local-part@domain`
+    - `ADDRESS`: can contain any character.
+    - `TAG`: can contain any character.
 - Precise expected outputs when the command succeeds:
 
-`Lead added. <lead details>`
+<div align="center">
+    <img src="./images/addlead.png" width="500" />
+    <p>After using addlead command</p>
+</div>
 
 - Precise expected outputs when the command fails:
 
-`Lead failed to add. Please enter a valid command`
+```
+Invalid command format! 
+addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
+Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
+```
+
+### Add Lead with Key Milestone Information [Coming soon]
+- What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
+- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/DATE [t/TAG]...`.
+- Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/2022-12-01 t/classmate`.
+- Acceptable values for each parameter:
+    - `NAME`: can contain any character.
+    - `PHONE`: any valid 8-digit integer.
+    - `EMAIL`: a string of the format `local-part@domain`
+    - `ADDRESS`: can contain any character.
+    - `DATE`: only contains date in the format of ``YYYY-MM-DD``
+    - `TAG`: can contain any character.
+
+### Add Client
+- What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
+- Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
+- Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`.
+- Acceptable values for each parameter:
+  - `NAME`: can contain any character.
+  - `PHONE`: any valid 8-digit integer.
+  - `EMAIL`: a string of the format `local-part@domain`
+  - `ADDRESS`: can contain any character.
+  - `TAG`: can contain any character.
+- Precise expected outputs when the command succeeds:
+
+<div align="center">
+    <img src="./images/addclient.png" width="500" />
+    <p>After using addclient command</p>
+</div>
+
+- Precise expected outputs when the command fails:
+
+```
+Invalid command format! 
+addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
+Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
+```
 
 ### View all clients
 
-- What it does: View all clients you have stored, including their basic information and index in the list of leads, e.g. id, name, age, gender, occupation, etc.
+- What it does: View all clients you have stored, including their basic information and index in the list of clients, e.g. id, name, age, gender, occupation, etc.
 - Command: `listclient`.
 - Precise expected outputs when the command succeeds:
 
+In output section of the 
 `List of all clients`
 
-- Precise expected outputs when the command fails:
+<h4>Examples of usage:</h4>
 
-`Failed to view all clients. Please enter a valid command`
+<div align="center">
+    <img src="./images/List.png" width="500" />
+    <p>List of leads and clients</p>
+    <img src="./images/Listclient.png" width="500" />
+    <p>After using listclient command</p>
+</div>
 
 ### View all leads
 
@@ -81,16 +130,22 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 `List of all leads`
 
-- Precise expected outputs when the command fails:
+<h4>Example usage:<h4>
 
-`Failed to view all leads. Please enter a valid command`
+<div align="center">
+    <img src="./images/List.png" width = "500"/>
+    <p>List of leads and clients</p>
+    <img src="./images/Listlead.png" width = "500"/>
+    <p>After using listlead command</p>
+</div>
 
-### Delete lead [Coming soon]
+
+### Delete [Coming soon]
 
 - What it does: Deletes a lead from your list of leads.
-- Command format: `delete --id <id>`.
-- Example usage: `delete --id 1`.
-- Acceptable values for `id` parameter:
+- Command format: `delete INDEX`.
+- Example usage: `delete 1`.
+- Acceptable values for `INDEX` parameter:
     - Must be an integer from `1` to the last index of the leads list
 - Precise expected outputs when the command succeeds:
 
@@ -98,19 +153,23 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 - Precise expected outputs when the command fails:
 
-`Lead failed to delete. Please enter a valid lead id`
+```
+Invalid command format! 
+delete: Deletes the person identified by the index number used in the displayed person list.
+Parameters: INDEX (must be a positive integer)
+```
 
-### Add meeting time for lead [Coming soon]
+### Add meeting time [Coming soon]
 
 - What it does: Adds a meeting time for a lead
-- Command format: `addmeeting --lead <lead_id> --dt <datetime>`
-- Example usage: `addmeeting --lead 1 --dt 23/9/2023 5:30PM`
+- Command format: `addmeetingtime INDEX m/MEETING_TIME`
+- Example usage: `addmeetingtime 1 m/12/12/2020 12:00`
 - Acceptable values for each parameter:
-    - `lead`: Any integer from `1` to the last index of the leads list
-    - `dt`: A valid DateTime String with the format dd/M/yyyy hh:mma.
+    - `INDEX`: Any integer from `1` to the last index of the leads list.
+    - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
 - Precise expected outputs when the command succeeds:
 
-`Meeting time added to <lead> : <meeting datetime>`
+`Meeting time added to <lead/client> : <meeting datetime>`
 
 - Precise expected outputs when the command fails:
 

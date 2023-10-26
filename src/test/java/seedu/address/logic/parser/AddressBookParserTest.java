@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.AddLeadCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -24,7 +25,10 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListClientCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListLeadCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
@@ -119,5 +123,20 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + 3);
+        assertEquals(new ViewCommand(Index.fromOneBased(3)), command);
+    }
+    @Test
+    public void parseCommand_listClient() throws Exception {
+        assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD) instanceof ListClientCommand);
+    }
+    @Test
+    public void parseCommand_listLead() throws Exception {
+        assertTrue(parser.parseCommand(ListLeadCommand.COMMAND_WORD) instanceof ListLeadCommand);
     }
 }
