@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,9 +35,9 @@ public class ConvertClientToLeadCommandTest {
     }
     @Test
     public void executeClientConvertToLeadSuccess() throws CommandException {
-        final String EXPECTED_OUTPUT = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; " +
-                "Address: 123, Jurong West Ave 6, #08-111; " +
-                "Meeting Time: 10/10/2023 14:30; Tags: [lead]";
+        final String ExpectedOutput = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
+                + "Address: 123, Jurong West Ave 6, #08-111; "
+                + "Meeting Time: 10/10/2023 14:30; Tags: [lead]";
 
         // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
@@ -58,7 +57,7 @@ public class ConvertClientToLeadCommandTest {
         }
         // You should also check that the CommandResult is the expected one.
         // For example:
-        assertEquals(EXPECTED_OUTPUT, commandResult.getFeedbackToUser());
+        assertEquals(ExpectedOutput, commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -67,7 +66,8 @@ public class ConvertClientToLeadCommandTest {
         Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
         ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(invalidIndex);
 
-        assertThrows(CommandException.class, "The person index provided is invalid", () -> convertClientToLeadCommand.execute(modelStub));
+        assertThrows(CommandException.class, "The person index provided is invalid",
+                () -> convertClientToLeadCommand.execute(modelStub));
     }
 
     @Test
@@ -79,7 +79,8 @@ public class ConvertClientToLeadCommandTest {
         ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(validIndex);
 
         assertThrows(CommandException.class, "The person at the specified index is not a Client.",
-                () -> convertClientToLeadCommand.execute(modelStub));
+                () -> convertClientToLeadCommand.execute(modelStub)
+        );
     }
 
 

@@ -35,10 +35,10 @@ public class ConvertLeadToClientCommandTest {
         assertThrows(NullPointerException.class, () -> new ConvertLeadToClientCommand(null));
     }
     @Test
-    public void execute_leadConvertToClient_addSuccessfully() throws CommandException{
-        final String EXPECTED_OUTPUT = "Converted Lead to Client: Amy Bee; Phone: 85355255; " +
-                "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; " +
-                "Meeting Time: 10/10/2023 14:30; Tags: [client]";
+    public void execute_leadConvertToClient_addSuccessfully() throws CommandException {
+        final String EXPECTED_OUTPUT = "Converted Lead to Client: Amy Bee; Phone: 85355255; "
+                + "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; "
+                + "Meeting Time: 10/10/2023 14:30; Tags: [client]";
         // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Lead validPerson = new PersonBuilder().buildLead();
@@ -61,12 +61,14 @@ public class ConvertLeadToClientCommandTest {
     }
 
     @Test
-    public void execute_leadConvertToClientinvalidIndex_addFailure() {
+    public void execute_leadConvertToClientInvalidIndex_addFailure() {
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
         ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(invalidIndex);
 
-        assertThrows(CommandException.class, "The person index provided is invalid", () -> convertLeadToClientCommand.execute(modelStub));
+        assertThrows(CommandException.class, "The person index provided is invalid",
+                () -> convertLeadToClientCommand.execute(modelStub)
+        );
     }
 
     @Test
@@ -78,7 +80,8 @@ public class ConvertLeadToClientCommandTest {
         ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(validIndex);
 
         assertThrows(CommandException.class, "The person at the specified index is not a Lead.",
-                () -> convertLeadToClientCommand.execute(modelStub));
+                () -> convertLeadToClientCommand.execute(modelStub)
+        );
     }
 
     private abstract class ModelStub implements Model {
