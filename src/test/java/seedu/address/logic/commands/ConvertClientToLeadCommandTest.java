@@ -66,8 +66,11 @@ public class ConvertClientToLeadCommandTest {
         Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
         ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(invalidIndex);
 
-        assertThrows(CommandException.class, "The person index provided is invalid",
-                () -> convertClientToLeadCommand.execute(modelStub));
+        assertThrows(
+                CommandException.class,
+                "The person index provided is invalid",
+                () -> convertClientToLeadCommand.execute(modelStub)
+        );
     }
 
     @Test
@@ -78,7 +81,9 @@ public class ConvertClientToLeadCommandTest {
         Index validIndex = Index.fromOneBased(1); // Assuming index 1 is valid, but there are no clients in the model
         ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(validIndex);
 
-        assertThrows(CommandException.class, "The person at the specified index is not a Client.",
+        assertThrows(
+                CommandException.class,
+                "The person at the specified index is not a Client.",
                 () -> convertClientToLeadCommand.execute(modelStub)
         );
     }
