@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
@@ -61,7 +61,7 @@ public class ConvertLeadToClientCommandTest {
     }
 
     @Test
-    public void execute_leadConvertToClient_invalidIndex_addFailure() {
+    public void execute_leadConvertToClientinvalidIndex_addFailure() {
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
         ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(invalidIndex);
