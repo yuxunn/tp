@@ -15,8 +15,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Lead;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.MeetingTime;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -37,6 +37,9 @@ public class ConvertLeadToClientCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates an ConvertLeadToClientCommand to convert the specified {@code Lead} to {@code Client}
+     */
     public ConvertLeadToClientCommand(Index index) {
         requireNonNull(index);
         this.index = index;
