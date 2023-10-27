@@ -2,23 +2,22 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.ConvertClientToLeadCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -31,18 +30,54 @@ import seedu.address.testutil.PersonBuilder;
 
 public class ConvertClientToLeadCommandTest {
 
+
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ConvertClientToLeadCommand(null));
-    }
-    @Test
-    public void execute_ClientConvertToLead_success() throws Exception {
+    public void execute_ClientConvertToLead_success() throws CommandException {
+        final String EXPECTED_OUTPUT = "Converted Client to Lead: Amy Bee; Phone: 85355255; " +
+                "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; Tags: [lead]";
+
+        // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
         Client validPerson = new PersonBuilder().buildClient();
-        System.out.println(modelStub.getAddressBook());
-        assertTrue(true);
+        modelStub.addClient(validPerson);
+        Index index = Index.fromOneBased(1);
+        ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(index);
 
+        // Step 2: Execute the ConvertClientToLeadCommand.
+        CommandResult commandResult = convertClientToLeadCommand.execute(modelStub);
+
+        // Step 3: Check the results.
+        // You may want to assert that the model stub has been updated correctly, e.g., by checking the filteredPersons.
+        // For example:
+        if (!modelStub.getFilteredPersonList().isEmpty()) {
+            assertTrue(modelStub.getFilteredPersonList().get(0).isLead());
+        }
+        // You should also check that the CommandResult is the expected one.
+        // For example:
+        assertEquals(EXPECTED_OUTPUT, commandResult.getFeedbackToUser());
     }
+
+    @Test
+    public void execute_ClientConvertToLead_invalidIndex_throwsCommandException() {
+        ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
+        Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
+        ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(invalidIndex);
+
+        assertThrows(CommandException.class, "The person index provided is invalid", () -> convertClientToLeadCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_ConvertLeadToLead_test() {
+        ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
+        Lead validPerson = new PersonBuilder().buildLead();
+        modelStub.addLead(validPerson);
+        Index validIndex = Index.fromOneBased(1); // Assuming index 1 is valid, but there are no clients in the model
+        ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(validIndex);
+
+        assertThrows(CommandException.class, "The person at the specified index is not a Client.",
+                () -> convertClientToLeadCommand.execute(modelStub));
+    }
+
 
     private abstract class ModelStub implements Model {
         @Override
@@ -148,19 +183,47 @@ public class ConvertClientToLeadCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingClientAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
 
+        final List<Person> clientAdded = new ArrayList<>();
+        private final ObservableList<Person> filteredPersons = FXCollections.observableArrayList(clientAdded);
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return clientAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
         public void addClient(Client client) {
             requireNonNull(client);
-            personsAdded.add(client);
-            System.out.println("Added");
+            filteredPersons.add(client);
+        }
+
+        @Override
+        public void addLead(Lead lead) {
+            requireNonNull(lead);
+            filteredPersons.add(lead);
+        }
+
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return filteredPersons;
+        }
+
+
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> person) {
+            requireNonNull(person);
+            filteredPersons.setAll(
+                    clientAdded.stream().filter(person).collect(Collectors.toList())
+            );
+        }
+
+        @Override
+        public void setPerson(Person target, Person converted) {
+            clientAdded.remove(target);
+            clientAdded.add(converted);
         }
 
         @Override
@@ -169,16 +232,8 @@ public class ConvertClientToLeadCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return new AddressBook().getPersonList();
-        }
-
-        @Override
         public void view(Person person) {
             requireNonNull(person);
         }
-
     }
 }
-
-

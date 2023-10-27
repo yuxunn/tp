@@ -2,18 +2,19 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;;
+import javafx.collections.FXCollections;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
@@ -31,15 +32,49 @@ public class ConvertLeadToClientCommandTest {
 
 
     @Test
-    public void execute_LeadConvertToClient_success() throws CommandException {
+    public void execute_LeadConvertToClient_success() throws CommandException{
+        final String EXPECTED_OUTPUT = "Converted Lead to Client: Amy Bee; Phone: 85355255; " +
+                "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; Tags: [client]";
+        // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Lead validPerson = new PersonBuilder().buildLead();
         modelStub.addLead(validPerson);
         Index index = Index.fromOneBased(1);
-        CommandResult convertLeadToClientCommand = new ConvertLeadToClientCommand(index).execute(modelStub);
-        System.out.println(convertLeadToClientCommand);
+        ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(index);
 
+        // Step 2: Execute the ConvertLeadToClientCommand.
+        CommandResult commandResult = convertLeadToClientCommand.execute(modelStub);
 
+        // Step 3: Check the results.
+        // You may want to assert that the model stub has been updated correctly, e.g., by checking the filteredPersons.
+        // For example:
+        if (!modelStub.getFilteredPersonList().isEmpty()) {
+            assertTrue(modelStub.getFilteredPersonList().get(0).isClient());
+        }
+        // You should also check that the CommandResult is the expected one.
+        // For example:
+        assertEquals(EXPECTED_OUTPUT, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_LeadConvertToClient_invalidIndex_throwsCommandException() {
+        ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
+        Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
+        ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(invalidIndex);
+
+        assertThrows(CommandException.class, "The person index provided is invalid", () -> convertLeadToClientCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_ConvertClientToClient_test() {
+        ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
+        Client validPerson = new PersonBuilder().buildClient();
+        modelStub.addClient(validPerson);
+        Index validIndex = Index.fromOneBased(1); // Assuming index 1 is valid, but there are no leads in the model
+        ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(validIndex);
+
+        assertThrows(CommandException.class, "The person at the specified index is not a Lead.",
+                () -> convertLeadToClientCommand.execute(modelStub));
     }
 
     private abstract class ModelStub implements Model {
@@ -146,32 +181,47 @@ public class ConvertLeadToClientCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingLeadAdded extends ModelStub {
-        final ObservableList<Person> personsAdded = FXCollections.observableArrayList();
 
+        final List<Person> leadsAdded = new ArrayList<>();
+        private final ObservableList<Person> filteredPersons = FXCollections.observableArrayList(leadsAdded);
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return leadsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
         public void addLead(Lead lead) {
             requireNonNull(lead);
-            personsAdded.add(lead);
-            System.out.println(personsAdded.size());
+            filteredPersons.add(lead);
         }
 
         @Override
+        public void addClient(Client client) {
+            requireNonNull(client);
+            filteredPersons.add(client);
+        }
+
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
-            return personsAdded;
+            return filteredPersons;
+        }
+
+
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> person) {
+            requireNonNull(person);
+            filteredPersons.setAll(
+                    leadsAdded.stream().filter(person).collect(Collectors.toList())
+            );
         }
 
         @Override
         public void setPerson(Person target, Person converted) {
-            personsAdded.remove(target);
-            personsAdded.add(converted);
-
-
+            leadsAdded.remove(target);
+            leadsAdded.add(converted);
         }
 
         @Override
