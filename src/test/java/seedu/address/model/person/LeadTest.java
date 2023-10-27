@@ -138,8 +138,8 @@ public class LeadTest {
                 + ", email=" + ALICE.getEmail()
                 + ", type=" + ALICE.getType()
                 + ", address=" + ALICE.getAddress()
-                + ", tags=" + ALICE.getTags()
-                + ", meetingTime=" + ALICE.getMeetingTime() + "}";
+                + ", meetingTime=" + ALICE.getMeetingTime()
+                + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

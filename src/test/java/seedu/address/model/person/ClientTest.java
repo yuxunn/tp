@@ -139,8 +139,8 @@ public class ClientTest {
                 + ", email=" + TypicalClients.ALICE.getEmail()
                 + ", type=" + TypicalClients.ALICE.getType()
                 + ", address=" + TypicalClients.ALICE.getAddress()
-                + ", tags=" + TypicalClients.ALICE.getTags()
-                + ", meetingTime=" + TypicalClients.ALICE.getMeetingTime() + "}";
+                + ", meetingTime=" + TypicalClients.ALICE.getMeetingTime()
+                + ", tags=" + TypicalClients.ALICE.getTags() + "}";
         assertEquals(expected, TypicalClients.ALICE.toString());
     }
     @Test
