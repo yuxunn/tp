@@ -67,8 +67,7 @@ public class ConvertLeadToClientCommandTest {
 
         assertThrows(
                 CommandException.class,
-                "The person index provided is invalid",
-                () -> convertLeadToClientCommand.execute(modelStub)
+                "The person index provided is invalid", () -> convertLeadToClientCommand.execute(modelStub)
         );
     }
 
@@ -82,8 +81,7 @@ public class ConvertLeadToClientCommandTest {
 
         assertThrows(
                 CommandException.class,
-                "The person at the specified index is not a Lead.",
-                () -> convertLeadToClientCommand.execute(modelStub)
+                "The person at the specified index is not a Lead.", () -> convertLeadToClientCommand.execute(modelStub)
         );
     }
 
