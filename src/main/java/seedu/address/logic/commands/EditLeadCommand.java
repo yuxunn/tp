@@ -7,7 +7,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -65,20 +64,20 @@ public class EditLeadCommand extends EditCommand {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            //todo: fix the message so it is for lead
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedLead((Lead) personToEdit, editLeadDescriptor);
+        Lead leadToEdit = (Lead) lastShownList.get(index.getZeroBased());
+        assert(leadToEdit.isLead());
+        Lead editedLead = createEditedLead((Lead) leadToEdit, editLeadDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!leadToEdit.isSamePerson(editedLead) && model.hasPerson(editedLead)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(leadToEdit, editedLead);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_LEAD_SUCCESS, Messages.format(editedLead)));
     }
 
     @Override

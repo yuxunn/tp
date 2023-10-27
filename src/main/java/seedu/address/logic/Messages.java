@@ -36,6 +36,10 @@ public class Messages {
      * Formats the {@code person} for display to the user.
      */
     public static String format(Person person) {
+        if (person.isLead()) {
+            return format((Lead) person);
+        }
+        assert(!person.isLead());
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
                 .append("; Phone: ")
@@ -51,6 +55,7 @@ public class Messages {
 
 
     public static String format(Lead lead) {
+        assert(lead.isLead());
         final StringBuilder builder = new StringBuilder();
         builder.append(lead.getName())
                 .append("; Phone: ")

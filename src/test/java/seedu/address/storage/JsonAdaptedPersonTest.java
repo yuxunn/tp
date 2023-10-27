@@ -142,6 +142,13 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
     @Test
+    public void toModelType_leadWithInvalidKeyMilestone_throwsIllegalValueException() {
+        String invalidKeyMilestone = "12345";
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, "lead", VALID_ADDRESS, "12345", VALID_TAGS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+    @Test
     public void toModelType_invalidTags_withKeyMilestone_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
