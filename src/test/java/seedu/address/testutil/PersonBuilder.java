@@ -7,6 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Lead;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_MEETING_TIME = "10/10/2023 14:30";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private MeetingTime meetingTime;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -37,6 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
         tags = new HashSet<>();
     }
 
@@ -48,6 +52,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        meetingTime = personToCopy.getMeetingTime();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -91,11 +96,19 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code MeetingTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeetingTime(String meetingTime) {
+        this.meetingTime = new MeetingTime(meetingTime);
+        return this;
+    }
+
     public Client buildClient() {
-        return new Client(name, phone, email, address, tags);
+        return new Client(name, phone, email, address, meetingTime, tags);
     }
 
     public Lead buildLead() {
-        return new Lead(name, phone, email, address, tags);
+        return new Lead(name, phone, email, address, meetingTime, tags);
     }
 }
