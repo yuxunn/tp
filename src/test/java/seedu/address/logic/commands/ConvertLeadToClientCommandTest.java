@@ -35,8 +35,8 @@ public class ConvertLeadToClientCommandTest {
         assertThrows(NullPointerException.class, () -> new ConvertLeadToClientCommand(null));
     }
     @Test
-    public void execute_leadConvertToClient_addSuccessfully() throws CommandException {
-        final String EXPECTED_OUTPUT = "Converted Lead to Client: Amy Bee; Phone: 85355255; "
+    public void executeLeadConvertToClientAddSuccessfully() throws CommandException {
+        final String expectedOutput = "Converted Lead to Client: Amy Bee; Phone: 85355255; "
                 + "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; "
                 + "Meeting Time: 10/10/2023 14:30; Tags: [client]";
         // Step 1: Set up the necessary test data and model stub.
@@ -57,11 +57,11 @@ public class ConvertLeadToClientCommandTest {
         }
         // You should also check that the CommandResult is the expected one.
         // For example:
-        assertEquals(EXPECTED_OUTPUT, commandResult.getFeedbackToUser());
+        assertEquals(expectedOutput, commandResult.getFeedbackToUser());
     }
 
     @Test
-    public void execute_leadConvertToClientInvalidIndex_addFailure() {
+    public void executeLeadConvertToClientInvalidIndexAddFailure() {
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
         ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(invalidIndex);
@@ -72,7 +72,7 @@ public class ConvertLeadToClientCommandTest {
     }
 
     @Test
-    public void execute_convertClientToClient_throwException() {
+    public void executeConvertClientToClientThrowException() {
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Client validPerson = new PersonBuilder().buildClient();
         modelStub.addClient(validPerson);

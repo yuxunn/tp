@@ -35,7 +35,7 @@ public class ConvertClientToLeadCommandTest {
     }
     @Test
     public void executeClientConvertToLeadSuccess() throws CommandException {
-        final String ExpectedOutput = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
+        final String expectedOutput = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
                 + "Address: 123, Jurong West Ave 6, #08-111; "
                 + "Meeting Time: 10/10/2023 14:30; Tags: [lead]";
 
@@ -57,7 +57,7 @@ public class ConvertClientToLeadCommandTest {
         }
         // You should also check that the CommandResult is the expected one.
         // For example:
-        assertEquals(ExpectedOutput, commandResult.getFeedbackToUser());
+        assertEquals(expectedOutput, commandResult.getFeedbackToUser());
     }
 
     @Test
