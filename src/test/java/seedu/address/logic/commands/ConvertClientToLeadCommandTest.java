@@ -81,9 +81,8 @@ public class ConvertClientToLeadCommandTest {
         ConvertClientToLeadCommand convertClientToLeadCommand = new ConvertClientToLeadCommand(validIndex);
 
         assertThrows(
-                CommandException.class,
-                "The person at the specified index is not a Client.", () -> convertClientToLeadCommand.execute(modelStub)
-        );
+                CommandException.class, "The person at the specified index is not a Client.",
+                () -> convertClientToLeadCommand.execute(modelStub));
     }
 
 
