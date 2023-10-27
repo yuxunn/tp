@@ -30,9 +30,12 @@ import seedu.address.testutil.PersonBuilder;
 
 public class ConvertLeadToClientCommandTest {
 
-
     @Test
-    public void execute_LeadConvertToClient_success() throws CommandException{
+    public void constructor_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ConvertLeadToClientCommand(null));
+    }
+    @Test
+    public void execute_leadConvertToClient_addSuccessfully() throws CommandException{
         final String EXPECTED_OUTPUT = "Converted Lead to Client: Amy Bee; Phone: 85355255; " +
                 "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; " +
                 "Meeting Time: 10/10/2023 14:30; Tags: [client]";
@@ -58,7 +61,7 @@ public class ConvertLeadToClientCommandTest {
     }
 
     @Test
-    public void execute_LeadConvertToClient_invalidIndex_throwsCommandException() {
+    public void execute_leadConvertToClient_invalidIndex_addFailure() {
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
         ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(invalidIndex);
@@ -67,7 +70,7 @@ public class ConvertLeadToClientCommandTest {
     }
 
     @Test
-    public void execute_ConvertClientToClient_test() {
+    public void execute_convertClientToClient_throwException() {
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Client validPerson = new PersonBuilder().buildClient();
         modelStub.addClient(validPerson);
