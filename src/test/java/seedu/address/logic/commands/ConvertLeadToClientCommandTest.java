@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -66,7 +65,9 @@ public class ConvertLeadToClientCommandTest {
         Index invalidIndex = Index.fromOneBased(2); // An index that does not exist in the model
         ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(invalidIndex);
 
-        assertThrows(CommandException.class, "The person index provided is invalid",
+        assertThrows(
+                CommandException.class,
+                "The person index provided is invalid",
                 () -> convertLeadToClientCommand.execute(modelStub)
         );
     }
@@ -79,7 +80,9 @@ public class ConvertLeadToClientCommandTest {
         Index validIndex = Index.fromOneBased(1); // Assuming index 1 is valid, but there are no leads in the model
         ConvertLeadToClientCommand convertLeadToClientCommand = new ConvertLeadToClientCommand(validIndex);
 
-        assertThrows(CommandException.class, "The person at the specified index is not a Lead.",
+        assertThrows(
+                CommandException.class,
+                "The person at the specified index is not a Lead.",
                 () -> convertLeadToClientCommand.execute(modelStub)
         );
     }
