@@ -25,6 +25,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Lead;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -80,12 +81,13 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        MeetingTime updatedMeetingTime = editPersonDescriptor.getMeetingTime().orElse(personToEdit.getMeetingTime());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit.isClient()) {
-            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
         } else {
-            return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
         }
     }
 
@@ -143,6 +145,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private MeetingTime meetingTime;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -157,6 +160,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setMeetingTime(toCopy.meetingTime);
             setTags(toCopy.tags);
         }
 
@@ -197,6 +201,14 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public Optional<MeetingTime> getMeetingTime() {
+            return Optional.ofNullable(meetingTime);
+        }
+
+        public void setMeetingTime(MeetingTime meetingTime) {
+            this.meetingTime = meetingTime;
         }
 
         /**
