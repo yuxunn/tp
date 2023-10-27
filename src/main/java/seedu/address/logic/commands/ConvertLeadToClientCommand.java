@@ -16,6 +16,7 @@ import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -45,7 +46,7 @@ public class ConvertLeadToClientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-
+        System.out.println(lastShownList);
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -63,9 +64,10 @@ public class ConvertLeadToClientCommand extends Command {
         Set<Tag> tags = new HashSet<>();
         tags.remove(new Tag("lead"));
         tags.add(new Tag("client"));
+        MeetingTime meetingTime = new MeetingTime(personToConvert.getMeetingTime().toString());
         // TODO: Add more fields from lead to client
 
-        Client convertedClient = new Client(name, phone, email, address, tags);
+        Client convertedClient = new Client(name, phone, email, address, meetingTime, tags);
 
         model.setPerson(personToConvert, convertedClient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

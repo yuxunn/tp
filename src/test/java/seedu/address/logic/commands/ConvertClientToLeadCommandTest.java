@@ -33,8 +33,9 @@ public class ConvertClientToLeadCommandTest {
 
     @Test
     public void execute_ClientConvertToLead_success() throws CommandException {
-        final String EXPECTED_OUTPUT = "Converted Client to Lead: Amy Bee; Phone: 85355255; " +
-                "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; Tags: [lead]";
+        final String EXPECTED_OUTPUT = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; " +
+                "Address: 123, Jurong West Ave 6, #08-111; " +
+                "Meeting Time: 10/10/2023 14:30; Tags: [lead]";
 
         // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();

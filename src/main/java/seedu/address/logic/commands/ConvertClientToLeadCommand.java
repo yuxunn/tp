@@ -16,6 +16,7 @@ import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -61,12 +62,14 @@ public class ConvertClientToLeadCommand extends Command {
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
         Set<Tag> tags = new HashSet<Tag>();
+        MeetingTime meetingTime = new MeetingTime(personToConvert.getMeetingTime().toString());
         tags.remove(new Tag("client"));
         tags.add(new Tag("lead"));
+
         // TODO: Add more fields from client to lead
 
 
-        Lead convertedLead = new Lead(name, phone, email, address, tags);
+        Lead convertedLead = new Lead(name, phone, email, address, meetingTime, tags);
 
         model.setPerson(personToConvert, convertedLead);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
