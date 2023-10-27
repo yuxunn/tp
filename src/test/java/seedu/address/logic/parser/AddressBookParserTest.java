@@ -48,7 +48,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addLead() throws Exception {
-        Lead lead = new PersonBuilder(ELLE).buildLead();
+        Lead lead = new PersonBuilder(ELLE).withKeyMilestone("2022-12-01").buildLead();
         AddLeadCommand command = (AddLeadCommand) parser.parseCommand(LeadUtil.getAddLeadCommand(lead));
         assertEquals(new AddLeadCommand(lead), command);
     }

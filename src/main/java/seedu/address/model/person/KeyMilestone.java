@@ -1,12 +1,15 @@
 package seedu.address.model.person;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class KeyMilestone {
     public static final String MESSAGE_CONSTRAINTS =
-            "Key milestone is the date of Lead's milestone moment";
-    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+            "Key milestone is the date of Lead's milestone moment, should be in the format of yyyy-MM-dd";
     public final String value;
     /**
      * Constructs an {@code KeyMilestone}.
@@ -16,8 +19,6 @@ public class KeyMilestone {
     public KeyMilestone(String keyMilestone) {
         requireNonNull(keyMilestone);
         checkArgument(isValidKeyMilestone(keyMilestone), MESSAGE_CONSTRAINTS);
-        //todo: use SimpleDateFormat if needed
-        // https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
         this.value = keyMilestone;
     }
 
@@ -25,7 +26,12 @@ public class KeyMilestone {
      * Returns if a given string is a valid date.
      */
     public static boolean isValidKeyMilestone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDate.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     @Override

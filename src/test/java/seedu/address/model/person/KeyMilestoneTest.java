@@ -11,6 +11,7 @@ class KeyMilestoneTest {
 
     @Test
     void isValidKeyMilestone() {
+        //todo: fix needed for local date time
         assertFalse(KeyMilestone.isValidKeyMilestone("01-01-2022"));
         assertFalse(KeyMilestone.isValidKeyMilestone("01/01/2022"));
         assertFalse(KeyMilestone.isValidKeyMilestone("01.01.2022"));
