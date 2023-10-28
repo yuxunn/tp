@@ -31,6 +31,7 @@ public class EditLeadCommand extends EditCommand {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_KEYMILESTONE+ "KEY MILESTONE] "
+            + "[" + PREFIX_MEETING_TIME+ "MEETING TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -53,9 +54,13 @@ public class EditLeadCommand extends EditCommand {
         Email updatedEmail = editLeadDescriptor.getEmail().orElse(leadToEdit.getEmail());
         Address updatedAddress = editLeadDescriptor.getAddress().orElse(leadToEdit.getAddress());
         Set<Tag> updatedTags = editLeadDescriptor.getTags().orElse(leadToEdit.getTags());
-        KeyMilestone updatedKeyMilestone = editLeadDescriptor.getKeyMilestone().orElse(leadToEdit.getKeyMilestone());
+        KeyMilestone updatedKeyMilestone = editLeadDescriptor.getKeyMilestone()
+                .orElse(leadToEdit.getKeyMilestone());
+        MeetingTime updatedMeetingTime = editLeadDescriptor.getMeetingTime()
+                .orElse(leadToEdit.getMeetingTime());
 
-        return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedKeyMilestone, updatedTags);
+        return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedKeyMilestone,
+                updatedMeetingTime, updatedTags);
     }
 
     @Override

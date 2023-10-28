@@ -35,6 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setMeetingTime(person.getMeetingTime());
         descriptor.setTags(person.getTags());
     }
 
@@ -67,6 +68,12 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+
+    public EditPersonDescriptorBuilder withMeetingTime (String meetingTime) {
+        descriptor.setMeetingTime(new MeetingTime(meetingTime));
         return this;
     }
 

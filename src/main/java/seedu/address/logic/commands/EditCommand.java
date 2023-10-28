@@ -19,6 +19,14 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.MeetingTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MEETING_TIME+ "MEETING TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -71,8 +80,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        MeetingTime updatedMeetingTime = editPersonDescriptor.getMeetingTime().orElse(personToEdit.getMeetingTime());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
     }
 
     @Override
@@ -129,6 +139,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private MeetingTime meetingTime;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -143,13 +154,14 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setMeetingTime(toCopy.meetingTime);
             setTags(toCopy.tags);
         }
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, meetingTime, tags);
         }
 
         public Optional<Name> getName() {
@@ -182,6 +194,14 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public Optional<MeetingTime> getMeetingTime() {
+            return Optional.ofNullable(meetingTime);
+        }
+
+        public void setMeetingTime(MeetingTime meetingTime) {
+            this.meetingTime = meetingTime;
         }
 
         /**
@@ -217,6 +237,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(meetingTime, otherEditPersonDescriptor.meetingTime)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -227,6 +248,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("meeting time", meetingTime)
                     .add("tags", tags)
                     .toString();
         }
@@ -271,6 +293,7 @@ public class EditCommand extends Command {
             return super.equals(other) && Objects.equals(keyMilestone, otherEditLeadDescriptor.keyMilestone);
         }
 
+        //todo: fix this
         @Override
         public String toString() {
             return new ToStringBuilder(this)
@@ -279,6 +302,7 @@ public class EditCommand extends Command {
                     .add("email", super.email)
                     .add("address", super.address)
                     .add("key milestone", keyMilestone)
+                    .add("meeting time", super.meetingTime)
                     .add("tags", super.tags)
                     .toString();
         }

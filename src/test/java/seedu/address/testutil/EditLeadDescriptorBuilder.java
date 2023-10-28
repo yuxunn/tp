@@ -10,7 +10,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EditLeadDescriptorBuilder {
+/**
+ * A utility class to help with building EditLeadDescriptor objects.
+ *
+ */
+public class EditLeadDescriptorBuilder extends EditPersonDescriptorBuilder {
+    // not extending from EditPersonDescriptorBuilder as what we to change is leadDescriptor instance instead of
+    // personDescriptor
 
     private EditLeadDescriptor leadDescriptor;
 
@@ -30,6 +36,7 @@ public class EditLeadDescriptorBuilder {
         leadDescriptor.setEmail(lead.getEmail());
         leadDescriptor.setAddress(lead.getAddress());
         leadDescriptor.setKeyMilestone(lead.getKeyMilestone());
+        leadDescriptor.setMeetingTime(lead.getMeetingTime());
         leadDescriptor.setTags(lead.getTags());
     }
 
@@ -40,7 +47,7 @@ public class EditLeadDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditLeadDescriptor} that we are building.
      */
     public EditLeadDescriptorBuilder withPhone(String phone) {
         leadDescriptor.setPhone(new Phone(phone));
@@ -48,7 +55,7 @@ public class EditLeadDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditLeadDescriptor} that we are building.
      */
     public EditLeadDescriptorBuilder withEmail(String email) {
         leadDescriptor.setEmail(new Email(email));
@@ -56,7 +63,7 @@ public class EditLeadDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditLeadDescriptor} that we are building.
      */
     public EditLeadDescriptorBuilder withAddress(String address) {
         leadDescriptor.setAddress(new Address(address));
@@ -69,8 +76,14 @@ public class EditLeadDescriptorBuilder {
     }
 
 
+    public EditLeadDescriptorBuilder withMeetingTime (String meetingTime) {
+        leadDescriptor.setMeetingTime(new MeetingTime(meetingTime));
+        return this;
+    }
+
+
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditLeadDescriptor}
      * that we are building.
      */
     public EditLeadDescriptorBuilder withTags(String... tags) {

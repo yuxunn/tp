@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private Label keyMilestone;
 
     @FXML
+    private Label meetingTime;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -56,6 +58,7 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
+        meetingTime.setText("Meeting on: " + person.getMeetingTime().toString());
         email.setText(person.getEmail().value);
         if (person.isLead()) {
             Lead lead = (Lead) person;

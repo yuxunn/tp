@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,8 +15,8 @@ public class Lead extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Lead(Name name, Phone phone, Email email, Address address, KeyMilestone keyMilestone, Set<Tag> tags) {
-        super(name, phone, email, new Type(TYPE_LEAD), address, tags);
+    public Lead(Name name, Phone phone, Email email, Address address, KeyMilestone keyMilestone, MeetingTime meetingTime, Set<Tag> tags) {
+        super(name, phone, email, new Type(TYPE_LEAD), address, meetingTime, tags);
         this.keyMilestone = keyMilestone;
     }
 
@@ -31,5 +32,20 @@ public class Lead extends Person {
     @Override
     public boolean isLead() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        //todo: fix the get
+        return new ToStringBuilder(this)
+                .add("name", super.getName())
+                .add("phone", super.getPhone())
+                .add("email", super.getEmail())
+                .add("type", super.getType())
+                .add("address", super.getAddress())
+                .add("key milestone", this.keyMilestone)
+                .add("meetingTime", super.getMeetingTime())
+                .add("tags", super.getTags())
+                .toString();
     }
 }

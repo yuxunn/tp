@@ -14,6 +14,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.MeetingTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +37,7 @@ class JsonAdaptedPerson {
     private final String type;
     private final String address;
     private String keyMilestone;
+    private final String meetingTime;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,7 +48,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                            @JsonProperty("email") String email, @JsonProperty("type") String type,
                            @JsonProperty("address") String address,
-                           @JsonProperty("keyMilestone") String keyMilestone,
+                           @JsonProperty("keyMilestone") String keyMilestone, @JsonProperty("meetingTime") String meetingTime,
                            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
@@ -46,6 +56,7 @@ class JsonAdaptedPerson {
         this.type = type;
         this.address = address;
         this.keyMilestone = keyMilestone;
+        this.meetingTime = meetingTime;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -64,6 +75,7 @@ class JsonAdaptedPerson {
             Lead sourceLead = (Lead) source;
             keyMilestone = sourceLead.getKeyMilestone().value;
         }
+        meetingTime = source.getMeetingTime().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -112,19 +124,28 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (meetingTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeetingTime.class.getSimpleName()));
+        }
+        if (!MeetingTime.isValidMeetingTime(meetingTime)) {
+            throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
+        final MeetingTime modelMeetingTime = new MeetingTime(meetingTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (type == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Type"));
         }
         if (type.equals(TYPE_CLIENT)) {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelMeetingTime, modelTags);
         } else if (type.equals(TYPE_LEAD)) {
             if (!KeyMilestone.isValidKeyMilestone(keyMilestone)) {
                 throw new IllegalValueException(KeyMilestone.MESSAGE_CONSTRAINTS);
             }
             final KeyMilestone modelKeyMilestone = new KeyMilestone(keyMilestone);
-            return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelKeyMilestone, modelTags);
+            return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelKeyMilestone, modelMeetingTime, modelTags);
         }
         else {
             throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
