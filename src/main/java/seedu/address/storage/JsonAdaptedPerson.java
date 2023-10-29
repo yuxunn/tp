@@ -3,10 +3,7 @@ package seedu.address.storage;
 import static seedu.address.model.person.Client.TYPE_CLIENT;
 import static seedu.address.model.person.Lead.TYPE_LEAD;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -36,7 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String type;
     private final String address;
-    private final String meetingTime;
+    private String meetingTime;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -52,7 +49,9 @@ class JsonAdaptedPerson {
         this.email = email;
         this.type = type;
         this.address = address;
-        this.meetingTime = meetingTime;
+        if (meetingTime != null) {
+            this.meetingTime = meetingTime;
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -67,7 +66,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         type = source.getType().value;
-        meetingTime = source.getMeetingTime().toString();
+        meetingTime = source.getMeetingTime().map(MeetingTime::toString).orElse(null);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,15 +115,17 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Optional<MeetingTime> modelMeetingTime;
         if (meetingTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    MeetingTime.class.getSimpleName()));
+            modelMeetingTime = Optional.empty();
+        } else {
+            if (!MeetingTime.isValidMeetingTime(meetingTime)) {
+                throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
+            }
+            modelMeetingTime = Optional.of(new MeetingTime(meetingTime));
         }
-        if (!MeetingTime.isValidMeetingTime(meetingTime)) {
-            throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
-        }
-        final MeetingTime modelMeetingTime = new MeetingTime(meetingTime);
-
+//        Optional.of(meetingTime).map(MeetingTime::new)
+//                .orElseThrow(() -> new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS));
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (type == null) {

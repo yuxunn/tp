@@ -31,7 +31,8 @@ public class LeadUtil {
         sb.append(PREFIX_PHONE + lead.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + lead.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + lead.getAddress().value + " ");
-        sb.append(PREFIX_MEETING_TIME + lead.getMeetingTime().toString() + " ");
+        lead.getMeetingTime().ifPresent(meetingTime -> sb.append(PREFIX_MEETING_TIME
+                + meetingTime.toString() + " "));
         lead.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

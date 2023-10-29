@@ -27,9 +27,13 @@ public class TypicalPersons {
 
     public static final Client ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").buildClient();
+            .withPhone("94351253").withTags("friends").buildClient();
     public static final Client BENSON = new PersonBuilder().withName("Benson Meier")
+            .withAddress("311, Clementi Ave 2, #02-25")
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withMeetingTime("12/12/2020 12:00")
+            .withTags("owesMoney", "friends").buildClient();
+    public static final Client BENSON_NO_MEETING_TIME = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").buildClient();

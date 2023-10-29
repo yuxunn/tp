@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "type": "client",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -14,7 +14,7 @@
     "email" : "johnd@example.com",
     "type": "client",
     "address" : "311, Clementi Ave 2, #02-25",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : "12/12/2020 12:00",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -22,7 +22,7 @@
     "email" : "heinz@example.com",
     "type": "client",
     "address" : "wall street",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   }, {
     "name" : "Daniel Meier",
@@ -30,7 +30,7 @@
     "email" : "cornelia@example.com",
     "type": "client",
     "address" : "10th street",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -38,7 +38,7 @@
     "email" : "werner@example.com",
     "type": "lead",
     "address" : "michegan ave",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   }, {
     "name" : "Fiona Kunz",
@@ -46,7 +46,7 @@
     "email" : "lydia@example.com",
     "type": "lead",
     "address" : "little tokyo",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   }, {
     "name" : "George Best",
@@ -54,7 +54,7 @@
     "email" : "anna@example.com",
     "type": "lead",
     "address" : "4th street",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   } ]
 }
