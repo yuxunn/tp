@@ -24,7 +24,7 @@ public class ConvertLeadToClientCommandParser implements Parser<ConvertLeadToCli
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ConvertLeadToClientCommand.MESSAGE_USAGE));
         }
 
-        Index index = ParserUtil.parseIndex(args); 
+        Index index = ParserUtil.parseIndex(args);
 
         return new ConvertLeadToClientCommand(index);
     }
