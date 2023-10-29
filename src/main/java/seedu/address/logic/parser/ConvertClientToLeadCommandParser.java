@@ -22,9 +22,7 @@ public class ConvertClientToLeadCommandParser implements Parser<ConvertClientToL
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ConvertClientToLeadCommand.MESSAGE_USAGE));
         }
-
-        Index index = ParserUtil.parseIndex(args); 
-
+        Index index = ParserUtil.parseIndex(args);
         return new ConvertClientToLeadCommand(index);
     }
 

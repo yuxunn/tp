@@ -594,13 +594,13 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-    
+
     3a. The list of leads is empty.
         3a1. AddressBooks display a message indicating all clients are displayed.
         Use case ends.
     Use case ends.
 
-**Extensions
+**Extensions**
 
 *{More to be added}*
 
@@ -655,33 +655,33 @@ testers are expected to do more *exploratory* testing.
 1. Add a client with a necessary fields
 
     1. Prerequisites: List all clients/leads using the `list` command. The information about the lead to be added should not already exist in the list.
-    
+
     1. Test case: `addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
        Expected: A client with the information above will be added.
 
     1. Test case: `addclient p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
-       Expected: No client will be added. The following error message will be shown. 
+       Expected: No client will be added. The following error message will be shown.
     ```
-    Invalid command format! 
+    Invalid command format!
     addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
     Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
     ```
 1. _{ more test cases …​ }_
 
 
-### Add a lead 
+### Add a lead
 
 1. Add a lead with a necessary fields
-    
+
     1. Prerequisites: List all clients/leads using the `list` command. The information about the lead to be added should not already exist in the list.
 
     1. Test case: `addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
        Expected: A lead with the information above will be added.
 
     1. Test case: `addlead p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`
-       Expected: No lead will be added. The following error message will be shown. 
+       Expected: No lead will be added. The following error message will be shown.
     ```
-    Invalid command format! 
+    Invalid command format!
     addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
     Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
     ```
@@ -697,10 +697,10 @@ testers are expected to do more *exploratory* testing.
       Expected: The name of first contact is edited to ``Alan``. Details of the edited contact shown in the status message.
 
    1. Test case: `edit 1`<br>
-      Expected: No client/lead is edited. Error details shown in the status message. 
+      Expected: No client/lead is edited. Error details shown in the status message.
 
    1. Test case: `edit 0`<br>
-      Expected: No client/lead is edited. Error details shown in the status message. 
+      Expected: No client/lead is edited. Error details shown in the status message.
 
 1. _{ more test cases …​ }_
 
