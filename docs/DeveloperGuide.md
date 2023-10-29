@@ -741,7 +741,13 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: At least one client shown on the interface.
    2. Test case: `converttoclient 1`<br>
       Expected: Person changes from a lead to a client
-   3. Test case: `converttoclient `
+   3. Test case: `converttoclient 0`<br>
+      Expected: No change to any information. Error details shown in status message. Status bar remains the same.
+   4. Other incorrect convert commands to try: `converttoclient`, `converttoclient x` (where x is larger than the list size)<br>
+      Expected: Similar to previous
+### Converting a client to lead
+
+1. Similar to converting a lead to client, but for client to lead
 
 
 ### Saving data
