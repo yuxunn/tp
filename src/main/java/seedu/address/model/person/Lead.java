@@ -14,7 +14,8 @@ public class Lead extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Lead(Name name, Phone phone, Email email, Address address, Optional<MeetingTime> meetingTime, Set<Tag> tags) {
+    public Lead(Name name, Phone phone, Email email, Address address,
+                Optional<MeetingTime> meetingTime, Set<Tag> tags) {
         super(name, phone, email, new Type(TYPE_LEAD), address, meetingTime, tags);
     }
 

@@ -14,7 +14,8 @@ public class Client extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Optional<MeetingTime> meetingTime, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address,
+                  Optional<MeetingTime> meetingTime, Set<Tag> tags) {
         super(name, phone, email, new Type(TYPE_CLIENT), address, meetingTime, tags);
     }
 

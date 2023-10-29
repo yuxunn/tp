@@ -45,7 +45,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullMeetingTime_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_nullMeetingTimeWithOtherPersonDetailsValid_returnsPerson() throws Exception {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
                         VALID_ADDRESS, null, VALID_TAGS);

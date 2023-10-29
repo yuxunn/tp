@@ -51,7 +51,7 @@ public class TypicalLeads {
     // Manually added
     public static final Lead HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withTags(VALID_TAG_FRIEND,VALID_TAG_HUSBAND).buildLead();
+            .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).buildLead();
     public static final Lead IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withMeetingTime("24/10/2023 12:30").buildLead();
 

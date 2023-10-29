@@ -55,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         if (person.getMeetingTime().isPresent()) {
             meetingTime.setManaged(true);
-            meetingTime.setText(person.getMeetingTimeUIString());
+            meetingTime.setText(person.getMeetingTimeStringForUserInterface());
         }
         email.setText(person.getEmail().value);
 

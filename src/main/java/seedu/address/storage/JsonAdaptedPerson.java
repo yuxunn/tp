@@ -3,7 +3,11 @@ package seedu.address.storage;
 import static seedu.address.model.person.Client.TYPE_CLIENT;
 import static seedu.address.model.person.Lead.TYPE_LEAD;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -124,8 +128,7 @@ class JsonAdaptedPerson {
             }
             modelMeetingTime = Optional.of(new MeetingTime(meetingTime));
         }
-//        Optional.of(meetingTime).map(MeetingTime::new)
-//                .orElseThrow(() -> new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (type == null) {
