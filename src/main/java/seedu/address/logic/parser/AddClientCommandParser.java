@@ -48,14 +48,9 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Optional<MeetingTime> meetingTime = argMultimap.getValue(PREFIX_MEETING_TIME)
-                .map(mt -> {
-                    try {
-                        return ParserUtil.parseMeetingTime(mt);
-                    } catch (ParseException e) {
-                        return null;
-                    }
-                });
+        Optional<MeetingTime> meetingTime = argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()
+                ? Optional.of(ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get()))
+                : Optional.empty();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // TODO: temporary fix, implement add Client and Lead commands
