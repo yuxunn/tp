@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ConvertLeadToClientCommand;
-import seedu.address.logic.parser.ConvertLeadToClientCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ConvertLeadToClientCommandParserTest {
