@@ -734,6 +734,16 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `view 1`, `view x` (where x is an integer within the size of the list) <br>
        Expected: The full details of the first person is displayed. Success message: `Viewed Person Successfully`
 
+### Converting a lead to client
+
+1. Converting a lead to a client
+
+   1. Prerequisites: At least one client shown on the interface.
+   2. Test case: `converttoclient 1`<br>
+      Expected: Person changes from a lead to a client
+   3. Test case: `converttoclient `
+
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
