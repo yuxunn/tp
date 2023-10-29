@@ -52,7 +52,7 @@ public class AddLeadCommandParser implements Parser<AddLeadCommand> {
                     try {
                         return ParserUtil.parseMeetingTime(mt);
                     } catch (ParseException e) {
-                        throw new RuntimeException(e);
+                        return null;
                     }
                 });
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

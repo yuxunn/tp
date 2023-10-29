@@ -51,7 +51,7 @@ public class TypicalLeads {
     // Manually added
     public static final Lead HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withMeetingTime("24/10/2023 12:30").buildLead();
+            .withTags(VALID_TAG_FRIEND,VALID_TAG_HUSBAND).buildLead();
     public static final Lead IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withMeetingTime("24/10/2023 12:30").buildLead();
 
@@ -61,7 +61,8 @@ public class TypicalLeads {
             .withTags(VALID_TAG_FRIEND).withMeetingTime(VALID_MEETING_TIME_AMY).buildLead();
     public static final Lead BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withMeetingTime(VALID_MEETING_TIME_BOB).buildLead();
+            .withMeetingTime(VALID_MEETING_TIME_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).buildLead();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

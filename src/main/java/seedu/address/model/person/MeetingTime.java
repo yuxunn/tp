@@ -22,7 +22,6 @@ public class MeetingTime {
      * @param meetingTime A valid meeting time.
      */
     public MeetingTime(String meetingTime) {
-        requireNonNull(meetingTime);
         checkArgument(isValidMeetingTime(meetingTime), MESSAGE_CONSTRAINTS);
         this.value = MeetingTimeFormatter.parse(meetingTime);
     }

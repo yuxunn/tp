@@ -100,6 +100,10 @@ public class PersonBuilder {
      * Sets the {@code MeetingTime} of the {@code Person} that we are building.
      */
     public PersonBuilder withMeetingTime(String meetingTime) {
+        if (meetingTime == null) {
+            this.meetingTime = Optional.empty();
+            return this;
+        }
         this.meetingTime = Optional.of(new MeetingTime(meetingTime));
         return this;
     }
