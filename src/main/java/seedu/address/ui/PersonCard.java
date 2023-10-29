@@ -37,10 +37,6 @@ public class PersonCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
-
-    @FXML
-    private Label keyMilestone;
-
     @FXML
     private Label meetingTime;
     @FXML
@@ -60,10 +56,6 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         meetingTime.setText("Meeting on: " + person.getMeetingTime().toString());
         email.setText(person.getEmail().value);
-        if (person.isLead()) {
-            Lead lead = (Lead) person;
-            keyMilestone.setText(lead.getKeyMilestone().value);
-        }
 
         Label label = new Label(person.getType().value);
         if (person.isClient()) {

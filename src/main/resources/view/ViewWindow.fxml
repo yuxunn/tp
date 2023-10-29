@@ -81,6 +81,11 @@
                 </Label>
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label styleClass="cell_small_label">
+                </Label>
+                <Label fx:id="keyMilestone" styleClass="cell_small_label" text="\$keyMilestone" />
+            </HBox>
+            <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="otherInfo" styleClass="cell_small_label" />
             </HBox>
         </VBox>

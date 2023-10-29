@@ -9,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
 
 /**
@@ -42,6 +43,9 @@ public class ViewWindow extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+
+    @FXML
+    private Label keyMilestone;
     @FXML
     private FlowPane tags;
 
@@ -59,7 +63,13 @@ public class ViewWindow extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-
+        if (person.isLead()) {
+           Lead convertedPerson = (Lead) person;
+           keyMilestone.setText("Key Milestone:  " + convertedPerson.getKeyMilestone().value);
+        } else {
+            //keyMilestone should be at the last line of the ui, if not the empty line will be obvious
+            keyMilestone.setText("");
+        }
         Label label = new Label(person.getType().value);
         if (person.isClient()) {
             label.getStyleClass().add("client-label");
