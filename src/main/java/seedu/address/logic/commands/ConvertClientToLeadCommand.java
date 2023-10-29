@@ -64,10 +64,8 @@ public class ConvertClientToLeadCommand extends Command {
         Phone phone = personToConvert.getPhone();
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
-        Set<Tag> tags = new HashSet<Tag>();
+        Set<Tag> tags = new HashSet<>(personToConvert.getTags());
         MeetingTime meetingTime = new MeetingTime(personToConvert.getMeetingTime().toString());
-        tags.remove(new Tag("client"));
-        tags.add(new Tag("lead"));
 
         // TODO: Add more fields from client to lead
 
