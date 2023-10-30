@@ -26,6 +26,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.KeyMilestone;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -88,6 +89,14 @@ public class EditCommand extends Command {
         Optional<MeetingTime> updatedMeetingTime = editPersonDescriptor.getMeetingTime()
                 .or(personToEdit::getMeetingTime);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        //todo: this temporary fix related to the one in editcommandparser
+        if (personToEdit.isLead()) {
+            //keyMilestone will not be updated if editLeadCommand is not used
+            Lead leadToEdit = (Lead) personToEdit;
+            KeyMilestone keyMilestone = leadToEdit.getKeyMilestone();
+            return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, keyMilestone,
+                    updatedMeetingTime, updatedTags);
+        }
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
     }
 

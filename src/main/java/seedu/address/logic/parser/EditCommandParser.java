@@ -36,7 +36,6 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         boolean isLead = false;
-        //todo: meeting time error, need to have meeting time here
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_KEYMILESTONE, PREFIX_MEETING_TIME, PREFIX_TAG);
@@ -81,13 +80,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                     Optional.of(ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editLeadDescriptor::setTags);
 
         if (!isLead && !editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         } else if (isLead && !editLeadDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditLeadCommand.MESSAGE_NOT_EDITED);
         }
-
+        //todo: there is a temporary fix here
+        //temporary fix to not convert lead to client when editing any lead's field
+        //EditLead is only used when the keyMilestone is changed
         return isLead ? new EditLeadCommand(index, editLeadDescriptor) : new EditCommand(index, editPersonDescriptor);
     }
 
