@@ -14,10 +14,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
@@ -47,10 +47,11 @@ class JsonAdaptedPerson {
 
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                           @JsonProperty("email") String email, @JsonProperty("type") String type,
-                           @JsonProperty("address") String address,
-                           @JsonProperty("keyMilestone") String keyMilestone, @JsonProperty("meetingTime") String meetingTime,
-                           @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("type") String type,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("keyMilestone") String keyMilestone,
+                             @JsonProperty("meetingTime") String meetingTime,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -149,9 +150,9 @@ class JsonAdaptedPerson {
                 throw new IllegalValueException(KeyMilestone.MESSAGE_CONSTRAINTS);
             }
             final KeyMilestone modelKeyMilestone = new KeyMilestone(keyMilestone);
-            return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelKeyMilestone, modelMeetingTime, modelTags);
-        }
-        else {
+            return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelKeyMilestone,
+                    modelMeetingTime, modelTags);
+        } else {
             throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
         }
     }

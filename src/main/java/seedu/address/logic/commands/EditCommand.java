@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
@@ -10,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.security.Key;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,16 +22,17 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Lead;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -262,9 +261,18 @@ public class EditCommand extends Command {
         }
     }
 
+    /**
+     * Stores the details to edit the lead with. Each non-empty field value will replace the
+     * corresponding field value of the lead.
+     */
     public static class EditLeadDescriptor extends EditPersonDescriptor {
-        //This class only used for edit KeyMilestone, for other field of leads like name, editPersonDescriptor will be used
-        KeyMilestone keyMilestone;
+        //This class only used for edit KeyMilestone, for other field of leads like name, editPersonDescriptor
+        // will be used
+        private KeyMilestone keyMilestone;
+        /**
+         * Copy constructor only for leads.
+         * A defensive copy of {@code tags} is used internally.
+         */
         public EditLeadDescriptor(EditLeadDescriptor toCopy) {
             super(toCopy);
             setKeyMilestone(toCopy.keyMilestone);
@@ -283,7 +291,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(keyMilestone);
         }
 
-        public void setKeyMilestone (KeyMilestone keyMilestone) {
+        public void setKeyMilestone(KeyMilestone keyMilestone) {
             this.keyMilestone = keyMilestone;
         }
 

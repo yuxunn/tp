@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
@@ -12,10 +16,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
 /**
  * A utility class to help with building Person objects.
  */
@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_KEYMILESTONE= "2022-12-01";
+    public static final String DEFAULT_KEYMILESTONE = "2022-12-01";
     public static final String DEFAULT_MEETING_TIME = "10/10/2023 14:30";
 
     private Name name;
@@ -61,6 +61,9 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
     }
 
+    /**
+     * Initializes the PersonBuilder with the data of {@code leadToCopy}.
+     */
     public PersonBuilder(Lead leadToCopy) {
         name = leadToCopy.getName();
         phone = leadToCopy.getPhone();
@@ -111,6 +114,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code KeyMilestone} of the {@code Person} that we are building.
+     */
     //temporary fix: buildLead must call keyMilestone
     public PersonBuilder withKeyMilestone(String keyMilestone) {
         this.keyMilestone = new KeyMilestone(keyMilestone);

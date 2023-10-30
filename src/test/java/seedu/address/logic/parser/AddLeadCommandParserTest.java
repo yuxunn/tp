@@ -1,16 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddLeadCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Lead;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -50,16 +39,30 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalLeads.AMY;
 import static seedu.address.testutil.TypicalLeads.BOB;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.AddLeadCommand;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.PersonBuilder;
+
 public class AddLeadCommandParserTest {
     private final AddLeadCommandParser parser = new AddLeadCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Lead expectedLead = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).withKeyMilestone(VALID_KEYMILESTONE_BOB).buildLead();
+        Lead expectedLead = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
+                .withKeyMilestone(VALID_KEYMILESTONE_BOB).buildLead();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND + KEYMILESTONE_DESC_BOB, new AddLeadCommand(expectedLead));
+                + ADDRESS_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND
+                + KEYMILESTONE_DESC_BOB, new AddLeadCommand(expectedLead));
 
 
         // multiple tags - all accepted
@@ -142,7 +145,8 @@ public class AddLeadCommandParserTest {
         // zero tags
         Lead expectedLead = new PersonBuilder(AMY).withTags().withKeyMilestone(VALID_KEYMILESTONE_BOB).buildLead();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + ADDRESS_DESC_AMY + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_AMY, new AddLeadCommand(expectedLead));
+                        + ADDRESS_DESC_AMY + KEYMILESTONE_DESC_BOB
+                + MEETING_TIME_DESC_AMY, new AddLeadCommand(expectedLead));
 
         // no meeting time
         Lead expectedLead2 = new PersonBuilder(BOB).withMeetingTime(null).buildLead();
@@ -180,32 +184,39 @@ public class AddLeadCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
+                + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + INVALID_ADDRESS_DESC + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB,
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + INVALID_ADDRESS_DESC + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + ADDRESS_DESC_BOB + KEYMILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeadCommand.MESSAGE_USAGE));
     }
 }

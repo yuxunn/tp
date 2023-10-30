@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -17,8 +17,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditLeadCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
@@ -55,7 +55,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditLeadDescriptor editLeadDescriptor = new EditLeadDescriptor();
         if (argMultimap.getValue(PREFIX_KEYMILESTONE).isPresent()) {
             isLead = true;
-            editLeadDescriptor.setKeyMilestone(ParserUtil.parseKeyMilestone(argMultimap.getValue(PREFIX_KEYMILESTONE).get()));
+            editLeadDescriptor.setKeyMilestone(ParserUtil.parseKeyMilestone(
+                    argMultimap.getValue(PREFIX_KEYMILESTONE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

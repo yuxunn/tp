@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Lead extends Person {
     public static final String TYPE_LEAD = "lead";
-    public KeyMilestone keyMilestone;
+    private final KeyMilestone keyMilestone;
 
     /**
      * Every field must be present and not null.

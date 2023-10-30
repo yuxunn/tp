@@ -9,9 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -82,6 +82,12 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    /**
+     * Parses a {@code String keyMilestone} into an {@code KeyMilestone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keyMilestone} is invalid.
+     */
     public static KeyMilestone parseKeyMilestone(String keyMilestone) throws ParseException {
         requireNonNull(keyMilestone);
         String trimmedKeyMilestone = keyMilestone.trim();

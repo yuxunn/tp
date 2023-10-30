@@ -1,12 +1,12 @@
 package seedu.address.logic;
 
-import seedu.address.logic.parser.Prefix;
-import seedu.address.model.person.Lead;
-import seedu.address.model.person.Person;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.Person;
 
 /**
  * Container for user visible messages.
@@ -55,7 +55,9 @@ public class Messages {
         return builder.toString();
     }
 
-
+    /**
+     * Formats the {@code lead} for display to the user.
+     */
     public static String format(Lead lead) {
         assert(lead.isLead());
         final StringBuilder builder = new StringBuilder();

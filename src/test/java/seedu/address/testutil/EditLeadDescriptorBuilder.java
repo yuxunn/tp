@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -9,11 +14,6 @@ import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * A utility class to help with building EditLeadDescriptor objects.
@@ -34,6 +34,9 @@ public class EditLeadDescriptorBuilder extends EditPersonDescriptorBuilder {
         this.leadDescriptor = new EditLeadDescriptor(descriptor);
     }
 
+    /**
+     * Returns an {@code EditLeadDescriptor} with fields containing {@code lead}'s details
+     */
     public EditLeadDescriptorBuilder(Lead lead) {
         leadDescriptor = new EditLeadDescriptor();
         leadDescriptor.setName(lead.getName());
@@ -46,6 +49,9 @@ public class EditLeadDescriptorBuilder extends EditPersonDescriptorBuilder {
     }
 
 
+    /**
+     * Sets the {@code Name} of the {@code EditLeadDescriptor} that we are building.
+     */
     public EditLeadDescriptorBuilder withName(String name) {
         leadDescriptor.setName(new Name(name));
         return this;
@@ -75,13 +81,19 @@ public class EditLeadDescriptorBuilder extends EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code KeyMilestone} of the {@code EditLeadDescriptor} that we are building.
+     */
     public EditLeadDescriptorBuilder withKeyMilestone(String keyMilestone) {
         leadDescriptor.setKeyMilestone(new KeyMilestone(keyMilestone));
         return this;
     }
 
 
-    public EditPersonDescriptorBuilder withMeetingTime(String meetingTime) {
+    /**
+     * Sets the {@code MeetingTime} of the {@code EditLeadDescriptor} that we are building.
+     */
+    public EditLeadDescriptorBuilder withMeetingTime(String meetingTime) {
         leadDescriptor.setMeetingTime(Optional.of(new MeetingTime(meetingTime)));
         return this;
     }

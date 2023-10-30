@@ -72,12 +72,12 @@ public class ViewWindow extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         if (person.isLead()) {
-           Lead convertedPerson = (Lead) person;
-           keyMilestoneIcon.setVisible(true);
-           keyMilestone.setManaged(true);
-           keyMilestoneTitle.setManaged(true);
-           //the key milestone title is added here to make it disappear entirely
-           keyMilestone.setText(convertedPerson.getKeyMilestone().value);
+            Lead convertedPerson = (Lead) person;
+            keyMilestoneIcon.setVisible(true);
+            keyMilestone.setManaged(true);
+            keyMilestoneTitle.setManaged(true);
+            //the key milestone title is added here to make it disappear entirely
+            keyMilestone.setText(convertedPerson.getKeyMilestone().value);
         } else {
             //keyMilestone should be at the last line of the ui, if not the empty line will be obvious
             keyMilestoneIcon.setVisible(false);

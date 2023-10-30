@@ -1,5 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -15,24 +29,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Edits the details of an existing lead in the address book.
+ */
 public class EditLeadCommand extends EditCommand {
-    private final Index index;
-    private final EditLeadDescriptor editLeadDescriptor;
-
 
     public static final String COMMAND_WORD = "edit";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
@@ -43,12 +43,21 @@ public class EditLeadCommand extends EditCommand {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_KEYMILESTONE+ "KEY MILESTONE] "
-            + "[" + PREFIX_MEETING_TIME+ "MEETING TIME] "
+            + "[" + PREFIX_KEYMILESTONE + "KEY MILESTONE] "
+            + "[" + PREFIX_MEETING_TIME + "MEETING TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+
+
+    private final Index index;
+    private final EditLeadDescriptor editLeadDescriptor;
+
+    /**
+     * @param index                of the person in the filtered person list to edit
+     * @param editLeadDescriptor details to edit the lead with
+     */
     public EditLeadCommand(Index index, EditLeadDescriptor editLeadDescriptor) {
         super(index, editLeadDescriptor);
         requireNonNull(index);
@@ -59,7 +68,7 @@ public class EditLeadCommand extends EditCommand {
     }
 
 
-    private static Lead createEditedLead (Lead leadToEdit, EditLeadDescriptor editLeadDescriptor) {
+    private static Lead createEditedLead(Lead leadToEdit, EditLeadDescriptor editLeadDescriptor) {
         assert leadToEdit != null;
 
         Name updatedName = editLeadDescriptor.getName().orElse(leadToEdit.getName());
