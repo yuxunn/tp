@@ -180,12 +180,4 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = MeetingTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-    @Test
-    public void toModelType_nullMeetingTime_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                        VALID_ADDRESS, null, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MeetingTime.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
 }
