@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -23,14 +24,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_MEETING_TIME = "10/10/2023 14:30";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private MeetingTime meetingTime;
+    private Optional<MeetingTime> meetingTime;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,7 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
+        meetingTime = Optional.empty();
         tags = new HashSet<>();
     }
 
@@ -100,7 +100,11 @@ public class PersonBuilder {
      * Sets the {@code MeetingTime} of the {@code Person} that we are building.
      */
     public PersonBuilder withMeetingTime(String meetingTime) {
-        this.meetingTime = new MeetingTime(meetingTime);
+        if (meetingTime == null) {
+            this.meetingTime = Optional.empty();
+            return this;
+        }
+        this.meetingTime = Optional.of(new MeetingTime(meetingTime));
         return this;
     }
 

@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.person.MeetingTimeFormatter.DATE_TIME_FORMAT;
 
@@ -22,7 +21,6 @@ public class MeetingTime {
      * @param meetingTime A valid meeting time.
      */
     public MeetingTime(String meetingTime) {
-        requireNonNull(meetingTime);
         checkArgument(isValidMeetingTime(meetingTime), MESSAGE_CONSTRAINTS);
         this.value = MeetingTimeFormatter.parse(meetingTime);
     }

@@ -5,6 +5,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -65,7 +66,7 @@ public class ConvertLeadToClientCommand extends Command {
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
         Set<Tag> tags = new HashSet<>(personToConvert.getTags());
-        MeetingTime meetingTime = new MeetingTime(personToConvert.getMeetingTime().toString());
+        Optional<MeetingTime> meetingTime = personToConvert.getMeetingTime();
         // TODO: Add more fields from lead to client
 
         Client convertedClient = new Client(name, phone, email, address, meetingTime, tags);

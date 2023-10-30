@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -24,14 +25,14 @@ public abstract class Person {
 
     // Data fields
     private final Address address;
-    private final MeetingTime meetingTime;
+    private final Optional<MeetingTime> meetingTime;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Type type,
-                  Address address, MeetingTime meetingTime, Set<Tag> tags) {
+                  Address address, Optional<MeetingTime> meetingTime, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, meetingTime, tags);
         this.name = name;
         this.phone = phone;
@@ -62,8 +63,16 @@ public abstract class Person {
         return address;
     }
 
-    public MeetingTime getMeetingTime() {
+    public Optional<MeetingTime> getMeetingTime() {
         return meetingTime;
+    }
+    public String getMeetingTimeString() {
+        return meetingTime.map(MeetingTime::toString).orElse(null);
+    }
+
+    public String getMeetingTimeStringForUserInterface() {
+        return meetingTime.map(meetingTime -> "Meeting on: " + meetingTime)
+                .orElse(null);
     }
 
     /**
