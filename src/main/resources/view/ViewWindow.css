@@ -1,5 +1,6 @@
 #cardPane {
     -fx-background-color: #FBFBD4;
+    -fx-spacing: 2;
 }
 
 .label {

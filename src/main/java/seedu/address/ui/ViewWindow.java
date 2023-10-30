@@ -43,6 +43,11 @@ public class ViewWindow extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private HBox meetingTimeBox;
+
+    @FXML
+    private Label meetingTime;
+    @FXML
     private FlowPane tags;
 
     @FXML
@@ -59,7 +64,12 @@ public class ViewWindow extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-
+        if (person.getMeetingTime().isPresent()) {
+            meetingTime.setText(person.getMeetingTimeString());
+        } else {
+            meetingTime.setText("");
+            meetingTimeBox.setVisible(false);
+        }
         Label label = new Label(person.getType().value);
         if (person.isClient()) {
             label.getStyleClass().add("client-label");
