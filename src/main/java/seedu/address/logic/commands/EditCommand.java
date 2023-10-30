@@ -85,6 +85,7 @@ public class EditCommand extends Command {
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
     }
 
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -255,7 +256,7 @@ public class EditCommand extends Command {
     }
 
     public static class EditLeadDescriptor extends EditPersonDescriptor {
-        //put here because need access to editPersonDescriptor, can put in editeadcommand?
+        //This class only used for edit KeyMilestone, for other field of leads like name, editPersonDescriptor will be used
         KeyMilestone keyMilestone;
         public EditLeadDescriptor(EditLeadDescriptor toCopy) {
             super(toCopy);
@@ -268,7 +269,7 @@ public class EditCommand extends Command {
 
         @Override
         public boolean isAnyFieldEdited() {
-            return super.isAnyFieldEdited() && CollectionUtil.isAnyNonNull(keyMilestone);
+            return super.isAnyFieldEdited() || CollectionUtil.isAnyNonNull(keyMilestone);
         }
 
         public Optional<KeyMilestone> getKeyMilestone() {
@@ -293,7 +294,6 @@ public class EditCommand extends Command {
             return super.equals(other) && Objects.equals(keyMilestone, otherEditLeadDescriptor.keyMilestone);
         }
 
-        //todo: fix this
         @Override
         public String toString() {
             return new ToStringBuilder(this)

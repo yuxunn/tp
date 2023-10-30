@@ -30,6 +30,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         boolean isLead = false;
+        //todo: meeting time error, need to have meeting time here
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_KEYMILESTONE, PREFIX_TAG);
 
@@ -42,33 +43,39 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_KEYMILESTONE, PREFIX_ADDRESS);
-        EditPersonDescriptor editPersonDescriptor;
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditLeadDescriptor editLeadDescriptor = new EditLeadDescriptor();
         if (argMultimap.getValue(PREFIX_KEYMILESTONE).isPresent()) {
             isLead = true;
-            editPersonDescriptor = new EditLeadDescriptor();
-        } else {
-            editPersonDescriptor = new EditPersonDescriptor();
+            editLeadDescriptor.setKeyMilestone(ParserUtil.parseKeyMilestone(argMultimap.getValue(PREFIX_KEYMILESTONE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editLeadDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editLeadDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editLeadDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editLeadDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!isLead && !editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        } else if (isLead && !editLeadDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditLeadCommand.MESSAGE_NOT_EDITED);
         }
 
-        return isLead ? new EditLeadCommand(index, (EditLeadDescriptor) editPersonDescriptor) : new EditCommand(index, editPersonDescriptor);
+        return isLead ? new EditLeadCommand(index, editLeadDescriptor) : new EditCommand(index, editPersonDescriptor);
     }
 
     /**

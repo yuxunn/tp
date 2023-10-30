@@ -35,7 +35,7 @@ public class AddLeadCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_KEYMILESTONE + "2023-10-20"
+            + PREFIX_KEYMILESTONE + "2023-10-20 "
             + PREFIX_MEETING_TIME + "10/10/2023 14:30 "
             + PREFIX_TAG + "classmate";
 

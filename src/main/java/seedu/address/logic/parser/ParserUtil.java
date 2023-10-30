@@ -85,8 +85,8 @@ public class ParserUtil {
     public static KeyMilestone parseKeyMilestone(String keyMilestone) throws ParseException {
         requireNonNull(keyMilestone);
         String trimmedKeyMilestone = keyMilestone.trim();
-        if (!Address.isValidAddress(trimmedKeyMilestone)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!KeyMilestone.isValidKeyMilestone(trimmedKeyMilestone)) {
+            throw new ParseException(KeyMilestone.MESSAGE_CONSTRAINTS);
         }
         return new KeyMilestone(keyMilestone);
     }
