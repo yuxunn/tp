@@ -15,12 +15,14 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Converts a Client to a Lead in the address book.
@@ -65,13 +67,15 @@ public class ConvertClientToLeadCommand extends Command {
         Phone phone = personToConvert.getPhone();
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
+        //todo: temporary fix for keyMilestone
+        KeyMilestone keyMilestone = null;
         Set<Tag> tags = new HashSet<>(personToConvert.getTags());
         Optional<MeetingTime> meetingTime = personToConvert.getMeetingTime();
 
         // TODO: Add more fields from client to lead
 
 
-        Lead convertedLead = new Lead(name, phone, email, address, meetingTime, tags);
+        Lead convertedLead = new Lead(name, phone, email, address, keyMilestone, meetingTime, tags);
 
         model.setPerson(personToConvert, convertedLead);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

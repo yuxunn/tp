@@ -21,7 +21,9 @@ import seedu.address.logic.commands.AddLeadCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditLeadCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -34,10 +36,12 @@ import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ClientUtil;
+import seedu.address.testutil.EditLeadDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.LeadUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+
 
 public class AddressBookParserTest {
 
@@ -52,7 +56,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addLead() throws Exception {
-        Lead lead = new PersonBuilder(ELLE).buildLead();
+        Lead lead = new PersonBuilder(ELLE).withKeyMilestone("2022-12-01").buildLead();
         AddLeadCommand command = (AddLeadCommand) parser.parseCommand(LeadUtil.getAddLeadCommand(lead));
         assertEquals(new AddLeadCommand(lead), command);
     }
@@ -69,7 +73,7 @@ public class AddressBookParserTest {
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
-
+    //todo: test failed maybe because meeting time is null, should be fixed after merging master
     @Test
     public void parseCommand_edit_withClient() throws Exception {
         Client client = new PersonBuilder().buildClient();
@@ -78,12 +82,11 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
-
     @Test
     public void parseCommand_edit_withLead() throws Exception {
         Lead lead = new PersonBuilder().buildLead();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(lead).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditLeadDescriptor descriptor = new EditLeadDescriptorBuilder(lead).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditLeadCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }

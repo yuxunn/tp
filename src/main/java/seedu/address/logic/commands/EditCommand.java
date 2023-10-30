@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
@@ -32,13 +33,14 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+
+
 /**
  * Edits the details of an existing person in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -54,6 +56,7 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_LEAD_SUCCESS = "Edited Lead: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -86,13 +89,17 @@ public class EditCommand extends Command {
         Optional<MeetingTime> updatedMeetingTime = editPersonDescriptor.getMeetingTime()
                 .or(personToEdit::getMeetingTime);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        if (personToEdit.isClient()) {
-            return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
-        } else {
-            return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
+        //todo: this temporary fix related to the one in editcommandparser
+        if (personToEdit.isLead()) {
+            //keyMilestone will not be updated if editLeadCommand is not used
+            Lead leadToEdit = (Lead) personToEdit;
+            KeyMilestone keyMilestone = leadToEdit.getKeyMilestone();
+            return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, keyMilestone,
+                    updatedMeetingTime, updatedTags);
         }
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeetingTime, updatedTags);
     }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -166,7 +173,6 @@ public class EditCommand extends Command {
             setMeetingTime(toCopy.meetingTime);
             setTags(toCopy.tags);
         }
-
         /**
          * Returns true if at least one field is edited.
          */
@@ -260,6 +266,68 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("meetingTime", meetingTime)
                     .add("tags", tags)
+                    .toString();
+        }
+    }
+
+    /**
+     * Stores the details to edit the lead with. Each non-empty field value will replace the
+     * corresponding field value of the lead.
+     */
+    public static class EditLeadDescriptor extends EditPersonDescriptor {
+        //This class only used for edit KeyMilestone, for other field of leads like name, editPersonDescriptor
+        // will be used
+        private KeyMilestone keyMilestone;
+        /**
+         * Copy constructor only for leads.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditLeadDescriptor(EditLeadDescriptor toCopy) {
+            super(toCopy);
+            setKeyMilestone(toCopy.keyMilestone);
+        }
+
+        public EditLeadDescriptor() {
+
+        }
+
+        @Override
+        public boolean isAnyFieldEdited() {
+            return super.isAnyFieldEdited() || CollectionUtil.isAnyNonNull(keyMilestone);
+        }
+
+        public Optional<KeyMilestone> getKeyMilestone() {
+            return Optional.ofNullable(keyMilestone);
+        }
+
+        public void setKeyMilestone(KeyMilestone keyMilestone) {
+            this.keyMilestone = keyMilestone;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditLeadDescriptor)) {
+                return false;
+            }
+            EditLeadDescriptor otherEditLeadDescriptor = (EditLeadDescriptor) other;
+            return super.equals(other) && Objects.equals(keyMilestone, otherEditLeadDescriptor.keyMilestone);
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .add("name", super.name)
+                    .add("phone", super.phone)
+                    .add("email", super.email)
+                    .add("address", super.address)
+                    .add("key milestone", keyMilestone)
+                    .add("meeting time", super.meetingTime)
+                    .add("tags", super.tags)
                     .toString();
         }
     }

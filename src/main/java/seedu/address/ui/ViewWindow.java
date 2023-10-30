@@ -5,10 +5,12 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
 
 /**
@@ -42,6 +44,16 @@ public class ViewWindow extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+
+    @FXML
+    private Label keyMilestone;
+
+    @FXML
+    private ImageView keyMilestoneIcon;
+
+    @FXML
+    private Label keyMilestoneTitle;
+
     @FXML
     private FlowPane tags;
 
@@ -54,12 +66,24 @@ public class ViewWindow extends UiPart<Region> {
     public ViewWindow(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        //id.setText(displayedIndex + ".");
+        //id.setText(displayedIndex + ".")
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-
+        if (person.isLead()) {
+            Lead convertedPerson = (Lead) person;
+            keyMilestoneIcon.setVisible(true);
+            keyMilestone.setManaged(true);
+            keyMilestoneTitle.setManaged(true);
+            //the key milestone title is added here to make it disappear entirely
+            keyMilestone.setText(convertedPerson.getKeyMilestone().value);
+        } else {
+            //keyMilestone should be at the last line of the ui, if not the empty line will be obvious
+            keyMilestoneIcon.setVisible(false);
+            keyMilestone.setManaged(false);
+            keyMilestoneTitle.setManaged(false);
+        }
         Label label = new Label(person.getType().value);
         if (person.isClient()) {
             label.getStyleClass().add("client-label");

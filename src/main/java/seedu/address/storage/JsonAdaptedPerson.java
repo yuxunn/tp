@@ -17,6 +17,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
@@ -29,7 +30,6 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
@@ -37,22 +37,27 @@ class JsonAdaptedPerson {
     private final String email;
     private final String type;
     private final String address;
+    private String keyMilestone;
     private String meetingTime;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
+
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("type") String type,
-                             @JsonProperty("address") String address, @JsonProperty("meetingTime") String meetingTime,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("keyMilestone") String keyMilestone,
+                             @JsonProperty("meetingTime") String meetingTime,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.type = type;
         this.address = address;
+        this.keyMilestone = keyMilestone;
         if (meetingTime != null) {
             this.meetingTime = meetingTime;
         }
@@ -70,6 +75,10 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         type = source.getType().value;
+        if (type == TYPE_LEAD) {
+            Lead sourceLead = (Lead) source;
+            keyMilestone = sourceLead.getKeyMilestone().value;
+        }
         meetingTime = source.getMeetingTime().map(MeetingTime::toString).orElse(null);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -137,7 +146,12 @@ class JsonAdaptedPerson {
         if (type.equals(TYPE_CLIENT)) {
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelMeetingTime, modelTags);
         } else if (type.equals(TYPE_LEAD)) {
-            return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelMeetingTime, modelTags);
+            if (!KeyMilestone.isValidKeyMilestone(keyMilestone)) {
+                throw new IllegalValueException(KeyMilestone.MESSAGE_CONSTRAINTS);
+            }
+            final KeyMilestone modelKeyMilestone = new KeyMilestone(keyMilestone);
+            return new Lead(modelName, modelPhone, modelEmail, modelAddress, modelKeyMilestone,
+                    modelMeetingTime, modelTags);
         } else {
             throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
         }

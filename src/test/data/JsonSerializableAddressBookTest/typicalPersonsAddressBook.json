@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "type": "client",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "keyMilestone": null,
     "meetingTime" : null,
     "tags" : [ "friends" ]
   }, {
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "type": "client",
     "address" : "311, Clementi Ave 2, #02-25",
+    "keyMilestone": null,
     "meetingTime" : "12/12/2020 12:00",
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -21,6 +23,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "type": "client",
+    "keyMilestone": null,
     "address" : "wall street",
     "meetingTime" : null,
     "tags" : []
@@ -30,6 +33,7 @@
     "email" : "cornelia@example.com",
     "type": "client",
     "address" : "10th street",
+    "keyMilestone": null,
     "meetingTime" : null,
     "tags" : [ "friends" ]
   }, {
@@ -37,6 +41,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "type": "lead",
+    "keyMilestone": "2022-12-01",
     "address" : "michegan ave",
     "meetingTime" : null,
     "tags" : []
@@ -45,6 +50,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "type": "lead",
+    "keyMilestone": "2022-12-01",
     "address" : "little tokyo",
     "meetingTime" : null,
     "tags" : []
@@ -53,6 +59,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "type": "lead",
+    "keyMilestone": "2022-12-01",
     "address" : "4th street",
     "meetingTime" : null,
     "tags" : []
