@@ -65,9 +65,7 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
-     */
     //todo: fix, suspect something wrong with the parser
-    /*
     @Test
     public void parseCommand_edit_withLead() throws Exception {
         Lead lead = new PersonBuilder().buildLead();

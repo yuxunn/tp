@@ -81,9 +81,15 @@
                 </Label>
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label styleClass="cell_small_label">
+                <ImageView fx:id="keyMilestoneIcon" fitHeight="16" fitWidth="16" visible="false">
+                    <image>
+                        <Image url="@/images/email.png" />
+                    </image>
+                </ImageView >
+                <Label fx:id="keyMilestoneTitle" styleClass="cell_small_label" managed="false">
+                    <text>Key Milestone:</text>
                 </Label>
-                <Label fx:id="keyMilestone" styleClass="cell_small_label" text="\$keyMilestone" />
+                <Label fx:id="keyMilestone" styleClass="cell_small_label" text="\$keyMilestone" managed="false"/>
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="otherInfo" styleClass="cell_small_label" />
