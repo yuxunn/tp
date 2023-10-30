@@ -1,20 +1,8 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,6 +15,17 @@ import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
 public class ConvertClientToLeadCommandTest {
 
     @Test
@@ -37,7 +36,7 @@ public class ConvertClientToLeadCommandTest {
     public void executeClientConvertToLeadSuccess() throws CommandException {
         final String expectedOutput = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
                 + "Address: 123, Jurong West Ave 6, #08-111; "
-                + "Meeting Time: null; Tags: ";
+                + "Key Milestone: null; Meeting Time: null; Tags: ";
 
         // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();

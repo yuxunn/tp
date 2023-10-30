@@ -1,12 +1,12 @@
 package seedu.address.logic;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Container for user visible messages.
@@ -67,6 +67,8 @@ public class Messages {
                 .append("; Address: ")
                 .append(lead.getAddress())
                 .append("; Key Milestone: ")
+                .append(lead.getKeyMilestone())
+                .append("; Meeting Time: ")
                 .append(lead.getKeyMilestone())
                 .append("; Tags: ");
         lead.getTags().forEach(builder::append);

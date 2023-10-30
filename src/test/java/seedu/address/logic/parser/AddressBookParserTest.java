@@ -1,5 +1,37 @@
 package seedu.address.logic.parser;
 
+import org.junit.jupiter.api.Test;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddClientCommand;
+import seedu.address.logic.commands.AddLeadCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditLeadCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListClientCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListLeadCommand;
+import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.testutil.ClientUtil;
+import seedu.address.testutil.EditLeadDescriptorBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.LeadUtil;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -8,22 +40,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.AMY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalLeads.ELLE;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Client;
-import seedu.address.model.person.Lead;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.*;
 
 public class AddressBookParserTest {
 
@@ -56,7 +72,6 @@ public class AddressBookParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
     //todo: test failed maybe because meeting time is null, should be fixed after merging master
-    /*
     @Test
     public void parseCommand_edit_withClient() throws Exception {
         Client client = new PersonBuilder().buildClient();
@@ -73,7 +88,6 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
-     */
 
     @Test
     public void parseCommand_exit() throws Exception {

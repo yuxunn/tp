@@ -44,6 +44,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        meetingTime = Optional.empty();
         keyMilestone = new KeyMilestone(DEFAULT_KEYMILESTONE);
         tags = new HashSet<>();
     }
