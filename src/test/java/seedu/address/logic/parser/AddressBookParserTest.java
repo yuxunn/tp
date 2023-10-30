@@ -55,7 +55,7 @@ public class AddressBookParserTest {
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
-    //todo: fix this, suspect something wrong with the meeting time parser, or need to use leadUtil instead of personUtil
+    //todo: test failed maybe because meeting time is null, should be fixed after merging master
     /*
     @Test
     public void parseCommand_edit_withClient() throws Exception {
@@ -65,7 +65,6 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
-    //todo: fix, suspect something wrong with the parser
     @Test
     public void parseCommand_edit_withLead() throws Exception {
         Lead lead = new PersonBuilder().buildLead();
