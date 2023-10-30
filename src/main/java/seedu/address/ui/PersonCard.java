@@ -54,7 +54,10 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        meetingTime.setText("Meeting on: " + person.getMeetingTime().toString());
+        if (person.getMeetingTime().isPresent()) {
+            meetingTime.setManaged(true);
+            meetingTime.setText(person.getMeetingTimeStringForUserInterface());
+        }
         email.setText(person.getEmail().value);
 
         Label label = new Label(person.getType().value);

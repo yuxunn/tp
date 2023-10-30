@@ -31,7 +31,8 @@ public class ClientUtil {
         sb.append(PREFIX_PHONE + client.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
-        sb.append(PREFIX_MEETING_TIME + client.getMeetingTime().toString() + " ");
+        client.getMeetingTime().ifPresent(meetingTime -> sb.append(PREFIX_MEETING_TIME
+                + meetingTime.toString() + " "));
         client.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

@@ -1,9 +1,18 @@
 package seedu.address.testutil;
 
+import seedu.address.model.AddressBook;
+import seedu.address.model.person.Lead;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_KEYMILESTONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_KEYMILESTONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -12,15 +21,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Lead;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Lead} objects to be used in tests.
@@ -78,7 +78,7 @@ public class TypicalLeads {
             .withEmail("stefan@example.com").withAddress("little india")
             .withKeyMilestone("2022-12-01")
             .withMeetingTime("24/10/2023 12:30")
-            .buildLead();
+            .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).buildLead();
     public static final Lead IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withKeyMilestone("2022-12-01")
@@ -91,7 +91,9 @@ public class TypicalLeads {
             .withMeetingTime(VALID_MEETING_TIME_AMY)
             .withKeyMilestone(VALID_KEYMILESTONE_AMY).buildLead();
     public static final Lead BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withKeyMilestone(VALID_KEYMILESTONE_BOB)
             .withMeetingTime(VALID_MEETING_TIME_BOB)
             .buildLead();

@@ -1,16 +1,15 @@
 package seedu.address.testutil;
 
+import seedu.address.logic.commands.AddLeadCommand;
+import seedu.address.model.person.Lead;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import seedu.address.logic.commands.AddLeadCommand;
-import seedu.address.model.person.Lead;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Lead.
@@ -34,8 +33,9 @@ public class LeadUtil {
         sb.append(PREFIX_EMAIL + lead.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + lead.getAddress().value + " ");
         sb.append(PREFIX_KEYMILESTONE + lead.getKeyMilestone().value + " ");
-        sb.append(PREFIX_MEETING_TIME + lead.getMeetingTime().toString() + " ");
 
+        lead.getMeetingTime().ifPresent(meetingTime -> sb.append(PREFIX_MEETING_TIME
+                + meetingTime.toString() + " "));
         lead.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

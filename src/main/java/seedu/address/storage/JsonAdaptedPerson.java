@@ -6,6 +6,7 @@ import static seedu.address.model.person.Lead.TYPE_LEAD;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ class JsonAdaptedPerson {
     private final String type;
     private final String address;
     private String keyMilestone;
-    private final String meetingTime;
+    private String meetingTime;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -56,7 +57,9 @@ class JsonAdaptedPerson {
         this.type = type;
         this.address = address;
         this.keyMilestone = keyMilestone;
-        this.meetingTime = meetingTime;
+        if (meetingTime != null) {
+            this.meetingTime = meetingTime;
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -75,7 +78,7 @@ class JsonAdaptedPerson {
             Lead sourceLead = (Lead) source;
             keyMilestone = sourceLead.getKeyMilestone().value;
         }
-        meetingTime = source.getMeetingTime().toString();
+        meetingTime = source.getMeetingTime().map(MeetingTime::toString).orElse(null);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -124,14 +127,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Optional<MeetingTime> modelMeetingTime;
         if (meetingTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    MeetingTime.class.getSimpleName()));
+            modelMeetingTime = Optional.empty();
+        } else {
+            if (!MeetingTime.isValidMeetingTime(meetingTime)) {
+                throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
+            }
+            modelMeetingTime = Optional.of(new MeetingTime(meetingTime));
         }
-        if (!MeetingTime.isValidMeetingTime(meetingTime)) {
-            throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
-        }
-        final MeetingTime modelMeetingTime = new MeetingTime(meetingTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 

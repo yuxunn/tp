@@ -49,7 +49,7 @@ public class Messages {
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Meeting Time: ")
-                .append(person.getMeetingTime())
+                .append(person.getMeetingTimeString())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

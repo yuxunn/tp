@@ -1,12 +1,9 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.person.*;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
@@ -14,6 +11,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * A utility class to help with building Person objects.
@@ -33,7 +34,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private KeyMilestone keyMilestone;
-    private MeetingTime meetingTime;
+    private Optional<MeetingTime> meetingTime;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -43,7 +45,6 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         keyMilestone = new KeyMilestone(DEFAULT_KEYMILESTONE);
-        meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
         tags = new HashSet<>();
     }
 
@@ -118,7 +119,11 @@ public class PersonBuilder {
      * Sets the {@code MeetingTime} of the {@code Person} that we are building.
      */
     public PersonBuilder withMeetingTime(String meetingTime) {
-        this.meetingTime = new MeetingTime(meetingTime);
+        if (meetingTime == null) {
+            this.meetingTime = Optional.empty();
+            return this;
+        }
+        this.meetingTime = Optional.of(new MeetingTime(meetingTime));
         return this;
     }
 

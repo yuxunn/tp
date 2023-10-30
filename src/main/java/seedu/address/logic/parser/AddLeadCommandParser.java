@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -51,8 +52,10 @@ public class AddLeadCommandParser implements Parser<AddLeadCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         KeyMilestone keyMilestone = ParserUtil.parseKeyMilestone(argMultimap.getValue(PREFIX_KEYMILESTONE).get());
+        Optional<MeetingTime> meetingTime = argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()
+                ? Optional.of(ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get()))
+                : Optional.empty();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        MeetingTime meetingTime = ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
 
         // TODO: temporary fix, implement add Client and Lead commands
         Lead lead = new Lead(name, phone, email, address, keyMilestone, meetingTime, tagList);

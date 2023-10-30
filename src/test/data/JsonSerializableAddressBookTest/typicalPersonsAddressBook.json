@@ -7,7 +7,7 @@
     "type": "client",
     "address" : "123, Jurong West Ave 6, #08-111",
     "keyMilestone": null,
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -16,7 +16,7 @@
     "type": "client",
     "address" : "311, Clementi Ave 2, #02-25",
     "keyMilestone": null,
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : "12/12/2020 12:00",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -25,7 +25,7 @@
     "type": "client",
     "keyMilestone": null,
     "address" : "wall street",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   }, {
     "name" : "Daniel Meier",
@@ -34,7 +34,7 @@
     "type": "client",
     "address" : "10th street",
     "keyMilestone": null,
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +43,7 @@
     "type": "lead",
     "keyMilestone": "2022-12-01",
     "address" : "michegan ave",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +52,7 @@
     "type": "lead",
     "keyMilestone": "2022-12-01",
     "address" : "little tokyo",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   }, {
     "name" : "George Best",
@@ -61,7 +61,7 @@
     "type": "lead",
     "keyMilestone": "2022-12-01",
     "address" : "4th street",
-    "meetingTime" : "10/10/2023 14:30",
+    "meetingTime" : null,
     "tags" : []
   } ]
 }

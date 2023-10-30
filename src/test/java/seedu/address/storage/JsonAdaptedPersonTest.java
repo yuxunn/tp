@@ -5,6 +5,7 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.BENSON_NO_MEETING_TIME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +48,11 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_validLeadDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(FIONA);
-        assertEquals(FIONA, person.toModelType());
+    public void toModelType_nullMeetingTimeWithOtherPersonDetailsValid_returnsPerson() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
+                        VALID_ADDRESS, null, null, VALID_TAGS);
+        assertEquals(BENSON_NO_MEETING_TIME, person.toModelType());
     }
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
@@ -179,7 +182,6 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = MeetingTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-
     @Test
     public void toModelType_nullMeetingTime_throwsIllegalValueException() {
         JsonAdaptedPerson person =

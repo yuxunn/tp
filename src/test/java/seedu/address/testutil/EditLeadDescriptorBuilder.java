@@ -1,11 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
-
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.MeetingTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -76,8 +81,8 @@ public class EditLeadDescriptorBuilder extends EditPersonDescriptorBuilder {
     }
 
 
-    public EditLeadDescriptorBuilder withMeetingTime (String meetingTime) {
-        leadDescriptor.setMeetingTime(new MeetingTime(meetingTime));
+    public EditPersonDescriptorBuilder withMeetingTime(String meetingTime) {
+        leadDescriptor.setMeetingTime(Optional.of(new MeetingTime(meetingTime)));
         return this;
     }
 

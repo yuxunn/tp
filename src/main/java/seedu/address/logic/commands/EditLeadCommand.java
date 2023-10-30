@@ -1,19 +1,32 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
-
-import java.util.List;
-import java.util.Set;
-
-import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
+import seedu.address.model.person.Lead;
+import seedu.address.model.person.MeetingTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class EditLeadCommand extends EditCommand {
@@ -56,8 +69,8 @@ public class EditLeadCommand extends EditCommand {
         Set<Tag> updatedTags = editLeadDescriptor.getTags().orElse(leadToEdit.getTags());
         KeyMilestone updatedKeyMilestone = editLeadDescriptor.getKeyMilestone()
                 .orElse(leadToEdit.getKeyMilestone());
-        MeetingTime updatedMeetingTime = editLeadDescriptor.getMeetingTime()
-                .orElse(leadToEdit.getMeetingTime());
+        Optional<MeetingTime> updatedMeetingTime = editLeadDescriptor.getMeetingTime()
+                .or(leadToEdit::getMeetingTime);
 
         return new Lead(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedKeyMilestone,
                 updatedMeetingTime, updatedTags);
