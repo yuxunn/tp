@@ -40,7 +40,8 @@ public class DeleteMeetingCommand extends Command {
      * @param personToDeleteMeeting Person to delete meeting from.
      * @return Person with meeting deleted.
      */
-    private Person deleteMeeting(Person personToDeleteMeeting) {
+    private static Person deleteMeeting(Person personToDeleteMeeting) {
+        requireNonNull(personToDeleteMeeting);
         assert personToDeleteMeeting.isLead() || personToDeleteMeeting.isClient();
 
         if (personToDeleteMeeting.getMeetingTime().isEmpty()) {

@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "type": "client",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "meetingTime" : null,
+    "meetingTime" : "12/12/2023 12:00",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -38,7 +38,7 @@
     "email" : "werner@example.com",
     "type": "lead",
     "address" : "michegan ave",
-    "meetingTime" : null,
+    "meetingTime" : "12/12/2023 12:00",
     "tags" : []
   }, {
     "name" : "Fiona Kunz",
