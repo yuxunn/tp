@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "type": "lead",
     "address": "123, Jurong West Ave 6, #08-111",
+    "keyMilestone": "01/12/2023",
     "meetingTime" : "25/10/2023 11:21",
     "tags": [ "Client", "friends" ]
   }, {
@@ -13,6 +14,7 @@
     "email": "pauline@example.com",
     "type": "lead",
     "address": "4th street",
+    "keyMilestone": "01/12/2023",
     "meetingTime" : "25/10/2023 11:21",
     "tags": [ "Client" ]
   } ]

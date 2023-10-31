@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,12 +26,14 @@ public class LeadUtil {
     /**
      * Returns the part of command string for the given {@code lead}'s details.
      */
-    private static String getLeadDetails(Lead lead) {
+    public static String getLeadDetails(Lead lead) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + lead.getName().fullName + " ");
         sb.append(PREFIX_PHONE + lead.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + lead.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + lead.getAddress().value + " ");
+        sb.append(PREFIX_KEY_MILESTONE + lead.getKeyMilestone().value + " ");
+
         lead.getMeetingTime().ifPresent(meetingTime -> sb.append(PREFIX_MEETING_TIME
                 + meetingTime.toString() + " "));
         lead.getTags().stream().forEach(

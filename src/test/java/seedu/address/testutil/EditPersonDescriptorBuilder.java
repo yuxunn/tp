@@ -29,6 +29,7 @@ public class EditPersonDescriptorBuilder {
         this.descriptor = new EditPersonDescriptor(descriptor);
     }
 
+
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
@@ -95,4 +96,5 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptor build() {
         return descriptor;
     }
+
 }
