@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_KEYMILESTONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_KEY_MILESTONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -60,10 +60,10 @@ class EditLeadCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Lead editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).withKeyMilestone(VALID_KEYMILESTONE_BOB).buildLead();
+                .withTags(VALID_TAG_HUSBAND).withKeyMilestone(VALID_KEY_MILESTONE_BOB).buildLead();
 
         EditLeadDescriptor descriptor = new EditLeadDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).withKeyMilestone(VALID_KEYMILESTONE_BOB)
+                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).withKeyMilestone(VALID_KEY_MILESTONE_BOB)
                 .build();
 
         EditLeadCommand editCommand = new EditLeadCommand(indexLastPerson, descriptor);
@@ -98,7 +98,7 @@ class EditLeadCommandTest {
         Lead editedLead = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).buildLead();
         EditLeadCommand editCommand = new EditLeadCommand(INDEX_FIRST_PERSON,
                 new EditLeadDescriptorBuilder().withName(VALID_NAME_BOB)
-                        .withKeyMilestone(VALID_KEYMILESTONE_BOB).build());
+                        .withKeyMilestone(VALID_KEY_MILESTONE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LEAD_SUCCESS, Messages.format(editedLead));
 

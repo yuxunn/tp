@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_KEYMILESTONE = "2022-12-01";
+    public static final String DEFAULT_KEY_MILESTONE = "01/12/2023";
     public static final String DEFAULT_MEETING_TIME = "10/10/2023 14:30";
 
     private Name name;
@@ -45,7 +45,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         meetingTime = Optional.empty();
-        keyMilestone = new KeyMilestone(DEFAULT_KEYMILESTONE);
+        keyMilestone = new KeyMilestone(DEFAULT_KEY_MILESTONE);
         tags = new HashSet<>();
     }
 

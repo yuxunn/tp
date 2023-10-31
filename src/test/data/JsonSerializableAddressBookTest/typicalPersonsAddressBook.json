@@ -41,7 +41,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "type": "lead",
-    "keyMilestone": "2022-12-01",
+    "keyMilestone": "01/12/2023",
     "address" : "michegan ave",
     "meetingTime" : null,
     "tags" : []
@@ -50,7 +50,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "type": "lead",
-    "keyMilestone": "2022-12-01",
+    "keyMilestone": "01/12/2023",
     "address" : "little tokyo",
     "meetingTime" : null,
     "tags" : []
@@ -59,7 +59,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "type": "lead",
-    "keyMilestone": "2022-12-01",
+    "keyMilestone": "01/12/2023",
     "address" : "4th street",
     "meetingTime" : null,
     "tags" : []

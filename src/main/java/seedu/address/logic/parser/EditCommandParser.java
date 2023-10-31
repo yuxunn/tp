@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -38,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         boolean isLead = false;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_KEYMILESTONE, PREFIX_MEETING_TIME, PREFIX_TAG);
+                        PREFIX_KEY_MILESTONE, PREFIX_MEETING_TIME, PREFIX_TAG);
 
         Index index;
 
@@ -48,14 +48,14 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_KEYMILESTONE,
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_KEY_MILESTONE,
                 PREFIX_MEETING_TIME, PREFIX_ADDRESS);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         EditLeadDescriptor editLeadDescriptor = new EditLeadDescriptor();
-        if (argMultimap.getValue(PREFIX_KEYMILESTONE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_KEY_MILESTONE).isPresent()) {
             isLead = true;
             editLeadDescriptor.setKeyMilestone(ParserUtil.parseKeyMilestone(
-                    argMultimap.getValue(PREFIX_KEYMILESTONE).get()));
+                    argMultimap.getValue(PREFIX_KEY_MILESTONE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

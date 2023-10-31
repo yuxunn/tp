@@ -37,16 +37,16 @@ public class SampleDataUtil {
                 getTagSet("neighbours")),
             new Lead(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                new KeyMilestone("2022-12-01"), Optional.of(new MeetingTime("10/10/2023 14:30")),
+                new KeyMilestone("01/12/2023"), Optional.of(new MeetingTime("10/10/2023 14:30")),
                 getTagSet("family")),
             new Lead(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                new KeyMilestone("2022-12-01"),
+                new KeyMilestone("01/12/2023"),
                     Optional.of(new MeetingTime("10/10/2023 14:30")),
                 getTagSet("classmates")),
             new Lead(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                new KeyMilestone("2022-12-01"), Optional.of(new MeetingTime("10/10/2023 14:30")),
+                new KeyMilestone("01/12/2023"), Optional.of(new MeetingTime("10/10/2023 14:30")),
                 getTagSet("colleagues"))
         };
     }
