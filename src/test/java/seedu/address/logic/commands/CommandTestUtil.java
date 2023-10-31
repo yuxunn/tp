@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -52,7 +52,7 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String KEY_MILESTONE_DESC_BOB = " " + PREFIX_KEYMILESTONE + VALID_KEY_MILESTONE_BOB;
+    public static final String KEY_MILESTONE_DESC_BOB = " " + PREFIX_KEY_MILESTONE + VALID_KEY_MILESTONE_BOB;
     public static final String MEETING_TIME_DESC_AMY = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_AMY;
     public static final String MEETING_TIME_DESC_BOB = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;

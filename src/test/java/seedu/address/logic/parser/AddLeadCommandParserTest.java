@@ -30,7 +30,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -100,7 +100,7 @@ public class AddLeadCommandParserTest {
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + NAME_DESC_AMY + ADDRESS_DESC_AMY + KEY_MILESTONE_DESC_BOB + MEETING_TIME_DESC_BOB
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_KEYMILESTONE,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_KEY_MILESTONE,
                         PREFIX_MEETING_TIME, PREFIX_EMAIL, PREFIX_PHONE));
 
         // invalid value followed by valid value
