@@ -102,4 +102,6 @@ public interface Model {
      * Updates the filter of the filtered person list to just the specified person {@code predicate}.
      */
     void view(Person clientToView);
+
+    void sortFilteredPersonList();
 }
