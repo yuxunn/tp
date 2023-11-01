@@ -171,6 +171,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void sortFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void view(Person personToView) {
             throw new AssertionError("This method should not be called.");
         }

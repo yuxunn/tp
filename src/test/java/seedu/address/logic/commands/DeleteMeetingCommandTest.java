@@ -113,7 +113,7 @@ public class DeleteMeetingCommandTest {
 
     @Test
     public void deleteMeeting_personNoMeetingTime_returnsPerson() {
-        Index indexPersonWithNoMeeting = Index.fromOneBased(3); // Third person in typical address book
+        Index indexPersonWithNoMeeting = Index.fromOneBased(4); // Third person in typical address book
         Person personToDeleteMeeting = model.getFilteredPersonList()
                 .get(indexPersonWithNoMeeting.getZeroBased());
 
