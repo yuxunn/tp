@@ -44,28 +44,22 @@ public class ViewWindow extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
-
     @FXML
     private Label keyMilestone;
-
     @FXML
     private ImageView keyMilestoneIcon;
-
+    @FXML
+    private ImageView meetingTimeIcon;
     @FXML
     private Label keyMilestoneTitle;
-
+    @FXML
+    private Label meetingTimeTitle;
     @FXML
     private HBox meetingTimeBox;
-
     @FXML
     private Label meetingTime;
     @FXML
     private FlowPane tags;
-
-    @FXML
-    private Label otherInfo;
-    @FXML
-    private Label additionalInfoLabel;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -78,7 +72,8 @@ public class ViewWindow extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-
+        logger.info("person" + person.isLead());
+        logger.info("has meeting time:" + person.getMeetingTime().isPresent());
         if (person.isLead()) {
             Lead convertedPerson = (Lead) person;
             keyMilestoneIcon.setVisible(true);
@@ -90,11 +85,17 @@ public class ViewWindow extends UiPart<Region> {
             keyMilestone.setManaged(false);
             keyMilestoneTitle.setManaged(false);
         }
+
         if (person.getMeetingTime().isPresent()) {
             meetingTime.setText(person.getMeetingTimeString());
+            meetingTimeTitle.setManaged(true);
+            meetingTime.setManaged(true);
+            meetingTimeIcon.setVisible(true);
         } else {
-            meetingTime.setText("");
-            meetingTimeBox.setVisible(false);
+            meetingTimeIcon.setVisible(false);
+            meetingTimeBox.setManaged(false);
+            meetingTime.setManaged(false);
+            meetingTimeTitle.setManaged(false);
         }
         Label label = new Label(person.getType().value);
         if (person.isClient()) {
