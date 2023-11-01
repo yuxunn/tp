@@ -20,6 +20,7 @@ import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.AddLeadCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -74,6 +75,14 @@ public class AddressBookParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
     //todo: test failed maybe because meeting time is null, should be fixed after merging master
+
+    @Test
+    public void parseCommand_deleteMeeting() throws Exception {
+        DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
+                DeleteMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteMeetingCommand(INDEX_FIRST_PERSON), command);
+    }
+
     @Test
     public void parseCommand_edit_withClient() throws Exception {
         Client client = new PersonBuilder().buildClient();

@@ -1,6 +1,17 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
@@ -8,14 +19,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -44,10 +47,12 @@ public class DeleteMeetingCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1); // Last person in typical address book
+        Index outOfBoundIndex = Index.fromOneBased(
+                model.getFilteredPersonList().size() + 1); // Last person in typical address book
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteMeetingCommand, model,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,19 +84,20 @@ public class DeleteMeetingCommandTest {
 
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteMeetingCommand, model,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void deleteMeeting_personIsLead() {
-        Index INDEX_FIRST_LEAD = Index.fromOneBased(5);
-        Person leadToDeleteMeeting = model.getFilteredPersonList().get(INDEX_FIRST_LEAD.getZeroBased());
+        Index indexFirstLead = Index.fromOneBased(5);
+        Person leadToDeleteMeeting = model.getFilteredPersonList().get(indexFirstLead.getZeroBased());
         assertTrue(leadToDeleteMeeting.isLead());
 
         Person leadWithMeetingDeleted = new PersonBuilder(leadToDeleteMeeting)
-                .withMeetingTime(null).buildLead(); // First person in typical address book without meeting time
+                .withMeetingTime(null).buildLead(); // First lead in typical address book without meeting time
 
-        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_LEAD);
+        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(indexFirstLead);
 
         try {
             deleteMeetingCommand.execute(model);
@@ -99,10 +105,34 @@ public class DeleteMeetingCommandTest {
             fail();
         }
 
-        Person expectedLead = model.getFilteredPersonList().get(INDEX_FIRST_LEAD.getZeroBased());
+        Person expectedLead = model.getFilteredPersonList().get(indexFirstLead.getZeroBased());
 
         assertTrue(expectedLead.isLead());
         assertEquals(expectedLead, leadWithMeetingDeleted);
+    }
+
+    @Test
+    public void deleteMeeting_personNoMeetingTime_returnsPerson() {
+        Index indexPersonWithNoMeeting = Index.fromOneBased(3); // Third person in typical address book
+        Person personToDeleteMeeting = model.getFilteredPersonList()
+                .get(indexPersonWithNoMeeting.getZeroBased());
+
+        assertTrue(personToDeleteMeeting.getMeetingTime().isEmpty());
+
+        Person personWithMeetingDeleted = new PersonBuilder(personToDeleteMeeting)
+                .withMeetingTime(null).buildClient();
+        assertEquals(personToDeleteMeeting, personWithMeetingDeleted);
+
+        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(indexPersonWithNoMeeting);
+
+        try {
+            deleteMeetingCommand.execute(model);
+        } catch (Exception e) {
+            fail();
+        }
+
+        Person expectedPerson = model.getFilteredPersonList().get(indexPersonWithNoMeeting.getZeroBased());
+        assertEquals(expectedPerson, personWithMeetingDeleted);
     }
 
     @Test

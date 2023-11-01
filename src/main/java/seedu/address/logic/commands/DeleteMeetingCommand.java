@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -8,12 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Deletes a meeting identified using it's displayed index from the address book.
@@ -60,13 +60,16 @@ public class DeleteMeetingCommand extends Command {
                 personToDeleteMeeting.getTags());
         } else {
             // If person is not Client, person is a Lead
+            assert personToDeleteMeeting.isLead();
+            Lead leadWithMeetingDeleted = (Lead) personToDeleteMeeting;
             personWithMeetingDeleted = new Lead(
-                    personToDeleteMeeting.getName(),
-                    personToDeleteMeeting.getPhone(),
-                    personToDeleteMeeting.getEmail(),
-                    personToDeleteMeeting.getAddress(),
+                    leadWithMeetingDeleted.getName(),
+                    leadWithMeetingDeleted.getPhone(),
+                    leadWithMeetingDeleted.getEmail(),
+                    leadWithMeetingDeleted.getAddress(),
+                    leadWithMeetingDeleted.getKeyMilestone(),
                     Optional.empty(),
-                    personToDeleteMeeting.getTags());
+                    leadWithMeetingDeleted.getTags());
         }
 
         return personWithMeetingDeleted;
@@ -85,7 +88,8 @@ public class DeleteMeetingCommand extends Command {
         Person personWithMeetingDeleted = deleteMeeting(personToDeleteMeeting);
         model.setPerson(personToDeleteMeeting, personWithMeetingDeleted);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS, personToDeleteMeeting.getMeetingTimeString(),
+        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS,
+                personToDeleteMeeting.getMeetingTimeString(),
                 targetIndex.getOneBased()));
     }
 
