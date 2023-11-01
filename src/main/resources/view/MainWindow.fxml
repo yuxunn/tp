@@ -58,12 +58,9 @@
                   <Insets top="5" right="10" bottom="5" left="10" />
                 </padding>
                 <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" wrapText="true">
-                  <!-- Set the preferred height to make it longer -->
                   <prefHeight>200.0</prefHeight>
                 </TextArea>
               </StackPane>
-
-
             </VBox>
 
             <!-- Right half with personListPanelPlaceholder -->
