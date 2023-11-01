@@ -17,10 +17,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalClients.getTypicalClientsAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLeads.getTypicalLeadsAddressBook;
 
+import javafx.beans.Observable;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -90,6 +92,15 @@ class EditLeadCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void execute_editClientKeyMilestone_throwException() {
+        //client should not be executed with EditLeadCommand as they don't have keyMilestone field
+        final Model clientModel = new ModelManager(getTypicalClientsAddressBook(), new UserPrefs());
+        EditLeadCommand editCommand = new EditLeadCommand(INDEX_FIRST_PERSON, new EditLeadDescriptor());
+        Person editedPerson = clientModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        assert (editedPerson.isClient());
+        assertCommandFailure(editCommand, clientModel, EditLeadCommand.INVALID_USAGE_FOR_CLIENT);
+    }
     @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
