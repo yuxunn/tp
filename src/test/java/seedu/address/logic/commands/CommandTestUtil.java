@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditLeadDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -41,7 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
 
     public static final String VALID_KEY_MILESTONE_AMY = "01/12/2023";
-    public static final String VALID_KEY_MILESTONE_BOB = "01/12/2023";
+    public static final String VALID_KEY_MILESTONE_BOB = "01/01/2023";
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -71,6 +72,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditCommand.EditLeadDescriptor DESC_LEADAMY;
+    public static final EditCommand.EditLeadDescriptor DESC_LEADBOB;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -78,6 +82,14 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withMeetingTime(VALID_MEETING_TIME_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_LEADAMY = new EditLeadDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withKeyMilestone(VALID_KEY_MILESTONE_AMY).withMeetingTime(VALID_MEETING_TIME_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_LEADBOB = new EditLeadDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withMeetingTime(VALID_MEETING_TIME_BOB).withKeyMilestone(VALID_KEY_MILESTONE_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -28,10 +29,12 @@ public class ParserUtilTest {
     private static final String INVALID_MEETING_TIME = "32/13/2020 2359";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_KEYMILESTONE = "xx/xx/xxxx";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_KEYMILESTONE = "24/12/2023";
     private static final String VALID_MEETING_TIME = "24/10/2023 12:30";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -149,6 +152,29 @@ public class ParserUtilTest {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    }
+
+    @Test
+    public void parseKeyMilestone_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseKeyMilestone((String) null));
+    }
+
+    @Test
+    public void parseKeyMilestone_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseKeyMilestone(INVALID_KEYMILESTONE));
+    }
+
+    @Test
+    public void parseKeyMilestone_validValueWithoutWhitespace_returnsKeyMilestone() throws Exception {
+        KeyMilestone expectedKeyMilestone = new KeyMilestone(VALID_KEYMILESTONE);
+        assertEquals(expectedKeyMilestone, ParserUtil.parseKeyMilestone(VALID_KEYMILESTONE));
+    }
+
+    @Test
+    public void parseKeyMilestone_validValueWithWhitespace_returnsTrimmedKeyMilestone() throws Exception {
+        String keyMilestoneWithWhitespace = WHITESPACE + VALID_KEYMILESTONE + WHITESPACE;
+        KeyMilestone expectedKeyMilestone = new KeyMilestone(VALID_KEYMILESTONE);
+        assertEquals(expectedKeyMilestone, ParserUtil.parseKeyMilestone(keyMilestoneWithWhitespace));
     }
 
     @Test

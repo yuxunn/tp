@@ -19,6 +19,7 @@ class KeyMilestoneTest {
 
         assertTrue(KeyMilestone.isValidKeyMilestone("01/01/2022"));
         assertTrue(KeyMilestone.isValidKeyMilestone("31/03/2022"));
+        assertTrue(KeyMilestone.isValidKeyMilestone("24/12/2023"));
     }
 
     @Test
