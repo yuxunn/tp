@@ -18,7 +18,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
@@ -27,6 +26,9 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TYPE = "friend";
     private static final String INVALID_MEETING_TIME = "1x/dd/2023 14:303";
     private static final String INVALID_TAG = "#friend";
+
+    private static final String VALID_KEYMILESTONE = "2022-12-01";
+    private static final String CLIENT_KEYMILESTONE_NULL = null;
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -37,7 +39,6 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
@@ -48,23 +49,24 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullMeetingTimeWithOtherPersonDetailsValid_returnsPerson() throws Exception {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                        VALID_ADDRESS, null, VALID_TAGS);
+                        VALID_ADDRESS, null, null, VALID_TAGS);
         assertEquals(BENSON_NO_MEETING_TIME, person.toModelType());
     }
-
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                        VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE, VALID_ADDRESS,
+                        CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
+
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL,
+                CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TYPE, VALID_ADDRESS, VALID_TAGS);
+
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -72,25 +74,32 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                        VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_TYPE, VALID_ADDRESS,
+                        CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_TYPE,
-                VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, CLIENT_KEYMILESTONE_NULL,
+                VALID_MEETING_TIME, VALID_TYPE, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-
+    //uncomment later
+    @Test
+    public void toModelType_nullPhoneWithValidKeyMilestone_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_TYPE,
+                VALID_ADDRESS, VALID_KEYMILESTONE, VALID_MEETING_TIME, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_TYPE,
-                        VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_TYPE, VALID_ADDRESS,
+                        CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -98,7 +107,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_TYPE,
-                VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+                VALID_ADDRESS, CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -106,16 +115,16 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                        INVALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE, INVALID_ADDRESS,
+                        CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                null, VALID_MEETING_TIME, VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE, null,
+                CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -123,16 +132,16 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidType_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_TYPE,
-                        VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_TYPE, VALID_ADDRESS,
+                        CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
     @Test
     public void toModelType_nullType_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                        VALID_ADDRESS, VALID_MEETING_TIME, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_ADDRESS,
+                        CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -141,8 +150,25 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                        VALID_ADDRESS, VALID_MEETING_TIME, invalidTags);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE, VALID_ADDRESS,
+                        CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, invalidTags);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+    @Test
+    public void toModelType_leadWithInvalidKeyMilestone_throwsIllegalValueException() {
+        String invalidKeyMilestone = "12345";
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, "lead", VALID_ADDRESS, "12345",
+                        VALID_MEETING_TIME, VALID_TAGS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+    @Test
+    public void toModelType_invalidTagsWithValidKeyMilestone_throwsIllegalValueException() {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE, VALID_ADDRESS,
+                        VALID_KEYMILESTONE, VALID_MEETING_TIME, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -150,7 +176,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidMeetingTime_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TYPE,
-                        VALID_ADDRESS, INVALID_MEETING_TIME, VALID_TAGS);
+                        VALID_ADDRESS, CLIENT_KEYMILESTONE_NULL, INVALID_MEETING_TIME, VALID_TAGS);
         String expectedMessage = MeetingTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

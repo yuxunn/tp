@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
  */
 public class MeetingTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Meeting time should be in the format of " + DATE_TIME_FORMAT;
+    // Replace uuuu in format to yyyy to not confuse users
+    public static final String MESSAGE_CONSTRAINTS = "Meeting time should be in the format of "
+            + DATE_TIME_FORMAT.replace("u", "y");
 
     public final LocalDateTime value;
 

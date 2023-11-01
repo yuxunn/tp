@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalLeads.BENSON;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -106,14 +107,20 @@ public class AddCommandTest {
         // different person -> returns false
         assertFalse(addClientCommand.equals(addLeadCommand));
     }
-    //todo: test to string method for client and lead
     @Test
-    public void toStringMethod() {
+    public void clientToStringMethod() {
         AddCommand addCommand = new AddCommand(ALICE);
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
 
+    //put a lead here
+    @Test
+    public void leadToStringMethod() {
+        AddCommand addCommand = new AddCommand(BENSON);
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + BENSON + "}";
+        assertEquals(expected, addCommand.toString());
+    }
     /**
      * A default model stub that have all of the methods failing.
      */

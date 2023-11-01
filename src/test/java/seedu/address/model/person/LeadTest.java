@@ -138,6 +138,7 @@ public class LeadTest {
                 + ", email=" + ALICE.getEmail()
                 + ", type=" + ALICE.getType()
                 + ", address=" + ALICE.getAddress()
+                + ", key milestone=" + ALICE.getKeyMilestone()
                 + ", meetingTime=" + ALICE.getMeetingTime()
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
