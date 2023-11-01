@@ -78,6 +78,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
             editPersonDescriptor.setMeetingTime(
                     Optional.of(ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get())));
+            editLeadDescriptor.setMeetingTime(
+                    Optional.of(ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editLeadDescriptor::setTags);

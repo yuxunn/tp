@@ -3,7 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_LEADAMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_LEADBOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_KEY_MILESTONE_BOB;
@@ -16,6 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalClients.getTypicalClientsAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLeads.getTypicalLeadsAddressBook;
@@ -90,17 +92,27 @@ class EditLeadCommandTest {
     }
 
     @Test
+    public void execute_editClientKeyMilestone_throwException() {
+        //client should not be executed with EditLeadCommand as they don't have keyMilestone field
+        final Model clientModel = new ModelManager(getTypicalClientsAddressBook(), new UserPrefs());
+        EditLeadCommand editCommand = new EditLeadCommand(INDEX_FIRST_PERSON, new EditLeadDescriptor());
+        Person editedPerson = clientModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        assert (editedPerson.isClient());
+        assertCommandFailure(editCommand, clientModel, EditLeadCommand.INVALID_USAGE_FOR_CLIENT);
+    }
+    @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Lead personInFilteredList = (Lead) model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         assert(personInFilteredList.isLead());
-        Lead editedLead = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).buildLead();
+        Lead editedLead = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB)
+                .withKeyMilestone(VALID_KEY_MILESTONE_BOB).buildLead();
         EditLeadCommand editCommand = new EditLeadCommand(INDEX_FIRST_PERSON,
                 new EditLeadDescriptorBuilder().withName(VALID_NAME_BOB)
                         .withKeyMilestone(VALID_KEY_MILESTONE_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LEAD_SUCCESS, Messages.format(editedLead));
+        String expectedMessage = String.format(EditLeadCommand.MESSAGE_EDIT_LEAD_SUCCESS, Messages.format(editedLead));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedLead);
@@ -158,29 +170,30 @@ class EditLeadCommandTest {
     }
 
     @Test
-    public void equals() {
-        final EditLeadCommand standardCommand = new EditLeadCommand(INDEX_FIRST_PERSON, descLeadAmy);
+    public void equalsForLeads() {
+        final EditCommand standardLeadCommand = new EditLeadCommand(INDEX_FIRST_PERSON, DESC_LEADAMY);
 
-        // same values -> returns true
-        EditLeadDescriptor copyDescriptor = new EditLeadDescriptor(descLeadAmy);
-        EditLeadCommand commandWithSameValues = new EditLeadCommand(INDEX_FIRST_PERSON, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        //same value for LeadDescriptor -> returns true
+        EditCommand.EditLeadDescriptor copyLeadDescriptor = new EditLeadDescriptor(DESC_LEADAMY);
+        EditLeadCommand leadCommandWithSameValues = new EditLeadCommand(INDEX_FIRST_PERSON, copyLeadDescriptor);
+        assertTrue(standardLeadCommand.equals(leadCommandWithSameValues));
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertTrue(standardLeadCommand.equals(standardLeadCommand));
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertFalse(standardLeadCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardLeadCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, descLeadAmy)));
+        assertFalse(standardLeadCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_LEADAMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardLeadCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_LEADBOB)));
     }
+
 
     @Test
     public void toStringMethod() {

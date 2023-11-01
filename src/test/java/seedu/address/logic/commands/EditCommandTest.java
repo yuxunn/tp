@@ -172,6 +172,7 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
     }
 
+
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
