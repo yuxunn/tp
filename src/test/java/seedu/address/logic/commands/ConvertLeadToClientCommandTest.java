@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonMeetingTimeComparator;
 import seedu.address.testutil.PersonBuilder;
 
 public class ConvertLeadToClientCommandTest {
@@ -223,6 +224,18 @@ public class ConvertLeadToClientCommandTest {
             requireNonNull(person);
             filteredPersons.setAll(
                     leadsAdded.stream().filter(person).collect(Collectors.toList())
+            );
+        }
+
+        @Override
+        public void sortFilteredPersonList() {
+            Predicate<Person> meetingTimePredicate = person -> person.getMeetingTime().isPresent();
+
+            filteredPersons.setAll(
+                    leadsAdded.stream()
+                            .filter(meetingTimePredicate)
+                            .sorted(new PersonMeetingTimeComparator())
+                            .collect(Collectors.toList())
             );
         }
 

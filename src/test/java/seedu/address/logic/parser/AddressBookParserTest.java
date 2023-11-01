@@ -19,6 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.AddLeadCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ConvertClientToLeadCommand;
+import seedu.address.logic.commands.ConvertLeadToClientCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditLeadDescriptor;
@@ -30,6 +32,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListClientCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListLeadCommand;
+import seedu.address.logic.commands.SortMeetingTimeCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Client;
@@ -142,4 +145,24 @@ public class AddressBookParserTest {
     public void parseCommand_listLead() throws Exception {
         assertTrue(parser.parseCommand(ListLeadCommand.COMMAND_WORD) instanceof ListLeadCommand);
     }
+
+    @Test
+    public void parseCommand_sortMeetingTime() throws Exception {
+        assertTrue(parser.parseCommand(SortMeetingTimeCommand.COMMAND_WORD) instanceof SortMeetingTimeCommand);
+    }
+
+    @Test
+    public void parseCommand_convertLeadToClient() throws Exception {
+        ConvertLeadToClientCommand command = (ConvertLeadToClientCommand) parser.parseCommand(
+                ConvertLeadToClientCommand.COMMAND_WORD + " " + 3);
+        assertEquals(new ConvertLeadToClientCommand(Index.fromOneBased(3)), command);
+    }
+
+    @Test
+    public void parseCommand_convertClientToLead() throws Exception {
+        ConvertClientToLeadCommand command = (ConvertClientToLeadCommand) parser.parseCommand(
+                ConvertClientToLeadCommand.COMMAND_WORD + " " + 3);
+        assertEquals(new ConvertClientToLeadCommand(Index.fromOneBased(3)), command);
+    }
+
 }
