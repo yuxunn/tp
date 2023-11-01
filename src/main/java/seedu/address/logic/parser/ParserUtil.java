@@ -94,7 +94,7 @@ public class ParserUtil {
         if (!KeyMilestone.isValidKeyMilestone(trimmedKeyMilestone)) {
             throw new ParseException(KeyMilestone.MESSAGE_CONSTRAINTS);
         }
-        return new KeyMilestone(keyMilestone);
+        return new KeyMilestone(trimmedKeyMilestone);
     }
     /**
      * Parses a {@code String email} into an {@code Email}.

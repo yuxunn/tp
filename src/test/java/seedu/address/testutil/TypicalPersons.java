@@ -36,23 +36,25 @@ public class TypicalPersons {
     public static final Client BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withMeetingTime("12/12/2020 12:00")
+            .withMeetingTime("13/12/2023 12:00")
             .withTags("owesMoney", "friends").buildClient();
     public static final Client BENSON_NO_MEETING_TIME = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").buildClient();
     public static final Client CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").buildClient();
+            .withMeetingTime("12/12/2023 14:00").withEmail("heinz@example.com")
+            .withAddress("wall street").buildClient();
     public static final Client DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").buildClient();
     public static final Lead ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withKeyMilestone("01/12/2023")
-            .withMeetingTime("12/12/2023 12:00").buildLead();
+            .withEmail("werner@example.com").withAddress("michegan ave").withMeetingTime("12/12/2023 12:00")
+            .withKeyMilestone("01/12/2023").buildLead();
     public static final Lead FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withKeyMilestone("01/12/2023").buildLead();
     public static final Lead GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withKeyMilestone("01/12/2023").buildLead();
+            .withEmail("anna@example.com").withAddress("4th street").withMeetingTime("13/12/2023 08:00")
+            .withKeyMilestone("01/12/2023").buildLead();
 
     // Manually added
     public static final Client HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

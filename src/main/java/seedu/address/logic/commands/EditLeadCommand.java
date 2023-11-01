@@ -49,6 +49,7 @@ public class EditLeadCommand extends EditCommand {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+    public static final String INVALID_USAGE_FOR_CLIENT = "Type client has no key milestone.";
 
 
     private final Index index;
@@ -93,10 +94,14 @@ public class EditLeadCommand extends EditCommand {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (personToEdit.isClient()) {
+            //if "edit index k/" is used on client
+            throw new CommandException(INVALID_USAGE_FOR_CLIENT);
+        }
+        assert(personToEdit.isLead());
         Lead leadToEdit = (Lead) lastShownList.get(index.getZeroBased());
-        assert(leadToEdit.isLead());
-        Lead editedLead = createEditedLead((Lead) leadToEdit, editLeadDescriptor);
+        Lead editedLead = createEditedLead(leadToEdit, editLeadDescriptor);
 
         if (!leadToEdit.isSamePerson(editedLead) && model.hasPerson(editedLead)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
