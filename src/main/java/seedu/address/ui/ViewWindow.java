@@ -64,6 +64,8 @@ public class ViewWindow extends UiPart<Region> {
 
     @FXML
     private Label otherInfo;
+    @FXML
+    private Label additionalInfoLabel;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -76,23 +78,23 @@ public class ViewWindow extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        if (person.getMeetingTime().isPresent()) {
-            meetingTime.setText(person.getMeetingTimeString());
-        } else {
-            meetingTime.setText("");
-            meetingTimeBox.setVisible(false);
+
         if (person.isLead()) {
             Lead convertedPerson = (Lead) person;
             keyMilestoneIcon.setVisible(true);
             keyMilestone.setManaged(true);
             keyMilestoneTitle.setManaged(true);
-            //the key milestone title is added here to make it disappear entirely
             keyMilestone.setText(convertedPerson.getKeyMilestone().value);
         } else {
-            //keyMilestone should be at the last line of the ui, if not the empty line will be obvious
             keyMilestoneIcon.setVisible(false);
             keyMilestone.setManaged(false);
             keyMilestoneTitle.setManaged(false);
+        }
+        if (person.getMeetingTime().isPresent()) {
+            meetingTime.setText(person.getMeetingTimeString());
+        } else {
+            meetingTime.setText("");
+            meetingTimeBox.setVisible(false);
         }
         Label label = new Label(person.getType().value);
         if (person.isClient()) {
