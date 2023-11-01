@@ -7,8 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_KEY_MILESTONE_B
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.model.person.Lead.TYPE_LEAD;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -25,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -194,8 +193,6 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-    //todo: fix the invalid meeting time then uncomment this part
-    /*
     @Test
     public void toModelType_invalidKeyMilestone_throwsIllegalValueException() {
         //the meeting time is invalid, need to fix
@@ -205,18 +202,17 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = KeyMilestone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-     */
 
 
     @Test
     public void toModelType_validKeyMilestone_returnsPerson() throws Exception {
         //the meeting time is invalid, need to fix
-        final List<JsonAdaptedTag> VALID_TAGS_BOB = BOB.getTags().stream()
+        final List<JsonAdaptedTag> validTagBob = BOB.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList());
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME_BOB, VALID_PHONE_BOB, VALID_EMAIL_BOB, TYPE_LEAD,
-                        VALID_ADDRESS_BOB, VALID_KEY_MILESTONE_BOB, VALID_MEETING_TIME_BOB, VALID_TAGS_BOB);
+                        VALID_ADDRESS_BOB, VALID_KEY_MILESTONE_BOB, VALID_MEETING_TIME_BOB, validTagBob);
         assertEquals(BOB, person.toModelType());
     }
 

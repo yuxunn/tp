@@ -1,12 +1,8 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EditLeadDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LEADAMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LEADBOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -16,6 +12,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_BO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.EditLeadDescriptorBuilder;
 
 class EditLeadDescriptorTest {
     @Test
@@ -37,7 +37,8 @@ class EditLeadDescriptorTest {
         assertFalse(DESC_LEADAMY.equals(DESC_LEADBOB));
 
         // different name -> returns false
-        EditCommand.EditLeadDescriptor editedAmy = new EditLeadDescriptorBuilder(DESC_LEADAMY).withName(VALID_NAME_BOB).build();
+        EditCommand.EditLeadDescriptor editedAmy = new EditLeadDescriptorBuilder(DESC_LEADAMY)
+                .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_LEADAMY.equals(editedAmy));
 
         // different phone -> returns false
