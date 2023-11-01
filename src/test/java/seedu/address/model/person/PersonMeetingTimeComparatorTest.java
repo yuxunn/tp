@@ -14,7 +14,7 @@ public class PersonMeetingTimeComparatorTest {
     private final PersonMeetingTimeComparator comparator = new PersonMeetingTimeComparator();
     @Test
     public void compare() {
-        Person personWithoutMeeting = TypicalPersons.ALICE;
+        Person personWithoutMeeting = TypicalPersons.FIONA;
         Person personWithEarlierMeeting = TypicalPersons.ELLE;
         Person personWithLaterMeeting = TypicalPersons.CARL;
 
