@@ -31,8 +31,17 @@
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <Region prefHeight="5" />
-            <FlowPane fx:id="tags" />
-            <Region prefHeight="5" />
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <ImageView fx:id="tagIcon" fitHeight="16" fitWidth="16">
+                    <image>
+                        <Image url="@/images/tag.png" />
+                    </image>
+                </ImageView>
+                <Label styleClass="cell_small_label">
+                    <text>Tags:</text>
+                </Label>
+                <FlowPane fx:id="tags" />
+            </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <ImageView fx:id="phoneIcon" fitHeight="16" fitWidth="16">
                     <image>
@@ -44,7 +53,7 @@
                 </Label>
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             </HBox>
-            <HBox spacing="0" alignment="CENTER_LEFT">
+            <HBox spacing="5" alignment="CENTER_LEFT">
                 <ImageView fx:id="addressIcon" fitHeight="16" fitWidth="16">
                     <image>
                         <Image url="@/images/home-address.png" />
@@ -69,12 +78,7 @@
             <Region prefHeight="20" />
             <Separator prefWidth="150" HBox.hgrow="ALWAYS" />
             <Region prefHeight="20" />
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <ImageView fx:id="otherIcon" fitHeight="16" fitWidth="16">
-                    <image>
-                        <Image url="@/images/application.png" />
-                    </image>
-                </ImageView>
+            <HBox fx:id = "additionalInfoBox" spacing="0" alignment="CENTER_LEFT">
                 <Label styleClass="cell_small_label">
                     <text>Additional Information:</text>
                 </Label>
