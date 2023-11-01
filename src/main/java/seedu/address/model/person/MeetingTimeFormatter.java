@@ -3,15 +3,18 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Helper class for handling meeting time formatting and parsing.
  */
 public class MeetingTimeFormatter {
 
-    public static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
+    public static final String DATE_TIME_FORMAT = "dd/MM/uuuu HH:mm";
     private static DateTimeFormatter getFormatter() {
-        return DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
+        return DateTimeFormatter
+                .ofPattern(DATE_TIME_FORMAT)
+                .withResolverStyle(ResolverStyle.STRICT);
     }
 
     public static LocalDateTime parse(String meetingTime) {

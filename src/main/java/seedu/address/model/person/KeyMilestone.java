@@ -6,15 +6,22 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a lead's key milestone in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidKeyMilestone(String)}
  */
 public class KeyMilestone {
+    public static final String DATE_FORMAT = "dd/MM/uuuu";
+
+    // Replace uuuu in format to yyyy to not confuse users
     public static final String MESSAGE_CONSTRAINTS =
-            "Key milestone is the date of Lead's milestone moment, should be in the format of yyyy-MM-dd";
+            "Key milestone is the date of Lead's milestone moment, should be in the format of "
+            + DATE_FORMAT.replace("u", "y");
+
     public final String value;
+
     /**
      * Constructs an {@code KeyMilestone}.
      *
@@ -31,7 +38,10 @@ public class KeyMilestone {
      */
     public static boolean isValidKeyMilestone(String test) {
         try {
-            LocalDate.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDate.parse(test,
+                    DateTimeFormatter
+                            .ofPattern(DATE_FORMAT)
+                            .withResolverStyle(ResolverStyle.STRICT));
             return true;
         } catch (DateTimeParseException e) {
             return false;

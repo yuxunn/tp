@@ -10,21 +10,23 @@ class KeyMilestoneTest {
 
     @Test
     void isValidKeyMilestone() {
-        //todo: fix needed for local date time
         assertFalse(KeyMilestone.isValidKeyMilestone("01-01-2022"));
-        assertFalse(KeyMilestone.isValidKeyMilestone("01/01/2022"));
         assertFalse(KeyMilestone.isValidKeyMilestone("01.01.2022"));
-        //assertFalse(KeyMilestone.isValidKeyMilestone("2022-02-31"));
-        assertTrue(KeyMilestone.isValidKeyMilestone("2022-01-29"));
-        assertTrue(KeyMilestone.isValidKeyMilestone("2022-03-31"));
+        assertFalse(KeyMilestone.isValidKeyMilestone("2022-02-31"));
+        assertFalse(KeyMilestone.isValidKeyMilestone("2022-01-29"));
+        assertFalse(KeyMilestone.isValidKeyMilestone("2022-03-31"));
+        assertFalse(KeyMilestone.isValidKeyMilestone("31/02/2022"));
+
+        assertTrue(KeyMilestone.isValidKeyMilestone("01/01/2022"));
+        assertTrue(KeyMilestone.isValidKeyMilestone("31/03/2022"));
     }
 
     @Test
     void equals() {
-        KeyMilestone keyMilestone = new KeyMilestone("2022-12-01");
+        KeyMilestone keyMilestone = new KeyMilestone("01/12/2023");
 
         // same values -> returns true
-        assertTrue(keyMilestone.equals(new KeyMilestone("2022-12-01")));
+        assertTrue(keyMilestone.equals(new KeyMilestone("01/12/2023")));
 
         // same object -> returns true
         assertTrue(keyMilestone.equals(keyMilestone));
@@ -36,12 +38,12 @@ class KeyMilestoneTest {
         assertFalse(keyMilestone.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(keyMilestone.equals(new KeyMilestone("2022-01-01")));
+        assertFalse(keyMilestone.equals(new KeyMilestone("01/01/2023")));
     }
 
     @Test
-    void hashCode_equal() {
-        assertEquals(new KeyMilestone("2022-12-01").hashCode(),
-                     new KeyMilestone("2022-12-01").hashCode());
+    void hashCode_equals() {
+        assertEquals(new KeyMilestone("01/12/2023").hashCode(),
+                     new KeyMilestone("01/12/2023").hashCode());
     }
 }

@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYMILESTONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -32,7 +32,7 @@ public class LeadUtil {
         sb.append(PREFIX_PHONE + lead.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + lead.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + lead.getAddress().value + " ");
-        sb.append(PREFIX_KEYMILESTONE + lead.getKeyMilestone().value + " ");
+        sb.append(PREFIX_KEY_MILESTONE + lead.getKeyMilestone().value + " ");
 
         lead.getMeetingTime().ifPresent(meetingTime -> sb.append(PREFIX_MEETING_TIME
                 + meetingTime.toString() + " "));

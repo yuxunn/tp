@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -57,5 +58,11 @@ public class MeetingTimeTest {
 
         // different values -> returns false
         assertFalse(meetingTime.equals(new MeetingTime("12/10/2025 10:20")));
+    }
+
+    @Test
+    void hashCode_equals() {
+        assertEquals(new MeetingTime("12/10/2025 10:20").hashCode(),
+                new MeetingTime("12/10/2025 10:20").hashCode());
     }
 }
