@@ -18,7 +18,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Type;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
