@@ -57,7 +57,7 @@ public class AddMeetingCommand extends Command {
         }
 
         Person personToAddMeeting = lastShownList.get(targetIndex.getZeroBased());
-        
+
         if (personToAddMeeting.getMeetingTime().isPresent()) {
             throw new CommandException(MESSAGE_MEETING_ALREADY_EXISTS);
         }
