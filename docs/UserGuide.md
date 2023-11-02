@@ -191,10 +191,6 @@ Parameters: INDEX (must be a positive integer)
 - What it does: Adds a meeting time to a person.
 - Command format: `addmeeting INDEX m/MEETING_TIME`
 - Example usage: `addmeeting 1 m/12/10/2023 16:00`
-- Acceptable values for each parameter:
-    - `INDEX`: Any integer from `1` to the last index of the displayed list.
-    - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
-- Precise expected outputs when the command succeeds:
 
 <div align="center">
     <img src="./images/beforeaddmeeting.png" width = "500"/>
@@ -205,6 +201,13 @@ Parameters: INDEX (must be a positive integer)
     <img src="./images/afteraddmeeting.png" width = "500"/>
     <p>After using addmeeting</p>
 </div>
+
+- Acceptable values for each parameter:
+    - `INDEX`: Any integer from `1` to the last index of the displayed list.
+    - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
+- Precise expected outputs when the command succeeds:
+
+`Added Meeting: <meeting datetime> to Person <index>`
 
 - Precise expected outputs when the command fails:
 
@@ -235,3 +238,24 @@ When adding a meeting time to a person who already has an existing meeting:
 - Precise expected outputs when the command fails:
 
 `Meeting time failed to be deleted. Please enter a valid lead id or meeting time`
+
+### Sort meeting time
+
+- What it does: Sorts the meeting times of all leads and clients chronologically, displaying 
+only entries with a meeting time.
+- Command format: `sortmeeting`
+- Example usage:
+
+<div align="center">
+    <img src="./images/beforesortmeeting.png" width = "500"/>
+    <p>Before using sortmeeting</p>
+</div>
+
+<div align="center">
+    <img src="./images/aftersortmeeting.png" width = "500"/>
+    <p>After using sortmeeting</p>
+</div>
+
+- Precise expected outputs when the command succeeds:
+
+`Sorted all meeting times chronologically`
