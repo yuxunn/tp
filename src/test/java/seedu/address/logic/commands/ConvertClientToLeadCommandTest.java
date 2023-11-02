@@ -3,9 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.person.KeyMilestone.DATE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -23,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Client;
+import seedu.address.model.person.KeyMilestone;
 import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -35,9 +40,14 @@ public class ConvertClientToLeadCommandTest {
     }
     @Test
     public void executeClientConvertToLeadSuccess() throws CommandException {
+        LocalDate date = LocalDate.from(LocalDateTime.now());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        String formattedDate = date.plusYears(1).format(formatter);
+
         final String expectedOutput = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
                 + "Address: 123, Jurong West Ave 6, #08-111; "
-                + "Key Milestone: null; Meeting Time: null; Tags: ";
+                + "Key Milestone: " + formattedDate + "; Meeting Time: null; Tags: ";
 
         // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
