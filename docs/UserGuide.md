@@ -1,4 +1,4 @@
-# Welcome to D.A.V.E. (**D**’financial **A**d**V**isor **E**xpert)
+  # Welcome to D.A.V.E. (**D**’financial **A**d**V**isor **E**xpert)
 
 *Manage your leads and clients information effortlessly through D.A.V.E. to gain an edge in your FA journey!*
 
@@ -142,7 +142,7 @@ In output section of the
 ### View Specific Person
 
 - What it does: View a specific person that you have stored, including their basic information and another relevant lead/client
-  details.
+  details that are not displayed in the main address list.
 - Command: `view INDEX`.
 - Example usage: `view 1`.
 - Acceptable values for `INDEX` parameter:
@@ -158,16 +158,16 @@ In output section of the
 <h4>Example usage:<h4>
 
 <div align="center">
-    <img src="./images/ViewExample.png" width="500" />
+    <img src="./images/ViewLead.png" width="500" />
     <p>After using View Command on a Lead</p>
 </div>
 
 <div align="center">
-    <img src="./images/ViewExampleClient.png" width = "500"/>
+    <img src="./images/ViewClient.png" width = "500"/>
     <p>After using View Command on a Client</p>
 </div>
 
-### Delete [Coming soon]
+### Delete
 
 - What it does: Deletes a lead from your list of leads.
 - Command format: `delete INDEX`.
@@ -223,7 +223,7 @@ When adding a meeting time to a person who already has an existing meeting:
 
 `Person already has a meeting time, use the edit command instead`
 
-### Delete meeting time for lead [Coming soon]
+### Delete meeting time for lead
 
 - What it does: Delete a meeting time for meetings that has been cancelled or postponed.
 - Command format: `deletemeeting --lead <lead_id> --id <meeting_time_id>`
@@ -238,6 +238,7 @@ When adding a meeting time to a person who already has an existing meeting:
 - Precise expected outputs when the command fails:
 
 `Meeting time failed to be deleted. Please enter a valid lead id or meeting time`
+
 
 ### Sort meeting time
 
@@ -259,3 +260,35 @@ only entries with a meeting time.
 - Precise expected outputs when the command succeeds:
 
 `Sorted all meeting times chronologically`
+
+### Convert lead to client
+
+- What it does: Converts a lead to client.
+- Command format: `convertoclient INDEX`
+- Example usage: `converttoclient 1`
+- Acceptable values for each parameter:
+  - `INDEX`: Any integer from `1` to the last index of the leads list
+- Precise expected outputs when the command succeeds:
+
+`Converted lead to client`
+
+- Precise expected outputs when the command fails:
+
+`The person index provided is invalid`
+
+### Convert client to lead
+
+- What it does: Converts a client into lead, the key milestone is 1 year
+from current date to ensure a followup by the user
+- Command format: `convertolead INDEX`
+- Example usage: `converttolead 1`
+- Acceptable values for each parameter:
+  - `INDEX`: Any integer from `1` to the last index of the leads list
+- Precise expected outputs when the command succeeds:
+
+`Converted client to lead`
+
+- Precise expected outputs when the command fails:
+
+`The person index provided is invalid`
+
