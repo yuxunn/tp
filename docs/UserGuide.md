@@ -1,4 +1,4 @@
-# Welcome to D.A.V.E. (**D**’financial **A**d**V**isor **E**xpert)
+  # Welcome to D.A.V.E. (**D**’financial **A**d**V**isor **E**xpert)
 
 *Manage your leads and clients information effortlessly through D.A.V.E. to gain an edge in your FA journey!*
 
@@ -111,6 +111,11 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
 - Precise expected outputs when the command succeeds:
 
 <div align="center">
+    <img src="./images/beforeaddclient.png" width="500" />
+    <p>Before using addclient command</p>
+</div>
+
+<div align="center">
     <img src="./images/addclient.png" width="500" />
     <p>After using addclient command</p>
 </div>
@@ -161,7 +166,7 @@ In output section of the
 ### View Specific Person
 
 - What it does: View a specific person that you have stored, including their basic information and another relevant lead/client
-  details.
+  details that are not displayed in the main address list.
 - Command: `view INDEX`.
 - Example usage: `view 1`.
 - Acceptable values for `INDEX` parameter:
@@ -177,25 +182,36 @@ In output section of the
 <h4>Example usage:<h4>
 
 <div align="center">
-    <img src="./images/ViewExample.png" width="500" />
+    <img src="./images/ViewLead.png" width="500" />
     <p>After using View Command on a Lead</p>
 </div>
 
 <div align="center">
-    <img src="./images/ViewExampleClient.png" width = "500"/>
+    <img src="./images/ViewClient.png" width = "500"/>
     <p>After using View Command on a Client</p>
 </div>
 
-### Delete [Coming soon]
+### Delete
 
 - What it does: Deletes a lead from your list of leads.
 - Command format: `delete INDEX`.
 - Example usage: `delete 1`.
+
+<div align="center">
+    <img src="./images/List.png" width = "500"/>
+    <p>Before delete</p>
+</div>
+
+<div align="center">
+    <img src="./images/afterdeletecommand.png" width = "500"/>
+    <p>After delete</p>
+</div>
+
 - Acceptable values for `INDEX` parameter:
     - Must be an integer from `1` to the last index of the leads list
 - Precise expected outputs when the command succeeds:
 
-`Lead deleted: <lead details>`
+`Deleted person: <person details>`
 
 - Precise expected outputs when the command fails:
 
@@ -205,30 +221,47 @@ delete: Deletes the person identified by the index number used in the displayed 
 Parameters: INDEX (must be a positive integer)
 ```
 
-### Add meeting time [Coming soon]
+### Add meeting time
 
-- What it does: Adds a meeting time for a lead
-- Command format: `addmeetingtime INDEX m/MEETING_TIME`
-- Example usage: `addmeetingtime 1 m/12/12/2020 12:00`
+- What it does: Adds a meeting time to a person.
+- Command format: `addmeeting INDEX m/MEETING_TIME`
+- Example usage: `addmeeting 1 m/12/10/2023 16:00`
+
+<div align="center">
+    <img src="./images/beforeaddmeeting.png" width = "500"/>
+    <p>Before using addmeeting</p>
+</div>
+
+<div align="center">
+    <img src="./images/afteraddmeeting.png" width = "500"/>
+    <p>After using addmeeting</p>
+</div>
+
 - Acceptable values for each parameter:
-    - `INDEX`: Any integer from `1` to the last index of the leads list.
+    - `INDEX`: Any integer from `1` to the last index of the displayed list.
     - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
 - Precise expected outputs when the command succeeds:
 
-`Meeting time added to <lead/client> : <meeting datetime>`
+`Added Meeting: <meeting datetime> to Person <index>`
 
 - Precise expected outputs when the command fails:
 
-`Meeting time failed to add. Please enter a valid lead id or meeting time`
+When adding a meeting time to an invalid index or with an invalid datetime format:  
+```
+Invalid command format!
+addmeeting: Adds a new meeting time to the person identified by the displayed index in the address book.
+Parameters: INDEX (must be a positive integer) m/MEETING_TIME
+Example: addmeeting 1 m/12/10/2023 16:00
+```
+
+When adding a meeting time to a person who already has an existing meeting:
+`Person already has a meeting time, use the edit command instead`
 
 ### Delete meeting time
 
 - What it does: Delete a meeting time for meetings that has been cancelled or postponed.
 - Command format: `deletemeeting INDEX`
 - Example usage: `deletemeeting 1`
-- Acceptable values for each parameter:
-    - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the addressbook.
-- Precise expected outputs when the command succeeds:
 
 <div align="center">
     <img src="./images/beforedeletemeeting.png" width = "500"/>
@@ -240,6 +273,12 @@ Parameters: INDEX (must be a positive integer)
     <p>After using deletemeeting</p>
 </div>
 
+- Acceptable values for each parameter:
+    - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the addressbook.
+- Precise expected outputs when the command succeeds:
+```
+Deleted Meeting: <MEETING_TIME> from Person <INDEX>
+```
 - Precise expected outputs when the command fails:
 ```
 Invalid command format! 
@@ -254,6 +293,17 @@ Example: deletemeeting 1
 - What it does: Edit the details of a lead or client.
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 - Example usage: `edit 1 n/John Doe p/98765432
+
+<div align="center">
+    <img src="./images/beforedeletemeeting.png" width = "500"/>
+    <p>Before using edit</p>
+</div>
+
+<div align="center">
+    <img src="./images/aftereditcommand.png" width = "500"/>
+    <p>After using edit</p>
+</div>
+
 - Acceptable values for each compulsory parameter:
     - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the addressbook.
 - Acceptable values for each optional parameter (at least one of the optional parameters must be provided)
@@ -270,28 +320,69 @@ Example: deletemeeting 1
   - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`
     - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
     - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the edited MEETING_TIME is null, it will not remove the existing person's MEETING_TIME.
-</div>
-
+    - If the edited `MEETING_TIME` is `null`, it will not remove the existing person's `MEETING_TIME`.
   - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
 - Precise expected outputs when the command succeeds:
-
-<div align="center">
-    <img src="./images/beforedeletemeeting.png" width = "500"/>
-    <p>Before using edit</p>
-</div>
-
-<div align="center">
-    <img src="./images/aftereditcommand.png" width = "500"/>
-    <p>After using edit</p>
-</div>
+```
+Edited Person: <Person details>
+```
 
 - Precise expected outputs when the command fails:
-
 ```
 Invalid command format! 
 edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEETING_TIME] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
 ```
+
+### Sort meeting time
+
+- What it does: Sorts the meeting times of all leads and clients chronologically, displaying 
+only entries with a meeting time.
+- Command format: `sortmeeting`
+- Example usage:
+
+<div align="center">
+    <img src="./images/beforesortmeeting.png" width = "500"/>
+    <p>Before using sortmeeting</p>
+</div>
+
+<div align="center">
+    <img src="./images/aftersortmeeting.png" width = "500"/>
+    <p>After using sortmeeting</p>
+</div>
+
+- Precise expected outputs when the command succeeds:
+
+`Sorted all meeting times chronologically`
+
+### Convert lead to client
+
+- What it does: Converts a lead to client.
+- Command format: `convertoclient INDEX`
+- Example usage: `converttoclient 1`
+- Acceptable values for each parameter:
+  - `INDEX`: Any integer from `1` to the last index of the leads list
+- Precise expected outputs when the command succeeds:
+
+`Converted lead to client`
+
+- Precise expected outputs when the command fails:
+
+`The person index provided is invalid`
+
+### Convert client to lead
+
+- What it does: Converts a client into lead, the key milestone is 1 year
+from current date to ensure a followup by the user
+- Command format: `convertolead INDEX`
+- Example usage: `converttolead 1`
+- Acceptable values for each parameter:
+  - `INDEX`: Any integer from `1` to the last index of the leads list
+- Precise expected outputs when the command succeeds:
+
+`Converted client to lead`
+
+- Precise expected outputs when the command fails:
+
+`The person index provided is invalid`

@@ -7,7 +7,7 @@
 ## About
 D.A.V.E. is a leads and clients management tool for student financial advisors specifically in NUS, but can be used for all student financial advisors.
 
-## UI Mock-up
+## UI
 ![Ui](docs/images/Ui.png)
 
 ## Getting Started
