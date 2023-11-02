@@ -42,8 +42,8 @@ Here are some descriptions of the words we use throughout the User Guide:
 ### Add lead
 
 - What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
-- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS m/MEETING_TIME [t/TAG]...`.
-- Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`.
+- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...`.
+- Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate`.
 - Acceptable values for each compulsory parameter:
     - `NAME`: can contain any string of alphanumeric characters.
       - The name can contain spaces but cannot be blank (only contain spaces).
@@ -55,6 +55,9 @@ Here are some descriptions of the words we use throughout the User Guide:
       - The domain name must end with a domain label at least 2 characters long
       - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
     - `ADDRESS`: can contain any alphanumeric character, must not be blank.
+    - `KEY_MILESTONE`: only contains date in the format of `dd/MM/yyyy`
+      - ``KEY_MILESTONE`` is the date of a lead's life-changing event.
+      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
 - Acceptable values for each optional parameter:
     - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`
       - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
@@ -63,29 +66,17 @@ Here are some descriptions of the words we use throughout the User Guide:
 - Precise expected outputs when the command succeeds:
 
 <div align="center">
-    <img src="./images/addlead.png" width="500" />
+    <img src="./images/afterusingaddlead.png" width="500" />
     <p>After using addlead command</p>
 </div>
 
 - Precise expected outputs when the command fails:
 
 ```
-Invalid command format!
-addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
-Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
+Invalid command format! 
+addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE m/MEETING_TIME [t/TAG]...
+Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate
 ```
-
-### Add Lead with Key Milestone Information [Coming soon]
-- What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
-- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/DATE [t/TAG]...`.
-- Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/2022-12-01 t/classmate`.
-- Acceptable values for each parameter:
-    - `NAME`: can contain any character.
-    - `PHONE`: any valid 8-digit integer.
-    - `EMAIL`: a string of the format `local-part@domain`
-    - `ADDRESS`: can contain any character.
-    - `DATE`: only contains date in the format of ``YYYY-MM-DD``
-    - `TAG`: can contain any character.
 
 ### Add Client
 - What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
@@ -292,7 +283,7 @@ Example: deletemeeting 1
 
 - What it does: Edit the details of a lead or client.
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-- Example usage: `edit 1 n/John Doe p/98765432
+- Example usage: `edit 1 n/John Doe p/98765432`
 
 <div align="center">
     <img src="./images/beforedeletemeeting.png" width = "500"/>
@@ -317,6 +308,9 @@ Example: deletemeeting 1
     - The domain name must end with a domain label at least 2 characters long
     - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
   - `ADDRESS`: can contain any alphanumeric character, must not be blank.
+  - `KEY_MILESTONE`: only contains date in the format of `dd/MM/yyyy`
+    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
+    - If the edited person is a client, no ``KEY_MILESTONE`` of the person will be edited as client does not have ``KEY_MILESTONE``
   - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`
     - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
     - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
@@ -373,12 +367,12 @@ only entries with a meeting time.
 
 ### Convert client to lead
 
-- What it does: Converts a client into lead, the key milestone is 1 year
-from current date to ensure a followup by the user
+- What it does: Converts a client into lead, the ``KEY_MILESTONE`` is 1 year
+from current date to ensure a follow-up by the user.
 - Command format: `convertolead INDEX`
 - Example usage: `converttolead 1`
 - Acceptable values for each parameter:
-  - `INDEX`: Any integer from `1` to the last index of the leads list
+  - `INDEX`: Any integer from `1` to the last index of the leads list.
 - Precise expected outputs when the command succeeds:
 
 `Converted client to lead`
