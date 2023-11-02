@@ -273,6 +273,7 @@ Example: deletemeeting 1
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the edited MEETING_TIME is null, it will not remove the existing person's MEETING_TIME.
 </div>
+
   - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
 - Precise expected outputs when the command succeeds:
 
