@@ -202,7 +202,7 @@ Parameters: INDEX (must be a positive integer)
 
 `Meeting time failed to add. Please enter a valid lead id or meeting time`
 
-### Delete meeting time for lead
+### Delete meeting time for lead 
 
 - What it does: Delete a meeting time for meetings that has been cancelled or postponed.
 - Command format: `deletemeeting --lead <lead_id> --id <meeting_time_id>`
@@ -227,4 +227,24 @@ Parameters: INDEX (must be a positive integer)
   - `INDEX`: Any integer from `1` to the last index of the leads list
 - Precise expected outputs when the command succeeds:
 
-``
+`Converted lead to client`
+
+- Precise expected outputs when the command fails:
+
+`The person index provided is invalid`
+
+### Convert client to lead
+
+- What it does: Converts a client into lead, the key milestone is 1 year
+from current date to ensure a followup by the user 
+- Command format: `convertolead INDEX`
+- Example usage: `converttolead 1`
+- Acceptable values for each parameter:
+  - `INDEX`: Any integer from `1` to the last index of the leads list
+- Precise expected outputs when the command succeeds:
+
+`Converted client to lead`
+
+- Precise expected outputs when the command fails:
+
+`The person index provided is invalid`
