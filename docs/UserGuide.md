@@ -220,7 +220,7 @@ Parameters: INDEX (must be a positive integer)
 
 ### Convert lead to client
 
-- What it does: Converts a client into lead.
+- What it does: Converts a lead to client.
 - Command format: `convertoclient INDEX`
 - Example usage: `converttoclient 1`
 - Acceptable values for each parameter:
