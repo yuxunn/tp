@@ -68,11 +68,9 @@ public class ConvertClientToLeadCommand extends Command {
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
         //todo: temporary fix for keyMilestone
-        KeyMilestone keyMilestone = null;
+        KeyMilestone keyMilestone = new KeyMilestone("01/01/2023");
         Set<Tag> tags = new HashSet<>(personToConvert.getTags());
         Optional<MeetingTime> meetingTime = personToConvert.getMeetingTime();
-
-        // TODO: Add more fields from client to lead
 
 
         Lead convertedLead = new Lead(name, phone, email, address, keyMilestone, meetingTime, tags);

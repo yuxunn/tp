@@ -1,4 +1,4 @@
-# Welcome to D.A.V.E. (**D**’financial **A**d**V**isor **E**xpert)
+  # Welcome to D.A.V.E. (**D**’financial **A**d**V**isor **E**xpert)
 
 *Manage your leads and clients information effortlessly through D.A.V.E. to gain an edge in your FA journey!*
 
@@ -167,7 +167,7 @@ In output section of the
     <p>After using View Command on a Client</p>
 </div>
 
-### Delete [Coming soon]
+### Delete
 
 - What it does: Deletes a lead from your list of leads.
 - Command format: `delete INDEX`.
@@ -186,7 +186,7 @@ delete: Deletes the person identified by the index number used in the displayed 
 Parameters: INDEX (must be a positive integer)
 ```
 
-### Add meeting time [Coming soon]
+### Add meeting time
 
 - What it does: Adds a meeting time for a lead
 - Command format: `addmeetingtime INDEX m/MEETING_TIME`
@@ -202,7 +202,7 @@ Parameters: INDEX (must be a positive integer)
 
 `Meeting time failed to add. Please enter a valid lead id or meeting time`
 
-### Delete meeting time for lead [Coming soon]
+### Delete meeting time for lead
 
 - What it does: Delete a meeting time for meetings that has been cancelled or postponed.
 - Command format: `deletemeeting --lead <lead_id> --id <meeting_time_id>`
@@ -217,3 +217,14 @@ Parameters: INDEX (must be a positive integer)
 - Precise expected outputs when the command fails:
 
 `Meeting time failed to be deleted. Please enter a valid lead id or meeting time`
+
+### Convert lead to client
+
+- What it does: Converts a client into lead.
+- Command format: `convertoclient INDEX`
+- Example usage: `converttoclient 1`
+- Acceptable values for each parameter:
+  - `INDEX`: Any integer from `1` to the last index of the leads list
+- Precise expected outputs when the command succeeds:
+
+``
