@@ -142,7 +142,7 @@ In output section of the
 ### View Specific Person
 
 - What it does: View a specific person that you have stored, including their basic information and another relevant lead/client
-  details.
+  details that are not displayed in the main address list.
 - Command: `view INDEX`.
 - Example usage: `view 1`.
 - Acceptable values for `INDEX` parameter:
@@ -158,12 +158,12 @@ In output section of the
 <h4>Example usage:<h4>
 
 <div align="center">
-    <img src="./images/ViewExample.png" width="500" />
+    <img src="./images/ViewLead.png" width="500" />
     <p>After using View Command on a Lead</p>
 </div>
 
 <div align="center">
-    <img src="./images/ViewExampleClient.png" width = "500"/>
+    <img src="./images/ViewClient.png" width = "500"/>
     <p>After using View Command on a Client</p>
 </div>
 
