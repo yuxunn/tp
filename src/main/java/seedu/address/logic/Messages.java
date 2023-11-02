@@ -37,6 +37,7 @@ public class Messages {
      */
     public static String format(Person person) {
         if (person.isLead()) {
+            //if the person is lead, use another format instead
             return format((Lead) person);
         }
         assert(!person.isLead());
@@ -71,7 +72,7 @@ public class Messages {
                 .append("; Key Milestone: ")
                 .append(lead.getKeyMilestone())
                 .append("; Meeting Time: ")
-                .append(lead.getKeyMilestone())
+                .append(lead.getMeetingTimeString())
                 .append("; Tags: ");
         lead.getTags().forEach(builder::append);
         return builder.toString();
