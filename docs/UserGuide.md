@@ -186,21 +186,39 @@ delete: Deletes the person identified by the index number used in the displayed 
 Parameters: INDEX (must be a positive integer)
 ```
 
-### Add meeting time [Coming soon]
+### Add meeting time
 
-- What it does: Adds a meeting time for a lead
-- Command format: `addmeetingtime INDEX m/MEETING_TIME`
-- Example usage: `addmeetingtime 1 m/12/12/2020 12:00`
+- What it does: Adds a meeting time to a person.
+- Command format: `addmeeting INDEX m/MEETING_TIME`
+- Example usage: `addmeeting 1 m/12/10/2023 16:00`
 - Acceptable values for each parameter:
-    - `INDEX`: Any integer from `1` to the last index of the leads list.
+    - `INDEX`: Any integer from `1` to the last index of the displayed list.
     - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
 - Precise expected outputs when the command succeeds:
 
-`Meeting time added to <lead/client> : <meeting datetime>`
+<div align="center">
+    <img src="./images/beforeaddmeeting.png" width = "500"/>
+    <p>Before using addmeeting</p>
+</div>
+
+<div align="center">
+    <img src="./images/afteraddmeeting.png" width = "500"/>
+    <p>After using addmeeting</p>
+</div>
 
 - Precise expected outputs when the command fails:
 
-`Meeting time failed to add. Please enter a valid lead id or meeting time`
+When adding a meeting time to an invalid index or with an invalid datetime format:  
+```
+Invalid command format!
+addmeeting: Adds a new meeting time to the person identified by the displayed index in the address book.
+Parameters: INDEX (must be a positive integer) m/MEETING_TIME
+Example: addmeeting 1 m/12/10/2023 16:00
+```
+
+When adding a meeting time to a person who already has an existing meeting:
+
+`Person already has a meeting time, use the edit command instead`
 
 ### Delete meeting time for lead [Coming soon]
 
