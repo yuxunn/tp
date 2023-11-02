@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.AMY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -18,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.AddLeadCommand;
+import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ConvertClientToLeadCommand;
 import seedu.address.logic.commands.ConvertLeadToClientCommand;
@@ -38,6 +41,7 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Lead;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ClientUtil;
 import seedu.address.testutil.EditLeadDescriptorBuilder;
@@ -174,4 +178,12 @@ public class AddressBookParserTest {
         assertEquals(new ConvertClientToLeadCommand(Index.fromOneBased(3)), command);
     }
 
+    @Test
+    public void parseCommand_addMeetingTime() throws Exception {
+        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(
+                AddMeetingCommand.COMMAND_WORD + " 4 " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_AMY);
+        assertEquals(
+                new AddMeetingCommand(Index.fromOneBased(4), new MeetingTime(VALID_MEETING_TIME_AMY)),
+                command);
+    }
 }
