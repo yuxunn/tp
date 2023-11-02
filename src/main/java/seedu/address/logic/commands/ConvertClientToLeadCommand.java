@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.KeyMilestone.DATE_FORMAT;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -68,11 +72,13 @@ public class ConvertClientToLeadCommand extends Command {
         Email email = personToConvert.getEmail();
         Address address = personToConvert.getAddress();
         //todo: temporary fix for keyMilestone
-        KeyMilestone keyMilestone = null;
+        LocalDate date = LocalDate.from(LocalDateTime.now());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        String formattedDate = date.plusYears(1).format(formatter);
+        KeyMilestone keyMilestone = new KeyMilestone(formattedDate);
         Set<Tag> tags = new HashSet<>(personToConvert.getTags());
         Optional<MeetingTime> meetingTime = personToConvert.getMeetingTime();
-
-        // TODO: Add more fields from client to lead
 
 
         Lead convertedLead = new Lead(name, phone, email, address, keyMilestone, meetingTime, tags);
