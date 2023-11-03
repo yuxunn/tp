@@ -130,7 +130,7 @@ In output section of the
 
 `List of all leads`
 
-<h4>Example usage:<h4>
+<h4>Example usage:</h4>
 
 <div align="center">
     <img src="./images/List.png" width = "500"/>
@@ -155,7 +155,7 @@ In output section of the
 
 `The person index provided is invalid`
 
-<h4>Example usage:<h4>
+<h4>Example usage:</h4>
 
 <div align="center">
     <img src="./images/ViewLead.png" width="500" />
