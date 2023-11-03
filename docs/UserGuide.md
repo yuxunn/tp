@@ -282,7 +282,7 @@ Example: deletemeeting 1
 ### Edit 
 
 - What it does: Edit the details of a lead or client.
-- Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+- Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
 - Example usage: `edit 1 n/John Doe p/98765432`
 
 <div align="center">
@@ -325,7 +325,7 @@ Edited Person: <Person details>
 ```
 Invalid command format! 
 edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEETING_TIME] [t/TAG]...
+Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [m/MEETING_TIME] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
 ```
 
