@@ -39,19 +39,27 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 # Features
 
-![Ui1](images/Ui1.png)
-
 ### Add lead
 
 - What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
-- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
+- Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS m/MEETING_TIME [t/TAG]...`.
 - Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`.
-- Acceptable values for each parameter:
-    - `NAME`: can contain any character.
-    - `PHONE`: any valid 8-digit integer.
+- Acceptable values for each compulsory parameter:
+    - `NAME`: can contain any string of alphanumeric characters.
+      - The name can contain spaces but cannot be blank (only contain spaces).
+    - `PHONE`: any valid 8-digit integer, at least 3 digits long.
     - `EMAIL`: a string of the format `local-part@domain`
-    - `ADDRESS`: can contain any character.
-    - `TAG`: can contain any character.
+      - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
+      - The local-part may not start or end with any special characters. 
+      - The domain name is made up of domain labels separated by periods.
+      - The domain name must end with a domain label at least 2 characters long
+      - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
+    - `ADDRESS`: can contain any alphanumeric character, must not be blank.
+- Acceptable values for each optional parameter:
+    - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`
+      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
+      - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
+    - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
 - Precise expected outputs when the command succeeds:
 
 <div align="center">
@@ -81,15 +89,31 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
 
 ### Add Client
 - What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
-- Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
-- Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate`.
-- Acceptable values for each parameter:
-  - `NAME`: can contain any character.
-  - `PHONE`: any valid 8-digit integer.
+- Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...`.
+- Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`.
+- Acceptable values for each compulsory parameter:
+  - `NAME`: can contain any string of alphanumeric characters.
+    - The name can contain spaces but cannot be blank (only contain spaces).
+  - `PHONE`: any valid 8-digit integer, at least 3 digits long.
   - `EMAIL`: a string of the format `local-part@domain`
-  - `ADDRESS`: can contain any character.
-  - `TAG`: can contain any character.
+    - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
+    - The local-part may not start or end with any special characters.
+    - The domain name is made up of domain labels separated by periods.
+    - The domain name must end with a domain label at least 2 characters long
+    - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
+  - `ADDRESS`: can contain any alphanumeric character, must not be blank.
+- Acceptable values for each optional parameter:
+  - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`, must not be blank if any meeting time is declared.
+    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
+    - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
+  - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
+
 - Precise expected outputs when the command succeeds:
+
+<div align="center">
+    <img src="./images/beforeaddclient.png" width="500" />
+    <p>Before using addclient command</p>
+</div>
 
 <div align="center">
     <img src="./images/addclient.png" width="500" />
@@ -101,7 +125,7 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
 ```
 Invalid command format!
 addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
-Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
+Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate
 ```
 
 ### View all clients
@@ -172,11 +196,22 @@ In output section of the
 - What it does: Deletes a lead from your list of leads.
 - Command format: `delete INDEX`.
 - Example usage: `delete 1`.
+
+<div align="center">
+    <img src="./images/List.png" width = "500"/>
+    <p>Before delete</p>
+</div>
+
+<div align="center">
+    <img src="./images/afterdeletecommand.png" width = "500"/>
+    <p>After delete</p>
+</div>
+
 - Acceptable values for `INDEX` parameter:
     - Must be an integer from `1` to the last index of the leads list
 - Precise expected outputs when the command succeeds:
 
-`Lead deleted: <lead details>`
+`Deleted person: <person details>`
 
 - Precise expected outputs when the command fails:
 
@@ -220,25 +255,85 @@ Example: addmeeting 1 m/12/10/2023 16:00
 ```
 
 When adding a meeting time to a person who already has an existing meeting:
-
 `Person already has a meeting time, use the edit command instead`
 
-### Delete meeting time for lead
+### Delete meeting time
 
 - What it does: Delete a meeting time for meetings that has been cancelled or postponed.
-- Command format: `deletemeeting --lead <lead_id> --id <meeting_time_id>`
-- Example usage: `deletemeeting --lead 1 --id 1`
-- Acceptable values for each parameter:
-    - `lead`: Any integer from `1` to the last index of the leads list
-    - `id`: Any integer from `1` to the last index of the list
-- Precise expected outputs when the command succeeds:
+- Command format: `deletemeeting INDEX`
+- Example usage: `deletemeeting 1`
 
-`Meeting time deleted from <lead> : <meeting datetime>`
+<div align="center">
+    <img src="./images/beforedeletemeeting.png" width = "500"/>
+    <p>Before using deletemeeting</p>
+</div>
+
+<div align="center">
+    <img src="./images/afterdeletemeeting.png" width = "500"/>
+    <p>After using deletemeeting</p>
+</div>
+
+- Acceptable values for each parameter:
+    - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the addressbook.
+- Precise expected outputs when the command succeeds:
+```
+Deleted Meeting: <MEETING_TIME> from Person <INDEX>
+```
+- Precise expected outputs when the command fails:
+```
+Invalid command format! 
+deletemeeting: Deletes the meeting identified by the index number used in the displayed meeting list.
+Parameters: INDEX (must be a positive integer)
+Example: deletemeeting 1
+```
+
+
+### Edit 
+
+- What it does: Edit the details of a lead or client.
+- Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+- Example usage: `edit 1 n/John Doe p/98765432
+
+<div align="center">
+    <img src="./images/beforedeletemeeting.png" width = "500"/>
+    <p>Before using edit</p>
+</div>
+
+<div align="center">
+    <img src="./images/aftereditcommand.png" width = "500"/>
+    <p>After using edit</p>
+</div>
+
+- Acceptable values for each compulsory parameter:
+    - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the addressbook.
+- Acceptable values for each optional parameter (at least one of the optional parameters must be provided)
+  - `NAME`: can contain any string of alphanumeric characters.
+    - The name can contain spaces but cannot be blank (only contain spaces).
+  - `PHONE`: any valid 8-digit integer, at least 3 digits long.
+  - `EMAIL`: a string of the format `local-part@domain`
+    - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
+    - The local-part may not start or end with any special characters. 
+    - The domain name is made up of domain labels separated by periods.
+    - The domain name must end with a domain label at least 2 characters long
+    - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
+  - `ADDRESS`: can contain any alphanumeric character, must not be blank.
+  - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`
+    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
+    - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
+    - If the edited `MEETING_TIME` is `null`, it will not remove the existing person's `MEETING_TIME`.
+  - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
+- Precise expected outputs when the command succeeds:
+```
+Edited Person: <Person details>
+```
 
 - Precise expected outputs when the command fails:
-
-`Meeting time failed to be deleted. Please enter a valid lead id or meeting time`
-
+```
+Invalid command format! 
+edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEETING_TIME] [t/TAG]...
+Example: edit 1 p/91234567 e/johndoe@example.com
+```
 
 ### Sort meeting time
 
@@ -291,4 +386,3 @@ from current date to ensure a followup by the user
 - Precise expected outputs when the command fails:
 
 `The person index provided is invalid`
-
