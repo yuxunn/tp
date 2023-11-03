@@ -145,7 +145,7 @@ In output section of the
 
 `List of all leads`
 
-<h4>Example usage:<h4>
+<h4>Example usage:</h4>
 
 <div align="center">
     <img src="./images/List.png" width = "500"/>
@@ -170,7 +170,7 @@ In output section of the
 
 `The person index provided is invalid`
 
-<h4>Example usage:<h4>
+<h4>Example usage:</h4>
 
 <div align="center">
     <img src="./images/ViewLead.png" width="500" />
@@ -260,7 +260,7 @@ When adding a meeting time to a person who already has an existing meeting:
 </div>
 
 <div align="center">
-    <img src="./images/afterusingdeletemeeting.png" width = "500"/>
+    <img src="./images/afterdeletemeeting.png" width = "500"/>
     <p>After using deletemeeting</p>
 </div>
 
