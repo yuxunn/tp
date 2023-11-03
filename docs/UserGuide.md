@@ -269,7 +269,7 @@ When adding a meeting time to a person who already has an existing meeting:
 </div>
 
 <div align="center">
-    <img src="./images/afterusingdeletemeeting.png" width = "500"/>
+    <img src="./images/afterdeletemeeting.png" width = "500"/>
     <p>After using deletemeeting</p>
 </div>
 
