@@ -39,11 +39,72 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 # Features
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</div>
+
+### Help
+
+- What it does: Displays a pop-up that contains to the User Guide for the user's reference.
+- Command: `help`.
+- Precise expected output when the command succeeds:
+```
+Opened help window.
+```
+
+<div align="center">
+    <img src="./images/helpcommand.png" width="500" />
+    <p>After using help command</p>
+</div>
+
+### List
+
+- What it does: Lists all leads and clients in the address book to the user. The information displayed includes the Lead/Client's name, phone number, email, address, meeting time and tags.
+- Command: `list`.
+- Precise expected output when the command succeeds:
+```
+Listed all persons
+```
+
+<div align="center">
+    <img src="./images/listcommand.png" width="500" />
+    <p>After using list command</p>
+</div>
+
 ### Add lead
 
 - What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate`.
+
+<div align="center">
+    <img src="./images/beforeaddclient.png" width="500" />
+    <p>Before using addlead command</p>
+</div>
+
+<div align="center">
+    <img src="./images/afterusingaddlead.png" width="500" />
+    <p>After using addlead command</p>
+</div>
+
 - Acceptable values for each compulsory parameter:
     - `NAME`: can contain any string of alphanumeric characters.
       - The name can contain spaces but cannot be blank (only contain spaces).
@@ -59,16 +120,15 @@ Here are some descriptions of the words we use throughout the User Guide:
       - ``KEY_MILESTONE`` is the date of a lead's life-changing event.
       - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
 - Acceptable values for each optional parameter:
-    - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`
+    - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`, must not be blank if any meeting time is declared.
       - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
       - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
+      - Meeting time can be before the current date and time.
     - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
 - Precise expected outputs when the command succeeds:
-
-<div align="center">
-    <img src="./images/afterusingaddlead.png" width="500" />
-    <p>After using addlead command</p>
-</div>
+```
+New lead added: <lead details>
+```
 
 - Precise expected outputs when the command fails:
 
@@ -82,6 +142,17 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
 - What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`.
+
+<div align="center">
+    <img src="./images/beforeaddclient.png" width="500" />
+    <p>Before using addclient command</p>
+</div>
+
+<div align="center">
+    <img src="./images/addclient.png" width="500" />
+    <p>After using addclient command</p>
+</div>
+
 - Acceptable values for each compulsory parameter:
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
@@ -94,22 +165,16 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
     - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
   - `ADDRESS`: can contain any alphanumeric character, must not be blank.
 - Acceptable values for each optional parameter:
-  - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`, must not be blank if any meeting time is declared.
-    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
-    - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
+  - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`, must not be blank if any meeting time is declared.
+    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
+    - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`.
+    - Meeting time can be before the current date and time.
   - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
 
 - Precise expected outputs when the command succeeds:
-
-<div align="center">
-    <img src="./images/beforeaddclient.png" width="500" />
-    <p>Before using addclient command</p>
-</div>
-
-<div align="center">
-    <img src="./images/addclient.png" width="500" />
-    <p>After using addclient command</p>
-</div>
+```
+New client added: <client details>
+```
 
 - Precise expected outputs when the command fails:
 
@@ -207,9 +272,10 @@ In output section of the
 - Precise expected outputs when the command fails:
 
 ```
-Invalid command format!
+Invalid command format! 
 delete: Deletes the person identified by the index number used in the displayed person list.
 Parameters: INDEX (must be a positive integer)
+Example: delete 1
 ```
 
 ### Add meeting time
@@ -231,6 +297,9 @@ Parameters: INDEX (must be a positive integer)
 - Acceptable values for each parameter:
     - `INDEX`: Any integer from `1` to the last index of the displayed list.
     - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
+      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
+      - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`.
+      - Meeting time can be before the current date and time.
 - Precise expected outputs when the command succeeds:
 
 `Added Meeting: <meeting datetime> to Person <index>`
@@ -251,6 +320,9 @@ When adding a meeting time to a person who already has an existing meeting:
 ### Delete meeting time
 
 - What it does: Delete a meeting time for meetings that has been cancelled or postponed.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the person has no meeting time, delete meeting will leave the person's meeting time as null.
+</div>
 - Command format: `deletemeeting INDEX`
 - Example usage: `deletemeeting 1`
 
@@ -282,8 +354,12 @@ Example: deletemeeting 1
 ### Edit 
 
 - What it does: Edit the details of a lead or client.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Lead/Client's meeting time can be added using edit command. However, it is more convenient to use the 'addmeeting' command.
+</div>
+
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
-- Example usage: `edit 1 n/John Doe p/98765432`
+- Example usage: `edit 1 p/98765432`
 
 <div align="center">
     <img src="./images/beforedeletemeeting.png" width = "500"/>
