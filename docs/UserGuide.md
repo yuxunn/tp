@@ -128,7 +128,6 @@ Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave
 In output section of the
 `List of all clients`
 
-<h4>Examples of usage:</h4>
 
 <div align="center">
     <img src="./images/List.png" width="500" />
@@ -136,6 +135,15 @@ In output section of the
     <img src="./images/Listclient.png" width="500" />
     <p>After using listclient command</p>
 </div>
+
+- Precise expected outputs when the commands succeeds:
+```
+Listed all clients
+```
+- Precise expected outputs when there are no clients stored:
+```
+There are no clients in the address book
+```
 
 ### View all leads
 
@@ -145,7 +153,6 @@ In output section of the
 
 `List of all leads`
 
-<h4>Example usage:</h4>
 
 <div align="center">
     <img src="./images/List.png" width = "500"/>
@@ -153,6 +160,15 @@ In output section of the
     <img src="./images/Listlead.png" width = "500"/>
     <p>After using listlead command</p>
 </div>
+
+- Precise expected outputs when commands succeeds:
+```
+Listed all leads
+```
+- Precise expected outputs when there are no leads stored:
+```
+There are no leads in the address book
+```
 
 ### View Specific Person
 
@@ -353,10 +369,22 @@ only entries with a meeting time.
 ### Convert lead to client
 
 - What it does: Converts a lead to client.
-- Command format: `convertoclient INDEX`
+- Command format: `converttoclient INDEX`
 - Example usage: `converttoclient 1`
 - Acceptable values for each parameter:
   - `INDEX`: Any integer from `1` to the last index of the leads list
+- Example usage
+
+<div align="center">
+    <img src="./images/beforeconverttoclient.png" width = "500"/>
+    <p>Before using converttoclient</p>
+</div>
+
+<div align="center">
+    <img src="./images/converttoclient.png" width = "500"/>
+    <p>After using converttoclient</p>
+</div>
+
 - Precise expected outputs when the command succeeds:
 
 `Converted lead to client`
@@ -365,16 +393,28 @@ only entries with a meeting time.
 
 `The person index provided is invalid`
 
+
 ### Convert client to lead
 
 - What it does: Converts a client into lead, the ``KEY_MILESTONE`` is 1 year
 from current date to ensure a follow-up by the user.
-- Command format: `convertolead INDEX`
+- Command format: `converttolead INDEX`
 - Example usage: `converttolead 1`
 - Acceptable values for each parameter:
   - `INDEX`: Any integer from `1` to the last index of the leads list.
-- Precise expected outputs when the command succeeds:
+- Example usage
 
+<div align="center">
+    <img src="./images/beforeconverttolead.png" width = "500"/>
+    <p>Before using converttolead</p>
+</div>
+
+<div align="center">
+    <img src="./images/converttolead.png" width = "500"/>
+    <p>After using converttolead</p>
+</div>
+
+- Precise expected outputs when the command succeeds:
 `Converted client to lead`
 
 - Precise expected outputs when the command fails:
