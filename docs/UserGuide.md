@@ -4,13 +4,15 @@
 
 D.A.V.E. is a leads and clients management tool for student financial advisors specifically in NUS, but can be used for all student financial advisors.
 
-Here’s a quick overview of D.A.V.E.’s features
+Here’s a quick overview of D.A.V.E.’s features:
 
 - Store and edit information of your leads and clients
 - Convert successful leads into clients
 - Manage clients’ policies
 - Delete policies and leads
 - Reminders such as upcoming meetings with leads/clients
+
+D.A.V.E. is here to enhance your advisory journey by simplifying information management, lead conversion, policy tracking and more.
 
 # Table of Contents
 
