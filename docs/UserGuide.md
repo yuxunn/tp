@@ -8,34 +8,50 @@ Here’s a quick overview of D.A.V.E.’s features:
 
 - Store and edit information of your leads and clients
 - Convert successful leads into clients
-- Manage clients’ policies
-- Delete policies and leads
-- Reminders such as upcoming meetings with leads/clients
+- Delete leads and clients
+- Keep track of upcoming meetings with leads/clients
 
 D.A.V.E. is here to enhance your advisory journey by simplifying information management, lead conversion, policy tracking and more.
 
 # Table of Contents
 
-- [Glossary](#Glossary)
-- [Tutorial for new users](#D.A.V.E.-Tutorial-for-new-users)
-- [Features](#Features)
+- [Glossary](#glossary)
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Add lead](#add-lead)
+  - [Add client](#add-client)
+  - [View all clients](#view-all-clients)
+  - [View all leads](#view-all-leads)
+  - [View specific person](#view-specific-person)
+  - [Delete](#delete)
+  - [Add meeting time](#add-meeting-time)
+  - [Delete meeting time](#delete-meeting-time)
+  - [Edit](#edit)
+  - [Sort meeting time](#sort-meeting-time)
+  - [Convert lead to client](#convert-lead-to-client)
+  - [Convert client to lead](#convert-client-to-lead)
+  - [Locating person by name](#locating-person-by-name)
+  - [Clear address book](#clear-address-book)
+  - [Exit the program](#exit-the-program)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command Summary](#command-summary)
 
 # Glossary
 
-## Definitions
-
 Here are some descriptions of the words we use throughout the User Guide:
 
-| Term | Definition |
-| --- | --- |
-| Command | An input from the user that tells D.A.V.E. to perform an action (e.g. add a client). |
-| GUI | Graphical User Interface (GUI) refers to the visual display of D.A.V.E that users can see. |
-| CLI | Command Line Interface (CLI) represents a text-based user interface to interact with the application. |
+| Term    | Definition                                                                                            |
+|---------|-------------------------------------------------------------------------------------------------------|
+| Command | An input from the user that tells D.A.V.E. to perform an action (e.g. add a client).                  |
+| GUI     | Graphical User Interface (GUI) refers to the visual display of D.A.V.E that users can see.            |
+| CLI     | Command Line Interface (CLI) represents a text-based user interface to interact with the application. |
+| Person  | A client or a lead.                                                                                   |
 
-# D.A.V.E. Tutorial for new users
+# Quick Start
 
 1. Ensure you have Java `11` or above installed in your computer.
-2. Download the latest `DAVE.jar` from here.
+2. Download the latest release of `DAVE.jar` from [here](https://github.com/AY2324S1-CS2103T-F08-2/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for D.A.V.E.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar DAVE.jar` command to run the application.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
@@ -100,6 +116,11 @@ Listed all persons
 ### Add lead
 
 - What it does: Adds a lead and their basic information, e.g. name, phone number, email, address, key milestone etc. The key milestone is a date that represents a lead's life-changing event, e.g. ORD, marriage, graduation etc.
+
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate`.
 
@@ -116,6 +137,7 @@ Listed all persons
 - Acceptable values for each compulsory parameter:
     - `NAME`: can contain any string of alphanumeric characters.
       - The name can contain spaces but cannot be blank (only contain spaces).
+      - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
     - `PHONE`: any valid 8-digit integer, at least 3 digits long.
     - `EMAIL`: a string of the format `local-part@domain`
       - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
@@ -143,7 +165,7 @@ New lead added: <lead details>
 When adding a lead with an invalid command format:
 ```
 Invalid command format! 
-addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE m/MEETING_TIME [t/TAG]...
+addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...
 Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate
 ```
 
@@ -154,6 +176,11 @@ This lead already exists in the address book
 
 ### Add Client
 - What it does: Adds a client and their basic information, e.g. name, phone number, email, address, etc.
+
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`.
 
@@ -170,6 +197,7 @@ This lead already exists in the address book
 - Acceptable values for each compulsory parameter:
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
+    - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
   - `PHONE`: any valid 8-digit integer, at least 3 digits long.
   - `EMAIL`: a string of the format `local-part@domain`
     - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
@@ -195,7 +223,7 @@ New client added: <client details>
 When adding a client with an invalid command format:
 ```
 Invalid command format!
-addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
+addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...
 Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate
 ```
 
@@ -389,18 +417,20 @@ Parameters: INDEX (must be a positive integer)
 Example: deletemeeting 1
 ```
 
-
 ### Edit 
 
 - What it does: Edit the details of a lead or client.
-<div markdown="span" class="alert alert-primary">
 
-**:bulb: Tip:**
-Lead/Client's meeting time can be added using edit command. However, it is more convenient to use the 'addmeeting' command.
-</div>
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
 
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
 - Example usage: `edit 1 p/98765432`
+
+<box type="tip"  header="``edit INDEX t\``">
+    This command will clear the tags of a lead or client.
+</box>
 
 <div align="center">
     <img src="./images/beforedeletemeeting.png" width = "500"/>
@@ -432,7 +462,18 @@ Lead/Client's meeting time can be added using edit command. However, it is more 
     - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
     - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
     - If the edited `MEETING_TIME` is `null`, it will not remove the existing person's `MEETING_TIME`.
+
+<box type="tip">
+Lead/Client's meeting time can be added using edit command. However, it is more convenient to use the <code>addmeeting</code> command.
+</box>
+
   - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
+
+<box type="tip">
+    You can add more tags to a person using the <code>edit</code> command. For example, if person 1 already has the tag <code>classmate</code>
+    and you want to add the <code>friend</code> tag, you can enter the command <code>edit 1 t/classmate t/friend</code>.
+</box>
+
 - Precise expected outputs when the command succeeds:
 ```
 Edited Person: <Person details>
@@ -534,6 +575,7 @@ from current date to ensure a follow-up by the user.
 
 `The person index provided is invalid`
 
+
 ### Locating person by name
 - What it does: Finds persons whose names contain any of the given keywords.
 - Command format: `find NAME [MORE_NAMES]`
@@ -546,15 +588,18 @@ from current date to ensure a follow-up by the user.
 
 - Precise expected output when the command fails:
 
-``Invalid command format!
+```
+Invalid command format!
 find: Finds all persons whose names contain any of the specified names (case-insensitive) and displays them as a list with index numbers.
 Parameters: NAME [MORE_NAMES]...
-Example: find alice bob charlie``
+Example: find alice bob charlie
+```
 
->[!NOTE]
->-  The search is case-insensitive. e.g `John` will match `john`.
->- Only full words will be matched e.g. `John` will not match `Johns`.
->- Persons matching at least one keyword will be returned (i.e. OR search). e.g. `find john david` will return `John Doe`, `David Li`
+<box type="info">
+    The search is case-insensitive. e.g <code>John</code> will match <code>john</code>.
+    Only full words will be matched e.g. <code>John</code> will not match <code>Johns</code>.
+    Persons matching at least one keyword will be returned (i.e. OR search). e.g. <code>find john david</code> will return <code>John Doe</code>, <code>David Li</code>.
+</box>
 
 Example usage:
 
@@ -568,18 +613,65 @@ Example usage:
     <p>After using find john david</p>
 </div>
 
-### Clear
+### Clear address book
 - What it does: Clears all entries from the address book.
 - Command format: `clear`.
-> [!WARNING]
-> This command will delete all the data from the address book. This command cannot be reversed. Proceed with caution.
 - Precise expected output when the command succeeds:
 
 `Address book has been cleared!`
+
+<box type="warning" theme="danger">
+    This command will delete all the data from the address book. This command cannot be reversed. Proceed with caution.
+</box>
 
 ### Exit the program
 - What it does: Exits the program. 
 - Command format: `exit`.
 
+--------------------------------------------------------------------------
+## FAQ
 
- 
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JobFestGo home folder.
+
+**Q**: What do I do if the clicking of the Dave JAR file does not work?<br>
+**A**: Given below are the steps to launch Dave using CLI:
+
+1. Open the command prompt
+1. Navigate to the directory where the JAR file is located using cd [JAR file location]
+1. Type `java -jar DAVE.jar` and press enter
+1. Dave should launch
+
+**Q**: How can I check my Java version?<br>
+**A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
+can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
+
+---------------------------------------------------------------------------------
+
+## Known issues
+
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+----------------------------------------------------------------------------------
+## Command summary
+
+
+| Action                         | Format, Examples                                                                                                                                                                                                                |
+|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add lead**                   | `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate` |
+| **Add client**                 | `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`                          |
+| **View all leads and clients** | `list`                                                                                                                                                                                                                          |
+| **View all clients**           | `listclient`                                                                                                                                                                                                                    |
+| **View all leads**             | `listlead`                                                                                                                                                                                                                      |
+| **View a specific person**     | `view INDEX`<br> e.g. `view 1`                                                                                                                                                                                                  |
+| **Delete**                     | `delete INDEX` <br> e.g. `delete 1`                                                                                                                                                                                             |
+| **Add meeting time**           | `addmeeting INDEX m/MEETING_TIME` <br> e.g. `addmeeting 1 m/12/10/2023 16:00`                                                                                                                                                   |
+| **Delete meeting time**        | `deletemeeting INDEX` <br> e.g. `deletemeeting 1`                                                                                                                                                                               |
+| **Edit**                       | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...​`<br> e.g. `edit 1 n/John Doe p/98765432`                                                                                                     |
+| **Sort meeting time**          | `sortmeeting`                                                                                                                                                                                                                   |
+| **Convert lead to client**     | `converttoclient INDEX` <br> e.g. `converttoclient 1`                                                                                                                                                                            |
+| **Convert client to lead**     | `converttolead INDEX` <br> e.g. `converttolead 1`                                                                                                                                                                                |
+| **Locating person by name**    | `find NAME [MORE_NAMES]` <br> e.g. `find John David`                                                                                                                                                                            |
+| **Clear**                      | `clear`                                                                                                                                                                                                                         |
+| **Help**                       | `help`                                                                                                                                                                                                                          |
+| **Exit**                       | `exit`                                                                                                                                                                                                                          |
