@@ -4,13 +4,15 @@
 
 D.A.V.E. is a leads and clients management tool for student financial advisors specifically in NUS, but can be used for all student financial advisors.
 
-Here’s a quick overview of D.A.V.E.’s features
+Here’s a quick overview of D.A.V.E.’s features:
 
 - Store and edit information of your leads and clients
 - Convert successful leads into clients
 - Manage clients’ policies
 - Delete policies and leads
 - Reminders such as upcoming meetings with leads/clients
+
+D.A.V.E. is here to enhance your advisory journey by simplifying information management, lead conversion, policy tracking and more.
 
 # Table of Contents
 
@@ -38,9 +40,19 @@ Here are some descriptions of the words we use throughout the User Guide:
 1. Ensure you have Java `11` or above installed in your computer.
 2. Download the latest `DAVE.jar` from here.
 3. Copy the file to the folder you want to use as the *home folder* for D.A.V.E.
-4. Double-click `DAVE.jar` to start the app.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar DAVE.jar` command to run the application.
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+
+<div align="center">
+    <img src="./images/QuickStartGUI.png" width="500" />
+    <p>After starting up the application</p>
+</div>
 
 # Features
+
+> [!NOTE]
+> Extraneous parameters for commands that do not take in parameters (such as help, exit and clear) will be ignored.
+e.g. if the command specifies `exit 2`, it will be interpreted as the `exit` command.
 
 ### Add lead
 
@@ -142,7 +154,6 @@ Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave
 In output section of the
 `List of all clients`
 
-<h4>Examples of usage:</h4>
 
 <div align="center">
     <img src="./images/List.png" width="500" />
@@ -150,6 +161,15 @@ In output section of the
     <img src="./images/Listclient.png" width="500" />
     <p>After using listclient command</p>
 </div>
+
+- Precise expected outputs when the commands succeeds:
+```
+Listed all clients
+```
+- Precise expected outputs when there are no clients stored:
+```
+There are no clients in the address book
+```
 
 ### View all leads
 
@@ -159,7 +179,6 @@ In output section of the
 
 `List of all leads`
 
-<h4>Example usage:</h4>
 
 <div align="center">
     <img src="./images/List.png" width = "500"/>
@@ -167,6 +186,15 @@ In output section of the
     <img src="./images/Listlead.png" width = "500"/>
     <p>After using listlead command</p>
 </div>
+
+- Precise expected outputs when commands succeeds:
+```
+Listed all leads
+```
+- Precise expected outputs when there are no leads stored:
+```
+There are no leads in the address book
+```
 
 ### View Specific Person
 
@@ -377,10 +405,22 @@ only entries with a meeting time.
 ### Convert lead to client
 
 - What it does: Converts a lead to client.
-- Command format: `convertoclient INDEX`
+- Command format: `converttoclient INDEX`
 - Example usage: `converttoclient 1`
 - Acceptable values for each parameter:
   - `INDEX`: Any integer from `1` to the last index of the leads list
+- Example usage
+
+<div align="center">
+    <img src="./images/beforeconverttoclient.png" width = "500"/>
+    <p>Before using converttoclient</p>
+</div>
+
+<div align="center">
+    <img src="./images/converttoclient.png" width = "500"/>
+    <p>After using converttoclient</p>
+</div>
+
 - Precise expected outputs when the command succeeds:
 
 `Converted lead to client`
@@ -389,23 +429,83 @@ only entries with a meeting time.
 
 `The person index provided is invalid`
 
+
 ### Convert client to lead
 
 - What it does: Converts a client into lead, the ``KEY_MILESTONE`` is 1 year
 from current date to ensure a follow-up by the user.
-- Command format: `convertolead INDEX`
+- Command format: `converttolead INDEX`
 - Example usage: `converttolead 1`
 - Acceptable values for each parameter:
   - `INDEX`: Any integer from `1` to the last index of the leads list.
-- Precise expected outputs when the command succeeds:
+- Example usage
 
+<div align="center">
+    <img src="./images/beforeconverttolead.png" width = "500"/>
+    <p>Before using converttolead</p>
+</div>
+
+<div align="center">
+    <img src="./images/converttolead.png" width = "500"/>
+    <p>After using converttolead</p>
+</div>
+
+- Precise expected outputs when the command succeeds:
 `Converted client to lead`
 
 - Precise expected outputs when the command fails:
 
 `The person index provided is invalid`
 
----------------------------------------------------------------------------
+
+### Locating person by name
+- What it does: Finds persons whose names contain any of the given keywords.
+- Command format: `find NAME [MORE_NAMES]`
+- Example usage: `find John David`
+- Acceptable values for parameter: 
+  - `NAME`: Any name from the list.
+- Precise expected output when the command succeeds:
+
+`<NUMBER> persons listed!`
+
+- Precise expected output when the command fails:
+
+``Invalid command format!
+find: Finds all persons whose names contain any of the specified names (case-insensitive) and displays them as a list with index numbers.
+Parameters: NAME [MORE_NAMES]...
+Example: find alice bob charlie``
+
+>[!NOTE]
+>-  The search is case-insensitive. e.g `John` will match `john`.
+>- Only full words will be matched e.g. `John` will not match `Johns`.
+>- Persons matching at least one keyword will be returned (i.e. OR search). e.g. `find john david` will return `John Doe`, `David Li`
+
+Example usage:
+
+<div align="center">
+    <img src="./images/BeforeFind.png" width = "500"/>
+    <p>Before using find</p>
+</div>
+
+<div align="center">
+    <img src="./images/AfterFind.png" width = "500"/>
+    <p>After using find john david</p>
+</div>
+
+### Clear
+- What it does: Clears all entries from the address book.
+- Command format: `clear`.
+> [!WARNING]
+> This command will delete all the data from the address book. This command cannot be reversed. Proceed with caution.
+- Precise expected output when the command succeeds:
+
+`Address book has been cleared!`
+
+### Exit the program
+- What it does: Exits the program. 
+- Command format: `exit`.
+
+--------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
@@ -448,6 +548,7 @@ Action     | Format, Examples
 **Sort meeting time** | `sortmeeting`
 **Convert lead to client** | `convertoclient INDEX` <br> e.g. `converttoclient 1`
 **Convert client to lead** | `convertolead INDEX` <br> e.g. `converttolead 1`
+**Locating person by name** | `find NAME [MORE_NAMES]` <br> e.g. `find John David`
 **Clear**  | `clear`
 **Help**   | `help`
 **Exit**   | `exit`
