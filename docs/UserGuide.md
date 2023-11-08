@@ -19,6 +19,7 @@ Here’s a quick overview of D.A.V.E.’s features
 - [Features](#Features)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
+- [Command Summary](#command-summary)
 
 # Glossary
 
@@ -46,9 +47,14 @@ Here are some descriptions of the words we use throughout the User Guide:
 - What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate`.
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Acceptable values for each compulsory parameter:
     - `NAME`: can contain any string of alphanumeric characters.
       - The name can contain spaces but cannot be blank (only contain spaces).
+      - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
     - `PHONE`: any valid 8-digit integer, at least 3 digits long.
     - `EMAIL`: a string of the format `local-part@domain`
       - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
@@ -84,9 +90,15 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
 - What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`.
+
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Acceptable values for each compulsory parameter:
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
+    - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
   - `PHONE`: any valid 8-digit integer, at least 3 digits long.
   - `EMAIL`: a string of the format `local-part@domain`
     - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
@@ -282,10 +294,20 @@ Example: deletemeeting 1
 
 
 ### Edit 
-
-- What it does: Edit the details of a lead or client.
+- What it does: Edit the details of a lead or a client.
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
+
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Example usage: `edit 1 n/John Doe p/98765432`
+
+
+<box type="tip"  header="``edit INDEX t\``">
+    This command will clear the tags of a lead or client.
+</box>
+
 
 <div align="center">
     <img src="./images/beforedeletemeeting.png" width = "500"/>
@@ -394,8 +416,7 @@ from current date to ensure a follow-up by the user.
 
 1. Open the command prompt
 1. Navigate to the directory where the JAR file is located using cd [JAR file location]
-//fix this
-1. Type `java -jar dave.jar` and press enter
+1. Type `java -jar DAVE.jar` and press enter
 1. Dave should launch
 
 **Q**: How can I check my Java version?
