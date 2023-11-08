@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ListLeadCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalClients.getTypicalClientsAddressBook;
@@ -14,7 +15,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Lead;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class ListLeadCommandTest {
 
@@ -23,7 +26,6 @@ public class ListLeadCommandTest {
     private Model leadModel;
     private Model expectedLeadModel;
     private Model clientModel;
-    private Model expectedClientModel;
     @BeforeEach
     public void setUp() {
         personModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -31,7 +33,6 @@ public class ListLeadCommandTest {
         leadModel = new ModelManager(getTypicalLeadsAddressBook(), new UserPrefs());
         expectedLeadModel = new ModelManager(leadModel.getAddressBook(), new UserPrefs());
         clientModel = new ModelManager(getTypicalClientsAddressBook(), new UserPrefs());
-        expectedClientModel = new ModelManager(clientModel.getAddressBook(), new UserPrefs());
     }
 
 
@@ -44,24 +45,26 @@ public class ListLeadCommandTest {
         assertCommandSuccess(new ListLeadCommand(), personModel, MESSAGE_SUCCESS, expectedPersonModel);
     }
 
-    //filter list with only leads
+    //filter list with only clients
+    @Test
+    public void execute_leadListIsEmpty() {
+        // Filter the model as required by ListLeadCommand
+        Predicate<Person> predicate = ListClientCommand.CLIENT_TAG_PREDICATE;
+        leadModel.updateFilteredPersonList(predicate);
+        expectedLeadModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(
+                new ListClientCommand(), leadModel, ListClientCommand.MESSAGE_NO_CLIENTS, expectedLeadModel);
+    }
+
     @Test
     public void execute_leadListIsFiltered_showsEverything() {
         // Filter the model as required by ListLeadCommand
-        Predicate<Person> predicate = ListLeadCommand.LEAD_TAG_PREDICATE;
-        leadModel.updateFilteredPersonList(predicate);
-        expectedLeadModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(new ListLeadCommand(), leadModel, ListLeadCommand.MESSAGE_SUCCESS, expectedLeadModel);
-    }
-
-    //filter list with only clients
-    @Test
-    public void execute_clientListIsFiltered_showsEverything() {
-        // Filter the model as required by ListLeadCommand
-        Predicate<Person> predicate = ListLeadCommand.LEAD_TAG_PREDICATE;
-        clientModel.updateFilteredPersonList(predicate);
-        expectedClientModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(new ListLeadCommand(), clientModel, MESSAGE_SUCCESS, expectedClientModel);
+        Lead exampleLead = new PersonBuilder().buildLead();
+        leadModel.addLead(exampleLead);
+        ListLeadCommand listLeadCommand = new ListLeadCommand();
+        CommandResult commandResult = listLeadCommand.execute(leadModel);
+        String stringOutput = commandResult.getFeedbackToUser();
+        assertEquals(stringOutput, ListLeadCommand.MESSAGE_SUCCESS);
     }
 }
 

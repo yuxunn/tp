@@ -17,7 +17,7 @@ public class ListLeadCommand extends Command {
 
     public static final String COMMAND_WORD = "listlead";
     public static final String MESSAGE_SUCCESS = "Listed all leads";
-
+    public static final String MESSAGE_NO_LEADS = "There are no leads in the address book";
     public static final Predicate<Person> LEAD_TAG_PREDICATE = person -> person.isLead();
 
     private static final Logger logger = LogsCenter.getLogger(ListLeadCommand.class);
@@ -25,8 +25,10 @@ public class ListLeadCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
         model.updateFilteredPersonList(LEAD_TAG_PREDICATE);
+        if (model.getFilteredPersonList().size() == 0) {
+            return new CommandResult(MESSAGE_NO_LEADS);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
