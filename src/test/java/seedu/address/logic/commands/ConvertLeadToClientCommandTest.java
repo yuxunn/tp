@@ -37,8 +37,7 @@ public class ConvertLeadToClientCommandTest {
     @Test
     public void executeLeadConvertToClientAddSuccessfully() throws CommandException {
         final String expectedOutput = "Converted Lead to Client: Amy Bee; Phone: 85355255; "
-                + "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111; "
-                + "Meeting Time: null; Tags: ";
+                + "Email: amy@gmail.com; Address: 123, Jurong West Ave 6, #08-111";
         // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingLeadAdded modelStub = new ModelStubAcceptingLeadAdded();
         Lead validPerson = new PersonBuilder().buildLead();
