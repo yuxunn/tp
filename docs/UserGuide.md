@@ -19,6 +19,9 @@ D.A.V.E. is here to enhance your advisory journey by simplifying information man
 - [Glossary](#Glossary)
 - [Tutorial for new users](#D.A.V.E.-Tutorial-for-new-users)
 - [Features](#Features)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command Summary](#command-summary)
 
 # Glossary
 
@@ -56,9 +59,14 @@ e.g. if the command specifies `exit 2`, it will be interpreted as the `exit` com
 - What it does: Add potential leads and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate`.
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Acceptable values for each compulsory parameter:
     - `NAME`: can contain any string of alphanumeric characters.
       - The name can contain spaces but cannot be blank (only contain spaces).
+      - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
     - `PHONE`: any valid 8-digit integer, at least 3 digits long.
     - `EMAIL`: a string of the format `local-part@domain`
       - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
@@ -94,9 +102,15 @@ Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2
 - What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`.
+
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Acceptable values for each compulsory parameter:
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
+    - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
   - `PHONE`: any valid 8-digit integer, at least 3 digits long.
   - `EMAIL`: a string of the format `local-part@domain`
     - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
@@ -308,10 +322,20 @@ Example: deletemeeting 1
 
 
 ### Edit 
-
-- What it does: Edit the details of a lead or client.
+- What it does: Edit the details of a lead or a client.
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
+
+<box type="important">
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+</box>
+
 - Example usage: `edit 1 n/John Doe p/98765432`
+
+
+<box type="tip"  header="``edit INDEX t\``">
+    This command will clear the tags of a lead or client.
+</box>
+
 
 <div align="center">
     <img src="./images/beforedeletemeeting.png" width = "500"/>
@@ -433,6 +457,7 @@ from current date to ensure a follow-up by the user.
 
 `The person index provided is invalid`
 
+
 ### Locating person by name
 - What it does: Finds persons whose names contain any of the given keywords.
 - Command format: `find NAME [MORE_NAMES]`
@@ -480,5 +505,50 @@ Example usage:
 - What it does: Exits the program. 
 - Command format: `exit`.
 
+--------------------------------------------------------------------------
+## FAQ
 
- 
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JobFestGo home folder.
+
+**Q**: What do I do if the clicking of the Dave JAR file does not work?<br>
+**A**: Given below are the steps to launch Dave using CLI:
+
+1. Open the command prompt
+1. Navigate to the directory where the JAR file is located using cd [JAR file location]
+1. Type `java -jar DAVE.jar` and press enter
+1. Dave should launch
+
+**Q**: How can I check my Java version?
+**A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
+can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
+
+---------------------------------------------------------------------------------
+
+## Known issues
+
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+----------------------------------------------------------------------------------
+## Command summary
+
+
+Action     | Format, Examples
+-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add lead**    | `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate`
+**Add client**    | `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`
+**View all leads and clients** | `list`
+**View all clients** | `listclient`
+**View all leads** | `listlead`
+**View a specific person** | `view INDEX`<br> e.g. `view 1`
+**Delete** | `delete INDEX` <br> e.g. `delete 1`
+**Add meeting time** | `addmeeting INDEX m/MEETING_TIME` <br> e.g. `addmeeting 1 m/12/10/2023 16:00`
+**Delete meeting time** | `deletemeeting INDEX` <br> e.g. `deletemeeting 1`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...​`<br> e.g. `edit 1 n/John Doe p/98765432`
+**Sort meeting time** | `sortmeeting`
+**Convert lead to client** | `convertoclient INDEX` <br> e.g. `converttoclient 1`
+**Convert client to lead** | `convertolead INDEX` <br> e.g. `converttolead 1`
+**Locating person by name** | `find NAME [MORE_NAMES]` <br> e.g. `find John David`
+**Clear**  | `clear`
+**Help**   | `help`
+**Exit**   | `exit`
