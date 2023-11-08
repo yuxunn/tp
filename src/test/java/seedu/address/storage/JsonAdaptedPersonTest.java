@@ -98,7 +98,6 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-    //uncomment later
     @Test
     public void toModelType_nullPhoneWithValidKeyMilestone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_TYPE,
@@ -142,7 +141,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidType_throwsIllegalValueException() {
-        //todo: this test need to be fixed, the exception thrown is for meeting type, not for type
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_TYPE, VALID_ADDRESS,
                         CLIENT_KEYMILESTONE_NULL, VALID_MEETING_TIME, VALID_TAGS);
@@ -174,6 +172,7 @@ public class JsonAdaptedPersonTest {
                         VALID_MEETING_TIME, VALID_TAGS);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
+
     @Test
     public void toModelType_invalidTagsWithValidKeyMilestone_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
@@ -195,7 +194,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidKeyMilestone_throwsIllegalValueException() {
-        //the meeting time is invalid, need to fix
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, TYPE_LEAD,
                         VALID_ADDRESS, VALID_KEYMILESTONE, VALID_MEETING_TIME, VALID_TAGS);
@@ -203,10 +201,18 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
+    public void toModelType_nullKeyMilestone_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, TYPE_LEAD,
+                        VALID_ADDRESS, null, VALID_MEETING_TIME, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                KeyMilestone.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 
     @Test
     public void toModelType_validKeyMilestone_returnsPerson() throws Exception {
-        //the meeting time is invalid, need to fix
         final List<JsonAdaptedTag> validTagBob = BOB.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList());
