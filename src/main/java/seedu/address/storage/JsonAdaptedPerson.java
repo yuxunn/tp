@@ -141,11 +141,15 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (type == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Type"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName()));
         }
         if (type.equals(TYPE_CLIENT)) {
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelMeetingTime, modelTags);
         } else if (type.equals(TYPE_LEAD)) {
+            if (keyMilestone == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        KeyMilestone.class.getSimpleName()));
+            }
             if (!KeyMilestone.isValidKeyMilestone(keyMilestone)) {
                 throw new IllegalValueException(KeyMilestone.MESSAGE_CONSTRAINTS);
             }
