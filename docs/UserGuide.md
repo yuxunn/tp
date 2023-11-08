@@ -17,6 +17,8 @@ Here’s a quick overview of D.A.V.E.’s features
 - [Glossary](#Glossary)
 - [Tutorial for new users](#D.A.V.E.-Tutorial-for-new-users)
 - [Features](#Features)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
 
 # Glossary
 
@@ -380,3 +382,51 @@ from current date to ensure a follow-up by the user.
 - Precise expected outputs when the command fails:
 
 `The person index provided is invalid`
+
+---------------------------------------------------------------------------
+## FAQ
+
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JobFestGo home folder.
+
+**Q**: What do I do if the clicking of the Dave JAR file does not work?<br>
+**A**: Given below are the steps to launch Dave using CLI:
+
+1. Open the command prompt
+1. Navigate to the directory where the JAR file is located using cd [JAR file location]
+//fix this
+1. Type `java -jar dave.jar` and press enter
+1. Dave should launch
+
+**Q**: How can I check my Java version?
+**A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
+can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
+
+---------------------------------------------------------------------------------
+
+## Known issues
+
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+----------------------------------------------------------------------------------
+## Command summary
+
+
+Action     | Format, Examples
+-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add lead**    | `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate`
+**Add client**    | `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`
+**View all leads and clients** | `list`
+**View all clients** | `listclient`
+**View all leads** | `listlead`
+**View a specific person** | `view INDEX`<br> e.g. `view 1`
+**Delete** | `delete INDEX` <br> e.g. `delete 1`
+**Add meeting time** | `addmeeting INDEX m/MEETING_TIME` <br> e.g. `addmeeting 1 m/12/10/2023 16:00`
+**Delete meeting time** | `deletemeeting INDEX` <br> e.g. `deletemeeting 1`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...​`<br> e.g. `edit 1 n/John Doe p/98765432`
+**Sort meeting time** | `sortmeeting`
+**Convert lead to client** | `convertoclient INDEX` <br> e.g. `converttoclient 1`
+**Convert client to lead** | `convertolead INDEX` <br> e.g. `converttolead 1`
+**Clear**  | `clear`
+**Help**   | `help`
+**Exit**   | `exit`
