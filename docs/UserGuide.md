@@ -357,7 +357,9 @@ When adding a meeting time to a person who already has an existing meeting:
 ### Delete meeting time
 
 - What it does: Delete a meeting time for meetings that has been cancelled or postponed.
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip:**
 If the person has no meeting time, delete meeting will leave the person's meeting time as null.
 </div>
 - Command format: `deletemeeting INDEX`
@@ -391,7 +393,9 @@ Example: deletemeeting 1
 ### Edit 
 
 - What it does: Edit the details of a lead or client.
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip:**
 Lead/Client's meeting time can be added using edit command. However, it is more convenient to use the 'addmeeting' command.
 </div>
 
