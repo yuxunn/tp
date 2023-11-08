@@ -542,7 +542,7 @@ Example usage:
 1. Type `java -jar DAVE.jar` and press enter
 1. Dave should launch
 
-**Q**: How can I check my Java version?
+**Q**: How can I check my Java version?<br>
 **A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
 can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
