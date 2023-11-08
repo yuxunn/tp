@@ -8,34 +8,47 @@ Here’s a quick overview of D.A.V.E.’s features:
 
 - Store and edit information of your leads and clients
 - Convert successful leads into clients
-- Manage clients’ policies
-- Delete policies and leads
-- Reminders such as upcoming meetings with leads/clients
+- Delete leads and clients
+- Keep track of upcoming meetings with leads/clients
 
 D.A.V.E. is here to enhance your advisory journey by simplifying information management, lead conversion, policy tracking and more.
 
 # Table of Contents
 
-- [Glossary](#Glossary)
-- [Tutorial for new users](#D.A.V.E.-Tutorial-for-new-users)
-- [Features](#Features)
+- [Glossary](#glossary)
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Add lead](#add-lead)
+  - [Add client](#add-client)
+  - [View all clients](#view-all-clients)
+  - [View all leads](#view-all-leads)
+  - [View specific person](#view-specific-person)
+  - [Delete entry](#delete-entry)
+  - [Add meeting time](#add-meeting-time)
+  - [Delete meeting time](#delete-meeting-time)
+  - [Edit entry](#edit-entry)
+  - [Sort meeting time](#sort-meeting-time)
+  - [Convert lead to client](#convert-lead-to-client)
+  - [Convert client to lead](#convert-client-to-lead)
+  - [Locating person by name](#locating-person-by-name)
+  - [Clear address book](#clear-address-book)
+  - [Exit the program](#exit-the-program)
 
 # Glossary
 
-## Definitions
-
 Here are some descriptions of the words we use throughout the User Guide:
 
-| Term | Definition |
-| --- | --- |
-| Command | An input from the user that tells D.A.V.E. to perform an action (e.g. add a client). |
-| GUI | Graphical User Interface (GUI) refers to the visual display of D.A.V.E that users can see. |
-| CLI | Command Line Interface (CLI) represents a text-based user interface to interact with the application. |
+| Term    | Definition                                                                                            |
+|---------|-------------------------------------------------------------------------------------------------------|
+| Command | An input from the user that tells D.A.V.E. to perform an action (e.g. add a client).                  |
+| GUI     | Graphical User Interface (GUI) refers to the visual display of D.A.V.E that users can see.            |
+| CLI     | Command Line Interface (CLI) represents a text-based user interface to interact with the application. |
+| Person  | A client or a lead.                                                                                   |
 
-# D.A.V.E. Tutorial for new users
+# Quick Start
 
 1. Ensure you have Java `11` or above installed in your computer.
-2. Download the latest `DAVE.jar` from here.
+2. Download the latest release of `DAVE.jar` from [here](https://github.com/AY2324S1-CS2103T-F08-2/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for D.A.V.E.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar DAVE.jar` command to run the application.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
@@ -47,9 +60,10 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 # Features
 
-> [!NOTE]
-> Extraneous parameters for commands that do not take in parameters (such as help, exit and clear) will be ignored.
-e.g. if the command specifies `exit 2`, it will be interpreted as the `exit` command.
+<box type="info">
+    Extraneous parameters for commands that do not take in parameters (such as <code>help</code>, <code>exit</code> and <code>clear</code>) will be ignored.
+    For example, if the command entered is <code>exit 2</code>, it will be interpreted as the <code>exit</code> command.
+</box>
 
 ### Add lead
 
@@ -90,7 +104,7 @@ addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/A
 Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate
 ```
 
-### Add Client
+### Add client
 - What it does: Add potential clients and their basic information, e.g. name, age, year of study, major, etc.
 - Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...`.
 - Example usage: `Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`.
@@ -210,7 +224,7 @@ There are no leads in the address book
     <p>After using View Command on a Client</p>
 </div>
 
-### Delete
+### Delete entry
 
 - What it does: Deletes a lead from your list of leads.
 - Command format: `delete INDEX`.
@@ -307,7 +321,7 @@ Example: deletemeeting 1
 ```
 
 
-### Edit 
+### Edit entry
 
 - What it does: Edit the details of a lead or client.
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
@@ -356,6 +370,11 @@ edit: Edits the details of the person identified by the index number used in the
 Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [m/MEETING_TIME] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
 ```
+
+<box type="info">
+    You can add more tags to a person using the <code>edit</code> command. For example, if person 1 already has the tag <code>classmate</code>
+    and you want to add the <code>friend</code> tag, you can enter the command <code>edit 1 t/classmate t/friend</code>.
+</box>
 
 ### Sort meeting time
 
@@ -445,15 +464,18 @@ from current date to ensure a follow-up by the user.
 
 - Precise expected output when the command fails:
 
-``Invalid command format!
+```
+Invalid command format!
 find: Finds all persons whose names contain any of the specified names (case-insensitive) and displays them as a list with index numbers.
 Parameters: NAME [MORE_NAMES]...
-Example: find alice bob charlie``
+Example: find alice bob charlie
+```
 
->[!NOTE]
->-  The search is case-insensitive. e.g `John` will match `john`.
->- Only full words will be matched e.g. `John` will not match `Johns`.
->- Persons matching at least one keyword will be returned (i.e. OR search). e.g. `find john david` will return `John Doe`, `David Li`
+<box type="info">
+    The search is case-insensitive. e.g <code>John</code> will match <code>john</code>.
+    Only full words will be matched e.g. <code>John</code> will not match <code>Johns</code>.
+    Persons matching at least one keyword will be returned (i.e. OR search). e.g. <code>find john david</code> will return <code>John Doe</code>, <code>David Li</code>.
+</box>
 
 Example usage:
 
@@ -467,14 +489,16 @@ Example usage:
     <p>After using find john david</p>
 </div>
 
-### Clear
+### Clear address book
 - What it does: Clears all entries from the address book.
 - Command format: `clear`.
-> [!WARNING]
-> This command will delete all the data from the address book. This command cannot be reversed. Proceed with caution.
 - Precise expected output when the command succeeds:
 
 `Address book has been cleared!`
+
+<box type="warning" theme="danger">
+    This command will delete all the data from the address book. This command cannot be reversed. Proceed with caution.
+</box>
 
 ### Exit the program
 - What it does: Exits the program. 
