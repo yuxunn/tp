@@ -18,6 +18,7 @@ public class ListClientCommand extends Command {
 
     public static final String COMMAND_WORD = "listclient";
     public static final String MESSAGE_SUCCESS = "Listed all clients";
+    public static final String MESSAGE_NO_CLIENTS = "There are no clients in the address book";
     public static final Predicate<Person> CLIENT_TAG_PREDICATE = person -> person.isClient();
 
     private static final Logger logger = LogsCenter.getLogger(ListClientCommand.class);
@@ -25,8 +26,10 @@ public class ListClientCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
         model.updateFilteredPersonList(CLIENT_TAG_PREDICATE);
+        if (model.getFilteredPersonList().size() == 0) {
+            return new CommandResult(MESSAGE_NO_CLIENTS);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
