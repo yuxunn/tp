@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 
 - **New Feature**: Added a command to convert leads to clients and vice versa.
     - **What it does**: Allows user to convert leads to client.
-    - **Justification**: This feature improves the product signficantly because a suer would be able.
+    - **Justification**: This feature improves the product signficantly because a user would be able to convert leads to clients, and client to leads without having to manually add them into their respective category of client or lead. This is to take into account for when the leads becomes the client of the student financial advisor, or when the student financial advisor wants to convert a client back to a lead.
 
 <p></p>
 
