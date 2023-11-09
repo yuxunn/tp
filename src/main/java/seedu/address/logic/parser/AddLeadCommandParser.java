@@ -57,7 +57,6 @@ public class AddLeadCommandParser implements Parser<AddLeadCommand> {
                 : Optional.empty();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        // TODO: temporary fix, implement add Client and Lead commands
         Lead lead = new Lead(name, phone, email, address, keyMilestone, meetingTime, tagList);
 
         return new AddLeadCommand(lead);
