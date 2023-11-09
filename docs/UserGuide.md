@@ -30,7 +30,7 @@ D.A.V.E. is here to enhance your advisory journey by simplifying information man
   - [Sort meeting time](#sort-meeting-time)
   - [Convert lead to client](#convert-lead-to-client)
   - [Convert client to lead](#convert-client-to-lead)
-  - [Locating person by name](#locating-person-by-name)
+  - [Locating persons by name](#locating-persons-by-name)
   - [Clear address book](#clear-address-book)
   - [Exit the program](#exit-the-program)
 - [FAQ](#faq)
@@ -576,12 +576,12 @@ from current date to ensure a follow-up by the user.
 `The person index provided is invalid`
 
 
-### Locating person by name
+### Locating persons by name
 - What it does: Finds persons whose names contain any of the given keywords.
-- Command format: `find NAME [MORE_NAMES]`
+- Command format: `find KEYWORD [MORE_KEYWORDS]`
 - Example usage: `find John David`
 - Acceptable values for parameter: 
-  - `NAME`: Any name from the list.
+  - `KEYWORD`: Any name from the list.
 - Precise expected output when the command succeeds:
 
 `<NUMBER> persons listed!`
@@ -596,9 +596,11 @@ Example: find alice bob charlie
 ```
 
 <box type="info">
-    The search is case-insensitive. e.g <code>John</code> will match <code>john</code>.
-    Only full words will be matched e.g. <code>John</code> will not match <code>Johns</code>.
-    Persons matching at least one keyword will be returned (i.e. OR search). e.g. <code>find john david</code> will return <code>John Doe</code>, <code>David Li</code>.
+  <ul>
+    <li>The search is case-insensitive. e.g. <code>John</code> will match <code>john</code>.</li>
+    <li>Only full words will be matched. e.g. <code>John</code> will not match <code>Johns</code>.</li>
+    <li>Persons matching at least one keyword will be returned (i.e. OR search). e.g. <code>find john david</code> will return <code>John Doe</code>, <code>David Li</code>.</li>
+  </ul>
 </box>
 
 Example usage:
