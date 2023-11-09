@@ -1,6 +1,6 @@
 ---
 layout: default.md
-title: "Licong's Project Portfolio Page"
+title: "Licong`s Project Portfolio Page"
 ---
 
 ### Project: D.A.V.E.
@@ -35,6 +35,6 @@ Given below are my contributions to the project.
         - Added documentation for the features `converttoclient` and `converttolead`: [\#125](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/125)
         - Added documentation for the features `listclient` and `listlead`: [\#81](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/81)
     - Developer Guide:
-        - Added implementation details of the `listclient`, 'listlead', 'converttoclient', 'converttolead' feature.
+        - Added implementation details of the `listclient`, `listlead`, `converttoclient`, `converttolead` feature.
 
 
