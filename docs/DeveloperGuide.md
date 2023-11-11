@@ -266,41 +266,33 @@ _{Explain here how the data archiving feature will be implemented}_
 #### Implementation
 
 The `Client` and `Lead` model extends from `Person`.
-
-The `addclient` and `addlead` commands are implemented as follows:
-
-The `execute()` command in `AddClientCommand` or `AddLeadCommand` is executed.
-
-The `execute()` command in `AddClientCommand` or `AddLeadCommand` calls the `addClient()` or `addLead()` method in `ModelManager`.
-
-The `addClient()` or `addLead()` method in `ModelManager` calls the `addClient()` or `addLead()` method in `AddressBook`.
-
-The `addClient()` or `addLead()` method in `AddressBook` adds the `Client` or `Lead` object to the `UniquePersonList persons`.
+The `Client` and `Lead` model has a name, address, phone number, email field which is compulsory, as well as a meeting time and tags field which are optional.
+The `Lead` model has an additional compulsory field called Key Milestone.
 
 Given below is an example usage scenario and how addclient and addlead behaves at each step.
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized.
 
 <div align="center">
-    <img src="images/cleanaddressbook.png" alt="before command" width="500" />
+    <img src="images/beforeaddclient.png" alt="before command" width="500" />
     <p>Before any commands</p>
 </div>
 
-Step 2 - addclient. The user executes `addclient n/John Doe...` command add a person named John Doe into the AddressBook. The `addclient` command calls `Model#addClient()`, causing the address book to be updated.
+Step 2a - addclient. The user executes `addclient n/John Doe...` command add a person named John Doe into the AddressBook. The `addclient` command calls `Model#addClient()`, causing the address book to be updated.
 
 <div align="center">
     <img src="images/addclient.png" alt="after addclient command" width="500" />
     <p>After addclient command</p>
 </div>
 
-Step 2 - addlead. The user executes `addlead n/John Doe...` command add a person named John Doe into the AddressBook. The `addlead` command calls `Model#addLead()`, causing the address book to be updated.
+Step 2b - addlead. The user executes `addlead n/John Doe...` command add a person named John Doe into the AddressBook. The `addlead` command calls `Model#addLead()`, causing the address book to be updated.
 
 <div align="center">
     <img src="images/addlead.png" alt="after addlead command" width="500" />
     <p>After addlead command</p>
 </div>
 
-The following sequence diagram shows how the addclient operation works (Note that addlead works in the same way but calls `Model#addLead()` instead):
+The following sequence diagram shows how the addclient operation works (Note that `addlead` works in the same way but calls `Model#addLead()` instead):
 
 <img src="diagrams/AddClientSequenceDiagram.png" width="500" />
 
@@ -308,16 +300,13 @@ The following activity diagram shows what happens when a user executes a new com
 
 <img src="diagrams/AddClientActivityDiagram.png" width="500" />
 
-### \[Proposed\] Add Meeting Time feature
+### Add Meeting Time feature
 
-#### Proposed Implementation
+#### Implementation
 
-
-The user can specify a meeting time when executing `addclient` or `addlead` command with the `--meeting-time` flag.
-
+The user can specify a meeting time when executing `addclient` or `addlead` command with the `m/` flag.
 Alternatively, the user can enter the `addmeeting` command to add a meeting time to an existing client or lead.
-
-The `addmeeting` command takes in the `index` of the client or lead, and the meeting time in `dd/MM/yyyy HH:mm` format, e.g. `24/10/2023 12:00`.
+The `addmeeting` command takes in the index of the client or lead, and the meeting time in `dd/MM/yyyy HH:mm` format, e.g. `24/10/2023 12:00`.
 
 The following sequence diagram shows how the addMeeting operation works:
 
@@ -386,45 +375,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 -->
-## Leads
+### Leads
 
-| Priority | As a | I want to …​                      | So that I can…​                          |
-|----------|--------------------------------|----------------------------------|------------------------------------------|
-| `* * *`  |  student financial advisor                                | view all my potential leads      | recall all my leads                      |
-| `* * *`  |  student financial advisor                                | add a potential lead             | follow up with them                      |
-| `* * *`  |  student financial advisor                                | edit the details of my leads     | correct mistakes I have made when adding a lead |
-| `* *`  |  student financial advisor                                | mark leads as done               | keep track of who I have visited         |
-| `* *`  |  student financial advisor                                | unmark leads that are marked done | amend a mistake of marking leads that were mistakenly marked |
-| `* * *`  |  student financial advisor                                | add a meeting time with my lead  | keep track of when I need to visit my leads |
-| `* * *`  |  student financial advisor                                | sort meeting times by most recent | focus on potential leads that are more urgent |
-| `* * *`  |  student financial advisor                                | convert leads into clients       | keep track of who are my leads and clients |
+| Priority | As a                      | I want to …​                      | So that I can…​                                              |
+|----------|---------------------------|-----------------------------------|--------------------------------------------------------------|
+| `* * *`  | student financial advisor | view all my potential leads       | recall all my leads                                          |
+| `* * *`  | student financial advisor | add a potential lead              | follow up with them                                          |
+| `* * *`  | student financial advisor | edit the details of my leads      | correct mistakes I have made when adding a lead              |
+| `* *`    | student financial advisor | mark leads as done                | keep track of who I have visited                             |
+| `* *`    | student financial advisor | unmark leads that are marked done | amend a mistake of marking leads that were mistakenly marked |
+| `* * *`  | student financial advisor | add a meeting time with my lead   | keep track of when I need to visit my leads                  |
+| `* * *`  | student financial advisor | sort meeting times by most recent | focus on potential leads that are more urgent                |
+| `* * *`  | student financial advisor | convert leads into clients        | keep track of who are my leads and clients                   |
 
-## Clients
+### Clients
 
-| Priority | As a student... | I want to …​                      | So that I can…​                          |
-|----------|--------------------------------|----------------------------------|------------------------------------------|
-| `* * *`  |  student financial advisor                                | add clients who have purchased a plan from me | keep track of my clients        |
-| `* * *`  |  student financial advisor                               | update client information        | accurately reflect the information of my clients if I had mistakenly added the wrong information prior |
-| `* * *`  |  student financial advisor                               | remove clients who did not continue their services with me | not clutter up my address book |
-| `* * *`  |  student financial advisor                               | find available meeting timings   | more easily schedule meetings             |
-| `* * *`  |  student financial advisor                               | check whose policies are expiring soon | plan a meeting with them            |
-| `* * *`  |  student financial advisor                               | edit a policy of my client       | accurately reflect their policies on the app if my client has changed his or her policy |
-| `* * *`  |   student financial advisor                              | remove a policy of my client     | accurately reflect their policies on the app if my client has unsubscribed from his or her policy |
-| `* * *`  |  student financial advisor                               | create and manage client profiles | keep track of their financial information, goals, and progress |
-| `* * *`  |  student financial advisor                               | schedule and manage appointments with my clients | ensure regular communication and updates |
-| `*`  |  student financial advisor                               | set and track financial goals for my clients | help them work toward their objectives |
-| `*`  |  student financial advisor                               | create and manage investment portfolios for my clients | make adjustments as needed |
-| `*`  |  student financial advisor                               | generate and share reports with my clients | keep them informed about their financial progress |
-| `*`  |  student financial advisor                               | securely message and communicate with my clients within the app | address their questions and concerns |
-| `* *`  |  student financial advisor                               | have access to analytics and tools that help me analyze my clients' financial data | provide them with the best advice |
-| `* *`  |  student financial advisor                               | generate tax reports and provide tax planning advice | help my clients minimize their tax liabilities |
-| `* * *`  |  student financial advisor                               | keep track of my clients’ birthdays | make the necessary arrangements like sending well wishes to them |
-| `* * *`  |  student financial advisor                               | send celebration message to all of my clients | not have to utilize another platform to do so |
-| `* *`  |  student financial advisor                               | search up a list of clients who purchased a specific policy | monitor the policies based on their specific type |
-| `*`  |  student financial advisor                               | inform my clients about new updates | help them stay updated |
-| `* * *`  |  student financial advisor                               | sort my clients based on the commissions they have made me | know which clients to prioritize |
+| Priority | As a student...           | I want to …​                                                                       | So that I can…​                                                                                        |
+|----------|---------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor | add clients who have purchased a plan from me                                      | keep track of my clients                                                                               |
+| `* * *`  | student financial advisor | update client information                                                          | accurately reflect the information of my clients if I had mistakenly added the wrong information prior |
+| `* * *`  | student financial advisor | remove clients who did not continue their services with me                         | not clutter up my address book                                                                         |
+| `* * *`  | student financial advisor | find available meeting timings                                                     | more easily schedule meetings                                                                          |
+| `* * *`  | student financial advisor | check whose policies are expiring soon                                             | plan a meeting with them                                                                               |
+| `* * *`  | student financial advisor | edit a policy of my client                                                         | accurately reflect their policies on the app if my client has changed his or her policy                |
+| `* * *`  | student financial advisor | remove a policy of my client                                                       | accurately reflect their policies on the app if my client has unsubscribed from his or her policy      |
+| `* * *`  | student financial advisor | create and manage client profiles                                                  | keep track of their financial information, goals, and progress                                         |
+| `* * *`  | student financial advisor | schedule and manage appointments with my clients                                   | ensure regular communication and updates                                                               |
+| `*`      | student financial advisor | set and track financial goals for my clients                                       | help them work toward their objectives                                                                 |
+| `*`      | student financial advisor | create and manage investment portfolios for my clients                             | make adjustments as needed                                                                             |
+| `*`      | student financial advisor | generate and share reports with my clients                                         | keep them informed about their financial progress                                                      |
+| `*`      | student financial advisor | securely message and communicate with my clients within the app                    | address their questions and concerns                                                                   |
+| `* *`    | student financial advisor | have access to analytics and tools that help me analyze my clients' financial data | provide them with the best advice                                                                      |
+| `* *`    | student financial advisor | generate tax reports and provide tax planning advice                               | help my clients minimize their tax liabilities                                                         |
+| `* * *`  | student financial advisor | keep track of my clients’ birthdays                                                | make the necessary arrangements like sending well wishes to them                                       |
+| `* * *`  | student financial advisor | send celebration message to all of my clients                                      | not have to utilize another platform to do so                                                          |
+| `* *`    | student financial advisor | search up a list of clients who purchased a specific policy                        | monitor the policies based on their specific type                                                      |
+| `*`      | student financial advisor | inform my clients about new updates                                                | help them stay updated                                                                                 |
+| `* * *`  | student financial advisor | sort my clients based on the commissions they have made me                         | know which clients to prioritize                                                                       |
 
-## General Information
+### General Information
 
 | Priority | As a student financial advisor, | I want to …​                                           | So that I can…​                                                                                                       |
 |----------|---------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -560,11 +549,9 @@ Use case ends.
 **Extensions**
 
 
-    2a. No persons match the search criteria.
+* 2a. No persons match the search criteria.
 
-        2a1. AddressBook displays a message indicating no matches found.
-
-        Use case ends.
+  * 2a1. AddressBook displays a message indicating no matches found.
 
     Use case ends.
 
