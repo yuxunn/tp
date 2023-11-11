@@ -426,13 +426,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## General Information
 
-| Priority | As a student financial advisor, | I want to …​                      | So that I can…​                          |
-|----------|--------------------------------|----------------------------------|------------------------------------------|
-| `*`  |   student financial advisor                              | upload and store important documents securely | easily access them when needed    |
-| `*`  |   student financial advisor                              | modify my authentication details regularly | ensure my account is safe and secure |
-| `*`  |   student financial advisor                              | write notes on the platform      | keep track of any additional notes related to my work |
-| `* * *`  |   student financial advisor                              | keep track of my commissions     | to keep track of my financial performance        |
-| `* * *`  |   student financial advisor                              | keep track of upcoming events    | be on track with the different upcoming appointments |
+| Priority | As a student financial advisor, | I want to …​                                           | So that I can…​                                                                                                       |
+|----------|---------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `*`      | student financial advisor       | create leads and clients                               | keep track of my leads and clients along with their important information                                             |
+| `*`      | student financial advisor       | edit leads and clients                                 | update the important information of my leads and clients                                                              |
+| `*`      | student financial advisor       | delete leads and clients                               | keep my list of leads and clients up-to-date with ease                                                                |
+| `*`      | student financial advisor       | view a list of leads or clients                        | focus on working on leads or clients separately                                                                       |
+| `*`      | student financial advisor       | convert lead to client and vice-versa                  | keep my list of clients and leads up-to-date especially after successfully converting a lead when he/she buys my plan |
+| `* *`    | student financial advisor       | view specific lead or client                           | have a focused view on a specific lead or client without being distracted by information of other leads or clients    |
+| `* *`    | student financial advisor       | search for a lead or client                            | find a specific lead or client easily                                                                                 |
+| `* *`    | student financial advisor       | add, edit and delete meeting time of clients and leads | schedule and keep track of meetings with clients and leads to regularly serve their needs                             |
+| `* * *`  | student financial advisor       | sort meeting times chronologically                     | keep track of all my upcoming meetings in order of urgency                                                            |
+| `* * *`  | student financial advisor       | keep track of key milestones of my leads               | better tailor a plan for that lead that he/she will buy upon completion of that key change in his/her life            |
 
 ### Use cases
 
@@ -443,9 +448,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  D.A.V.E. shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  D.A.V.E. deletes the person
 
     Use case ends.
 
@@ -506,42 +511,38 @@ Use case ends
 **MSS**
 
 1. User requests to list persons
-2. AddressBook displays a list of persons
-3. User selects a specific person
-4. AddressBook shows the person's details
-5. User requests to schedule a meeting with the selected person
-6. AddressBook prompts the user to enter meeting details (date, time, location, etc.)
-7. User provides meeting details
-8. AddressBook schedules the meeting and updates the person's information
+2. D.A.V.E. displays a list of persons, which includes their meeting times, if any/
+3. User schedules a meeting with a specific person and an appropriate meeting time
+4. D.A.V.E. schedules the meeting and updates the person's information
 
 Use case ends
 
 **Extensions**
 
-    2a. The list of persons is empty.
+* 2a. The list of persons is empty. 
 
-    Use case ends.
+  Use case ends.
 
-    3a. The user enters invalid meeting details.
+* 3a. The given person index is invalid or the meeting details is in the wrong format.
 
-        5a1. AddressBook shows an error message.
+    * 3a1. D.A.V.E shows an error message.
 
-        Use case resumes at step 6.
+      Use case resumes at step 2.
 
-**Use case: View Upcoming Appointments**
+**Use case: View Upcoming Meetings**
 
 **MSS**
 
-1. User requests to view their upcoming appointments.
-2. AddressBook displays a list of scheduled appointments, including date, time, and person involved.
+1. User requests to view their upcoming meetings.
+2. D.A.V.E. displays a list of persons with their scheduled meetings, including date and time.
 
 Use case ends.
 
 **Extensions**
 
-    2a. There are no upcoming appointments.
+* 2a. There are no persons with meetings.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: Search for a Person**
 
