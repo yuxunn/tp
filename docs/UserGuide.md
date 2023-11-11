@@ -11,22 +11,24 @@ Here’s a quick overview of D.A.V.E.’s features:
 - Delete leads and clients
 - Keep track of upcoming meetings with leads/clients
 
-D.A.V.E. is here to enhance your advisory journey by simplifying information management, lead conversion, policy tracking and more.
+D.A.V.E. is here to enhance your advisory journey by simplifying information management, lead conversion, meeting scheduling and more.
 
 # Table of Contents
 
 - [Glossary](#glossary)
 - [Quick Start](#quick-start)
 - [Features](#features)
+  - [Help](#help)
   - [Add lead](#add-lead)
   - [Add client](#add-client)
+  - [View all leads and clients](#view-all-leads-and-clients)
   - [View all clients](#view-all-clients)
   - [View all leads](#view-all-leads)
   - [View specific person](#view-specific-person)
-  - [Delete](#delete)
+  - [Delete lead/client](#delete)
+  - [Edit lead/client](#edit)
   - [Add meeting time](#add-meeting-time)
   - [Delete meeting time](#delete-meeting-time)
-  - [Edit](#edit)
   - [Sort meeting time](#sort-meeting-time)
   - [Convert lead to client](#convert-lead-to-client)
   - [Convert client to lead](#convert-client-to-lead)
@@ -99,20 +101,6 @@ Opened help window.
     <p>After using help command</p>
 </div>
 
-### List
-
-- What it does: Lists all leads and clients in the address book to the user. The information displayed includes the Lead/Client's name, phone number, email, address, meeting time and tags.
-- Command: `list`.
-- Precise expected output when the command succeeds:
-```
-Listed all persons
-```
-
-<div align="center">
-    <img src="./images/listcommand.png" width="500" />
-    <p>After using list command</p>
-</div>
-
 ### Add lead
 
 - What it does: Adds a lead and their basic information, e.g. name, phone number, email, address, key milestone etc. The key milestone is a date that represents a lead's life-changing event, e.g. ORD, marriage, graduation etc.
@@ -138,12 +126,12 @@ Listed all persons
     - `NAME`: can contain any string of alphanumeric characters.
       - The name can contain spaces but cannot be blank (only contain spaces).
       - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
-    - `PHONE`: any valid 8-digit integer, at least 3 digits long.
-    - `EMAIL`: a string of the format `local-part@domain`
+    - `PHONE`: any valid string of integers, between 3 digits and 8 digits long.
+    - `EMAIL`: a string of the format `local-part@domain`.
       - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
       - The local-part may not start or end with any special characters. 
       - The domain name is made up of domain labels separated by periods.
-      - The domain name must end with a domain label at least 2 characters long
+      - The domain name must end with a domain label at least 2 characters long.
       - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
     - `ADDRESS`: can contain any alphanumeric character, must not be blank.
     - `KEY_MILESTONE`: only contains date in the format of `dd/MM/yyyy`
@@ -198,12 +186,12 @@ This lead already exists in the address book
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
     - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
-  - `PHONE`: any valid 8-digit integer, at least 3 digits long.
-  - `EMAIL`: a string of the format `local-part@domain`
+  - `PHONE`: any valid string of integers, between 3 digits and 8 digits long.
+  - `EMAIL`: a string of the format `local-part@domain`.
     - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
     - The local-part may not start or end with any special characters.
     - The domain name is made up of domain labels separated by periods.
-    - The domain name must end with a domain label at least 2 characters long
+    - The domain name must end with a domain label at least 2 characters long.
     - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
   - `ADDRESS`: can contain any alphanumeric character, must not be blank.
 - Acceptable values for each optional parameter:
@@ -232,15 +220,25 @@ When adding a client with the same name as an existing client:
 This client already exists in the address book
 ```
 
+### View all leads and clients
+
+- What it does: Lists all leads and clients in the address book to the user. The information displayed includes the Lead/Client's name, phone number, email, address, meeting time and tags.
+- Command: `list`.
+- Precise expected output when the command succeeds:
+```
+Listed all persons
+```
+
+<div align="center">
+    <img src="./images/listcommand.png" width="500" />
+    <p>After using list command</p>
+</div>
+
 ### View all clients
 
 - What it does: View all clients you have stored, including their basic information and index in the list of clients, e.g. id, name, age, gender, occupation, etc.
 - Command: `listclient`.
 - Precise expected outputs when the command succeeds:
-
-In output section of the
-`List of all clients`
-
 
 <div align="center">
     <img src="./images/List.png" width="500" />
@@ -249,7 +247,7 @@ In output section of the
     <p>After using listclient command</p>
 </div>
 
-- Precise expected outputs when the commands succeeds:
+- Precise expected outputs when there are clients stored:
 ```
 Listed all clients
 ```
@@ -264,9 +262,6 @@ There are no clients in the address book
 - Command: `listlead`.
 - Precise expected outputs when the command succeeds:
 
-`List of all leads`
-
-
 <div align="center">
     <img src="./images/List.png" width = "500"/>
     <p>List of leads and clients</p>
@@ -274,7 +269,7 @@ There are no clients in the address book
     <p>After using listlead command</p>
 </div>
 
-- Precise expected outputs when commands succeeds:
+- Precise expected outputs when there are leads stored:
 ```
 Listed all leads
 ```
@@ -301,19 +296,31 @@ There are no leads in the address book
 </div>
 
 - Acceptable values for `INDEX` parameter:
-  - Must be an integer from `1` to the last index of the main list.
+  - Must be an integer from `1` to the last index of the filtered list shown in the address book.
 - Precise expected output when the command succeeds:
-
-`Viewed Person Successfully`
+```
+Viewed Person Successfully
+```
 
 - Precise expected output when command fails:
 
-`The person index provided is invalid`
+When viewing a person without specifying an index:
+```
+Invalid command format! 
+view: Views the person identified by the index number used.
+Parameters: INDEX (must be a positive integer)
+Example: view 1
+```
+
+When viewing a person with an invalid index:
+```
+The person index provided is invalid
+```
 
 
 ### Delete
 
-- What it does: Deletes a lead from your list of leads.
+- What it does: Deletes a lead/client from the list of leads and/or clients shown.
 - Command format: `delete INDEX`.
 - Example usage: `delete 1`.
 
@@ -328,13 +335,16 @@ There are no leads in the address book
 </div>
 
 - Acceptable values for `INDEX` parameter:
-    - Must be an integer from `1` to the last index of the leads list
+    - Must be an integer from `1` to the last index of the filtered list shown in the address book.
 - Precise expected outputs when the command succeeds:
 
-`Deleted person: <person details>`
+```
+Deleted person: <person details>
+```
 
 - Precise expected outputs when the command fails:
 
+When deleting a person without specifying an index:
 ```
 Invalid command format! 
 delete: Deletes the person identified by the index number used in the displayed person list.
@@ -342,82 +352,12 @@ Parameters: INDEX (must be a positive integer)
 Example: delete 1
 ```
 
-### Add meeting time
-
-- What it does: Adds a meeting time to a person.
-- Command format: `addmeeting INDEX m/MEETING_TIME`
-- Example usage: `addmeeting 1 m/12/10/2023 16:00`
-
-<div align="center">
-    <img src="./images/beforeaddmeeting.png" width = "500"/>
-    <p>Before using addmeeting</p>
-</div>
-
-<div align="center">
-    <img src="./images/afteraddmeeting.png" width = "500"/>
-    <p>After using addmeeting</p>
-</div>
-
-- Acceptable values for each parameter:
-    - `INDEX`: Any integer from `1` to the last index of the displayed list.
-    - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
-      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
-      - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`.
-      - Meeting time can be before the current date and time.
-- Precise expected outputs when the command succeeds:
-
-`Added Meeting: <meeting datetime> to Person <index>`
-
-- Precise expected outputs when the command fails:
-
-When adding a meeting time to an invalid index or with an invalid datetime format:  
+When deleting a person with an invalid index:
 ```
-Invalid command format!
-addmeeting: Adds a new meeting time to the person identified by the displayed index in the address book.
-Parameters: INDEX (must be a positive integer) m/MEETING_TIME
-Example: addmeeting 1 m/12/10/2023 16:00
+The person index provided is invalid
 ```
 
-When adding a meeting time to a person who already has an existing meeting:
-
-`Person already has a meeting time, use the edit command instead`
-
-### Delete meeting time
-
-- What it does: Delete a meeting time for meetings that has been cancelled or postponed.
-<div markdown="span" class="alert alert-primary">
-
-**:bulb: Tip:**
-If the person has no meeting time, delete meeting will leave the person's meeting time as null.
-</div>
-- Command format: `deletemeeting INDEX`
-- Example usage: `deletemeeting 1`
-
-<div align="center">
-    <img src="./images/beforedeletemeeting.png" width = "500"/>
-    <p>Before using deletemeeting</p>
-</div>
-
-<div align="center">
-    <img src="./images/afterdeletemeeting.png" width = "500"/>
-    <p>After using deletemeeting</p>
-</div>
-
-- Acceptable values for each parameter:
-    - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the addressbook.
-- Precise expected outputs when the command succeeds:
-```
-Deleted Meeting: <MEETING_TIME> from Person <INDEX>
-```
-- Precise expected outputs when the command fails:
-```
-Invalid command format! 
-deletemeeting: Deletes the meeting identified by the index number used in the displayed meeting list.
-Parameters: INDEX (must be a positive integer)
-Example: deletemeeting 1
-```
-
-### Edit 
+### Edit
 
 - What it does: Edit the details of a lead or client.
 
@@ -425,12 +365,8 @@ Example: deletemeeting 1
     Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
 </box>
 
-- Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
-- Example usage: `edit 1 p/98765432`
-
-<box type="tip"  header="``edit INDEX t\``">
-    This command will clear the tags of a lead or client.
-</box>
+- Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`.
+- Example usage: `edit 1 p/91234567 e/johndoe@example.com`.
 
 <div align="center">
     <img src="./images/beforedeletemeeting.png" width = "500"/>
@@ -443,31 +379,35 @@ Example: deletemeeting 1
 </div>
 
 - Acceptable values for each compulsory parameter:
-    - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the addressbook.
+  - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the address book.
 - Acceptable values for each optional parameter (at least one of the optional parameters must be provided)
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
-  - `PHONE`: any valid 8-digit integer, at least 3 digits long.
-  - `EMAIL`: a string of the format `local-part@domain`
-    - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
-    - The local-part may not start or end with any special characters. 
+  - `PHONE`: any valid string of integers, between 3 digits and 8 digits long.
+  - `EMAIL`: a string of the format `local-part@domain`.
+    - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
+    - The local-part may not start or end with any special characters.
     - The domain name is made up of domain labels separated by periods.
-    - The domain name must end with a domain label at least 2 characters long
+    - The domain name must end with a domain label at least 2 characters long.
     - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
   - `ADDRESS`: can contain any alphanumeric character, must not be blank.
-  - `KEY_MILESTONE`: only contains date in the format of `dd/MM/yyyy`
-    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
+  - `KEY_MILESTONE`**(Only for leads)**: only contains date in the format of `dd/MM/yyyy`.
+    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
     - If the edited person is a client, no ``KEY_MILESTONE`` of the person will be edited as client does not have ``KEY_MILESTONE``
-  - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`
-    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
-    - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
+  - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`.
+    - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
+    - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`.
     - If the edited `MEETING_TIME` is `null`, it will not remove the existing person's `MEETING_TIME`.
 
 <box type="tip">
 Lead/Client's meeting time can be added using edit command. However, it is more convenient to use the <code>addmeeting</code> command.
 </box>
 
-  - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
+- `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
+
+<box type="tip">
+    <code>edit INDEX t\</code> will clear the tags of a lead or client.
+</box>
 
 <box type="tip">
     You can add more tags to a person using the <code>edit</code> command. For example, if person 1 already has the tag <code>classmate</code>
@@ -499,11 +439,89 @@ When editing a person with an invalid index:
 The person index provided is invalid
 ```
 
+### Add meeting time
+
+- What it does: Adds a meeting time to a person.
+- Command format: `addmeeting INDEX m/MEETING_TIME`.
+- Example usage: `addmeeting 1 m/12/10/2023 16:00`.
+
+<div align="center">
+    <img src="./images/beforeaddmeeting.png" width = "500"/>
+    <p>Before using addmeeting</p>
+</div>
+
+<div align="center">
+    <img src="./images/afteraddmeeting.png" width = "500"/>
+    <p>After using addmeeting</p>
+</div>
+
+- Acceptable values for each compulsory parameter:
+    - `INDEX`: Any integer from `1` to the last index of the displayed list.
+    - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`.
+      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
+      - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`.
+      - Meeting time can be before the current date and time.
+- Precise expected outputs when the command succeeds:
+
+```
+Added Meeting: <MEETING_TIME> to Person <INDEX>
+```
+
+- Precise expected outputs when the command fails:
+
+When adding a meeting time to an invalid index or with an invalid datetime format:  
+```
+Invalid command format!
+addmeeting: Adds a new meeting time to the person identified by the displayed index in the address book.
+Parameters: INDEX (must be a positive integer) m/MEETING_TIME
+Example: addmeeting 1 m/12/10/2023 16:00
+```
+
+When adding a meeting time to a person who already has an existing meeting:
+
+```
+Person already has a meeting time, use the edit command instead
+```
+
+### Delete meeting time
+
+- What it does: Delete a meeting time for meetings that has been cancelled or postponed.
+<box type="tip">
+If the person has no meeting time, delete meeting will leave the person's meeting time as null.
+</box>
+
+- Command format: `deletemeeting INDEX`.
+- Example usage: `deletemeeting 1`.
+
+<div align="center">
+    <img src="./images/beforedeletemeeting.png" width = "500"/>
+    <p>Before using deletemeeting</p>
+</div>
+
+<div align="center">
+    <img src="./images/afterdeletemeeting.png" width = "500"/>
+    <p>After using deletemeeting</p>
+</div>
+
+- Acceptable values for `INDEX` parameter:
+    - Any integer from `1` to the last index of the filtered list shown in the address book.
+- Precise expected outputs when the command succeeds:
+```
+Deleted Meeting: <MEETING_TIME> from Person <INDEX>
+```
+- Precise expected outputs when the command fails:
+```
+Invalid command format! 
+deletemeeting: Deletes the meeting identified by the index number used in the displayed meeting list.
+Parameters: INDEX (must be a positive integer)
+Example: deletemeeting 1
+```
+
 ### Sort meeting time
 
-- What it does: Sorts the meeting times of all leads and clients chronologically, displaying 
-only entries with a meeting time.
-- Command format: `sortmeeting`
+- What it does: Sorts the meeting times of all leads and clients chronologically, displaying
+  only entries with a meeting time.
+- Command format: `sortmeeting`.
 - Example usage:
 
 <div align="center">
@@ -523,10 +541,10 @@ only entries with a meeting time.
 ### Convert lead to client
 
 - What it does: Converts a lead to client.
-- Command format: `converttoclient INDEX`
-- Example usage: `converttoclient 1`
-- Acceptable values for each parameter:
-  - `INDEX`: Any integer from `1` to the last index of the leads list
+- Command format: `converttoclient INDEX`.
+- Example usage: `converttoclient 1`.
+- Acceptable values for `INDEX` parameter:
+  - Any integer from `1` to the last index of the filtered list shown in the address book, person must be a lead.
 - Example usage
 
 <div align="center">
@@ -550,12 +568,12 @@ only entries with a meeting time.
 
 ### Convert client to lead
 
-- What it does: Converts a client into lead, the ``KEY_MILESTONE`` is 1 year
+- What it does: Converts a client into lead. The ``KEY_MILESTONE`` is 1 year
 from current date to ensure a follow-up by the user.
-- Command format: `converttolead INDEX`
-- Example usage: `converttolead 1`
-- Acceptable values for each parameter:
-  - `INDEX`: Any integer from `1` to the last index of the leads list.
+- Command format: `converttolead INDEX`.
+- Example usage: `converttolead 1`.
+- Acceptable values for `INDEX` parameter:
+  - Any integer from `1` to the last index of the filtered list shown in the address book, person must be a client.
 - Example usage
 
 <div align="center">
@@ -577,14 +595,15 @@ from current date to ensure a follow-up by the user.
 
 
 ### Locating persons by name
-- What it does: Finds persons whose names contain any of the given keywords.
-- Command format: `find KEYWORD [MORE_KEYWORDS]`
-- Example usage: `find John David`
+- What it does: Finds persons whose names contain any of the given keywords as names.
+- Command format: `find NAME [MORE_NAMES]`.
+- Example usage: `find John David`.
 - Acceptable values for parameter: 
-  - `KEYWORD`: Any name from the list.
+  - `NAME`: Any name from the list.
 - Precise expected output when the command succeeds:
-
-`<NUMBER> persons listed!`
+```
+<NUMBER> persons listed!
+```
 
 - Precise expected output when the command fails:
 
@@ -620,7 +639,9 @@ Example usage:
 - Command format: `clear`.
 - Precise expected output when the command succeeds:
 
-`Address book has been cleared!`
+```
+Address book has been cleared!
+```
 
 <box type="warning" theme="danger">
     This command will delete all the data from the address book. This command cannot be reversed. Proceed with caution.
@@ -660,20 +681,20 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 | Action                         | Format, Examples                                                                                                                                                                                                                |
 |--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                       | `help`                                                                                                                                                                                                                          |
 | **Add lead**                   | `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate` |
 | **Add client**                 | `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...​` <br> e.g. `addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/10/10/2023 14:30 t/classmate`                          |
 | **View all leads and clients** | `list`                                                                                                                                                                                                                          |
 | **View all clients**           | `listclient`                                                                                                                                                                                                                    |
 | **View all leads**             | `listlead`                                                                                                                                                                                                                      |
 | **View a specific person**     | `view INDEX`<br> e.g. `view 1`                                                                                                                                                                                                  |
-| **Delete**                     | `delete INDEX` <br> e.g. `delete 1`                                                                                                                                                                                             |
+| **Delete lead/client**         | `delete INDEX` <br> e.g. `delete 1`                                                                                                                                                                                             |
+| **Edit lead/client**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...​`<br> e.g. `edit 1 n/John Doe p/98765432`                                                                                                     |
 | **Add meeting time**           | `addmeeting INDEX m/MEETING_TIME` <br> e.g. `addmeeting 1 m/12/10/2023 16:00`                                                                                                                                                   |
 | **Delete meeting time**        | `deletemeeting INDEX` <br> e.g. `deletemeeting 1`                                                                                                                                                                               |
-| **Edit**                       | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...​`<br> e.g. `edit 1 n/John Doe p/98765432`                                                                                                     |
 | **Sort meeting time**          | `sortmeeting`                                                                                                                                                                                                                   |
 | **Convert lead to client**     | `converttoclient INDEX` <br> e.g. `converttoclient 1`                                                                                                                                                                            |
 | **Convert client to lead**     | `converttolead INDEX` <br> e.g. `converttolead 1`                                                                                                                                                                                |
 | **Locating person by name**    | `find NAME [MORE_NAMES]` <br> e.g. `find John David`                                                                                                                                                                            |
-| **Clear**                      | `clear`                                                                                                                                                                                                                         |
-| **Help**                       | `help`                                                                                                                                                                                                                          |
-| **Exit**                       | `exit`                                                                                                                                                                                                                          |
+| **Clear address book**         | `clear`                                                                                                                                                                                                                         |
+| **Exit the program**           | `exit`                                                                                                                                                                                                                          |
