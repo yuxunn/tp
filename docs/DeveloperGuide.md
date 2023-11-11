@@ -377,56 +377,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 -->
 ### Leads
 
-| Priority | As a                      | I want to …​                      | So that I can…​                                              |
-|----------|---------------------------|-----------------------------------|--------------------------------------------------------------|
-| `* * *`  | student financial advisor | view all my potential leads       | recall all my leads                                          |
-| `* * *`  | student financial advisor | add a potential lead              | follow up with them                                          |
-| `* * *`  | student financial advisor | edit the details of my leads      | correct mistakes I have made when adding a lead              |
-| `* *`    | student financial advisor | mark leads as done                | keep track of who I have visited                             |
-| `* *`    | student financial advisor | unmark leads that are marked done | amend a mistake of marking leads that were mistakenly marked |
-| `* * *`  | student financial advisor | add a meeting time with my lead   | keep track of when I need to visit my leads                  |
-| `* * *`  | student financial advisor | sort meeting times by most recent | focus on potential leads that are more urgent                |
-| `* * *`  | student financial advisor | convert leads into clients        | keep track of who are my leads and clients                   |
+| Priority | As a                      | I want to …​                                             | So that I can…​                                                                |
+|----------|---------------------------|----------------------------------------------------------|--------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor | view all my leads                                        | recall and focus on all my leads                                               |
+| `* * *`  | student financial advisor | add a lead                                               | keep track of my leads and their information                                   |
+| `* * *`  | student financial advisor | edit the details of my leads                             | update changes in information of my lead                                       |
+| `* * *`  | student financial advisor | remove leads that I have unsuccessfully followed up with | prevent cluttering up my address book                                          |
+| `* * *`  | student financial advisor | convert leads into clients                               | update my lead as a client if I have successfully converted them into a client |
+| `* *`    | student financial advisor | add a meeting time with my lead                          | keep track of when I need to visit my leads                                    |
+| `* *`    | student financial advisor | delete a meeting time with my lead                       | update D.A.V.E. with accurate information of my upcoming meetings              |
 
 ### Clients
 
-| Priority | As a student...           | I want to …​                                                                       | So that I can…​                                                                                        |
-|----------|---------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| `* * *`  | student financial advisor | add clients who have purchased a plan from me                                      | keep track of my clients                                                                               |
-| `* * *`  | student financial advisor | update client information                                                          | accurately reflect the information of my clients if I had mistakenly added the wrong information prior |
-| `* * *`  | student financial advisor | remove clients who did not continue their services with me                         | not clutter up my address book                                                                         |
-| `* * *`  | student financial advisor | find available meeting timings                                                     | more easily schedule meetings                                                                          |
-| `* * *`  | student financial advisor | check whose policies are expiring soon                                             | plan a meeting with them                                                                               |
-| `* * *`  | student financial advisor | edit a policy of my client                                                         | accurately reflect their policies on the app if my client has changed his or her policy                |
-| `* * *`  | student financial advisor | remove a policy of my client                                                       | accurately reflect their policies on the app if my client has unsubscribed from his or her policy      |
-| `* * *`  | student financial advisor | create and manage client profiles                                                  | keep track of their financial information, goals, and progress                                         |
-| `* * *`  | student financial advisor | schedule and manage appointments with my clients                                   | ensure regular communication and updates                                                               |
-| `*`      | student financial advisor | set and track financial goals for my clients                                       | help them work toward their objectives                                                                 |
-| `*`      | student financial advisor | create and manage investment portfolios for my clients                             | make adjustments as needed                                                                             |
-| `*`      | student financial advisor | generate and share reports with my clients                                         | keep them informed about their financial progress                                                      |
-| `*`      | student financial advisor | securely message and communicate with my clients within the app                    | address their questions and concerns                                                                   |
-| `* *`    | student financial advisor | have access to analytics and tools that help me analyze my clients' financial data | provide them with the best advice                                                                      |
-| `* *`    | student financial advisor | generate tax reports and provide tax planning advice                               | help my clients minimize their tax liabilities                                                         |
-| `* * *`  | student financial advisor | keep track of my clients’ birthdays                                                | make the necessary arrangements like sending well wishes to them                                       |
-| `* * *`  | student financial advisor | send celebration message to all of my clients                                      | not have to utilize another platform to do so                                                          |
-| `* *`    | student financial advisor | search up a list of clients who purchased a specific policy                        | monitor the policies based on their specific type                                                      |
-| `*`      | student financial advisor | inform my clients about new updates                                                | help them stay updated                                                                                 |
-| `* * *`  | student financial advisor | sort my clients based on the commissions they have made me                         | know which clients to prioritize                                                                       |
+| Priority | As a student...           | I want to …​                                              | So that I can…​                                                                                                                          |
+|----------|---------------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor | view all my clients                                       | recall and focus on all my clients                                                                                                       |
+| `* * *`  | student financial advisor | add a client                                              | keep track of my clients and their information                                                                                           |
+| `* * *`  | student financial advisor | edit the details of my clients                            | update changes in information of my client                                                                                               |
+| `* * *`  | student financial advisor | remove clients who do not continue their services with me | prevent cluttering up my address book                                                                                                    |
+| `* *`    | student financial advisor | add a meeting time with my client                         | more easily schedule meetings with clients to update their policies and keep up with their life                                          |
+| `* *`    | student financial advisor | delete a meeting time with my client                      | update D.A.V.E. with accurate information of my upcoming meetings                                                                        |
+| `* *`    | student financial advisor | convert clients into leads                                | undo the conversion of a lead into client, or continue tracking this person as a lead after he/she has discontinued his/her plan with me |
 
 ### General Information
 
-| Priority | As a student financial advisor, | I want to …​                                           | So that I can…​                                                                                                       |
-|----------|---------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| `*`      | student financial advisor       | create leads and clients                               | keep track of my leads and clients along with their important information                                             |
-| `*`      | student financial advisor       | edit leads and clients                                 | update the important information of my leads and clients                                                              |
-| `*`      | student financial advisor       | delete leads and clients                               | keep my list of leads and clients up-to-date with ease                                                                |
-| `*`      | student financial advisor       | view a list of leads or clients                        | focus on working on leads or clients separately                                                                       |
-| `*`      | student financial advisor       | convert lead to client and vice-versa                  | keep my list of clients and leads up-to-date especially after successfully converting a lead when he/she buys my plan |
-| `* *`    | student financial advisor       | view specific lead or client                           | have a focused view on a specific lead or client without being distracted by information of other leads or clients    |
-| `* *`    | student financial advisor       | search for a lead or client                            | find a specific lead or client easily                                                                                 |
-| `* *`    | student financial advisor       | add, edit and delete meeting time of clients and leads | schedule and keep track of meetings with clients and leads to regularly serve their needs                             |
-| `* * *`  | student financial advisor       | sort meeting times chronologically                     | keep track of all my upcoming meetings in order of urgency                                                            |
-| `* * *`  | student financial advisor       | keep track of key milestones of my leads               | better tailor a plan for that lead that he/she will buy upon completion of that key change in his/her life            |
+| Priority | As a student financial advisor, | I want to …​                                    | So that I can…​                                                                                        |
+|----------|---------------------------------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor       | view all my clients and leads                   | recall and focus on all my clients and leads                                                           |
+| `* * *`  | student financial advisor       | sort meeting times with clients and leads       | see my upcoming meetings in chronological order to better plan my time                                 |
+| `* *`    | student financial advisor       | upload and store important information securely | easily access them whenever i launch D.A.V.E.                                                          |
+| `* *`    | student financial advisor       | save details automatically while using the app  | focus on updating D.A.V.E. with information of my clients and leads without worrying about saving data |
+| `*`      | student financial advisor       | modify my authentication details regularly      | ensure my account is safe and secure                                                                   |
 
 ### Use cases
 
@@ -491,9 +472,9 @@ Use case ends
 
 **Extensions**
 
-    2a. The person exists in the list
-
-    Use case ends
+* 2a. The person does not exist in the list 
+      
+  Use case ends
 
 **Use case: Schedule a Meeting**
 
@@ -566,11 +547,12 @@ Use case ends.
 
 **Extensions**
 
-    3a. The list of clients is empty.
-        3a1. AddressBooks display a message indicating all clients are displayed.
-        3a2. No information is displayed.
-        Use case ends.
+* 3a. The list of clients is empty.
+  * 3a1. AddressBooks display a message indicating all clients are displayed.
+  * 3a2. No information is displayed.
     Use case ends.
+
+  Use case ends.
 
 **Use case: List Leads**
 
@@ -583,10 +565,11 @@ Use case ends.
 
 **Extensions**
 
-    3a. The list of leads is empty.
-        3a1. AddressBooks display a message indicating all clients are displayed.
-        Use case ends.
-    Use case ends.
+* 3a. The list of leads is empty. 
+  * 3a1. AddressBooks display a message indicating all clients are displayed.
+      Use case ends.
+
+Use case ends.
 
 **Extensions**
 
