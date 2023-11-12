@@ -409,6 +409,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student financial advisor       | save details automatically while using the app  | focus on updating D.A.V.E. with information of my clients and leads without worrying about saving data |
 | `*`      | student financial advisor       | modify my authentication details regularly      | ensure my account is safe and secure                                                                   |
 
+### Planned Enhancement
+
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
