@@ -8,7 +8,7 @@
 
 Given below are my contributions to the project.
 
-- **New Feature**: Added the ability to add ``keyMilestone`` for a lead. 
+- **New Feature**: Added the ability to add ``keyMilestone`` for a lead.
     - **What it does:**  Empowering financial advisors to capture pivotal moments in a lead's journey, strategically enhancing conversion rates from leads to clients.
     - **Significance:** This feature not only distinguishes leads from clients but also streamlines the process with recent code refinements, making future additions of fields for leads or clients more efficient.
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=f08&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=tiif&tabRepo=AY2324S1-CS2103T-F08-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)

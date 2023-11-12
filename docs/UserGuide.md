@@ -118,7 +118,7 @@ Listed all persons
 - What it does: Adds a lead and their basic information, e.g. name, phone number, email, address, key milestone etc. The key milestone is a date that represents a lead's life-changing event, e.g. ORD, marriage, graduation etc.
 
 <box type="important">
-    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once.
 </box>
 
 - Command format: `addlead n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...`.
@@ -137,11 +137,11 @@ Listed all persons
 - Acceptable values for each compulsory parameter:
     - `NAME`: can contain any string of alphanumeric characters.
       - The name can contain spaces but cannot be blank (only contain spaces).
-      - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
+      - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues.
     - `PHONE`: any valid 8-digit integer, at least 3 digits long.
     - `EMAIL`: a string of the format `local-part@domain`
-      - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
-      - The local-part may not start or end with any special characters. 
+      - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
+      - The local-part may not start or end with any special characters.
       - The domain name is made up of domain labels separated by periods.
       - The domain name must end with a domain label at least 2 characters long
       - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
@@ -164,7 +164,7 @@ New lead added: <lead details>
 
 When adding a lead with an invalid command format:
 ```
-Invalid command format! 
+Invalid command format!
 addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS k/KEY_MILESTONE [m/MEETING_TIME] [t/TAG]...
 Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 k/01/12/2023 m/10/10/2023 14:30 t/classmate
 ```
@@ -178,7 +178,7 @@ This lead already exists in the address book
 - What it does: Adds a client and their basic information, e.g. name, phone number, email, address, etc.
 
 <box type="important">
-    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once.
 </box>
 
 - Command format: `addclient n/NAME p/PHONE e/EMAIL a/ADDRESS [m/MEETING_TIME] [t/TAG]...`.
@@ -197,7 +197,7 @@ This lead already exists in the address book
 - Acceptable values for each compulsory parameter:
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
-    - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues. 
+    - Names are case-sensitive. This means that "John" and "john" are treated as different names, and you can enter both in the record without any issues.
   - `PHONE`: any valid 8-digit integer, at least 3 digits long.
   - `EMAIL`: a string of the format `local-part@domain`
     - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
@@ -336,7 +336,7 @@ There are no leads in the address book
 - Precise expected outputs when the command fails:
 
 ```
-Invalid command format! 
+Invalid command format!
 delete: Deletes the person identified by the index number used in the displayed person list.
 Parameters: INDEX (must be a positive integer)
 Example: delete 1
@@ -370,7 +370,7 @@ Example: delete 1
 
 - Precise expected outputs when the command fails:
 
-When adding a meeting time to an invalid index or with an invalid datetime format:  
+When adding a meeting time to an invalid index or with an invalid datetime format:
 ```
 Invalid command format!
 addmeeting: Adds a new meeting time to the person identified by the displayed index in the address book.
@@ -411,18 +411,18 @@ Deleted Meeting: <MEETING_TIME> from Person <INDEX>
 ```
 - Precise expected outputs when the command fails:
 ```
-Invalid command format! 
+Invalid command format!
 deletemeeting: Deletes the meeting identified by the index number used in the displayed meeting list.
 Parameters: INDEX (must be a positive integer)
 Example: deletemeeting 1
 ```
 
-### Edit 
+### Edit
 
 - What it does: Edit the details of a lead or client.
 
 <box type="important">
-    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once. 
+    Duplicate names are not allowed in the record. The system will prevent the entry of the same name for more than once.
 </box>
 
 - Command format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [t/TAG]...`
@@ -449,8 +449,8 @@ Example: deletemeeting 1
     - The name can contain spaces but cannot be blank (only contain spaces).
   - `PHONE`: any valid 8-digit integer, at least 3 digits long.
   - `EMAIL`: a string of the format `local-part@domain`
-    - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). 
-    - The local-part may not start or end with any special characters. 
+    - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
+    - The local-part may not start or end with any special characters.
     - The domain name is made up of domain labels separated by periods.
     - The domain name must end with a domain label at least 2 characters long
     - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
@@ -483,7 +483,7 @@ Edited Person: <Person details>
 
 When editing a person with an invalid command format:
 ```
-Invalid command format! 
+Invalid command format!
 edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [k/KEY_MILESTONE] [m/MEETING_TIME] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
@@ -501,7 +501,7 @@ The person index provided is invalid
 
 ### Sort meeting time
 
-- What it does: Sorts the meeting times of all leads and clients chronologically, displaying 
+- What it does: Sorts the meeting times of all leads and clients chronologically, displaying
 only entries with a meeting time.
 - Command format: `sortmeeting`
 - Example usage:
@@ -580,7 +580,7 @@ from current date to ensure a follow-up by the user.
 - What it does: Finds persons whose names contain any of the given keywords.
 - Command format: `find NAME [MORE_NAMES]`
 - Example usage: `find John David`
-- Acceptable values for parameter: 
+- Acceptable values for parameter:
   - `NAME`: Any name from the list.
 - Precise expected output when the command succeeds:
 
@@ -625,7 +625,7 @@ Example usage:
 </box>
 
 ### Exit the program
-- What it does: Exits the program. 
+- What it does: Exits the program.
 - Command format: `exit`.
 
 --------------------------------------------------------------------------

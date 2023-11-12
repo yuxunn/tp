@@ -11,7 +11,7 @@ D.A.V.E. is a desktop information storing application used for assisting student
 Given below are my contributions to the project.
 
 - **New Feature**: Added the ability to view list of leads / clients command.
-    - **What it does:** Allows the user to view a filtered list of leads and clients. 
+    - **What it does:** Allows the user to view a filtered list of leads and clients.
     - **Justification:** This feature improves the product significantly because a user would be able to view leads and clients seperately easily.
     - **Difficulty:** This feature was not really hard, but it too a lot of time as it was the first feature I implemented, and code tracing took sometime to fully understand how the base app implement the list of persons and how filtering worked.
 <p></p>
