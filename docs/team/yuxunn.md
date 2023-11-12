@@ -1,19 +1,44 @@
-### Yu Xun's Project Portfolio Page
+---
+layout: default.md
+title: "Yu Xun's Project Portfolio Page"
+---
+
 ### Project: D.A.V.E.
-D.A.V.E. is a leads and clients management tool for student financial advisors specifically in NUS, but can be used for all student financial advisors.
+
+D.A.V.E. is a leads and clients management tool for student financial advisors.
 
 Given below are my contributions to the project.
-* New feature
-* New feature
 
-**Code Contributed:** [yuxun's reposense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=yuxunn&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=yuxunn&tabRepo=AY2324S1-CS2103T-F08-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+- **New Feature**: Added the ability to view specific lead / client command.
+    - **What it does:** Allows the user to view a specified lead or client.
+    - **Justification:** This feature improves the product significantly because a user would be able to view a lead's or client's additional details that are not displayed in the main list.
 
-**Project management:**
+<p></p>
 
-**Enhancements to existing features:**
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=yuxunn&tabRepo=AY2324S1-CS2103T-F08-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-**Documentation**
+<p></p>
 
-**Community**
+- **Project management**:
+    - Managed release of ``v1.3`` on GitHub.
 
-**Tools**
+<p></p>
+
+- **Enhancement to existing features**:
+    - Updated the GUI color scheme and layout: [\#113](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/113)
+
+<p></p>
+
+- **Documentation**:
+    - User Guide:
+        - Added documentation for the feature `view`: [\#100](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/100)
+        - Added documentation for the features `find` and `clear`: [\#195](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/195)
+    - Developer Guide:
+        - Added implementation details of the `view` feature : [\#100](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/100)
+        - Updated the ``manual testing`` section.
+
+<p></p>
+
+- **Community**:
+    - PRs reviewed: [#194](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/194), [#178](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/178), [#125](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/125), [#103](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/103), [#101](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/101), [#98](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/98), [#81](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/81), [#73](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/73), [#65](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/65)
+
