@@ -547,7 +547,7 @@ Example: deletemeeting 1
 - Example usage: `converttoclient 1`.
 - Acceptable values for `INDEX` parameter:
   - Any integer from `1` to the last index of the filtered list shown in the address book, person must be a lead.
-- Example usage
+- Example usage:
 
 <div align="center">
     <img src="./images/beforeconverttoclient.png" width = "500"/>
@@ -580,7 +580,7 @@ from current date to ensure a follow-up by the user.
 - Example usage: `converttolead 1`.
 - Acceptable values for `INDEX` parameter:
   - Any integer from `1` to the last index of the filtered list shown in the address book, person must be a client.
-- Example usage
+- Example usage:
 
 <div align="center">
     <img src="./images/beforeconverttolead.png" width = "500"/>
@@ -632,6 +632,7 @@ The person index provided is invalid
 - Acceptable values for parameter: 
   - `NAME`: A keyword used to match against the names of all persons in the list.
 - Precise expected output when the command succeeds:
+
 ```
 <NUMBER> persons listed!
 ```
