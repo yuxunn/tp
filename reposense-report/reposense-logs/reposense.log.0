@@ -1,0 +1,32 @@
+Nov 09, 2023 2:04:02 PM reposense.system.LogsManager addFileHandler
+INFO: Log temp folder has been successfully created
+Nov 09, 2023 2:04:02 PM reposense.report.RepoCloner spawnCloneProcess
+INFO: Cloning in parallel from https://github.com/AY2324S1-CS2103T-F08-2/tp...
+Nov 09, 2023 2:04:02 PM reposense.report.RepoCloner waitForCloneProcess
+INFO: Waiting for cloning of https://github.com/AY2324S1-CS2103T-F08-2/tp to complete...
+Nov 09, 2023 2:04:06 PM reposense.report.RepoCloner waitForCloneProcess
+INFO: Cloning of https://github.com/AY2324S1-CS2103T-F08-2/tp completed!
+Nov 09, 2023 2:04:06 PM reposense.report.ReportGenerator analyzeRepos
+INFO: [1/1] Analyzing https://github.com/AY2324S1-CS2103T-F08-2/tp (master)...
+Nov 09, 2023 2:04:06 PM reposense.report.ReportGenerator updateRepoConfig
+INFO: https://github.com/AY2324S1-CS2103T-F08-2/tp (master) does not contain a standalone config file.
+Nov 09, 2023 2:04:06 PM reposense.report.ReportGenerator updateAuthorList
+INFO: https://github.com/AY2324S1-CS2103T-F08-2/tp (master) has no authors specified, using all authors by default.
+Nov 09, 2023 2:04:06 PM reposense.authorship.FileInfoExtractor extractTextFileInfos
+INFO: Extracting relevant file info from https://github.com/AY2324S1-CS2103T-F08-2/tp (master)...
+Nov 09, 2023 2:04:08 PM reposense.commits.CommitInfoExtractor extractCommitInfos
+INFO: Extracting commits info for https://github.com/AY2324S1-CS2103T-F08-2/tp (master)...
+Nov 09, 2023 2:04:08 PM reposense.commits.CommitInfoAnalyzer analyzeCommits
+INFO: Analyzing commits info for https://github.com/AY2324S1-CS2103T-F08-2/tp (master)...
+Nov 09, 2023 2:04:08 PM reposense.report.ReportGenerator analyzeRepo
+INFO: Analysis of https://github.com/AY2324S1-CS2103T-F08-2/tp (master) completed!
+Nov 09, 2023 2:04:08 PM reposense.report.ReportGenerator generateReposReport
+INFO: The report is generated at /home/licong/NUS/2103/tp/reposense-report
+Nov 09, 2023 2:04:08 PM reposense.RepoSense main
+INFO: Elapsed processing time: 6.84 second(s)
+Nov 09, 2023 2:04:08 PM reposense.system.ReportServer startServer
+INFO: Starting a server at port 9000...
+Nov 09, 2023 2:04:08 PM reposense.system.ReportServer launchBrowser
+INFO: Loading http://localhost:9000/ on the default browser...
+Nov 09, 2023 2:04:08 PM reposense.system.ReportServer startServer
+INFO: Press Ctrl + C or equivalent to stop the server

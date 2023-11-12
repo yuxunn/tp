@@ -1,0 +1,76 @@
+2023-11-09T12:11:19.016Z - error: No config file found in parent directories of /home/licong/NUS/2103/tp
+2023-11-09T12:11:19.019Z - error: uncaughtException: The "path" argument must be of type string. Received undefined date=Thu Nov 09 2023 20:11:19 GMT+0800 (Singapore Standard Time), pid=21521, uid=1000, gid=1000, cwd=/home/licong/NUS/2103/tp, execPath=/usr/local/bin/node, version=v20.2.0, argv=[/usr/local/bin/node, /usr/local/bin/markbind, serve], rss=101244928, heapTotal=63102976, heapUsed=41929496, external=3892742, arrayBuffers=1733123, loadavg=[1.13, 0.63, 0.41], uptime=28300.36
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:399:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.join (node:path:1175:7)
+    at serve (/usr/local/lib/node_modules/markbind-cli/src/cmd/serve.js:39:27)
+    at Command.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:61:5)
+    at Command.listener [as _actionHandler] (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:488:17)
+    at /usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:65
+    at Command._chainOrCall (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1144:12)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:27)
+    at Command._dispatchSubcommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1050:25)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1193:19)
+    at Command.parse (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:897:10)
+    at Object.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:86:9)
+    at Module._compile (node:internal/modules/cjs/loader:1255:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1309:10)
+    at Module.load (node:internal/modules/cjs/loader:1113:32)
+2023-11-09T12:11:47.436Z - error: Config file not found at user specified root /home/licong/NUS/2103/tp/docs/team/liconghuang.md
+2023-11-09T12:11:47.438Z - error: uncaughtException: The "path" argument must be of type string. Received undefined date=Thu Nov 09 2023 20:11:47 GMT+0800 (Singapore Standard Time), pid=21553, uid=1000, gid=1000, cwd=/home/licong/NUS/2103/tp, execPath=/usr/local/bin/node, version=v20.2.0, argv=[/usr/local/bin/node, /usr/local/bin/markbind, serve, ./docs/team/liconghuang.md], rss=101093376, heapTotal=63102976, heapUsed=41884560, external=3892742, arrayBuffers=1733123, loadavg=[0.99, 0.64, 0.42], uptime=28328.78
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:399:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.join (node:path:1175:7)
+    at serve (/usr/local/lib/node_modules/markbind-cli/src/cmd/serve.js:39:27)
+    at Command.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:61:5)
+    at Command.listener [as _actionHandler] (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:488:17)
+    at /usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:65
+    at Command._chainOrCall (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1144:12)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:27)
+    at Command._dispatchSubcommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1050:25)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1193:19)
+    at Command.parse (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:897:10)
+    at Object.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:86:9)
+    at Module._compile (node:internal/modules/cjs/loader:1255:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1309:10)
+    at Module.load (node:internal/modules/cjs/loader:1113:32)
+2023-11-09T12:12:05.132Z - error: Config file not found at user specified root /home/licong/NUS/2103/tp/docs/team/liconghuang.md
+2023-11-09T12:12:05.134Z - error: uncaughtException: The "path" argument must be of type string. Received undefined date=Thu Nov 09 2023 20:12:05 GMT+0800 (Singapore Standard Time), pid=21575, uid=1000, gid=1000, cwd=/home/licong/NUS/2103/tp, execPath=/usr/local/bin/node, version=v20.2.0, argv=[/usr/local/bin/node, /usr/local/bin/markbind, serve, ./docs/team/liconghuang.md], rss=102027264, heapTotal=63102976, heapUsed=41583352, external=3868478, arrayBuffers=1708859, loadavg=[0.77, 0.61, 0.41], uptime=28346.48
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:399:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.join (node:path:1175:7)
+    at serve (/usr/local/lib/node_modules/markbind-cli/src/cmd/serve.js:39:27)
+    at Command.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:61:5)
+    at Command.listener [as _actionHandler] (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:488:17)
+    at /usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:65
+    at Command._chainOrCall (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1144:12)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:27)
+    at Command._dispatchSubcommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1050:25)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1193:19)
+    at Command.parse (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:897:10)
+    at Object.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:86:9)
+    at Module._compile (node:internal/modules/cjs/loader:1255:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1309:10)
+    at Module.load (node:internal/modules/cjs/loader:1113:32)
+2023-11-09T12:12:33.210Z - error: No config file found in parent directories of /home/licong/NUS/2103/tp
+2023-11-09T12:12:33.213Z - error: uncaughtException: The "path" argument must be of type string. Received undefined date=Thu Nov 09 2023 20:12:33 GMT+0800 (Singapore Standard Time), pid=21598, uid=1000, gid=1000, cwd=/home/licong/NUS/2103/tp, execPath=/usr/local/bin/node, version=v20.2.0, argv=[/usr/local/bin/node, /usr/local/bin/markbind, serve, -o, ./docs/team/liconghuang.md], rss=101089280, heapTotal=63102976, heapUsed=41982520, external=3900934, arrayBuffers=1741315, loadavg=[0.66, 0.6, 0.42], uptime=28374.56
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:399:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.join (node:path:1175:7)
+    at serve (/usr/local/lib/node_modules/markbind-cli/src/cmd/serve.js:39:27)
+    at Command.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:61:5)
+    at Command.listener [as _actionHandler] (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:488:17)
+    at /usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:65
+    at Command._chainOrCall (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1144:12)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1227:27)
+    at Command._dispatchSubcommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1050:25)
+    at Command._parseCommand (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:1193:19)
+    at Command.parse (/usr/local/lib/node_modules/markbind-cli/node_modules/commander/lib/command.js:897:10)
+    at Object.<anonymous> (/usr/local/lib/node_modules/markbind-cli/index.js:86:9)
+    at Module._compile (node:internal/modules/cjs/loader:1255:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1309:10)
+    at Module.load (node:internal/modules/cjs/loader:1113:32)
