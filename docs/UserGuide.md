@@ -382,7 +382,7 @@ The person index provided is invalid
 
 - Acceptable values for each compulsory parameter:
   - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the address book.
-- Acceptable values for each optional parameter (at least one of the optional parameters must be provided)
+- Acceptable values for each optional parameter (at least one of the optional parameters must be provided):
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
   - `PHONE`: any valid string of integers, between 3 digits and 8 digits long.
