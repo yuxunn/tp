@@ -22,7 +22,7 @@ Given below are my contributions to the project.
         - Added Command Summary and FAQ section
         - Added more details for ``edit``, ``addlead`` and ``addclient``
     - Developer Guide:
-        - Updated ``manual testing`` section. 
+        - Updated ``manual testing`` section.
 - **Community**:
     - PRs reviewed: [#66](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/66), [#77](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/77), [#79](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/79), [#93](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/93), [#97](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/97), [#102](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/102), [#104](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/104), [#122](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/122), [#181](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/181)
 - **Tools**:
