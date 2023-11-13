@@ -5,27 +5,44 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:ListClientCommand" as ListClientCommand LOGIC_COLOR
+participant ":AddClientCommandParser" as AddClientCommandParser LOGIC_COLOR
+participant "a:AddClientCommand" as AddClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":AddressBook" as AddressBook MODEL_COLOR
 end box
-[-> LogicManager : execute(listclient n/...)
+[-> LogicManager : execute("addclient n/...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(listclient n/...)
+LogicManager -> AddressBookParser : parseCommand("addclient n/...")
 activate AddressBookParser
 
+create AddClientCommandParser
+AddressBookParser -> AddClientCommandParser
+activate AddClientCommandParser
+
+AddClientCommandParser --> AddressBookParser
+deactivate AddClientCommandParser
+
+AddressBookParser -> AddClientCommandParser : parse("n/...")
+activate AddClientCommandParser
+
 create AddClientCommand
-AddressBookParser -> AddClientCommand
+AddClientCommandParser -> AddClientCommand
 activate AddClientCommand
 
-AddClientCommand --> AddressBookParser
+AddClientCommand --> AddClientCommandParser : a
 deactivate AddClientCommand
 
-AddressBookParser --> LogicManager : return something
+AddClientCommandParser --> AddressBookParser : a
+deactivate AddClientCommandParser
+AddClientCommandParser -[hidden]-> AddressBookParser : a
+destroy AddClientCommandParser
+
+AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
 LogicManager -> AddClientCommand : execute()
@@ -37,13 +54,21 @@ activate Model
 Model -> AddressBook : addClient()
 activate AddressBook
 
+AddressBook --> Model
+deactivate AddressBook
+
 Model --> AddClientCommand
 deactivate Model
 
+create CommandResult
+AddClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddClientCommand
+deactivate CommandResult
+
 AddClientCommand --> LogicManager : result
 deactivate AddClientCommand
-AddClientCommand -[hidden]-> LogicManager : result
-destroy AddClientCommand
 
 [<--LogicManager
 deactivate LogicManager

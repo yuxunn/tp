@@ -218,7 +218,7 @@ Step 2b - `addlead`. The user executes `addlead n/John Doe...` command add a per
 
 The following sequence diagram shows how the `addclient` operation works (Note that `addlead` works in the same way but calls `Model#addLead()` instead):
 <div align="center">
-    <img src="diagrams/AddClientSequenceDiagram.png" width="500"/>
+    <img src="diagrams/AddClientSequenceDiagram.png" width="1086"/>
 </div>
 
 The following activity diagram shows the workflow upon execution of the `addclient` command (`addlead` works the same way):
