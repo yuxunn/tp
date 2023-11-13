@@ -11,9 +11,19 @@ start
 
 if () then ([valid addmeeting command string])
     :Finds Person in AddressBook to update;
-    :Creates updatedPerson with new meeting added;
-    :Set Person to updatedPerson in AddressBook;
-    stop
+    if () then ([Person found])
+        if () then ([Person has no meeting])
+            :Creates new Person with meeting added;
+            :Set Person to new Person in AddressBook;
+            stop
+        else ([Person has meeting])
+            :Display error message;
+            stop
+        endif
+    else ([Person not found])
+        :Display error message;
+        stop
+    endif
 else ([else])
     :Display error message;
     stop

@@ -5,13 +5,12 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:AddMeetingTime" as AddMeetingTime LOGIC_COLOR
+participant "u:AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
-participant "updatedPerson:Person" as Person MODEL_COLOR
+participant "personWithMeetingAdded:Person" as Person MODEL_COLOR
 end box
 
 [-> LogicManager : execute(addmeeting ...)
@@ -20,44 +19,37 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand(addmeeting ...)
 activate AddressBookParser
 
-create AddMeetingTime
-AddressBookParser -> AddMeetingTime
-activate AddMeetingTime
+create AddMeetingCommand
+AddressBookParser -> AddMeetingCommand
+activate AddMeetingCommand
 
-AddMeetingTime --> AddressBookParser
-deactivate AddMeetingTime
+AddMeetingCommand --> AddressBookParser
+deactivate AddMeetingCommand
 
 AddressBookParser --> LogicManager : u
 deactivate AddressBookParser
 
-LogicManager -> AddMeetingTime : execute()
-activate AddMeetingTime
-
-AddMeetingTime -> Model : addMeeting()
-activate Model
-
-Model -> AddressBook : addMeeting()
-activate AddressBook
+LogicManager -> AddMeetingCommand : execute()
+activate AddMeetingCommand
 
 create Person
-AddressBook -> Person
+AddMeetingCommand -> Person
 activate Person
-
-Person --> AddressBook
+Person --> AddMeetingCommand
 deactivate Person
 
-AddressBook --> AddressBook : setPerson(personToUpdate, updatedPerson)
-AddressBook --> Model
-deactivate AddressBook
+AddMeetingCommand -> Model : setPerson(personToAddMeeting, personWithMeetingAdded)
+activate Model
 
-Model --> AddMeetingTime
+
+Model --> AddMeetingCommand
 deactivate Model
 
 
-AddMeetingTime --> LogicManager : result
-deactivate AddMeetingTime
-AddMeetingTime -[hidden]-> LogicManager : result
-destroy AddMeetingTime
+AddMeetingCommand --> LogicManager : result
+deactivate AddMeetingCommand
+AddMeetingCommand -[hidden]-> LogicManager : result
+destroy AddMeetingCommand
 
 [<--LogicManager
 deactivate LogicManager

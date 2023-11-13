@@ -35,8 +35,9 @@ Given below are my contributions to the project.
         * Updated structure of User Guide to follow the final User Guide.
         * Added documentation for the features `addclient`, `deletemeeting`, `edit`, `list` and `help`.
     * Developer Guide:
-        * Added `addclient`, `addlead` and `addmeeting` feature to Developer Guide.
+        * Added Add Client/Add Lead and Add Meeting Time features to Developer Guide.
         * Added Activity Diagrams and Sequence Diagrams for the above features.
+        * Updated User Stories.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#71](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/71), [#82](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/82), [#111](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/111), [#121](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/121), [#182](https://github.com/AY2324S1-CS2103T-F08-2/tp/pull/182).

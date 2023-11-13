@@ -11,9 +11,14 @@ start
 
 if () then ([valid addclient command string])
     :Create new client;
-    :Add client to persons in AddressBook;
-    stop
-else ([else])
-    :Display error message;
-    stop
+    if () then ([client already exists])
+        :Display error message;
+        stop
+    else ([else])
+        :Add client to persons in AddressBook;
+        stop
+    endif
+    else ([invalid addclient command string])
+        :Display error message;
+        stop
 @enduml
