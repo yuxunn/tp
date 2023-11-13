@@ -492,110 +492,169 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `D.A.V.E.` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+
+2.  D.A.V.E. shows a list of persons.
+
+3.  User requests to delete a specific person in the list.
+
+4.  D.A.V.E. deletes the person.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+    2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+    3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+        3a1. D.A.V.E. shows an error message.
 
-      Use case resumes at step 2.
+        Use case resumes at step 3.
 
-**Use case: Edit event information**
-
-**MSS**
-
-1. User requests to list persons
-2. D.A.V.E. shows a list of persons
-3. User requests to see a specific person
-4. D.A.V.E. shows information of the person
-5. User requests to edit the person's event information
-6. D.A.V.E. updates the person's information
-7. D.A.V.E. displays person's information
-
-Use case ends
-
-**Extensions**
-
-* 2a. The person's information is empty
-
-  Add person event information
-* 3a. The given index is invalid
-
-    * 3a1 D.A.V.E. shows an error message
-      Use case resumes at step 2
-      ** Use case: Add a New Person **
+**Use case: Edit Key Milestone of Lead**
 
 **MSS**
 
-1. User requests to add a new person
-2. AddressBook prompts the user to input the person's information
-3. User enters the person's details
-4. AddressBook saves the new person's information
+1. User requests to list leads.
 
-Use case ends
+2. D.A.V.E. shows a list of leads.
+
+3. User requests to see a specific lead.
+
+4. D.A.V.E. shows information of the lead.
+
+5. User types in index of lead and the new key milestone date.
+
+6. D.A.V.E. updates the lead's information.
+
+7. D.A.V.E. displays lead's information.
+
+Use case ends.
 
 **Extensions**
 
-    2a. The person exists in the list
+    2a. The list of leads is empty.
+    
+    Use case ends.
 
-    Use case ends
+    5a. The given index is a client.
+
+        5a1. D.A.V.E. shows an error message indicating that clients do not have key milestone field.
+        
+        5a2. User keys in new index and key milestone.
+
+        Step 5a1-5a2 is repeated until a valid index and key milestone is given.
+
+        Use case resumes at step 6.
+
+    5b. The given key milestone date is identical to the current key milestone date of the lead.
+        
+        5b1. D.A.V.E. displays a message that the lead's information has been edited, maintaining the same date for the key milestone.
+
+        Use case resumes at step 7.
+
+    Use case ends.
+
+**Use case: Add new client**
+
+**MSS**
+
+1. User requests to add a new client.
+
+2. D.A.V.E. prompts the user to input the client's information.
+
+3. User enters the client's details.
+
+4. D.A.V.E. saves the new client's information.
+
+5. User views the added client.
+
+6. D.A.V.E. displays the selected client's details.
+
+Use case ends.
+
+**Extensions**
+
+    3a. The client already exists in the list.
+
+    Use case ends.
+
+    3a. The user did not key in all the required client information fields.
+    
+        3a1. D.A.V.E. displays an error message indicating an invalid command format.
+
+        3a2. User keys in new client information.
+
+        Step 3a1-3a2 is repeated until all the client information fields are keyed in correctly.
+
+        Use case resumes at step 4.
 
 **Use case: Schedule a Meeting**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook displays a list of persons
-3. User selects a specific person
-4. AddressBook shows the person's details
-5. User requests to schedule a meeting with the selected person
-6. AddressBook prompts the user to enter meeting details (date, time, location, etc.)
-7. User provides meeting details
-8. AddressBook schedules the meeting and updates the person's information
+1. User requests to list persons.
 
-Use case ends
+2. D.A.V.E. displays a list of persons.
+
+3. User selects a specific person.
+
+4. User requests to schedule a meeting with the selected person.
+
+5. D.A.V.E. prompts the user to enter meeting details (date and time).
+
+6. User provides meeting details.
+
+7. D.A.V.E. schedules the meeting and updates the person's information.
+
+Use case ends.
 
 **Extensions**
 
     2a. The list of persons is empty.
 
     Use case ends.
+    
+    4a. The given index is invalid.
+      
+      4a1. D.A.V.E. shows an error message.
+     
+      4a2. D.A.V.E. requests for valid index.
 
-    3a. The user enters invalid meeting details.
+      4a3. User enters new data for the meeting details.
 
-        5a1. AddressBook shows an error message.
+      Steps 4a1-4a3 are repeated until the index entered is correct.
 
-        Use case resumes at step 6.
+      Use case resumes at step 5.
 
-**Use case: View Upcoming Appointments**
+    6a. The user enters invalid meeting details.
 
-**MSS**
+        6a1. D.A.V.E. shows an error message.
+        
+        6a2. D.A.V.E. requests for valid meeting details.
+        
+        6a3. User enters new data for the meeting details.
+        
+        Steps 6a1-6a3 are repeated until the meeting time data entered is correct.
 
-1. User requests to view their upcoming appointments.
-2. AddressBook displays a list of scheduled appointments, including date, time, and person involved.
+        Use case resumes at step 7.
 
-Use case ends.
+    6b. The person the user selected already has a meeting scheduled.
 
-**Extensions**
+        6b1. D.A.V.E. shows an error message requesting user to edit current meeting time instead of adding new meeting time.
+        
+        6b2. User edits the current meeting time instead of adding a new meeting time.
 
-    2a. There are no upcoming appointments.
+        Use case resumes at step 7.
 
     Use case ends.
 
@@ -604,20 +663,40 @@ Use case ends.
 **MSS**
 
 1. User requests to search for a specific person.
-2. AddressBook prompts the user to enter search criteria (e.g., name, email, phone number).
-3. User provides search criteria.
-4. AddressBook performs a search and displays a list of matching persons.
-5. User selects a person from the search results.
-6. AddressBook shows the selected person's details.
+
+2. D.A.V.E. prompts the user to enter person's name.
+
+3. User provides person's full name.
+
+4. D.A.V.E. performs a search and displays a list of containing only the specified person.
+
+5. User views the person from the search results.
+
+6. D.A.V.E. shows the selected person's details.
 
 Use case ends.
 
 **Extensions**
+    
+    2a. User only provides the surname of the person.
+        
+        2a1. D.A.V.E. performs a search and displays a list with all the people with the same surname.
+        
+        2a2. User narrows down the search by typing the full name.
 
+        Use case resumes at step 4.
 
-    2a. No persons match the search criteria.
+    2b. User provides more than one name.
+    
+        2b1. D.A.V.E. performs a search and displays a list with all the people whose name contains the input names.
+        
+        2b2. User narrows down the search by typing the full name of the specific person.
 
-        2a1. AddressBook displays a message indicating no matches found.
+        Use case resumes at step 4.
+
+    4a. No persons match the search criteria.
+
+        4a1. D.A.V.E. displays a message indicating no matches found.
 
         Use case ends.
 
@@ -627,36 +706,113 @@ Use case ends.
 
 **MSS**
 1. User requests to list clients.
-2. AddressBook filters the list of Persons to a list of clients.
-3. AddressBook displays the list of clients to the user.
+
+2. D.A.V.E. filters the list of Persons to a list of clients.
+
+3. D.A.V.E. displays the list of clients to the user.
 
 Use case ends.
 
 **Extensions**
 
     3a. The list of clients is empty.
-        3a1. AddressBooks display a message indicating all clients are displayed.
+
+        3a1. D.A.V.E. display a message indicating all clients are displayed.
+
         3a2. No information is displayed.
+
         Use case ends.
+
+    Use case ends.
+
+**Use case: Convert a Lead to Client**
+
+**MSS**
+1. User requests to convert a lead to a client.
+
+2. D.A.V.E. prompts user to type in the lead's index.
+
+3. User types in lead's index.
+
+4. D.A.V.E. successfully converts the lead to a client.
+
+Use case ends.
+
+**Extensions**
+
+    3a. User gives an index of a client.
+
+        3a1. D.A.V.E. displays an error message indicating that the person at the given index is a client.
+
+        3a2. User types in another index.
+
+        Step 3a1-3a2 is repeated until user enters a valid index.
+        
+        Use case resumes at step 4.
+
+    3b. The given index is invalid.
+        
+        3b1. D.A.V.E. displays an error message indicating invalid index provided.
+
+        3b2. User types in new index.
+
+        Step 3b1-3b2 is repeated until user enters a valid index.
+        
+        Use case resumes at step 4.
+
     Use case ends.
 
 **Use case: List Leads**
 
 **MSS**
 1. User requests to list leads.
-2. AddressBook filters the list of Persons to a list of leads.
-3. AddressBook displays the list of leads to the user.
+
+2. D.A.V.E. filters the list of Persons to a list of leads.
+
+3. D.A.V.E. displays the list of leads to the user.
 
 Use case ends.
 
 **Extensions**
 
     3a. The list of leads is empty.
-        3a1. AddressBooks display a message indicating all clients are displayed.
+       
+        3a1. D.A.V.E. displays a message indicating all clients are displayed.
+        
         Use case ends.
+
     Use case ends.
 
+**Use case: Sort Meeting Time**
+
+**MSS**
+1. User requests to sort meeting time.
+
+2. D.A.V.E. sorts the list of clients and leads based off their meeting times in chronological order.
+
+3. D.A.V.E. displays the sorted list to the user.
+
+Use case ends.
+
 **Extensions**
+
+    3a. Some of the clients and leads have the same meeting date and time.
+        
+        3a1. D.A.V.E. first sorts the list based off their meeting date and time, then according to who was added the earliest.
+        
+        3a2. D.A.V.E. displays the sorted list to the user.
+        
+        Use case ends.
+
+    3b. The list of persons is empty.
+        
+        3b1. D.A.V.E. displays a message indicating all meeting times are sorted.
+        
+        3b2. No information is displayed.
+        
+        Use case ends.
+    
+    Use case ends.
 
 *{More to be added}*
 
