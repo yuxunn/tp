@@ -308,6 +308,62 @@ The following activity diagram shows what happens when a user executes a new com
 
 <img src="diagrams/AddClientActivityDiagram.png" width="500" />
 
+### List clients and leads feature
+
+#### Implementation
+
+The user can view a filtered list of clients or leads when executing `listclient` or `listlead` command respectively. These commands are implemented as follows:
+
+The `execute()` command in `ListClientCommand` or `ListLeadCommand` is executed.
+
+The `execute()` command in `ListClientCommand` or `ListLeadCommand` iterates over the `persons` list in the `ModelManager` object.
+
+For each person in the persons list, the `isClient()` function is used to check if the person is a `Client` for `ListClientCommand` and `isLead()` function is used to check if the person is a `Lead` for `ListLeadCommand`.
+
+If the person is a `Client` or `Lead` object, depending on the command `ListClientCommand` or `ListLeadCommand`, would filter the list, and the GUI would display the filtered list.
+
+Given below is an example usage scenario and how `listclient` and `listlead` behaves at each step.
+
+Step 1. The user opens the application to see a list of leads and clients.
+
+Step 2. The user executes `listclient` command to display a filtered list of persons in the address book. The `listclient` command calls `Model#updateFilteredPersonList()`, causing the modified state of the filtered list to be displayed bsad on the `predicate` passed into the `Model#updateFilteredPersonList()`.
+
+The following sequence diagram shows how the `listclient` operation works (Note that `listlead` works in the same way:
+
+<div align="center">
+    <img src="diagrams/ListClientCommandSequence.png" width="800" />
+    <p>After addlead command</p>
+</div>
+
+
+
+###  Convert lead to client and client to lead
+
+#### Implementation
+
+The user can convert client to leads  and vice versa, using  the command `converttolead` and `converttoclient` respectively.
+
+The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` is executed.
+
+The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` takes in an arguement of type `Index`, and is referred to the list of items
+
+If the person is a `Lead` when using `converttoclient`, the application would create a new `Client` object with the information from `Lead` class. Similarly, this also would occur for `converttolead`
+
+Given below is an example usage scenario and how `converttoclient` and `converttolead` behaves at each step
+
+<div align="center">
+    <img src="diagrams/ConvertLeadToClientSequence.png" height="300" width = "880"/>
+    <p>After converttoclient command</p>
+</div>
+
+The following activity diagram shows what happens when a user executes `converttoclient`:
+<div align="center">
+    <img src="diagrams/ConvertClientToLeadActivity.png" height="300"/>
+    <p>After converttoclient command</p>
+</div>
+
+
+
 ### \[Proposed\] Add Meeting Time feature
 
 #### Proposed Implementation
@@ -610,9 +666,9 @@ Use case ends.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should be able to scale gracefully to accommodate a growing number of users, clients, and data without significant performance degradation.
-5. It should support easy integration with additional modules or features as the user base expands.
 8. The user interface should be intuitive and user-friendly, ensuring that users can quickly learn and navigate the application.
-   *{More to be added}*
+9. The application should be able to store and retrieve data accurately without data loss.
+10. The app should respond to the user actions within 2 seconds.
 
 ### Glossary
 

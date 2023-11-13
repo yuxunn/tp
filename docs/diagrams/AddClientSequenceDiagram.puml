@@ -5,17 +5,17 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:AddClientCommand" as AddClientCommand LOGIC_COLOR
+participant "u:ListClientCommand" as ListClientCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":AddressBook" as AddressBook MODEL_COLOR
 end box
-[-> LogicManager : execute(addclient n/...)
+[-> LogicManager : execute(listclient n/...)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(addclient n/...)
+LogicManager -> AddressBookParser : parseCommand(listclient n/...)
 activate AddressBookParser
 
 create AddClientCommand
@@ -25,7 +25,7 @@ activate AddClientCommand
 AddClientCommand --> AddressBookParser
 deactivate AddClientCommand
 
-AddressBookParser --> LogicManager : u
+AddressBookParser --> LogicManager : return something
 deactivate AddressBookParser
 
 LogicManager -> AddClientCommand : execute()
