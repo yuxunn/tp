@@ -168,145 +168,67 @@ Step 3: The user executes a `view 1` command to view the 1st person in the addre
 The following sequence diagram shows how the View Command works:
 <img src="diagrams/ViewSequenceDiagram.png" alt= "ViewSequenceDiagram"/>
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<img src="diagrams/UndoRedoState0.png" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<img src="diagrams/UndoRedoState1.png" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<img src="diagrams/UndoRedoState2.png" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<img src="diagrams/UndoRedoState3.png" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how the undo operation works:
-
-<img src="diagrams/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<img src="diagrams/UndoRedoState4.png" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<img src="diagrams/UndoRedoState5.png" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="diagrams/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### Addclient/Addlead feature
+### Add client/Add lead feature
 
 #### Implementation
 
 The `Client` and `Lead` model extends from `Person`.
+The `Client` and `Lead` model has a name, address, phone number, email field which is compulsory, as well as a meeting time and tags field which are optional.
+The `Lead` model has an additional compulsory field called Key Milestone.
 
-The `addclient` and `addlead` commands are implemented as follows:
-
-The `execute()` command in `AddClientCommand` or `AddLeadCommand` is executed.
-
-The `execute()` command in `AddClientCommand` or `AddLeadCommand` calls the `addClient()` or `addLead()` method in `ModelManager`.
-
-The `addClient()` or `addLead()` method in `ModelManager` calls the `addClient()` or `addLead()` method in `AddressBook`.
-
-The `addClient()` or `addLead()` method in `AddressBook` adds the `Client` or `Lead` object to the `UniquePersonList persons`.
-
-Given below is an example usage scenario and how addclient and addlead behaves at each step.
+Given below is an example usage scenario and how `addclient` and `addlead` behaves at each step.
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized.
 
 <div align="center">
-    <img src="images/cleanaddressbook.png" alt="before command" width="500" />
+    <img src="images/beforeaddclient.png" alt="before command" width="500" />
     <p>Before any commands</p>
 </div>
 
-Step 2 - addclient. The user executes `addclient n/John Doe...` command add a person named John Doe into the AddressBook. The `addclient` command calls `Model#addClient()`, causing the address book to be updated.
+Step 2a - `addclient`. The user executes `addclient n/John Doe...` command add a person named John Doe into the AddressBook. The `addclient` command calls `Model#addClient()`, causing the address book to be updated.
 
 <div align="center">
-    <img src="images/addclient.png" alt="after addclient command" width="500" />
+    <img src="images/afterusingaddclient.png" alt="after addclient command" width="500" />
     <p>After addclient command</p>
 </div>
 
-Step 2 - addlead. The user executes `addlead n/John Doe...` command add a person named John Doe into the AddressBook. The `addlead` command calls `Model#addLead()`, causing the address book to be updated.
+Step 2b - `addlead`. The user executes `addlead n/John Doe...` command add a person named John Doe into the AddressBook. The `addlead` command calls `Model#addLead()`, causing the address book to be updated.
 
 <div align="center">
-    <img src="images/addlead.png" alt="after addlead command" width="500" />
+    <img src="images/afterusingaddlead.png" alt="after addlead command" width="500" />
     <p>After addlead command</p>
 </div>
 
-The following sequence diagram shows how the addclient operation works (Note that addlead works in the same way but calls `Model#addLead()` instead):
+The following sequence diagram shows how the `addclient` operation works (Note that `addlead` works in the same way but calls `Model#addLead()` instead):
+<div align="center">
+    <img src="diagrams/AddClientSequenceDiagram.png" width="500"/>
+</div>
 
-<img src="diagrams/AddClientSequenceDiagram.png" width="500" />
+The following activity diagram shows the workflow upon execution of the `addclient` command (`addlead` works the same way):
+<div align="center">
+    <img src="diagrams/AddClientActivityDiagram.png" width="500"/>
+</div>
 
-The following activity diagram shows what happens when a user executes a new command:
+### Add Meeting Time feature
 
-<img src="diagrams/AddClientActivityDiagram.png" width="500" />
+#### Implementation
+
+The user can specify a meeting time when executing `addclient` or `addlead` command with the `m/` flag or enter the `addmeeting` command to add a meeting time to an existing client or lead.
+The `addmeeting` command takes in the index of the client or lead, and the meeting time in `dd/MM/yyyy HH:mm` format (e.g. `addmeeting 1 12/12/2023 12:00`).
+The `AddMeetingCommand` class facilitates this by copying the person (client/lead) based on the index given, and creates a new person with the meeting time added.
+The `AddMeetingCommand` class then calls `Model#setPerson()` to update the address book with the new person.
+
+The following sequence diagram shows how the `addmeeting ...` operation works:
+
+<div align="center">
+    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="700"/>
+</div>
+
+The following activity diagram shows the workflow of the execution of the `addmeeting ...` command:
+
+<div align="center">
+    <img src="diagrams/AddMeetingTimeActivityDiagram.png" width="700" />
+</div>
 
 ### List clients and leads feature
 
@@ -335,8 +257,6 @@ The following sequence diagram shows how the `listclient` operation works (Note 
     <p>After addlead command</p>
 </div>
 
-
-
 ###  Convert lead to client and client to lead
 
 #### Implementation
@@ -361,27 +281,6 @@ The following activity diagram shows what happens when a user executes `convertt
     <img src="diagrams/ConvertClientToLeadActivity.png" height="300"/>
     <p>After converttoclient command</p>
 </div>
-
-
-
-### \[Proposed\] Add Meeting Time feature
-
-#### Proposed Implementation
-
-
-The user can specify a meeting time when executing `addclient` or `addlead` command with the `--meeting-time` flag.
-
-Alternatively, the user can enter the `addmeeting` command to add a meeting time to an existing client or lead.
-
-The `addmeeting` command takes in the `index` of the client or lead, and the meeting time in `dd/MM/yyyy HH:mm` format, e.g. `24/10/2023 12:00`.
-
-The following sequence diagram shows how the addMeeting operation works:
-
-<img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="500" />
-
-The following activity diagram shows what happens when a user executes the addMeeting operation:
-
-<img src="diagrams/AddMeetingTimeActivityDiagram.png" width="500" />
 
 ### \[Proposed\] Sort Meeting Time feature
 
@@ -442,53 +341,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 -->
-## Leads
+### Leads
 
-| Priority | As a | I want to …​                      | So that I can…​                          |
-|----------|--------------------------------|----------------------------------|------------------------------------------|
-| `* * *`  |  student financial advisor                                | view all my potential leads      | recall all my leads                      |
-| `* * *`  |  student financial advisor                                | add a potential lead             | follow up with them                      |
-| `* * *`  |  student financial advisor                                | edit the details of my leads     | correct mistakes I have made when adding a lead |
-| `* *`  |  student financial advisor                                | mark leads as done               | keep track of who I have visited         |
-| `* *`  |  student financial advisor                                | unmark leads that are marked done | amend a mistake of marking leads that were mistakenly marked |
-| `* * *`  |  student financial advisor                                | add a meeting time with my lead  | keep track of when I need to visit my leads |
-| `* * *`  |  student financial advisor                                | sort meeting times by most recent | focus on potential leads that are more urgent |
-| `* * *`  |  student financial advisor                                | convert leads into clients       | keep track of who are my leads and clients |
+| Priority | As a                      | I want to …​                                             | So that I can…​                                                                |
+|----------|---------------------------|----------------------------------------------------------|--------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor | view all my leads                                        | recall and focus on all my leads                                               |
+| `* * *`  | student financial advisor | add a lead                                               | keep track of my leads and their information                                   |
+| `* * *`  | student financial advisor | edit the details of my leads                             | update changes in information of my lead                                       |
+| `* * *`  | student financial advisor | remove leads that I have unsuccessfully followed up with | prevent cluttering up my address book                                          |
+| `* * *`  | student financial advisor | convert leads into clients                               | update my lead as a client if I have successfully converted them into a client |
+| `* *`    | student financial advisor | add a meeting time with my lead                          | keep track of when I need to visit my leads                                    |
+| `* *`    | student financial advisor | delete a meeting time with my lead                       | update D.A.V.E. with accurate information of my upcoming meetings              |
 
-## Clients
+### Clients
 
-| Priority | As a student... | I want to …​                      | So that I can…​                          |
-|----------|--------------------------------|----------------------------------|------------------------------------------|
-| `* * *`  |  student financial advisor                                | add clients who have purchased a plan from me | keep track of my clients        |
-| `* * *`  |  student financial advisor                               | update client information        | accurately reflect the information of my clients if I had mistakenly added the wrong information prior |
-| `* * *`  |  student financial advisor                               | remove clients who did not continue their services with me | not clutter up my address book |
-| `* * *`  |  student financial advisor                               | find available meeting timings   | more easily schedule meetings             |
-| `* * *`  |  student financial advisor                               | check whose policies are expiring soon | plan a meeting with them            |
-| `* * *`  |  student financial advisor                               | edit a policy of my client       | accurately reflect their policies on the app if my client has changed his or her policy |
-| `* * *`  |   student financial advisor                              | remove a policy of my client     | accurately reflect their policies on the app if my client has unsubscribed from his or her policy |
-| `* * *`  |  student financial advisor                               | create and manage client profiles | keep track of their financial information, goals, and progress |
-| `* * *`  |  student financial advisor                               | schedule and manage appointments with my clients | ensure regular communication and updates |
-| `*`  |  student financial advisor                               | set and track financial goals for my clients | help them work toward their objectives |
-| `*`  |  student financial advisor                               | create and manage investment portfolios for my clients | make adjustments as needed |
-| `*`  |  student financial advisor                               | generate and share reports with my clients | keep them informed about their financial progress |
-| `*`  |  student financial advisor                               | securely message and communicate with my clients within the app | address their questions and concerns |
-| `* *`  |  student financial advisor                               | have access to analytics and tools that help me analyze my clients' financial data | provide them with the best advice |
-| `* *`  |  student financial advisor                               | generate tax reports and provide tax planning advice | help my clients minimize their tax liabilities |
-| `* * *`  |  student financial advisor                               | keep track of my clients’ birthdays | make the necessary arrangements like sending well wishes to them |
-| `* * *`  |  student financial advisor                               | send celebration message to all of my clients | not have to utilize another platform to do so |
-| `* *`  |  student financial advisor                               | search up a list of clients who purchased a specific policy | monitor the policies based on their specific type |
-| `*`  |  student financial advisor                               | inform my clients about new updates | help them stay updated |
-| `* * *`  |  student financial advisor                               | sort my clients based on the commissions they have made me | know which clients to prioritize |
+| Priority | As a student...           | I want to …​                                              | So that I can…​                                                                                                                          |
+|----------|---------------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor | view all my clients                                       | recall and focus on all my clients                                                                                                       |
+| `* * *`  | student financial advisor | add a client                                              | keep track of my clients and their information                                                                                           |
+| `* * *`  | student financial advisor | edit the details of my clients                            | update changes in information of my client                                                                                               |
+| `* * *`  | student financial advisor | remove clients who do not continue their services with me | prevent cluttering up my address book                                                                                                    |
+| `* *`    | student financial advisor | add a meeting time with my client                         | more easily schedule meetings with clients to update their policies and keep up with their life                                          |
+| `* *`    | student financial advisor | delete a meeting time with my client                      | update D.A.V.E. with accurate information of my upcoming meetings                                                                        |
+| `* *`    | student financial advisor | convert clients into leads                                | undo the conversion of a lead into client, or continue tracking this person as a lead after he/she has discontinued his/her plan with me |
 
-## General Information
+### General Information
 
-| Priority | As a student financial advisor, | I want to …​                      | So that I can…​                          |
-|----------|--------------------------------|----------------------------------|------------------------------------------|
-| `*`  |   student financial advisor                              | upload and store important documents securely | easily access them when needed    |
-| `*`  |   student financial advisor                              | modify my authentication details regularly | ensure my account is safe and secure |
-| `*`  |   student financial advisor                              | write notes on the platform      | keep track of any additional notes related to my work |
-| `* * *`  |   student financial advisor                              | keep track of my commissions     | to keep track of my financial performance        |
-| `* * *`  |   student financial advisor                              | keep track of upcoming events    | be on track with the different upcoming appointments |
+| Priority | As a student financial advisor, | I want to …​                                   | So that I can…​                                                                                        |
+|----------|---------------------------------|------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor       | view all my clients and leads                  | recall and focus on all my clients and leads                                                           |
+| `* * *`  | student financial advisor       | sort meeting times with clients and leads      | see my upcoming meetings in chronological order to better plan my time                                 |
+| `* *`    | student financial advisor       | save details automatically while using the app | focus on updating D.A.V.E. with information of my clients and leads without worrying about saving data |
+
+
+### Planned Enhancement
+| Priority | As a student financial advisor, | I want to …​                                   | So that I can…​                                                                        |
+|----------|---------------------------------|------------------------------------------------|----------------------------------------------------------------------------------------|
+| `* *`    | student financial advisor       | add a policy for my clients                    | keep track of their policies and access them readily                                   |
+| `* *`    | student financial advisor       | edit the details of my clients' policies       | update changes in information of my clients' policies                                  |
+| `* *`    | student financial advisor       | delete a policy for my clients                 | remove policies that my clients no longer have to keep my clients' policies up-to-date |
+| `*`      | student financial advisor       | see the expiry of my clients' policies         | keep track of my clients' policies and follow up with them when necessary              |
 
 ### Use cases
 
@@ -512,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     2a. The list is empty.
 
-    Use case ends.
+        Use case ends.
 
     3a. The given index is invalid.
 
@@ -544,7 +436,7 @@ Use case ends.
 
     2a. The list of leads is empty.
     
-    Use case ends.
+        Use case ends.
 
     5a. The given index is a client.
 
@@ -561,8 +453,6 @@ Use case ends.
         5b1. D.A.V.E. displays a message that the lead's information has been edited, maintaining the same date for the key milestone.
 
         Use case resumes at step 7.
-
-    Use case ends.
 
 **Use case: Add new client**
 
@@ -586,15 +476,15 @@ Use case ends.
 
     3a. The client already exists in the list.
 
-    Use case ends.
+        Use case ends.
 
-    3a. The user did not key in all the required client information fields.
+    3b. The user did not key in all the required client information fields.
     
-        3a1. D.A.V.E. displays an error message indicating an invalid command format.
+        3b1. D.A.V.E. displays an error message indicating an invalid command format.
 
-        3a2. User keys in new client information.
+        3b2. User keys in new client information.
 
-        Step 3a1-3a2 is repeated until all the client information fields are keyed in correctly.
+        Step 3b1-3b2 is repeated until all the client information fields are keyed in correctly.
 
         Use case resumes at step 4.
 
@@ -620,9 +510,9 @@ Use case ends.
 
 **Extensions**
 
-    2a. The list of persons is empty.
+    2a. The list of persons is empty. 
 
-    Use case ends.
+        Use case ends.
     
     4a. The given index is invalid.
       
@@ -655,8 +545,6 @@ Use case ends.
         6b2. User edits the current meeting time instead of adding a new meeting time.
 
         Use case resumes at step 7.
-
-    Use case ends.
 
 **Use case: Search for a Person**
 
@@ -700,8 +588,6 @@ Use case ends.
 
         Use case ends.
 
-    Use case ends.
-
 **Use case: List Clients**
 
 **MSS**
@@ -722,8 +608,6 @@ Use case ends.
         3a2. No information is displayed.
 
         Use case ends.
-
-    Use case ends.
 
 **Use case: Convert a Lead to Client**
 
@@ -760,8 +644,6 @@ Use case ends.
         
         Use case resumes at step 4.
 
-    Use case ends.
-
 **Use case: List Leads**
 
 **MSS**
@@ -780,8 +662,6 @@ Use case ends.
         3a1. D.A.V.E. displays a message indicating all clients are displayed.
         
         Use case ends.
-
-    Use case ends.
 
 **Use case: Sort Meeting Time**
 
@@ -811,10 +691,6 @@ Use case ends.
         3b2. No information is displayed.
         
         Use case ends.
-    
-    Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
