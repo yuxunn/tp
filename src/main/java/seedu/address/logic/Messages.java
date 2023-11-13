@@ -48,9 +48,12 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Address: ")
-                .append(person.getAddress());
-
-        return addOptionalFields(person, builder).toString();
+                .append(person.getAddress())
+                .append("; Meeting Time: ")
+                .append(person.getMeetingTimeString())
+                .append("; Tags: ");
+        person.getTags().forEach(builder::append);
+        return builder.toString();
     }
 
     /**
@@ -67,20 +70,12 @@ public class Messages {
                 .append("; Address: ")
                 .append(lead.getAddress())
                 .append("; Key Milestone: ")
-                .append(lead.getKeyMilestone());
-
-        return addOptionalFields(lead, builder).toString();
+                .append(lead.getKeyMilestone())
+                .append("; Meeting Time: ")
+                .append(lead.getMeetingTimeString())
+                .append("; Tags: ");
+        lead.getTags().forEach(builder::append);
+        return builder.toString();
     }
 
-    private static StringBuilder addOptionalFields(Person person, StringBuilder builder) {
-        if (person.getMeetingTime().isPresent()) {
-            builder.append("; Meeting Time: ")
-                    .append(person.getMeetingTimeString());
-        }
-        if (!person.getTags().isEmpty()) {
-            builder.append("; Tags: ");
-            person.getTags().forEach(builder::append);
-        }
-        return builder;
-    }
 }

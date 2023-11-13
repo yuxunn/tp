@@ -46,7 +46,7 @@ public class ConvertClientToLeadCommandTest {
 
         final String expectedOutput = "Converted Client to Lead: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
                 + "Address: 123, Jurong West Ave 6, #08-111; "
-                + "Key Milestone: " + formattedDate;
+                + "Key Milestone: " + formattedDate + "; Meeting Time: null; Tags: ";
 
         // Step 1: Set up the necessary test data and model stub.
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
