@@ -168,99 +168,6 @@ Step 3: The user executes a `view 1` command to view the 1st person in the addre
 The following sequence diagram shows how the View Command works:
 <img src="diagrams/ViewSequenceDiagram.png" alt= "ViewSequenceDiagram"/>
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<img src="diagrams/UndoRedoState0.png" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<img src="diagrams/UndoRedoState1.png" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<img src="diagrams/UndoRedoState2.png" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<img src="diagrams/UndoRedoState3.png" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how the undo operation works:
-
-<img src="diagrams/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<img src="diagrams/UndoRedoState4.png" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<img src="diagrams/UndoRedoState5.png" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="diagrams/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Addclient/Addlead feature
 
 #### Implementation
@@ -269,7 +176,7 @@ The `Client` and `Lead` model extends from `Person`.
 The `Client` and `Lead` model has a name, address, phone number, email field which is compulsory, as well as a meeting time and tags field which are optional.
 The `Lead` model has an additional compulsory field called Key Milestone.
 
-Given below is an example usage scenario and how addclient and addlead behaves at each step.
+Given below is an example usage scenario and how `addclient` and `addlead` behaves at each step.
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized.
 
@@ -278,43 +185,50 @@ Step 1. The user launches the application for the first time. The `AddressBook` 
     <p>Before any commands</p>
 </div>
 
-Step 2a - addclient. The user executes `addclient n/John Doe...` command add a person named John Doe into the AddressBook. The `addclient` command calls `Model#addClient()`, causing the address book to be updated.
+Step 2a - `addclient`. The user executes `addclient n/John Doe...` command add a person named John Doe into the AddressBook. The `addclient` command calls `Model#addClient()`, causing the address book to be updated.
 
 <div align="center">
-    <img src="images/addclient.png" alt="after addclient command" width="500" />
+    <img src="images/afterusingaddclient.png" alt="after addclient command" width="500" />
     <p>After addclient command</p>
 </div>
 
-Step 2b - addlead. The user executes `addlead n/John Doe...` command add a person named John Doe into the AddressBook. The `addlead` command calls `Model#addLead()`, causing the address book to be updated.
+Step 2b - `addlead`. The user executes `addlead n/John Doe...` command add a person named John Doe into the AddressBook. The `addlead` command calls `Model#addLead()`, causing the address book to be updated.
 
 <div align="center">
-    <img src="images/addlead.png" alt="after addlead command" width="500" />
+    <img src="images/afterusingaddlead.png" alt="after addlead command" width="500" />
     <p>After addlead command</p>
 </div>
 
-The following sequence diagram shows how the addclient operation works (Note that `addlead` works in the same way but calls `Model#addLead()` instead):
+The following sequence diagram shows how the `addclient` operation works (Note that `addlead` works in the same way but calls `Model#addLead()` instead):
+<div align="center">
+    <img src="diagrams/AddClientSequenceDiagram.png" width="500"/>
+</div>
 
-<img src="diagrams/AddClientSequenceDiagram.png" width="500" />
-
-The following activity diagram shows what happens when a user executes a new command:
-
-<img src="diagrams/AddClientActivityDiagram.png" width="500" />
+The following activity diagram shows what happens when a user executes a new `addclient` command:
+<div align="center">
+    <img src="diagrams/AddClientActivityDiagram.png" width="500"/>
+</div>
 
 ### Add Meeting Time feature
 
 #### Implementation
 
-The user can specify a meeting time when executing `addclient` or `addlead` command with the `m/` flag.
-Alternatively, the user can enter the `addmeeting` command to add a meeting time to an existing client or lead.
-The `addmeeting` command takes in the index of the client or lead, and the meeting time in `dd/MM/yyyy HH:mm` format, e.g. `24/10/2023 12:00`.
+The user can specify a meeting time when executing `addclient` or `addlead` command with the `m/` flag or enter the `addmeeting` command to add a meeting time to an existing client or lead.
+The `addmeeting` command takes in the index of the client or lead, and the meeting time in `dd/MM/yyyy HH:mm` format (e.g. `addmeeting 1 12/12/2023 12:00`).
+The `AddMeetingCommand` class facilitates this by copying the person (client/lead) based on the index given, and creates a new person with the meeting time added.
+The `AddMeetingCommand` class then calls `Model#setPerson()` to update the address book with the new person.
 
-The following sequence diagram shows how the addMeeting operation works:
+The following sequence diagram shows how the `addmeeting ...` operation works:
 
-<img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="500" />
+<div align="center">
+    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="700"/>
+</div>
 
-The following activity diagram shows what happens when a user executes the addMeeting operation:
+The following activity diagram shows the workflow of the execution of the `addmeeting ...` command:
 
-<img src="diagrams/AddMeetingTimeActivityDiagram.png" width="500" />
+<div align="center">
+    <img src="diagrams/AddMeetingTimeActivityDiagram.png" width="700" />
+</div>
 
 ### \[Proposed\] Sort Meeting Time feature
 
@@ -401,15 +315,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### General Information
 
-| Priority | As a student financial advisor, | I want to …​                                    | So that I can…​                                                                                        |
-|----------|---------------------------------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| `* * *`  | student financial advisor       | view all my clients and leads                   | recall and focus on all my clients and leads                                                           |
-| `* * *`  | student financial advisor       | sort meeting times with clients and leads       | see my upcoming meetings in chronological order to better plan my time                                 |
-| `* *`    | student financial advisor       | upload and store important information securely | easily access them whenever i launch D.A.V.E.                                                          |
-| `* *`    | student financial advisor       | save details automatically while using the app  | focus on updating D.A.V.E. with information of my clients and leads without worrying about saving data |
-| `*`      | student financial advisor       | modify my authentication details regularly      | ensure my account is safe and secure                                                                   |
+| Priority | As a student financial advisor, | I want to …​                                   | So that I can…​                                                                                        |
+|----------|---------------------------------|------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `* * *`  | student financial advisor       | view all my clients and leads                  | recall and focus on all my clients and leads                                                           |
+| `* * *`  | student financial advisor       | sort meeting times with clients and leads      | see my upcoming meetings in chronological order to better plan my time                                 |
+| `* *`    | student financial advisor       | save details automatically while using the app | focus on updating D.A.V.E. with information of my clients and leads without worrying about saving data |
+
 
 ### Planned Enhancement
+| Priority | As a student financial advisor, | I want to …​                                   | So that I can…​                                                                        |
+|----------|---------------------------------|------------------------------------------------|----------------------------------------------------------------------------------------|
+| `* *`    | student financial advisor       | add a policy for my clients                    | keep track of their policies and access them readily                                   |
+| `* *`    | student financial advisor       | edit the details of my clients' policies       | update changes in information of my clients' policies                                  |
+| `* *`    | student financial advisor       | delete a policy for my clients                 | remove policies that my clients no longer have to keep my clients' policies up-to-date |
+| `*`      | student financial advisor       | see the expiry of my clients' policies         | keep track of my clients' policies and follow up with them when necessary              |
 
 ### Use cases
 
