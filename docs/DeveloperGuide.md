@@ -476,7 +476,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 4. D.A.V.E. shows information of the lead.
 
-5. User requests to edit the lead's Key Milestone.
+5. User types in index of lead and the new key milestone date.
 
 6. D.A.V.E. updates the lead's information.
 
@@ -492,17 +492,17 @@ Use case ends.
 
     5a. The given index is a client.
 
-        5a1. D.A.V.E. shows an error message indicating that clients do not have Key Milestone field.
+        5a1. D.A.V.E. shows an error message indicating that clients do not have key milestone field.
         
-        5a2. User keys in new index.
+        5a2. User keys in new index and key milestone.
 
-        Step 5a1-5a2 is repeated until a valid lead index is given.
+        Step 5a1-5a2 is repeated until a valid index and key milestone is given.
 
         Use case resumes at step 6.
 
-    5b. The given Key Milestone date is identical to the current Key Milestone date of the lead.
+    5b. The given key milestone date is identical to the current key milestone date of the lead.
         
-        5b1. D.A.V.E. displays a message that the lead's information has been edited, maintaining the same date for the Key Milestone.
+        5b1. D.A.V.E. displays a message that the lead's information has been edited, maintaining the same date for the key milestone.
 
         Use case resumes at step 7.
 
