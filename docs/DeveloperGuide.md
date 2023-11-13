@@ -265,7 +265,7 @@ Given below is an example usage scenario and how `listclient` and `listlead` beh
 
 Step 1. The user opens the application to see a list of leads and clients.
 
-Step 2. The user executes `listclient` command to display a filtered list of persons in the address book. The `listclient` command calls `Model#updateFilteredPersonList()`, causing the modified state of the filtered list to be displayed bsad on the `predicate` passed into the `Model#updateFilteredPersonList()`.
+Step 2. The user executes `listclient` command to display a filtered list of persons in the address book. The `listclient` command calls `Model#updateFilteredPersonList()`, causing the modified state of the filtered list to be displayed based on the `predicate` passed into the `Model#updateFilteredPersonList()`.
 
 The following sequence diagram shows how the `listclient` operation works (Note that `listlead` works in the same way:
 
@@ -274,7 +274,7 @@ The following sequence diagram shows how the `listclient` operation works (Note 
     <p>After addlead command</p>
 </div>
 
-###  Convert lead to client and client to lead
+###  Convert lead to client and client to lead feature
 
 #### Implementation
 
@@ -282,14 +282,14 @@ The user can convert client to leads  and vice versa, using  the command `conver
 
 The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` is executed.
 
-The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` takes in an arguement of type `Index`, and is referred to the list of items
+The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` takes in an argument of type `Index`, and is referred to the list of items
 
 If the person is a `Lead` when using `converttoclient`, the application would create a new `Client` object with the information from `Lead` class. Similarly, this also would occur for `converttolead`
 
 Given below is an example usage scenario and how `converttoclient` and `converttolead` behaves at each step
 
 <div align="center">
-    <img src="diagrams/ConvertLeadToClientSequence.png" height="300" width = "880"/>
+    <img src="diagrams/ConvertLeadToClientSequence.png" width = "1000"/>
     <p>After converttoclient command</p>
 </div>
 
@@ -299,21 +299,22 @@ The following activity diagram shows what happens when a user executes `convertt
     <p>After converttoclient command</p>
 </div>
 
-### \[Proposed\] Sort Meeting Time feature
+### Sort Meeting Time feature
 
-#### Proposed Implementation
+#### Implementation
 
-The user can view the upcoming meetings scheduled with leads and clients sorted in chronological order.
+The user can view the upcoming meetings scheduled with leads and clients sorted in chronological order. The command is implemented as follows.
 
-This is achieved by entering the `sortmeeting` command, which will filter all the clients and leads with a meeting time, and then sort them chronologically.
+The `execute()` command in `SortMeetingTimeCommand` calls the `sortFilteredPersonList()` in `Model`, which first filters and returns a `FilteredList` containing only persons with a meeting time.
+This list is then sorted using the `PersonMeetingTimeComparator` to obtain the desired `SortedList` output, which is then displayed.
+
+Note that in every other operation that updates the `ObservableList` to be displayed, the `null` comparator is used instead of the `PersonMeetingTimeComparator` so no sorting occurs.
 
 The following sequence diagram shows how the `sortmeeting` operation works:
 
-_{sequence diagram to be added}_
-
-The following activity diagram shows what happens when a user executes the `sortmeeting` operation:
-
-_{activity diagram to be added}_
+<div align="center">
+    <img src="diagrams/SortMeetingTimeSequenceDiagram.png" width = "1000"/>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
