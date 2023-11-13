@@ -482,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 7. D.A.V.E. displays lead's information.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 
@@ -506,7 +506,7 @@ Use case ends
 
         Use case resumes at step 7.
 
-    Use case ends
+    Use case ends.
 
 **Use case: Add new client**
 
@@ -524,7 +524,7 @@ Use case ends
 
 6. D.A.V.E. displays the selected client's details.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 
@@ -538,7 +538,7 @@ Use case ends
 
         3a2. User keys in new client information.
 
-        Step 3a1-3a2 is repeated until all the client information fields are keyed in correctly. 
+        Step 3a1-3a2 is repeated until all the client information fields are keyed in correctly.
 
         Use case resumes at step 4.
 
@@ -560,7 +560,7 @@ Use case ends
 
 7. D.A.V.E. schedules the meeting and updates the person's information.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 
@@ -596,7 +596,7 @@ Use case ends
 
         6b1. D.A.V.E. shows an error message requesting user to edit current meeting time instead of adding new meeting time.
         
-        6b2. User edits the current meeting time instead of adding a new meeting time. 
+        6b2. User edits the current meeting time instead of adding a new meeting time.
 
         Use case resumes at step 7.
 
@@ -624,17 +624,17 @@ Use case ends.
     
     2a. User only provides the surname of the person.
         
-        2a1. D.A.V.E. performs a search and displays a list with all the people with the same surname. 
+        2a1. D.A.V.E. performs a search and displays a list with all the people with the same surname.
         
-        2a2. User narrows down the search by typing the full name. 
+        2a2. User narrows down the search by typing the full name.
 
         Use case resumes at step 4.
 
-    2a. User provides more than one name. 
+    2a. User provides more than one name.
     
         2a1. D.A.V.E. performs a search and displays a list with all the people whose name contains the input names.
         
-        2a2. User narrows down the search by typing the full name of the specific person. 
+        2a2. User narrows down the search by typing the full name of the specific person.
 
         Use case resumes at step 4.
 
@@ -674,29 +674,29 @@ Use case ends.
 **MSS**
 1. User requests to convert a lead to a client.
 
-2. D.A.V.E. prompts user to type in the lead's index. 
+2. D.A.V.E. prompts user to type in the lead's index.
 
-3. User types in lead's index. 
+3. User types in lead's index.
 
-4. D.A.V.E. successfully converts the lead to a client. 
+4. D.A.V.E. successfully converts the lead to a client.
 
 Use case ends.
 
 **Extensions**
 
-    3a. User gives an index of a client. 
+    3a. User gives an index of a client.
 
-        3a1. D.A.V.E. displays an error message indicating that the person at the given index is a client. 
+        3a1. D.A.V.E. displays an error message indicating that the person at the given index is a client.
 
-        3a2. User types in another index. 
+        3a2. User types in another index.
 
-        Step 3a1-3a2 is repeated until user enters a valid index. 
+        Step 3a1-3a2 is repeated until user enters a valid index.
         
         Use case resumes at step 4.
 
-    3b. The given index is invalid. 
+    3b. The given index is invalid.
         
-        3b1. D.A.V.E. displays an error message indicating invalid index provided. 
+        3b1. D.A.V.E. displays an error message indicating invalid index provided.
 
         3b2. User types in new index.
 
@@ -704,8 +704,7 @@ Use case ends.
         
         Use case resumes at step 4.
 
-    Use case ends. 
-    
+    Use case ends.
 
 **Use case: List Leads**
 
@@ -749,7 +748,7 @@ Use case ends.
         
         Use case ends.
 
-    3a. The list of persons is empty.   
+    3a. The list of persons is empty.
         
         3a1. D.A.V.E. displays a message indicating all meeting times are sorted.
         
