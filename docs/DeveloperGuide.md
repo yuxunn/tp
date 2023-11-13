@@ -27,7 +27,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <div align="center">
-    <img src="diagrams/ArchitectureDiagram.png" width="280" />
+    <img src="diagrams/ArchitectureDiagram.png" width="314" />
 </div>
 
 
@@ -56,7 +56,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 
 <div align="center">
-    <img src="diagrams/ArchitectureSequenceDiagram.png" width="574" />
+    <img src="diagrams/ArchitectureSequenceDiagram.png" width="600" />
 </div>
 
 Each of the four main components (also shown in the diagram above),
@@ -67,7 +67,7 @@ Each of the four main components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <div align="center">
-    <img src="diagrams/ComponentManagers.png" width="300" />
+    <img src="diagrams/ComponentManagers.png" width="370" />
 </div>
 
 The sections below give more details of each component.
@@ -98,7 +98,7 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <div align="center">
-    <img src="diagrams/LogicClassDiagram.png" width="550"/>
+    <img src="diagrams/LogicClassDiagram.png" width="629"/>
 </div>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
@@ -122,7 +122,7 @@ How the `Logic` component works:
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <div align="center">
-    <img src="diagrams/ParserClasses.png" width="600"/>
+    <img src="diagrams/ParserClasses.png" width="745"/>
 </div>
 
 How the parsing works:
@@ -133,7 +133,7 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <div align="center">
-    <img src="diagrams/ModelClassDiagram.png" width="450" />
+    <img src="diagrams/ModelClassDiagram.png" width="679" />
 </div>
 
 The `Model` component,
@@ -145,7 +145,7 @@ The `Model` component,
 
 The following diagram shows the classes that extend the abstract `Person` class.
 <div align="center">
-    <img src="diagrams/PersonClassDiagram.png" width="250" />
+    <img src="diagrams/PersonClassDiagram.png" width="179" />
 </div>
 
 The abstract `Person` class is extended by two separate classes, `Lead` and `Client`. These instances are distinguished by their `Type` field in `Person`.
@@ -154,7 +154,9 @@ The abstract `Person` class is extended by two separate classes, `Lead` and `Cli
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="diagrams/StorageClassDiagram.png" width="550" />
+<div align="center">
+    <img src="diagrams/StorageClassDiagram.png" width="683" />
+</div>
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
