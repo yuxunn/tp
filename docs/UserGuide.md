@@ -43,12 +43,15 @@ D.A.V.E. is here to enhance your advisory journey by simplifying information man
 
 Here are some descriptions of the words we use throughout the User Guide:
 
-| Term    | Definition                                                                                            |
-|---------|-------------------------------------------------------------------------------------------------------|
-| Command | An input from the user that tells D.A.V.E. to perform an action (e.g. add a client).                  |
-| GUI     | Graphical User Interface (GUI) refers to the visual display of D.A.V.E that users can see.            |
-| CLI     | Command Line Interface (CLI) represents a text-based user interface to interact with the application. |
-| Person  | A client or a lead.                                                                                   |
+| Term          | Definition                                                                                            |
+|---------------|-------------------------------------------------------------------------------------------------------|
+| Command       | An input from the user that tells D.A.V.E. to perform an action (e.g. add a client).                  |
+| GUI           | Graphical User Interface (GUI) refers to the visual display of D.A.V.E that users can see.            |
+| CLI           | Command Line Interface (CLI) represents a text-based user interface to interact with the application. |
+| Client        | A customer of the financial advisor.                                                                  |
+| Lead          | A contact who is deemed a potential customer.                                                         |
+| Person        | A client or a lead.                                                                                   |
+| Key Milestone | A date of significant importance for a lead, e.g. date of graduation.                                 |
 
 # Quick Start
 
