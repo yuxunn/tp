@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student financial advisor       | save details automatically while using the app | focus on updating D.A.V.E. with information of my clients and leads without worrying about saving data |
 
 
-### Planned Enhancement
+### Planned Enhancements
 | Priority | As a student financial advisor, | I want to …​                                   | So that I can…​                                                                        |
 |----------|---------------------------------|------------------------------------------------|----------------------------------------------------------------------------------------|
 | `* *`    | student financial advisor       | add a policy for my clients                    | keep track of their policies and access them readily                                   |
@@ -725,7 +725,6 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Graceful scaling**: Ability for the system to handle increased user loads without significant performance loss
 * **Integration**: Combining different software components together to easily incorporate additional modules or features as needed
 --------------------------------------------------------------------------------------------------------------------
@@ -756,8 +755,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Add a client
 
 1. Add a client with a necessary fields
@@ -774,8 +771,6 @@ testers are expected to do more *exploratory* testing.
     addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
     Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
     ```
-1. _{ more test cases …​ }_
-
 
 ### Add a lead
 
@@ -793,7 +788,6 @@ testers are expected to do more *exploratory* testing.
     addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
     Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
     ```
-1. _{ more test cases …​ }_
 
 ### Edit a client/lead
 
@@ -810,24 +804,20 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit 0`<br>
       Expected: No client/lead is edited. Error details shown in the status message.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a client/lead
 
 1. Deleting a client/lead while all clients/leads are being shown
 
    1. Prerequisites: List all clients/leads using the `list` command. Multiple clients/leads in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No client/lead is deleted. Error details shown in the status message. Status bar remains the same.
+     Expected: No client/lead is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 ### Viewing a person
 
@@ -855,20 +845,25 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous
 ### Converting a client to lead
 
-1. Similar to converting a lead to client, but for client to lead
-
+1. Similar to converting a lead to client, but using the `converttolead` command on clients instead.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
+   1. Delete `data/addressbook.json`.
+   2. Launch D.A.V.E. <br>
+      Expected: D.A.V.E. should be populated with a sample address book.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+1. Dealing with corrupted data files
+   1. Modify some fields in `data/addressbook.json` to become invalid. E.g. change a `keyMilestone` field to `null`.
+   2. Launch D.A.V.E. <br>
+   Expected: D.A.V.E. displays an empty address book with warnings sent in the console. The data file should not be modified or deleted by the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
 
 1. **Client Policy Management:** The current functionality falls short in allowing student financial advisors to monitor clients' policies and follow up as needed, as it lacks the ability to add, edit, and delete client policies.  To address this limitation, we intend to develop these features in the future, ensuring student financial advisors can efficiently manage policy-related tasks.
+2. **UI Messages:** The current UI displays messages that could be confusing for users without a technical background, such as `null` when no meeting time is added. To address this limitation, we could filter out the fields containing `null` so the user does not see them.
+3. **Corrupted Data Files:** The current application displays an empty address book when an error parsing the data file occurs. The error messages are sent in the console, which may be confusing for users without a technical background. To address this limitation, we could add a clear message to be displayed when the application is launched, including information like what the error is and where the error occurred.
+4. **Repeated Names:** The current application does not allow users to add persons with identical names. While this is unlikely to happen in normal usage, it is still possible, and thus this behavior unnecessarily restricts users. To address this limitation, we could create a pop-up dialog informing users that such a person already exists, and requiring them to check and confirm before adding the new person.
