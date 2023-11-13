@@ -21,6 +21,9 @@ Class Type
 Class Name
 Class Phone
 Class Tag
+Class MeetingTime
+Class MeetingTimeFormatter
+Class PersonMeetingTimeComparator
 
 Class I #FFFFFF
 }
@@ -44,6 +47,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Type
 Person *--> Address
+Person *--> "0..1" MeetingTime
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
@@ -53,5 +57,8 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered and sorted" Person
+ModelManager ..> PersonMeetingTimeComparator
+UserPrefs .[hidden].> PersonMeetingTimeComparator
+MeetingTime ..> MeetingTimeFormatter
 @enduml
