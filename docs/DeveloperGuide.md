@@ -845,3 +845,10 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. **Client Policy Management:** The current functionality falls short in allowing student financial advisors to monitor clients' policies and follow up as needed, as it lacks the ability to add, edit, and delete client policies.  To address this limitation, we intend to develop these features in the future, ensuring student financial advisors can efficiently manage policy-related tasks.
