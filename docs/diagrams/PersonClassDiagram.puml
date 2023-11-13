@@ -8,10 +8,13 @@ Package "Person Classes" as ModelPackage <<Rectangle>>{
 Class "{abstract}\nPerson" as Person
 Class Lead
 Class Client
+Class KeyMilestone
 }
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Person
 
 Lead -up-|> Person
 Client -up-|> Person
+
+Lead *--> KeyMilestone
 @enduml

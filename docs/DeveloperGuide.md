@@ -4,7 +4,7 @@ title: "Developer Guide"
 pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# D.A.V.E. Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -13,7 +13,7 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on [AB-3](https://github.com/se-edu/addressbook-level3).
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
@@ -26,8 +26,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="diagrams/ArchitectureDiagram.png" width="280" />
-
+<div align="center">
+    <img src="diagrams/ArchitectureDiagram.png" width="314" />
+</div>
 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
@@ -36,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -54,8 +55,9 @@ The bulk of the app's work is done by the following four components:
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 
-
-<img src="diagrams/ArchitectureSequenceDiagram.png" width="574" />
+<div align="center">
+    <img src="diagrams/ArchitectureSequenceDiagram.png" width="600" />
+</div>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -64,20 +66,23 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="diagrams/ComponentManagers.png" width="300" />
-
+<div align="center">
+    <img src="diagrams/ComponentManagers.png" width="370" />
+</div>
 
 The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-<img src="diagrams/UiClassDiagram.png" alt="Structure of the UI Component"/>
+<div align="center">
+    <img src="diagrams/UiClassDiagram.png" alt="Structure of the UI Component"/>
+</div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -88,15 +93,19 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="diagrams/LogicClassDiagram.png" width="550"/>
+<div align="center">
+    <img src="diagrams/LogicClassDiagram.png" width="629"/>
+</div>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-<img src="diagrams/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
+<div align="center">
+    <img src="diagrams/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command" width="900"/>
+</div>
 
 <box type="info" seamless>
 
@@ -106,40 +115,48 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="diagrams/ParserClasses.png" width="600"/>
+<div align="center">
+    <img src="diagrams/ParserClasses.png" width="745"/>
+</div>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="diagrams/ModelClassDiagram.png" width="450" />
-
+<div align="center">
+    <img src="diagrams/ModelClassDiagram.png" width="679" />
+</div>
 
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person` objects (e.g., results of a search/sort query) as a separate _filtered and sorted_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<img src="diagrams/PersonClassDiagram.png" width="250" />
+The following diagram shows the classes that extend the abstract `Person` class.
+<div align="center">
+    <img src="diagrams/PersonClassDiagram.png" width="179" />
+</div>
 
 The abstract `Person` class is extended by two separate classes, `Lead` and `Client`. These instances are distinguished by their `Type` field in `Person`.
-
+`Lead` objects also contain an additional `KeyMilestone` attribute.
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-F08-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="diagrams/StorageClassDiagram.png" width="550" />
+<div align="center">
+    <img src="diagrams/StorageClassDiagram.png" width="683" />
+</div>
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -166,7 +183,9 @@ Step 3: The user executes a `view 1` command to view the 1st person in the addre
 **Note:** If the index given is more than the size of the list or when the index given is 0, `ViewCommand` will not call `Model#view(Person personToView)`. Instead, a `MESSAGE_INVALID_PERSON_DISPLAYED_INDEX` exception will be thrown. The Main Window display continue displaying the `PersonListPanel` UI instead of the  `ViewWindow` UI
 
 The following sequence diagram shows how the View Command works:
-<img src="diagrams/ViewSequenceDiagram.png" alt= "ViewSequenceDiagram"/>
+<div align="center">
+    <img src="diagrams/ViewSequenceDiagram.png" alt= "ViewSequenceDiagram" width="900"/>
+</div>
 
 ### Add client/Add lead feature
 
@@ -201,7 +220,7 @@ Step 2b - `addlead`. The user executes `addlead n/John Doe...` command add a per
 
 The following sequence diagram shows how the `addclient` operation works (Note that `addlead` works in the same way but calls `Model#addLead()` instead):
 <div align="center">
-    <img src="diagrams/AddClientSequenceDiagram.png" width="500"/>
+    <img src="diagrams/AddClientSequenceDiagram.png" width="900"/>
 </div>
 
 The following activity diagram shows the workflow upon execution of the `addclient` command (`addlead` works the same way):
@@ -221,7 +240,7 @@ The `AddMeetingCommand` class then calls `Model#setPerson()` to update the addre
 The following sequence diagram shows how the `addmeeting ...` operation works:
 
 <div align="center">
-    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="700"/>
+    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="900"/>
 </div>
 
 The following activity diagram shows the workflow of the execution of the `addmeeting ...` command:
@@ -248,7 +267,7 @@ Given below is an example usage scenario and how `listclient` and `listlead` beh
 
 Step 1. The user opens the application to see a list of leads and clients.
 
-Step 2. The user executes `listclient` command to display a filtered list of persons in the address book. The `listclient` command calls `Model#updateFilteredPersonList()`, causing the modified state of the filtered list to be displayed bsad on the `predicate` passed into the `Model#updateFilteredPersonList()`.
+Step 2. The user executes `listclient` command to display a filtered list of persons in the address book. The `listclient` command calls `Model#updateFilteredPersonList()`, causing the modified state of the filtered list to be displayed based on the `predicate` passed into the `Model#updateFilteredPersonList()`.
 
 The following sequence diagram shows how the `listclient` operation works (Note that `listlead` works in the same way:
 
@@ -257,7 +276,7 @@ The following sequence diagram shows how the `listclient` operation works (Note 
     <p>After addlead command</p>
 </div>
 
-###  Convert lead to client and client to lead
+###  Convert lead to client and client to lead feature
 
 #### Implementation
 
@@ -265,14 +284,14 @@ The user can convert client to leads  and vice versa, using  the command `conver
 
 The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` is executed.
 
-The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` takes in an arguement of type `Index`, and is referred to the list of items
+The `execute()` command in `ConvertLeadToClientCommand` or `ConvertClientToLeadCommand` takes in an argument of type `Index`, and is referred to the list of items
 
 If the person is a `Lead` when using `converttoclient`, the application would create a new `Client` object with the information from `Lead` class. Similarly, this also would occur for `converttolead`
 
 Given below is an example usage scenario and how `converttoclient` and `converttolead` behaves at each step
 
 <div align="center">
-    <img src="diagrams/ConvertLeadToClientSequence.png" height="300" width = "880"/>
+    <img src="diagrams/ConvertLeadToClientSequence.png" width = "900"/>
     <p>After converttoclient command</p>
 </div>
 
@@ -282,21 +301,22 @@ The following activity diagram shows what happens when a user executes `convertt
     <p>After converttoclient command</p>
 </div>
 
-### \[Proposed\] Sort Meeting Time feature
+### Sort Meeting Time feature
 
-#### Proposed Implementation
+#### Implementation
 
-The user can view the upcoming meetings scheduled with leads and clients sorted in chronological order.
+The user can view the upcoming meetings scheduled with leads and clients sorted in chronological order. The command is implemented as follows.
 
-This is achieved by entering the `sortmeeting` command, which will filter all the clients and leads with a meeting time, and then sort them chronologically.
+The `execute()` command in `SortMeetingTimeCommand` calls the `sortFilteredPersonList()` in `Model`, which first filters and returns a `FilteredList` containing only persons with a meeting time.
+This list is then sorted using the `PersonMeetingTimeComparator` to obtain the desired `SortedList` output, which is then displayed.
+
+Note that in every other operation that updates the `ObservableList` to be displayed, the `null` comparator is used instead of the `PersonMeetingTimeComparator` so no sorting occurs.
 
 The following sequence diagram shows how the `sortmeeting` operation works:
 
-_{sequence diagram to be added}_
-
-The following activity diagram shows what happens when a user executes the `sortmeeting` operation:
-
-_{activity diagram to be added}_
+<div align="center">
+    <img src="diagrams/SortMeetingTimeSequenceDiagram.png" width = "900"/>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -374,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student financial advisor       | save details automatically while using the app | focus on updating D.A.V.E. with information of my clients and leads without worrying about saving data |
 
 
-### Planned Enhancement
+### Planned Enhancements
 | Priority | As a student financial advisor, | I want to …​                                   | So that I can…​                                                                        |
 |----------|---------------------------------|------------------------------------------------|----------------------------------------------------------------------------------------|
 | `* *`    | student financial advisor       | add a policy for my clients                    | keep track of their policies and access them readily                                   |
@@ -705,7 +725,6 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Graceful scaling**: Ability for the system to handle increased user loads without significant performance loss
 * **Integration**: Combining different software components together to easily incorporate additional modules or features as needed
 --------------------------------------------------------------------------------------------------------------------
@@ -736,8 +755,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Add a client
 
 1. Add a client with a necessary fields
@@ -754,8 +771,6 @@ testers are expected to do more *exploratory* testing.
     addclient: Adds a client to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
     Example: addclient n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
     ```
-1. _{ more test cases …​ }_
-
 
 ### Add a lead
 
@@ -773,7 +788,6 @@ testers are expected to do more *exploratory* testing.
     addlead: Adds a lead to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
     Example: addlead n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/classmate
     ```
-1. _{ more test cases …​ }_
 
 ### Edit a client/lead
 
@@ -790,24 +804,20 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit 0`<br>
       Expected: No client/lead is edited. Error details shown in the status message.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a client/lead
 
 1. Deleting a client/lead while all clients/leads are being shown
 
    1. Prerequisites: List all clients/leads using the `list` command. Multiple clients/leads in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No client/lead is deleted. Error details shown in the status message. Status bar remains the same.
+     Expected: No client/lead is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 ### Viewing a person
 
@@ -835,20 +845,25 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous
 ### Converting a client to lead
 
-1. Similar to converting a lead to client, but for client to lead
-
+1. Similar to converting a lead to client, but using the `converttolead` command on clients instead.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
+   1. Delete `data/addressbook.json`.
+   2. Launch D.A.V.E. <br>
+      Expected: D.A.V.E. should be populated with a sample address book.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+1. Dealing with corrupted data files
+   1. Modify some fields in `data/addressbook.json` to become invalid. E.g. change a `keyMilestone` field to `null`.
+   2. Launch D.A.V.E. <br>
+   Expected: D.A.V.E. displays an empty address book with warnings sent in the console. The data file should not be modified or deleted by the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
 
 1. **Client Policy Management:** The current functionality falls short in allowing student financial advisors to monitor clients' policies and follow up as needed, as it lacks the ability to add, edit, and delete client policies.  To address this limitation, we intend to develop these features in the future, ensuring student financial advisors can efficiently manage policy-related tasks.
+2. **UI Messages:** The current UI displays messages that could be confusing for users without a technical background, such as `null` when no meeting time is added. To address this limitation, we could filter out the fields containing `null` so the user does not see them.
+3. **Corrupted Data Files:** The current application displays an empty address book when an error parsing the data file occurs. The error messages are sent in the console, which may be confusing for users without a technical background. To address this limitation, we could add a clear message to be displayed when the application is launched, including information like what the error is and where the error occurred.
+4. **Repeated Names:** The current application does not allow users to add persons with identical names. While this is unlikely to happen in normal usage, it is still possible, and thus this behavior unnecessarily restricts users. To address this limitation, we could create a pop-up dialog informing users that such a person already exists, and requiring them to check and confirm before adding the new person.

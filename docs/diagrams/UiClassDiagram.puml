@@ -32,12 +32,12 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
+MainWindow *-down-->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
-MainWindow --> "0..1" ViewWindow
+MainWindow *--> "0..1" HelpWindow
+MainWindow *--> "0..1" ViewWindow
 
 PersonListPanel -down-> "*" PersonCard
 
@@ -54,8 +54,11 @@ ViewWindow --|> UiPart
 PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+UiManager --[hidden]down-> PersonListPanel
+Ui --[hidden]down-> CommandBox
 
-PersonListPanel -[hidden]left- HelpWindow
+PersonListPanel -[hidden]left- ViewWindow
+ViewWindow -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

@@ -6,40 +6,81 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ConvertLeadToClientCommandParser" as ConvertLeadToClientCommandParser LOGIC_COLOR
-participant ":ConvertLeadToClientCommand" as ConvertLeadToClientCommand LOGIC_COLOR
+participant "c:ConvertLeadToClientCommand" as ConvertLeadToClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "convertedLead:Person" as Person MODEL_COLOR
 end box
 
-[-> LogicManager : execute(converttoclient <Integer>)
+[-> LogicManager : execute("converttoclient 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(converttoclient <Integer>)
+LogicManager -> AddressBookParser : parseCommand("converttoclient 1")
 activate AddressBookParser
 
-AddressBookParser --> LogicManager
-deactivate AddressBookParser
+create ConvertLeadToClientCommandParser
+AddressBookParser -> ConvertLeadToClientCommandParser
+activate ConvertLeadToClientCommandParser
 
+ConvertLeadToClientCommandParser --> AddressBookParser
+deactivate
 
-AddressBookParser -> ConvertLeadToClientCommandParser : parse(converttoclient <Integer>)
+AddressBookParser -> ConvertLeadToClientCommandParser : parse("1")
 activate ConvertLeadToClientCommandParser
 
 create ConvertLeadToClientCommand
 ConvertLeadToClientCommandParser -> ConvertLeadToClientCommand
 activate ConvertLeadToClientCommand
 
+ConvertLeadToClientCommand --> ConvertLeadToClientCommandParser : c
+deactivate ConvertLeadToClientCommand
+
+ConvertLeadToClientCommandParser --> AddressBookParser : c
+deactivate
+ConvertLeadToClientCommandParser -[hidden]-> AddressBookParser : c
+destroy ConvertLeadToClientCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> ConvertLeadToClientCommand : execute()
+activate ConvertLeadToClientCommand
+
 ConvertLeadToClientCommand -> Model : getFilteredPersonList()
 activate Model
 
 Model --> ConvertLeadToClientCommand : List of Persons
-ConvertLeadToClientCommand -> Model : setPerson()
-ConvertLeadToClientCommand -> Model : updateFilterPredicate()
 deactivate Model
 
-ConvertLeadToClientCommand --> LogicManager : CommandResult
+create Person
+ConvertLeadToClientCommand -> Person
+activate Person
+
+Person --> ConvertLeadToClientCommand
+deactivate
+
+ConvertLeadToClientCommand -> Model : setPerson(personToConvert, convertedLead)
+activate Model
+Model --> ConvertLeadToClientCommand
+deactivate Model
+
+ConvertLeadToClientCommand -> Model : updateFilteredPersonList()
+activate Model
+Model --> ConvertLeadToClientCommand
+deactivate Model
+
+create CommandResult
+ConvertLeadToClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ConvertLeadToClientCommand : result
+deactivate CommandResult
+
+ConvertLeadToClientCommand --> LogicManager : result
 deactivate ConvertLeadToClientCommand
 deactivate ConvertLeadToClientCommandParser
 deactivate AddressBookParser
