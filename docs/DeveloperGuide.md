@@ -404,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     2a. The list is empty.
 
-    Use case ends.
+        Use case ends.
 
     3a. The given index is invalid.
 
@@ -436,7 +436,7 @@ Use case ends.
 
     2a. The list of leads is empty.
     
-    Use case ends.
+        Use case ends.
 
     5a. The given index is a client.
 
@@ -453,8 +453,6 @@ Use case ends.
         5b1. D.A.V.E. displays a message that the lead's information has been edited, maintaining the same date for the key milestone.
 
         Use case resumes at step 7.
-
-    Use case ends.
 
 **Use case: Add new client**
 
@@ -478,15 +476,15 @@ Use case ends.
 
     3a. The client already exists in the list.
 
-    Use case ends.
+        Use case ends.
 
-    3a. The user did not key in all the required client information fields.
+    3b. The user did not key in all the required client information fields.
     
-        3a1. D.A.V.E. displays an error message indicating an invalid command format.
+        3b1. D.A.V.E. displays an error message indicating an invalid command format.
 
-        3a2. User keys in new client information.
+        3b2. User keys in new client information.
 
-        Step 3a1-3a2 is repeated until all the client information fields are keyed in correctly.
+        Step 3b1-3b2 is repeated until all the client information fields are keyed in correctly.
 
         Use case resumes at step 4.
 
@@ -512,9 +510,9 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The list of persons is empty. 
+    2a. The list of persons is empty. 
 
-    Use case ends.
+        Use case ends.
     
     4a. The given index is invalid.
       
@@ -547,8 +545,6 @@ Use case ends.
         6b2. User edits the current meeting time instead of adding a new meeting time.
 
         Use case resumes at step 7.
-
-  Use case ends.
 
 **Use case: Search for a Person**
 
@@ -592,8 +588,6 @@ Use case ends.
 
         Use case ends.
 
-    Use case ends.
-
 **Use case: List Clients**
 
 **MSS**
@@ -614,8 +608,6 @@ Use case ends.
         3a2. No information is displayed.
 
         Use case ends.
-
-    Use case ends.
 
 **Use case: Convert a Lead to Client**
 
@@ -652,10 +644,6 @@ Use case ends.
         
         Use case resumes at step 4.
 
-    Use case ends.
-
-  Use case ends.
-
 **Use case: List Leads**
 
 **MSS**
@@ -674,8 +662,6 @@ Use case ends.
         3a1. D.A.V.E. displays a message indicating all clients are displayed.
         
         Use case ends.
-
-    Use case ends.
 
 **Use case: Sort Meeting Time**
 
@@ -705,10 +691,6 @@ Use case ends.
         3b2. No information is displayed.
         
         Use case ends.
-    
-    Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
