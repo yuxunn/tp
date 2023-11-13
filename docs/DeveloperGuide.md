@@ -13,7 +13,7 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on [AB-3](https://github.com/se-edu/addressbook-level3).
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
@@ -104,7 +104,7 @@ Here's a (partial) class diagram of the `Logic` component:
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
 <div align="center">
-    <img src="diagrams/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
+    <img src="diagrams/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command" width="900"/>
 </div>
 
 <box type="info" seamless>
@@ -183,7 +183,9 @@ Step 3: The user executes a `view 1` command to view the 1st person in the addre
 **Note:** If the index given is more than the size of the list or when the index given is 0, `ViewCommand` will not call `Model#view(Person personToView)`. Instead, a `MESSAGE_INVALID_PERSON_DISPLAYED_INDEX` exception will be thrown. The Main Window display continue displaying the `PersonListPanel` UI instead of the  `ViewWindow` UI
 
 The following sequence diagram shows how the View Command works:
-<img src="diagrams/ViewSequenceDiagram.png" alt= "ViewSequenceDiagram"/>
+<div align="center">
+    <img src="diagrams/ViewSequenceDiagram.png" alt= "ViewSequenceDiagram" width="900"/>
+</div>
 
 ### Add client/Add lead feature
 
@@ -218,7 +220,7 @@ Step 2b - `addlead`. The user executes `addlead n/John Doe...` command add a per
 
 The following sequence diagram shows how the `addclient` operation works (Note that `addlead` works in the same way but calls `Model#addLead()` instead):
 <div align="center">
-    <img src="diagrams/AddClientSequenceDiagram.png" width="1086"/>
+    <img src="diagrams/AddClientSequenceDiagram.png" width="900"/>
 </div>
 
 The following activity diagram shows the workflow upon execution of the `addclient` command (`addlead` works the same way):
@@ -238,7 +240,7 @@ The `AddMeetingCommand` class then calls `Model#setPerson()` to update the addre
 The following sequence diagram shows how the `addmeeting ...` operation works:
 
 <div align="center">
-    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="1200"/>
+    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="900"/>
 </div>
 
 The following activity diagram shows the workflow of the execution of the `addmeeting ...` command:
@@ -289,7 +291,7 @@ If the person is a `Lead` when using `converttoclient`, the application would cr
 Given below is an example usage scenario and how `converttoclient` and `converttolead` behaves at each step
 
 <div align="center">
-    <img src="diagrams/ConvertLeadToClientSequence.png" width = "1000"/>
+    <img src="diagrams/ConvertLeadToClientSequence.png" width = "900"/>
     <p>After converttoclient command</p>
 </div>
 
@@ -313,7 +315,7 @@ Note that in every other operation that updates the `ObservableList` to be displ
 The following sequence diagram shows how the `sortmeeting` operation works:
 
 <div align="center">
-    <img src="diagrams/SortMeetingTimeSequenceDiagram.png" width = "1000"/>
+    <img src="diagrams/SortMeetingTimeSequenceDiagram.png" width = "900"/>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
