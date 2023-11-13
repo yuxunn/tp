@@ -11,10 +11,8 @@ Given below are my contributions to the project.
 
 - **New Feature**: Added the ability to view specific lead / client command.
     - **What it does:** Allows the user to view a specified lead or client.
-    - **Justification:** This feature improves the product significantly because a user would be able to view a lead's or 
-client's additional details that are not displayed in the main list. 
-    - **Difficulty:** To implement this feature, I had to design a new UI for the profile page and learn how the current UI logic of the address book worked. 
- I also had to learn how to retrieve relevant data for the view display and implement the logic for the  ``view`` command.
+    - **Justification:** This feature improves the product significantly because a user would be able to view a lead's or client's additional details that are not displayed in the main list. 
+    - **Difficulty:** To implement this feature, I had to design a new UI for the profile page and learn how the current UI logic of the address book worked. I also had to learn how to retrieve relevant data for the view display and implement the logic for the  ``view`` command.
 <p></p>
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=yuxunn&tabRepo=AY2324S1-CS2103T-F08-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
