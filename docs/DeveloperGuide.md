@@ -500,9 +500,9 @@ Use case ends.
 
         Use case resumes at step 6.
 
-    5a. The given Key Milestone date is identical to the current Key Milestone date of the lead.
+    5b. The given Key Milestone date is identical to the current Key Milestone date of the lead.
         
-        5a1. D.A.V.E. displays a message that the lead's information has been edited, maintaining the same date for the Key Milestone.
+        5b1. D.A.V.E. displays a message that the lead's information has been edited, maintaining the same date for the Key Milestone.
 
         Use case resumes at step 7.
 
@@ -630,11 +630,11 @@ Use case ends.
 
         Use case resumes at step 4.
 
-    2a. User provides more than one name.
+    2b. User provides more than one name.
     
-        2a1. D.A.V.E. performs a search and displays a list with all the people whose name contains the input names.
+        2b1. D.A.V.E. performs a search and displays a list with all the people whose name contains the input names.
         
-        2a2. User narrows down the search by typing the full name of the specific person.
+        2b2. User narrows down the search by typing the full name of the specific person.
 
         Use case resumes at step 4.
 
@@ -748,11 +748,11 @@ Use case ends.
         
         Use case ends.
 
-    3a. The list of persons is empty.
+    3b. The list of persons is empty.
         
-        3a1. D.A.V.E. displays a message indicating all meeting times are sorted.
+        3b1. D.A.V.E. displays a message indicating all meeting times are sorted.
         
-        3a2. No information is displayed.
+        3b2. No information is displayed.
         
         Use case ends.
     
