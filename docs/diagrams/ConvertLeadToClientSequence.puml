@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ConvertLeadToClientCommandParser" as ConvertLeadToClientCommandParser LOGIC_COLOR
+participant ":ConvertLeadToClientCommand" as ConvertLeadToClientCommand LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(converttoclient <Integer>)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(converttoclient <Integer>)
+activate AddressBookParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+
+AddressBookParser -> ConvertLeadToClientCommandParser : parse(converttoclient <Integer>)
+activate ConvertLeadToClientCommandParser
+
+create ConvertLeadToClientCommand
+ConvertLeadToClientCommandParser -> ConvertLeadToClientCommand
+activate ConvertLeadToClientCommand
+
+ConvertLeadToClientCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> ConvertLeadToClientCommand : List of Persons
+ConvertLeadToClientCommand -> Model : setPerson()
+ConvertLeadToClientCommand -> Model : updateFilterPredicate()
+deactivate Model
+
+ConvertLeadToClientCommand --> LogicManager : CommandResult
+deactivate ConvertLeadToClientCommand
+deactivate ConvertLeadToClientCommandParser
+deactivate AddressBookParser
+
+
+
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
