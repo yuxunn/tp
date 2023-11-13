@@ -238,7 +238,7 @@ The `AddMeetingCommand` class then calls `Model#setPerson()` to update the addre
 The following sequence diagram shows how the `addmeeting ...` operation works:
 
 <div align="center">
-    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="700"/>
+    <img src="diagrams/AddMeetingTimeSequenceDiagram.png" width="1200"/>
 </div>
 
 The following activity diagram shows the workflow of the execution of the `addmeeting ...` command:
