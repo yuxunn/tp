@@ -134,13 +134,13 @@ Opened help window.
       - The domain name must end with a domain label at least 2 characters long.
       - Each domain label must start and end with alphanumeric characters and only separated by hyphens, if any.
     - `ADDRESS`: can contain any alphanumeric character, must not be blank.
-    - `KEY_MILESTONE`: only contains date in the format of `dd/MM/yyyy`
+    - `KEY_MILESTONE`: only contains date in the format of `dd/MM/yyyy`.
       - ``KEY_MILESTONE`` is the date of a lead's life-changing event.
-      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
+      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
 - Acceptable values for each optional parameter:
     - `MEETING_TIME`: A string of format `dd/MM/yyyy HH:mm`, must not be blank if any meeting time is declared.
-      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`
-      - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`
+      - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
+      - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`.
       - Meeting time can be before the current date and time.
     - `TAG`: can contain any alphanumeric character, must not be blank if any tag is declared.
 - Precise expected outputs when the command succeeds:
@@ -224,21 +224,23 @@ This client already exists in the address book
 
 - What it does: Lists all leads and clients in the address book to the user. The information displayed includes the Lead/Client's name, phone number, email, address, meeting time and tags.
 - Command: `list`.
-- Precise expected output when the command succeeds:
-```
-Listed all persons
-```
-
+- Example usage:
 <div align="center">
     <img src="./images/listcommand.png" width="500" />
     <p>After using list command</p>
 </div>
 
+- Precise expected outputs when the command succeeds:
+```
+Listed all persons
+```
+
+
 ### View all clients
 
 - What it does: View all clients you have stored, including their basic information and index in the list of clients, e.g. id, name, age, gender, occupation, etc.
 - Command: `listclient`.
-- Precise expected outputs when the command succeeds:
+- Example usage:
 
 <div align="center">
     <img src="./images/List.png" width="500" />
@@ -260,7 +262,7 @@ There are no clients in the address book
 
 - What it does: View all leads you have stored, including their basic information and index in the list of leads, e.g. id, name, age, gender, occupation, etc.
 - Command: `listlead`.
-- Precise expected outputs when the command succeeds:
+- Example usage:
 
 <div align="center">
     <img src="./images/List.png" width = "500"/>
@@ -380,7 +382,7 @@ The person index provided is invalid
 
 - Acceptable values for each compulsory parameter:
   - `INDEX`: Any integer from `1` to the last index of the filtered list shown in the address book.
-- Acceptable values for each optional parameter (at least one of the optional parameters must be provided)
+- Acceptable values for each optional parameter (at least one of the optional parameters must be provided):
   - `NAME`: can contain any string of alphanumeric characters.
     - The name can contain spaces but cannot be blank (only contain spaces).
   - `PHONE`: any valid string of integers, between 3 digits and 8 digits long.
@@ -393,7 +395,7 @@ The person index provided is invalid
   - `ADDRESS`: can contain any alphanumeric character, must not be blank.
   - `KEY_MILESTONE`**(Only for leads)**: only contains date in the format of `dd/MM/yyyy`.
     - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
-    - If the edited person is a client, no ``KEY_MILESTONE`` of the person will be edited as client does not have ``KEY_MILESTONE``
+    - If the edited person is a client, no ``KEY_MILESTONE`` of the person will be edited as client does not have ``KEY_MILESTONE``.
   - `MEETING_TIME`: only contains date in the format of `dd/MM/yyyy HH:mm`.
     - The date must be a valid date, these are invalid: `31/02/2020`, `25/13/2021`.
     - The time must be a valid time in the 24-hour format, these are invalid: `25:00`, `12:60`.
@@ -545,7 +547,7 @@ Example: deletemeeting 1
 - Example usage: `converttoclient 1`.
 - Acceptable values for `INDEX` parameter:
   - Any integer from `1` to the last index of the filtered list shown in the address book, person must be a lead.
-- Example usage
+- Example usage:
 
 <div align="center">
     <img src="./images/beforeconverttoclient.png" width = "500"/>
@@ -559,11 +561,15 @@ Example: deletemeeting 1
 
 - Precise expected outputs when the command succeeds:
 
-`Converted lead to client`
+```
+Converted lead to client
+```
 
 - Precise expected outputs when the command fails:
 
-`The person index provided is invalid`
+```
+The person index provided is invalid
+```
 
 
 ### Convert client to lead
@@ -574,7 +580,7 @@ from current date to ensure a follow-up by the user.
 - Example usage: `converttolead 1`.
 - Acceptable values for `INDEX` parameter:
   - Any integer from `1` to the last index of the filtered list shown in the address book, person must be a client.
-- Example usage
+- Example usage:
 
 <div align="center">
     <img src="./images/beforeconverttolead.png" width = "500"/>
@@ -587,20 +593,46 @@ from current date to ensure a follow-up by the user.
 </div>
 
 - Precise expected outputs when the command succeeds:
-`Converted client to lead`
+
+```
+Converted client to lead
+```
 
 - Precise expected outputs when the command fails:
 
-`The person index provided is invalid`
+```
+The person index provided is invalid
+```
 
 
 ### Locating persons by name
 - What it does: Finds persons whose names contain any of the given keywords as names.
+
+<box type="info">
+  <ul>
+    <li>The search is case-insensitive. e.g. <code>John</code> will match <code>john</code>.</li>
+    <li>Only full words will be matched. e.g. <code>John</code> will not match <code>Johns</code>.</li>
+    <li>Persons matching at least one keyword will be returned (i.e. OR search). e.g. <code>find john david</code> will return <code>John Doe</code>, <code>David Li</code>.</li>
+  </ul>
+</box>
+
 - Command format: `find NAME [MORE_NAMES]`.
 - Example usage: `find John David`.
+
+<div align="center">
+    <img src="./images/BeforeFind.png" width = "500"/>
+    <p>Before using find</p>
+</div>
+
+<div align="center">
+    <img src="./images/AfterFind.png" width = "500"/>
+    <p>After using find john david</p>
+</div>
+
 - Acceptable values for parameter: 
-  - `NAME`: Any name from the list.
+  - `NAME`: A keyword used to match against the names of all persons in the list.
 - Precise expected output when the command succeeds:
+
 ```
 <NUMBER> persons listed!
 ```
@@ -613,26 +645,6 @@ find: Finds all persons whose names contain any of the specified names (case-ins
 Parameters: NAME [MORE_NAMES]...
 Example: find alice bob charlie
 ```
-
-<box type="info">
-  <ul>
-    <li>The search is case-insensitive. e.g. <code>John</code> will match <code>john</code>.</li>
-    <li>Only full words will be matched. e.g. <code>John</code> will not match <code>Johns</code>.</li>
-    <li>Persons matching at least one keyword will be returned (i.e. OR search). e.g. <code>find john david</code> will return <code>John Doe</code>, <code>David Li</code>.</li>
-  </ul>
-</box>
-
-Example usage:
-
-<div align="center">
-    <img src="./images/BeforeFind.png" width = "500"/>
-    <p>Before using find</p>
-</div>
-
-<div align="center">
-    <img src="./images/AfterFind.png" width = "500"/>
-    <p>After using find john david</p>
-</div>
 
 ### Clear address book
 - What it does: Clears all entries from the address book.
