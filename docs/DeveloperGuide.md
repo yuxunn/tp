@@ -763,36 +763,5 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-1. Client Policy Management: The existing functionality for student financial advisors lacks the capability to add, edit, delete, and receive reminders for client policies nearing expiration. To address this limitation, we intend to develop these features in the future, ensuring student financial advisors can efficiently manage policy-related tasks.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. Client Policy Management: The existing functionality for DAVE lacks the capability to add, edit, delete, and receive reminders for client policies nearing expiration. To address this limitation, we intend to develop these features in the future, ensuring student financial advisors can efficiently manage policy-related tasks.
 
